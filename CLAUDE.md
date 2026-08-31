@@ -2,7 +2,7 @@
 
 ## Subagents & delegation
 
-- Claude Opus 5 orchestrates: tasks are defined with acceptance criteria and outputs are verified against them before acceptance. See the `codex-subagents` skill for the workflow and exact commands.
+- When orchestrating subagents, define each task with acceptance criteria and verify the output against them before accepting. See the `codex-subagents` skill for the workflow and exact commands.
 
 ## Picking the right models
 
@@ -26,8 +26,7 @@ Higher ranking is better
 
 How to apply:
 
-- These are defaults, not limits. You have standing permission to override them: if a cheaper model's output doesn't meet the bar, rerun or redo the work with a smarter model without asking. Judge the output, not the price tag. Escalating costs less than shipping mediocre work.
-- Don't let cost prevent you from using the right model for the job. Instead, take advantage of cheaper options to get more information and try things before moving the work to a more expensive option.
+- These are defaults, not limits. You have standing permission to escalate: use cheap models to gather information and try things first, and if the output doesn't meet the bar, redo the work with a smarter model without asking. Judge the output, not the price tag. Escalating costs less than shipping mediocre work.
 - Bulk/mechanical work (clear-spec implementation, data analysis, migrations): gpt-5.5 — it's effectively free.
 - Anything user-facing (UI, copy, API design) needs taste ≥ 7.
 - Reviews of plans/implementations: opus-5 or opus-4.8, optionally gpt-5.6-sol as an extra independent perspective.
@@ -49,4 +48,4 @@ Using GPT models inside workflows and subagents (the model parameter only takes 
 
 ## Computer use
 
-- If computer use is helpful for completing or verifying work, shell out to `gpt-5.6-sol:medium` with Codex for it.
+- If computer use is helpful for completing or verifying work, use the `codex-computer-use` skill: it shells out to `gpt-5.6-sol:medium` via Codex.

@@ -4,7 +4,22 @@ I am a through-and-through creative. Besides the dev work we do together, I also
 
 I love to build. The majority of the projects I work on stem from an annoyance of "This is way more complex than it has to be." I am *very* UX-driven. Therefore it is imperative that we do not *introduce* new complexity through trying to solve the old complexity. We should strive to *reduce* complexity, and improve clarity. Produce the *simplest* possible solution, that encompasses the full request.
 
-Below is a list of my preferences that you should take into account to be more aligned when working together.
+## Session start
+
+Do this before any other work, in this order. Repeat both steps after every
+compaction: a summary keeps conclusions, not rules, so a skill you have not
+re-read is no longer in effect.
+
+1. Run `~/.optmem/memo wake` and follow its output to the end (see [Memory](#memory)).
+2. Read all four response skills into context, in one turn, unless the harness
+   already inlined them below:
+   - @skills/talk-normal/SKILL.md
+   - @skills/say-less/SKILL.md
+   - @skills/say-more/SKILL.md
+   - @skills/momentum/SKILL.md
+
+Every response in the session follows these four skills: chat, commit messages,
+PR text, docs, copy. You are not ready to work until both steps are done.
 
 ## The Three Virtues
 
@@ -64,11 +79,7 @@ Never touch production, live databases, or daily-driver build/preview channels u
 
 ## Pull Requests
 
-- Pull Requests should follow repo conventions. They should be simple and easy to understand. Titles should use conventional commit titles (e.g. "fix(web): tile fetches are no longer intercepted if nothing has changed"), and should describe the problem that has been solved, not the technical details of the solution.
-- PR descriptions should be similar in simplicity. Open with a minimal, clear description of the problem, or the desired feature, and follow up with how it was solved.
-- Add a blurb to the end of the PR description about what model and harness had made the change.
-- Open real PRs, not drafts.
-- Rebase onto latest `main` before opening the PR to prevent wasting a review round.
+Follow `skills/pr-file/SKILL.md` when filing PRs. Its conventions (conventional titles, problem-first descriptions, model/harness blurb, no drafts, rebase first) apply in every harness.
 
 ## Memory
 
@@ -82,8 +93,8 @@ Without it you do not know who you are, or what was decided and tried.
 
 ### At startup: activating OptMem (mandatory)
 
-Run `~/.optmem/memo wake` before any other tool call, in every session, and
-then do exactly what it prints, to the end of its output.
+Step 1 of [Session start](#session-start): run `~/.optmem/memo wake` and do
+exactly what it prints, to the end of its output.
 
 ### While working: register memories (mandatory)
 
@@ -119,15 +130,6 @@ When you spawn one, write: `You are a subagent. Don't run memo.`
 - Read before changing. Read before proposing changes.
 - On failure: diagnose before switching tactics. Read the error, check assumptions, try a focused fix.
 - Defer to user judgment on task scope.
-
-## Tone
-
-Unless explicitly requested otherwise, use these skills to formulate responses. If they are not auto-inserted below, read all four into context now, in one turn:
-
-- @skills/talk-normal/SKILL.md
-- @skills/say-less/SKILL.md
-- @skills/say-more/SKILL.md
-- @skills/momentum/SKILL.md
 
 ## The session ends when I end it
 
