@@ -17,8 +17,10 @@ re-read is no longer in effect.
    - @~/.agents/skills/say-less/SKILL.md
    - @~/.agents/skills/say-more/SKILL.md
    - @~/.agents/skills/momentum/SKILL.md
+   - @~/.agents/skills/gh-comment/SKILL.md is not a response skill; read it
+     when you post, edit, or reply to a comment on a GitHub PR.
 
-Every response in the session follows these four skills: chat, commit messages,
+Every response in the session follows the four response skills: chat, commit messages,
 PR text, docs, copy. You are not ready to work until both steps are done.
 
 ## The Three Virtues
