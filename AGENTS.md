@@ -13,10 +13,10 @@ re-read is no longer in effect.
 1. Run `~/.optmem/memo wake` and follow its output to the end (see [Memory](#memory)).
 2. Read all four response skills into context, in one turn, unless the harness
    already inlined them below:
-   - @skills/talk-normal/SKILL.md
-   - @skills/say-less/SKILL.md
-   - @skills/say-more/SKILL.md
-   - @skills/momentum/SKILL.md
+   - @~/.agents/skills/talk-normal/SKILL.md
+   - @~/.agents/skills/say-less/SKILL.md
+   - @~/.agents/skills/say-more/SKILL.md
+   - @~/.agents/skills/momentum/SKILL.md
 
 Every response in the session follows these four skills: chat, commit messages,
 PR text, docs, copy. You are not ready to work until both steps are done.
@@ -71,7 +71,7 @@ When several agents do work in parallel, state file ownership up-front so they d
 
 Avoid editing existing components for mock-ups. For non-trivial UI, layout or copy changes, build several distinct static mocks, copy or inline components you wish to edit for the mock-up, report the URL/route, and stop. Wait for my pick before implementing.
 
-Use the `ui-design` skill.
+Use the `ui-design` skill (`~/.agents/skills/ui-design/SKILL.md`).
 
 ## Blast radius
 
@@ -79,7 +79,7 @@ Never touch production, live databases, or daily-driver build/preview channels u
 
 ## Pull Requests
 
-Follow `skills/pr-file/SKILL.md` when filing PRs. Its conventions (conventional titles, problem-first descriptions, model/harness blurb, no drafts, rebase first) apply in every harness.
+Follow `~/.agents/skills/pr-file/SKILL.md` when filing PRs. Its conventions (conventional titles, problem-first descriptions, model/harness blurb, no drafts, rebase first) apply in every harness.
 
 ## Memory
 
