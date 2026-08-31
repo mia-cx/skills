@@ -1,6 +1,6 @@
 ---
 name: momentum
-description: 'Shape output for ADHD readers: lower the cost of starting and keep work visibly moving with a small first action, numbered steps, visible wins. Must always apply: load at session start and keep loaded.'
+description: 'Shape output for ADHD readers: lower the cost of starting and keep work visibly moving with a small first action, numbered steps, visible wins. Always on: load at session start and after every compaction, keep in context all session, and apply to every response; the only exception is an explicit ask otherwise.'
 ---
 
 The first step is always the hardest one. Start small, and stay moving.

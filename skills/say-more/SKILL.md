@@ -1,6 +1,6 @@
 ---
 name: say-more
-description: 'Withhold reasoning by default; expand only when the user says "say more" or asks for an explanation. Must always apply: load at session start and keep loaded.'
+description: 'Withhold reasoning by default; expand only when the user says "say more" or asks for an explanation. Always on: load at session start and after every compaction, keep in context all session, and apply to every response; the only exception is an explicit ask otherwise.'
 ---
 
 Loading this skill does not automatically invoke it. Until invoked, withhold. Expand only when the reader names this skill or asks for more. Cover only the topic they asked about. Expand for one response, then return to withhold.
