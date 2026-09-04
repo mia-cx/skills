@@ -40,12 +40,12 @@ Then plan the direction as a compact token system: 4–6 named `oklch()` primiti
 
 Known AI-default looks to spend freedom away from: warm-cream + high-contrast serif + terracotta accent; near-black + single acid-green/vermilion accent; broadsheet hairlines + zero radius; AI-purple gradients on dark mesh; three equal feature cards; Inter + slate-900; beige/brass/espresso for anything "premium consumer". All legitimate when the brief asks; never as the unchosen default — and don't ship the same palette family twice in a row.
 
-## 4. Fan out variants for greenfield
+## 4. Variants only when the user asks for them
 
-For a new design (or an overhaul-mode redesign), don't iterate a single idea — explore in parallel:
+The default, greenfield and overhaul included, is one design iterated with the user. Fan out only when the user explicitly asks for variants, alternatives, or directions to compare: 2–4 agents in their own worktrees is a real cost in tokens and review time, and an unasked-for spread hands the user a comparison chore instead of a design. When they do ask:
 
 1. Spawn 2–4 **clean-slate agents**: fresh context, no shared conversation, each in its own worktree so builds don't collide.
-2. Every agent gets the same brief and this skill, plus one **seed phrase** the orchestrator invents per agent — a short evocative nudge ("cast iron", "morning frost", "ledger paper"). Never a leading aesthetic ("brutalist"), a reference product ("like Linear"), or a design system: the seed differentiates exploration without prescribing its outcome.
+2. Every agent gets the same brief and **this SKILL.md in full, inlined verbatim in its prompt** (a fresh context has not loaded it, a path may go unread, and a summary loses the rules that make the variant defensible), plus one **seed phrase** the orchestrator invents per agent — a short evocative nudge ("cast iron", "morning frost", "ledger paper"). Never a leading aesthetic ("brutalist"), a reference product ("like Linear"), or a design system: the seed differentiates exploration without prescribing its outcome.
 3. Each agent runs §1–§3 and builds its variant independently; present the variants side by side without ranking.
 4. The user picks a winner or iterates one to satisfaction — then freeze it into `DESIGN.md` (§13) before further feature work.
 
@@ -158,5 +158,5 @@ Before presenting, run:
 
 - **Design-system database**: the installed `ui-ux-pro-max` skill — searchable styles/palettes/font-pairings/UX rules across 22 stacks. `python <its-dir>/scripts/search.py "<product> <industry> <keywords>" --design-system` (+ `--variance/--motion/--density` 1–10 dials); `--domain ux|color|typography|chart|gsap` for deep-dives; `--stack <stack>` for stack rules. Never present a 0-result search as data.
 - **Token extraction**: `npx extract-design-system <url>` reverse-engineers a public site into starter tokens (the installed `extract-design-system` skill has the flags).
-- **DESIGN.md**: once a direction is settled (variant chosen and iterated to satisfaction, §4), write `DESIGN.md` at the project root capturing the *complete* design system — every decision, not just the direction: typefaces per role, full palette as named tokens with values, icon library + strokeWidth, spacing/margin/padding tokens, density values, radius scale + shape language, depth strategy, motion durations and easings, and measured component patterns (`Button primary — 36px h · 12px 16px pad · 6px radius · 14px/500`). Everything a future agent would otherwise re-decide. When `DESIGN.md` exists: read it and honor it — decisions are made.
+- **DESIGN.md**: once a direction is settled (the design, or the chosen variant from §4, iterated to satisfaction), write `DESIGN.md` at the project root capturing the *complete* design system — every decision, not just the direction: typefaces per role, full palette as named tokens with values, icon library + strokeWidth, spacing/margin/padding tokens, density values, radius scale + shape language, depth strategy, motion durations and easings, and measured component patterns (`Button primary — 36px h · 12px 16px pad · 6px radius · 14px/500`). Everything a future agent would otherwise re-decide. When `DESIGN.md` exists: read it and honor it — decisions are made.
 - Be invisible: don't narrate modes or checklists; surface the recommendation and the reasoning, keep the monologue private.
