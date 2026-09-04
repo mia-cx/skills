@@ -29,9 +29,14 @@ Sit with the PR until it is green and mergeable. The reviewers are whoever alrea
 
 One line per event: a new conversation comment, inline comment, or review; CI checks reaching a new state; the head moving; the PR merging or closing (then it exits). Bodies carrying the gh-comment attribution header are skipped, so your own posted replies never re-trigger a tick while everything the user types on the PR comes through.
 
-**The script is the only poller.** Review bots take minutes, sometimes tens of minutes, so it backs off exponentially from the base to the max while nothing happens and resets on an event. It also remembers, for this PR and this run only, how long the slowest bot took after the last push, and starts the next round's wait at that latency instead of the base. Reading the PR by hand between events throws that away and spends a tool call per look; wait for the event.
+**Every look costs a tool call, so the script decides when to look and you never do.** Review bots take minutes, sometimes tens of minutes. The script backs off exponentially from the base to the max while nothing happens, resets on an event, and remembers how long the slowest bot took after the last push so the next round starts its wait at that latency instead of the base. That state is one file per PR under `$TMPDIR`, deleted when the PR merges or closes, so it survives a restart and never outlives the PR.
 
-In Claude Code, run it through the Monitor tool with `persistent: true`; each line arrives as a notification and starts a tick. On any other host, run it in the background and read its output. Silence means keep waiting: the watch ends when the PR merges or the user ends the session.
+Your side of the bargain is one tool call per wait, however long the wait:
+
+- **Claude Code**: start it once through the Monitor tool with `persistent: true`, then end the turn. Each event line arrives as a notification and starts a tick. There is nothing to check in between, so no reading its output, no `sleep`, no second look at the PR.
+- **Any other host**: run it with `--once` in the foreground at the tool's longest timeout. It blocks until the next batch of events, prints it, and exits; a timeout with no output was one wait, so call it again. Never wrap it in a loop of shorter calls.
+
+Silence means keep waiting. The watch ends when the PR merges or the user ends the session.
 
 ## The tick
 
