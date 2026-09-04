@@ -5,7 +5,7 @@
 #   review  <id> <login> <STATE>         submitted review with a body or verdict
 #   checks  <name: state, ...>           completed CI checks changed
 #   head    <sha>                        the PR head moved
-#   merged | closed                      terminal; the script exits
+#   green <sha> | merged | closed        terminal; the script exits
 # Comments carrying the gh-comment attribution header are skipped so the
 # caller's own posted replies never trigger a tick. Everything else, including
 # what the user types by hand, comes through.
@@ -17,12 +17,12 @@
 #
 # State (cursor, backoff, learned latency) lives in one file per PR under
 # $TMPDIR, so --once calls and restarts continue where the last one stopped.
-# It is deleted when the PR merges or closes; nothing outlives the PR.
+# It is deleted when the PR is green, merges, or closes.
 #
 # Usage: watch.sh OWNER/REPO PR_NUMBER [BASE_SECONDS=60] [MAX_SECONDS=900] [--once]
 #   --once  block until the next batch of events, print it, exit 0.
 #           One call is one wait; the caller spends nothing in between.
-set -u
+set -uo pipefail
 
 once=0
 args=()
@@ -57,22 +57,56 @@ save() {
 
 while true; do
   now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+  reviews=$(gh api --paginate --slurp "repos/$repo/pulls/$n/reviews" 2>/dev/null | jq 'add') || { sleep "$interval"; continue; }
 
   events=$(
     gh api "repos/$repo/issues/$n/comments?since=$since" --jq \
       ".[] | select($mine) | \"comment \(.id) \(.user.login): \(.body | split(\"\n\")[0])\"" 2>/dev/null
     gh api "repos/$repo/pulls/$n/comments?since=$since" --jq \
       ".[] | select($mine) | \"inline \(.id) \(.user.login) \(.path):\(.line // .original_line)\"" 2>/dev/null
-    gh api "repos/$repo/pulls/$n/reviews" --jq \
-      ".[] | select(.submitted_at >= \"$since\" and $mine and (.state != \"COMMENTED\" or .body != \"\")) | \"review \(.id) \(.user.login) \(.state)\"" 2>/dev/null
+    jq -r ".[] | select(.submitted_at >= \"$since\" and $mine and (.state != \"COMMENTED\" or .body != \"\")) | \"review \(.id) \(.user.login) \(.state)\"" <<<"$reviews"
   )
 
-  pr=$(gh pr view "$n" -R "$repo" --json state,headRefOid,statusCheckRollup 2>/dev/null) || { sleep "$interval"; continue; }
+  pr=$(gh pr view "$n" -R "$repo" --json state,headRefOid,statusCheckRollup,mergeable,reviewDecision 2>/dev/null) || { sleep "$interval"; continue; }
 
   case $(jq -r .state <<<"$pr") in
     MERGED) rm -f "$state"; echo merged; exit 0 ;;
     CLOSED) rm -f "$state"; echo closed; exit 0 ;;
   esac
+
+  # A successful Pullfrog job can contain findings. Require its latest review to be
+  # clean on this head, plus settled CI, before checking for unresolved discussions.
+  if jq -e --argjson reviews "$reviews" '
+    . as $pr
+    | [$reviews[] | select(.user.login | test("^pullfrog(\\[bot\\])?$"))]
+      | sort_by(.submitted_at) | last as $frog
+    | $pr.state == "OPEN" and $pr.mergeable == "MERGEABLE"
+      and $pr.reviewDecision != "CHANGES_REQUESTED"
+      and all($pr.statusCheckRollup[];
+        if .status != null then .status == "COMPLETED" and
+          (.conclusion == "SUCCESS" or .conclusion == "NEUTRAL" or .conclusion == "SKIPPED")
+        else .state == "SUCCESS" end)
+      and (if $frog != null or any($pr.statusCheckRollup[]; .name == "pullfrog") then
+        $frog.commit_id == $pr.headRefOid and
+        ($frog.state == "APPROVED" or ($frog.state == "COMMENTED" and
+          ($frog.body | test("(^|\n)>?[[:space:]]*(✅[[:space:]]*)?No (new )?issues found\\."))))
+        else true end)
+  ' <<<"$pr" >/dev/null; then
+    threads=$(gh api graphql -f owner="${repo%/*}" -f repo="${repo#*/}" -F number="$n" -f query='
+      query($owner:String!,$repo:String!,$number:Int!){
+        repository(owner:$owner,name:$repo){pullRequest(number:$number){headRefOid
+          reviewThreads(first:100){pageInfo{hasNextPage} nodes{isResolved}}}}}' 2>/dev/null) || { sleep "$interval"; continue; }
+    if jq -e --arg head "$(jq -r .headRefOid <<<"$pr")" '
+      (.errors // [] | length) == 0 and
+      (.data.repository.pullRequest | .headRefOid == $head and
+        .reviewThreads.pageInfo.hasNextPage == false and all(.reviewThreads.nodes[]; .isResolved))
+    ' <<<"$threads" >/dev/null; then
+      rm -f "$state"
+      [ -z "$events" ] || printf '%s\n' "$events"
+      echo "green $(jq -r .headRefOid <<<"$pr")"
+      exit 0
+    fi
+  fi
 
   cur=$(jq -r '[.statusCheckRollup[]
     | select(.status == "COMPLETED" or .state != null)
