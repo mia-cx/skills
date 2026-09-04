@@ -19,6 +19,11 @@ when the user asks to file the PR; do not add an approval round-trip.
   tree is dirty. Do not stash, discard, or mix uncommitted work into the PR.
 - Check for an existing open PR from the current branch. If one exists, report
   its URL instead of creating a duplicate.
+- Find the issue this branch completes: the one the user named, the branch
+  name, or the commit messages. Every PR links an issue, because milestones and
+  projects track issues, and a PR without one is untracked work. When none
+  exists, create it first with `gh issue create`, one or two sentences on the
+  problem, and add it to the milestone or project the sibling issues use.
 - Read relevant `AGENTS.md`, `CONTRIBUTING.md`, and pull-request templates before
   composing the PR. Repository conventions win where they are more specific.
 
@@ -70,7 +75,7 @@ simple:
 
 <One or two sentences explaining how this PR solves it.>
 
-<Closes #N, only when merge should complete that issue.>
+<Closes #N>
 
 ---
 Made with <actual model> using <actual harness>.
@@ -81,8 +86,10 @@ Made with <actual model> using <actual harness>.
   a generic attribution. Name multiple contributors succinctly when needed.
 - Include validation only when the repo template requires it or the result is
   important context. State only checks actually run.
-- Directly reference only issues that should be completed by the merge. The
-  paired `pr-merge` skill treats every direct issue reference as close intent.
+- `Closes #N` is required: the issue from step 1. Reference only issues the
+  merge completes; the paired `pr-merge` skill treats every direct issue
+  reference, `Refs` included, as close intent. When the PR only advances a
+  larger issue, file a sub-issue for this slice and close that.
 
 ### 5. Push and create the PR
 
