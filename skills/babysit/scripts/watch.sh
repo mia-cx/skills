@@ -6,8 +6,9 @@
 #   checks  <name: state, ...>           completed CI checks changed
 #   head    <sha>                        the PR head moved
 #   merged | closed                      terminal; the script exits
-# Comments by the authenticated user are skipped so the caller's own replies
-# never trigger a tick.
+# Comments carrying the gh-comment attribution header are skipped so the
+# caller's own posted replies never trigger a tick. Everything else, including
+# what the user types by hand, comes through.
 #
 # Polling backs off: BASE seconds, doubling to MAX while nothing happens, reset
 # to BASE by any event. After the head moves it first waits the slowest bot's
@@ -24,7 +25,8 @@ base=${3:-60}
 max=${4:-900}
 
 command -v gh >/dev/null || { echo "watch.sh: gh CLI not found; install it from https://cli.github.com" >&2; exit 2; }
-me=$(gh api user --jq .login) || { echo "watch.sh: gh is not authenticated; run gh auth login" >&2; exit 2; }
+gh auth status >/dev/null 2>&1 || { echo "watch.sh: gh is not authenticated; run gh auth login" >&2; exit 2; }
+mine='(.body // "" | test("commenting on behalf of") | not)'
 since=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 checks=""
 head=""
@@ -37,11 +39,11 @@ while true; do
 
   events=$(
     gh api "repos/$repo/issues/$n/comments?since=$since" --jq \
-      ".[] | select(.user.login != \"$me\") | \"comment \(.id) \(.user.login): \(.body | split(\"\n\")[0])\"" 2>/dev/null
+      ".[] | select($mine) | \"comment \(.id) \(.user.login): \(.body | split(\"\n\")[0])\"" 2>/dev/null
     gh api "repos/$repo/pulls/$n/comments?since=$since" --jq \
-      ".[] | select(.user.login != \"$me\") | \"inline \(.id) \(.user.login) \(.path):\(.line // .original_line)\"" 2>/dev/null
+      ".[] | select($mine) | \"inline \(.id) \(.user.login) \(.path):\(.line // .original_line)\"" 2>/dev/null
     gh api "repos/$repo/pulls/$n/reviews" --jq \
-      ".[] | select(.submitted_at >= \"$since\" and .user.login != \"$me\" and (.state != \"COMMENTED\" or .body != \"\")) | \"review \(.id) \(.user.login) \(.state)\"" 2>/dev/null
+      ".[] | select(.submitted_at >= \"$since\" and $mine and (.state != \"COMMENTED\" or .body != \"\")) | \"review \(.id) \(.user.login) \(.state)\"" 2>/dev/null
   )
 
   pr=$(gh pr view "$n" -R "$repo" --json state,headRefOid,statusCheckRollup 2>/dev/null) || { sleep "$interval"; continue; }

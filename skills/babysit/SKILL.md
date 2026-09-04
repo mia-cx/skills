@@ -27,7 +27,7 @@ Sit with the PR until it is green and mergeable. The reviewers are whoever alrea
 ~/.claude/skills/babysit/scripts/watch.sh OWNER/REPO N   # [base=60s] [max=900s]
 ```
 
-One line per event: a new conversation comment, inline comment, or review from anyone but the authenticated user; CI checks reaching a new state; the head moving; the PR merging or closing (then it exits). Comments the authenticated user posts are filtered so your own replies never re-trigger a tick; that filter also hides comments the user types by hand, so they steer you from chat.
+One line per event: a new conversation comment, inline comment, or review; CI checks reaching a new state; the head moving; the PR merging or closing (then it exits). Bodies carrying the gh-comment attribution header are skipped, so your own posted replies never re-trigger a tick while everything the user types on the PR comes through.
 
 **The script is the only poller.** Review bots take minutes, sometimes tens of minutes, so it backs off exponentially from the base to the max while nothing happens and resets on an event. It also remembers, for this PR and this run only, how long the slowest bot took after the last push, and starts the next round's wait at that latency instead of the base. Reading the PR by hand between events throws that away and spends a tool call per look; wait for the event.
 
