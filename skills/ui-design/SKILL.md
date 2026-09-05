@@ -5,7 +5,7 @@ description: Use when designing, building, reviewing, or refining product UI or 
 
 # UI Design
 
-Expanded material behind several sections lives in `references/` — consult it when a distilled rule needs more detail than this file carries.
+Expanded material lives in `references/`. Consult it when a rule needs more detail. This file governs conflicts with those references.
 
 **The bar**: if another AI, given a similar prompt, would produce substantially the same output, you have failed. Not different for its own sake — different because the interface emerged from *this* user, *this* task, *this* world.
 
@@ -39,6 +39,14 @@ Defaults get caught here or not at all. Produce all four before proposing a dire
 Then plan the direction as a compact token system: 4–6 named `oklch()` primitive colors plus semantic role tokens; typefaces for 2+ roles (characterful display used with restraint, complementary body, utility face if needed); a layout concept via one-sentence prose + ASCII wireframe; the signature. Preserve an existing project's color notation unless the task is a color-system migration. Review the plan against the brief: any part you'd produce for *any* similar page gets revised before code.
 
 Known AI-default looks to spend freedom away from: warm-cream + high-contrast serif + terracotta accent; near-black + single acid-green/vermilion accent; broadsheet hairlines + zero radius; AI-purple gradients on dark mesh; three equal feature cards; Inter + slate-900; beige/brass/espresso for anything "premium consumer". All legitimate when the brief asks; never as the unchosen default — and don't ship the same palette family twice in a row.
+
+### Design for the web
+
+Play with the medium. Start from what visitors can see, manipulate, and discover about this particular product. A header → hero → CTA → features → pricing stack is not a design brief. Required destinations must remain discoverable, but they do not dictate the page's composition.
+
+Explore scroll timelines, interactive demonstrations, spatial composition, and ambitious WebGPU/WGSL shaders when they express the product's world. For example, let visitors complete a bundle and watch its price change, or reshape a musician's page themselves. These are possibilities, not a checklist of effects to add everywhere. Keep native scrolling, keyboard access, and useful mobile layouts. Give GPU experiences a usable fallback, stop rendering when hidden, and honor reduced motion.
+
+An optional preflight can generate a page image with an available image-generation tool. Use it as a concrete visual reference. Recreate its feasible composition, typography, spacing, and imagery closely in responsive, semantic UI. Inspect it skeptically first: generated layouts can contain impossible controls, illegible text, and interactions that only work in a still image. Correct those problems; never ship the flattened image as the page. Use a model the runtime actually provides.
 
 ## 4. Variants only when the user asks for them
 
@@ -112,27 +120,30 @@ Static polish:
 - **Truncation hides content**: `text-overflow: ellipsis` and `line-clamp` are fine, but the full value stays reachable — tooltip, expanded row, or detail view. A clamp is never the only copy of something the user needs to read.
 - Mobile inputs render at `16px` (`text-base sm:text-sm`); below that, iOS Safari zooms the whole page on focus. Never fix it with `maximum-scale=1` — Safari ignores the cap for pinch zoom while every other browser honors it and blocks zooming, which fails WCAG.
 
-Motion is felt, not watched:
+Motion serves the experience:
 
 - High-frequency actions (100+×/day): **no** animation. Occasional surfaces: standard. Rare moments: delight.
-- Durations <300ms: press 100–160, tooltip 125–200, dropdown 150–250, modal 200–500.
-- Custom ease-out `cubic-bezier(0.23, 1, 0.32, 1)` entering; never ease-in. Press feedback `scale(0.97)`. Never from `scale(0)` — start `0.95 + opacity 0`. Popovers scale from their trigger origin.
-- Animate only `transform`/`opacity`; never `transition: all`. Stagger entrances 30–80ms; exits faster than enters.
+- When implementing animations or transitions, read and use [$transitions-dev](../transitions-dev/SKILL.md). It owns transition recipes and motion tokens; do not duplicate them here.
+- Prefer `transform`/`opacity` for ordinary UI motion. Name animated properties explicitly; never use `transition: all`. Measure layout, paint, and GPU costs for more ambitious effects.
+- Scroll sequences and shader scenes can be watched and explored. Their pacing follows the experience, rather than a dropdown's duration.
 - **Every animation must be justifiable in one sentence** — hierarchy, storytelling, feedback, or state transition; "it looked cool" is not an answer.
 - Banned: `window.addEventListener("scroll")` and per-frame scroll/pointer math flowing through reactive state. We work in Svelte: prefer CSS scroll-driven animations (`animation-timeline: scroll()` / `view()`); reach for IntersectionObserver only when the animation is too complex for CSS. Continuous pointer/scroll values drive `transform` directly or via `svelte/motion` springs — never `$state` per frame.
 - `prefers-reduced-motion` is non-negotiable: movement collapses, opacity may stay.
 
 ## 10. Copy is design material
 
-Copy only where it earns its place — not everything needs an explainer. **Show, don't tell**: a screenshot, the layout itself, or best of all real components from the codebase rendered with sample data beat a paragraph describing them. Words exist to make the interface easier to use. Write from the user's side of the screen: name what people control ("notifications", not "webhook config"). Active voice; a control says what happens ("Save changes", not "Submit") and keeps its name through the flow ("Publish" → "Published"). Consequential confirmations repeat the consequence so the dialog is answerable without reading the body: "Delete this project?" offers `Delete project` and `Cancel`, never `Yes`/`No`/`OK`. Links name their destination — "Read the billing docs", not "Click here" or a bare "Learn more" repeated down the page. Toggles are labelled for the ON state ("Send read receipts"), never the negative. One capitalization policy per element type (all buttons, all headings); sentence case is the safer default. Never assemble a sentence from fragments around a variable (`"You have " + n + " new messages"`) — word order and plural forms differ per language, so ship whole templated strings with real pluralization. Errors explain what went wrong and how to fix it — never apologize, never vague. Empty states invite action. One job per element. **Copy self-audit before shipping**: re-read every visible string; rewrite anything grammatically broken, referent-unclear, or LLM-cute ("performative-craftsman" labels, mock-poetic micro-meta). Plain beats clever. No fake-precise numbers unless real or labeled mock. Quotes ≤3 lines with real attribution.
+**Never add eyebrows, ever.** No decorative preheading labels, kickers, overlines, or section numbers above headings, regardless of case or styling. Start with the content or heading itself.
+
+**Strict show, don't tell.** Add prose only when absolutely necessary. Anything a visual example can convey must be conveyed through a visual example. Prefer a working interaction or real components with sample data; use a screenshot when interaction adds nothing. Delete prose that repeats what visitors can already see. Keep necessary control labels, prices, terms, error recovery, and accessible text alternatives. Visual communication must remain understandable to people using assistive technology.
+
+Write from the user's side of the screen: name what people control ("notifications", not "webhook config"). Active voice; a control says what happens ("Save changes", not "Submit") and keeps its name through the flow ("Publish" → "Published"). Consequential confirmations repeat the consequence so the dialog is answerable without reading the body: "Delete this project?" offers `Delete project` and `Cancel`, never `Yes`/`No`/`OK`. Links name their destination — "Read the billing docs", not "Click here" or a bare "Learn more" repeated down the page. Toggles are labelled for the ON state ("Send read receipts"), never the negative. One capitalization policy per element type (all buttons, all headings); sentence case is the safer default. Never assemble a sentence from fragments around a variable (`"You have " + n + " new messages"`) — word order and plural forms differ per language, so ship whole templated strings with real pluralization. Errors explain what went wrong and how to fix it — never apologize, never vague. Empty states invite action. One job per element. **Copy self-audit before shipping**: re-read every visible string; rewrite anything grammatically broken, referent-unclear, or LLM-cute ("performative-craftsman" labels, mock-poetic micro-meta). Plain beats clever. No fake-precise numbers unless real or labeled mock. Quotes ≤3 lines with real attribution.
 
 ## 11. Marketing-surface hard rules
 
 The distilled bans (full rationale: `references/design-taste.md`). These are mechanical — check them, don't vibe them:
 
-- **Hero**: fits the viewport; headline ≤2 lines; subtext ≤20 words; CTA visible without scroll; max 4 text elements; top padding ≤ `pt-24`; logo walls live *under* the hero; a text+gradient-blob hero is a placeholder, not a hero.
-- **Eyebrows**: max 1 per 3 sections (count `uppercase tracking` labels mechanically). No section-numbering (`001 · Capabilities`), no version labels (`BETA`, `V0.6`) outside launch briefs.
-- **Layout variety**: a layout family appears at most once per page (≥4 families across 8 sections); max 2 consecutive zigzag image/text splits; no 3-equal-feature-cards; bento grids have exactly as many cells as content, with 2–3 cells visually varied; split-header (big left headline + small floating right paragraph) banned as default.
+- **Opening**: make the product understandable through a visual example. A hero is optional. If used, keep its headline short and its primary interaction reachable; omit subtext unless §10 requires it. A text+gradient-blob hero is a placeholder.
+- **Layout variety**: let the content determine the structure and section count. No three equal feature cards or repeated image/text zigzags. Bento grids have exactly as many cells as content needs. Split-header (big left headline + small floating right paragraph) is banned as default.
 - **CTAs**: one label per intent page-wide; no wrapped button text at desktop (contrast is a §12 gate).
 - **Images**: real assets (gen tool → seeded placeholder photography → labeled TODO slots). Div-built fake screenshots are the #1 tell. Real SVG logos in walls (Simple Icons/devicon), logos only — no category labels.
 - **Copy tells**: zero em/en-dashes in shipped page copy; no "Quietly trusted by"; no locale/weather strips; no scroll cues; no decorative status dots; no photo-credit-as-decoration; no version footers on marketing pages.
@@ -148,6 +159,7 @@ Before presenting, run:
 - **Squint test** — hierarchy reads, nothing harsh.
 - **Signature test** — point to five specific places the signature appears; "overall feel" doesn't count.
 - **Token test** — do the variable names belong to this product's world?
+- **Show, don't tell**: zero eyebrows; every remaining prose passage passes §10. Point to the visual examples and interactions that carry the explanation.
 - **A11y is not optional**: semantic HTML first, ARIA where semantics don't cover, a complete keyboard path with visible focus, purposeful alt text, and WCAG AA contrast on every rendered text/background and focus-state pair in each theme. Run a grayscale/high-contrast pass. Ship nothing that fails these.
 - **Verify visually** — render or screenshot at desktop + mobile widths, both color modes; fix overlap, blank states, unreadable text before presenting. A picture is worth 1000 tokens. Chanel rule: look in the mirror, remove one accessory.
 - **Guidelines review**: for a compliance pass, fetch the living checklist and report findings as `file:line`:
