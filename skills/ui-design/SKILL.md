@@ -81,6 +81,14 @@ Tokenize repeated decisions and name tokens by their role. Choose type, spacing,
 
 Support the requested color modes. When unspecified, choose and document an appropriate appearance rather than adding an automatic theme switcher. Preserve explicit brand color pairings in every state. Resolve contrast through placement or treatment without violating those pairings.
 
+## Keep layout stable
+
+Treat unintended content shift as a bug. Loading, hover, focus, selection, count changes, and transient controls must preserve surrounding geometry and hit targets. Reserve space for changing labels, counts, media, and loading states. Put menus and popovers in overlays, outside layout flow.
+
+Explicit layout changes, such as expanding a section, may reflow content. Keep the trigger, row controls, and content columns aligned. Animating an unintended shift does not make it acceptable.
+
+Compare element bounds before and after each state change at supported widths. Include empty, single-digit, multi-digit, and delayed-content states. Any unintended movement fails visual verification.
+
 ## Verify the rendered experience
 
 Code checks do not establish visual quality. Render every delivered route and important state at desktop and phone widths. Inspect the images yourself. Fix awkward alignment, tiny controls, excessive whitespace, clipped content, accidental wrapping, and broken hierarchy before expanding or handing off.
