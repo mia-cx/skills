@@ -33,10 +33,16 @@ One line per event: a new conversation comment, inline comment, or review; CI ch
 
 **The script decides when to look.** It backs off exponentially from the base to the max while nothing happens and resets on an event. It remembers bot latency after a push so later rounds start near that wait. State lives in one file per PR under `$TMPDIR` until a terminal event.
 
-Your side of the bargain is one tool call per wait, however long the wait:
+**Never poll the watcher.** Polling its process, session, output, or logs duplicates the script's work and wastes tokens. Repeated short `write_stdin`, `wait`, or `tail` calls count as polling too.
 
-- **Claude Code**: start it once through the Monitor tool with `persistent: true`, then end the turn. Each event line arrives as a notification and starts a tick. There is nothing to check in between, so no reading its output, no `sleep`, no second look at the PR.
-- **Any other host**: run it with `--once` in the foreground at the tool's longest timeout. It blocks until the next batch of events, prints it, and exits; a timeout with no output was one wait, so call it again. Never wrap it in a loop of shorter calls.
+Choose one way to receive events:
+
+- **Event monitor**: launch once and let notifications resume the task. In Claude Code, use Monitor with `persistent: true`, then end the turn. Each event line starts a tick; nothing needs checking between events.
+- **Blocking run**: launch `watch.sh OWNER/REPO N --once` with the runner's longest timeout. Await its exit: the first batch of comments, reviews, or other events makes it print and exit. Read that result, perform the tick, and start another run only if **Done** remains unmet.
+
+A tool returning a session ID is not a watcher event. Use its completion notification or one blocking wait at the longest supported timeout; do not turn a yielded call into a loop of short checks. Restart after a hard timeout only when the previous process has actually stopped. If the host supports neither event delivery nor blocking completion, report that limitation once instead of substituting a polling loop.
+
+While waiting, make no extra PR requests and send no repeated "still waiting" updates. Resume on an event, process exit, or user input.
 
 Silence means wait only while **Done** remains unmet. Once done, stop the monitor or watcher and end the turn. Late feedback requires a new babysit request.
 
