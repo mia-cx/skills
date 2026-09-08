@@ -1,6 +1,6 @@
 > Source material: leonxlnx/taste-skill @ design-taste-frontend [T] — vendored for the ui-design skill. Not a skill itself.
 
-Read [ui-design](../SKILL.md) first. Its rules govern this reference, including visual-first copy and creative use of the web. Hero and section recipes below apply only when that composition fits the brief; they never require a conventional landing-page stack. For animation implementation, follow ui-design's pointer to transitions-dev rather than this reference's legacy timing or framework defaults.
+Read [ui-design](../SKILL.md) first. Its rules govern this reference, including visual-first copy and creative use of the web. Hero and section recipes below apply only when that composition fits the brief; they never require a conventional landing-page stack. For animation implementation, follow expressive-web's pointer to transitions-dev rather than this reference's legacy timing or framework defaults.
 
 
 # tasteskill: Anti-Slop Frontend Skill

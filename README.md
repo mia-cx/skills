@@ -19,7 +19,13 @@ Written for my ADHD brain.
 
 ## Other cool stuff
 
-- **[ui-design](skills/ui-design/SKILL.md)** my take on ui design.
+- **[ui-design](skills/ui-design/SKILL.md)** my take on ui design, in six stages:
+  - **[ui-layout](skills/ui-layout/SKILL.md)** the product's work, its journey, and a composition that holds still.
+  - **[ui-style](skills/ui-style/SKILL.md)** type, color, shape, tokens, themes, DESIGN.md.
+  - **[ui-copy](skills/ui-copy/SKILL.md)** every string the interface shows.
+  - **[ui-a11y](skills/ui-a11y/SKILL.md)** the interaction contract of every control.
+  - **[expressive-web](skills/expressive-web/SKILL.md)** scroll, spatial, and GPU experiences for marketing pages.
+  - **[ui-review](skills/ui-review/SKILL.md)** render it, look at it, use it.
 - **[refine](skills/refine/SKILL.md)** audit and slim any document an agent consumes.
   - **[refine-plan](skills/refine-plan/SKILL.md)** sharpen a plan or handoff before another agent executes it.
   - **[refine-rule](skills/refine-rule/SKILL.md)** slim always-loaded rules: AGENTS.md, CLAUDE.md, Cursor rules.

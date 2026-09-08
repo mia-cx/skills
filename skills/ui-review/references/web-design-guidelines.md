@@ -1,4 +1,4 @@
-> Source material: vercel-labs/agent-skills @ web-design-guidelines [V] — vendored for the ui-design skill. Not a skill itself.
+> Source material: vercel-labs/agent-skills @ web-design-guidelines [V] — vendored for the ui-review skill. Not a skill itself.
 
 
 # Web Interface Guidelines

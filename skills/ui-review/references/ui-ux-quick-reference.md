@@ -1,8 +1,8 @@
-> Source material: nextlevelbuilder/ui-ux-pro-max references/quick-reference.md [P] — vendored for the ui-design skill. The searchable database/scripts stay with the installed ui-ux-pro-max skill.
+> Source material: nextlevelbuilder/ui-ux-pro-max references/quick-reference.md [P] — vendored for the ui-review skill. The searchable database/scripts stay with the installed ui-ux-pro-max skill.
 
 # Quick Reference — Full Rule Set (all 10 categories)
 
-Load this file when doing a UI review/audit pass, or when you need the full checklist for a category beyond the priority table in SKILL.md. Each rule is also present verbatim in `data/ux-guidelines.csv` / `data/app-interface.csv` and is reachable via `--domain ux` / `--domain web` search — this file is a static index for quick scanning without a search round-trip.
+Load this file when doing a UI review/audit pass, or when you need the full checklist for a category beyond ui-review. Each rule is also present verbatim in `data/ux-guidelines.csv` / `data/app-interface.csv` and is reachable via `--domain ux` / `--domain web` search — this file is a static index for quick scanning without a search round-trip.
 
 ## Quick Reference
 

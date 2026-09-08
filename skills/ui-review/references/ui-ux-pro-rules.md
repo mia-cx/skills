@@ -1,10 +1,10 @@
-> Source material: nextlevelbuilder/ui-ux-pro-max references/pro-rules.md [P] — vendored for the ui-design skill. The searchable database/scripts stay with the installed ui-ux-pro-max skill.
+> Source material: nextlevelbuilder/ui-ux-pro-max references/pro-rules.md [P] — vendored for the ui-review skill. The searchable database/scripts stay with the installed ui-ux-pro-max skill.
 
 # Common Rules for Professional UI + Pre-Delivery Checklist
 
-Load this file before final delivery of native/mobile app UI (iOS/Android/React Native/Flutter), or when the user reports the UI "doesn't look professional" and the cause isn't obvious from the priority table in SKILL.md.
+Load this file before final delivery of native/mobile app UI (iOS/Android/React Native/Flutter), or when the user reports the UI "doesn't look professional" and the cause isn't obvious from ui-review.
 
-**Scope notice:** everything below targets native/mobile app UI. For web/desktop interaction patterns, use `references/quick-reference.md` (stack-agnostic) instead — these tables assume touch targets, safe areas, and platform gesture conventions that don't apply 1:1 to desktop web.
+**Scope notice:** everything below targets native/mobile app UI. For web/desktop interaction patterns, use `ui-ux-quick-reference.md` (stack-agnostic) instead — these tables assume touch targets, safe areas, and platform gesture conventions that don't apply 1:1 to desktop web.
 
 These are frequently overlooked issues that make UI look unprofessional.
 

@@ -1,4 +1,4 @@
-> Source material: arvindrk/extract-design-system — vendored for the ui-design skill. Not a skill itself.
+> Source material: arvindrk/extract-design-system — vendored for the ui-style skill. Not a skill itself.
 
 
 # Extract Design System
