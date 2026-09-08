@@ -33,6 +33,10 @@ PR text, docs, copy. You are not ready to work until both steps are done.
 
 Prefer built-in tools (`read`, `bash`, `edit`, `write`, `mcp`) over bash equivalents. Edit files with `edit`/`write`, never with Python or sed. Use `list_tools` (if available) for extensions/MCP tools. Use `gh` for GitHub, `wrangler` for Cloudflare, `rg` over find/git-ls-files. For questions about the coding agent itself, use `list_docs` first (if available).
 
+For background CDP work that needs `requestAnimationFrame`, hold a persistent session with
+`Emulation.setFocusEmulationEnabled({ enabled: true })`. Chromium removes the override when that
+session closes.
+
 ## Code quality
 
 - Keep It Simple, Stupid. Channel "yagni" unless told otherwise.
