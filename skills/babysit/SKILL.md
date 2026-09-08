@@ -23,6 +23,8 @@ Fix review findings until the current head is clean, green, and mergeable, then 
 
 ## The watch
 
+Report findings as currently known, because later reviews can raise more after every fix. Say "one finding is currently open"; never say "one remaining" or imply the next fix ends review. Claim completion only when **Done** is verified.
+
 ```bash
 ~/.agents/skills/babysit/scripts/watch.sh OWNER/REPO N   # [base=60s] [max=900s]
 ```
