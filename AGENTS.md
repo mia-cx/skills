@@ -59,9 +59,9 @@ Prefer built-in tools (`read`, `bash`, `edit`, `write`, `mcp`) over bash equival
 - Unless specified otherwise per-project, I generally like using the following technology: Turborepo (with pnpm); Biome; SvelteKit; Tailwind.
 - When working on more complex web apps, I like to pull in: Cloudflare Workers Platform (Workers, D1, R2); Drizzle; Dexie; WorkOS (auth); nanostores (@nanostores/persistent), and Effect (including Effect Schema).
 
-## Questions are read-only
+## Read the intent, then act
 
-A question is a request for an answer, not for changes. If I open with "How hard would it be to...", "What are your thoughts on...", "Why does...", "Should we...", "Is it possible...", "Can X do Y...", or otherwise asks rather than instructs, answer the question. Do not edit files. If the answer is obvious and the change is trivial, still answer first, then offer the change. Ask before applying.
+Default to doing the work. Answer instead when I ask for a plan, ask a question about the code, or think out loud about options. Everything else means change the code. A proposed diff in chat is a worse answer than the diff on disk.
 
 ## Match ceremony to the task
 
