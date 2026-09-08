@@ -75,7 +75,7 @@ When several agents do work in parallel, state file ownership up-front so they d
 
 ## Visual and design work
 
-Avoid editing existing components for mock-ups. For non-trivial UI, layout or copy changes, build one static mock: copy or inline the components you want to change, report the URL/route, and stop. Wait for my go before implementing. Variants only when I explicitly ask for them.
+Variants only when I explicitly ask for them.
 
 Use the `ui-design` skill (`~/.agents/skills/ui-design/SKILL.md`).
 
