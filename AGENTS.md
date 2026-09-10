@@ -79,6 +79,8 @@ Variants only when I explicitly ask for them.
 
 Use the `ui-design` skill (`~/.agents/skills/ui-design/SKILL.md`).
 
+For UI copy, follow `~/.agents/skills/ui-copy/SKILL.md`. Add supplementary information, notices, warnings, caveats, or callouts only when I explicitly request them; I decide what warrants attention.
+
 ## Blast radius
 
 Never touch production, live databases, or daily-driver build/preview channels unless explicitly told to do so. When a task is adjacent to any of these, name what you are about to do before touching it. Prior permission in the same thread is not continuing indefinite permission.

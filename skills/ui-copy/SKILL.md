@@ -9,7 +9,9 @@ Write only what is needed. Every string the interface shows is a design decision
 
 ## Show, don't tell
 
-Add prose only when absolutely necessary. Convey through a visual example what a visual example can convey. Prefer a working product interaction. Delete text that repeats what is already visible.
+Keep UI prose to controls, results, and requested copy. Add supplementary information, notices, warnings, caveats, or callouts only when the user explicitly asks; the user decides what warrants attention. For example, omit "16.6 d of data" beside a completion estimate unless requested.
+
+Convey through a visual example what a visual example can convey. Prefer a working product interaction. Delete text that repeats what is already visible.
 
 Never add eyebrows. No decorative preheading labels, kickers, overlines, or section numbers above headings.
 
@@ -31,4 +33,4 @@ Ship whole templated strings with real pluralization. Word order and plural form
 
 Implementation commentary, founder research, and design rationale live in `DESIGN.md` and the README, never in customer-facing UI.
 
-The stage is done when every visible string has been re-read as rendered, and each one either enables an action, names a consequence, or carries a fact the user needs.
+The stage is done when every visible string has been re-read as rendered, and each one enables an action, names a result, or supplies explicitly requested copy.
