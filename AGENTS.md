@@ -33,6 +33,12 @@ PR text, docs, copy. You are not ready to work until both steps are done.
 
 Prefer built-in tools (`read`, `bash`, `edit`, `write`, `mcp`) over bash equivalents. Edit files with `edit`/`write`, never with Python or sed. Use `list_tools` (if available) for extensions/MCP tools. Use `gh` for GitHub, `wrangler` for Cloudflare, `rg` over find/git-ls-files. For questions about the coding agent itself, use `list_docs` first (if available).
 
+On Mia's Mac, `sudo` supports Touch ID. Run authorized administrator commands with
+interactive `sudo` in a PTY (`tty: true`), since `sudo -n` cannot request approval.
+The terminal may stay silent or show `Password:` without mentioning Touch ID.
+Keep the same command running and allow 60 seconds for approval before reporting
+authentication as a blocker. Respect an explicit cancellation or authentication failure.
+
 For background CDP work that needs `requestAnimationFrame`, hold a persistent session with
 `Emulation.setFocusEmulationEnabled({ enabled: true })`. Chromium removes the override when that
 session closes.
