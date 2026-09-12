@@ -26,7 +26,7 @@ Fix review findings until the current head is clean, green, and mergeable, then 
 Report findings as currently known, because later reviews can raise more after every fix. Say "one finding is currently open"; never say "one remaining" or imply the next fix ends review. Claim completion only when **Done** is verified.
 
 ```bash
-~/.agents/skills/babysit/scripts/watch.sh OWNER/REPO N   # [base=60s] [max=900s]
+~/.agents/skills/babysit/scripts/watch.sh OWNER/REPO N --once   # [base=60s] [max=900s]
 ```
 
 One line per event: a new conversation comment, inline comment, or review; CI changes; the head moving. `green <sha>`, `merged`, and `closed` are terminal events: the script exits and clears its state. On `green`, finish the current tick, verify **Done**, report once, and end the turn. Bodies carrying the gh-comment attribution header are skipped, so your own replies never re-trigger a tick.
@@ -35,14 +35,11 @@ One line per event: a new conversation comment, inline comment, or review; CI ch
 
 **Never poll the watcher.** Polling its process, session, output, or logs duplicates the script's work and wastes tokens. Repeated short `write_stdin`, `wait`, or `tail` calls count as polling too.
 
-Choose one way to receive events:
-
-- **Event monitor**: launch once and let notifications resume the task. In Claude Code, use Monitor with `persistent: true`, then end the turn. Each event line starts a tick; nothing needs checking between events.
-- **Blocking run**: launch `watch.sh OWNER/REPO N --once` with the runner's longest timeout. Await its exit: the first batch of comments, reviews, or other events makes it print and exit. Read that result, perform the tick, and start another run only if **Done** remains unmet.
+**Every watcher invocation must include `--once`.** This makes the next event batch end the process, so completion resumes the task without polling. Launch it with the runner's longest timeout and await completion, directly or through a completion notification. Read the emitted events, perform the tick, and start another `--once` run only if **Done** remains unmet. Never launch the continuous mode, including through an event monitor.
 
 A tool returning a session ID is not a watcher event. Use its completion notification or one blocking wait at the longest supported timeout; do not turn a yielded call into a loop of short checks. Restart after a hard timeout only when the previous process has actually stopped. If the host supports neither event delivery nor blocking completion, report that limitation once instead of substituting a polling loop.
 
-While waiting, make no extra PR requests and send no repeated "still waiting" updates. Resume on an event, process exit, or user input.
+While waiting, make no extra PR requests and send no unchanged-status messages such as "Pullfrog has not finished yet." Resume on an event, process exit, or user input.
 
 Silence means wait only while **Done** remains unmet. Once done, stop the monitor or watcher and end the turn. Late feedback requires a new babysit request.
 
