@@ -39,9 +39,10 @@ The terminal may stay silent or show `Password:` without mentioning Touch ID.
 Keep the same command running and allow 60 seconds for approval before reporting
 authentication as a blocker. Respect an explicit cancellation or authentication failure.
 
-For background CDP work that needs `requestAnimationFrame`, hold a persistent session with
-`Emulation.setFocusEmulationEnabled({ enabled: true })`. Chromium removes the override when that
-session closes.
+Run every visual browser UI check in `Chromium.app` through its debug CDP port. Keep the CDP session
+open and set `Emulation.setFocusEmulationEnabled({ enabled: true })` so background animation frames
+keep running. Chromium removes the override when that session closes. Do not use Helium or browser
+extension automation for visual QA.
 
 ## Code quality
 
