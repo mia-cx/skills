@@ -9,6 +9,12 @@ Implement a provided issue in the harness- or user-supplied workspace and Git
 context. Core loop: plan → atomic TODOs → one commit per TODO → PR (or
 comment+close when no code change).
 
+## Project status
+
+When changing issue status, reuse an attached GitHub Project. Otherwise use a
+relevant project for the repository and add the issue to it. If neither exists,
+skip status tracking.
+
 ## Workflow
 
 ### 1. Identify the issue and repo state
@@ -28,6 +34,9 @@ gh issue view <issue-number> --json number,title,body,labels,state
 If the issue is closed, stop unless the user asked to reopen or work closed
 issues. If uncommitted changes exist outside `.plans/`, ask how to handle them
 before mixing work.
+
+Once the issue is open and the workspace is ready, move it to **In Progress**
+before planning or implementation.
 
 ### 2. Read, understand, and draft the plan
 
@@ -115,11 +124,9 @@ Issue-specific body deltas on top of pr-file:
 
 ### 6. Mark the issue ready for review
 
-After the PR is filed and all validation is complete, find a relevant GitHub
-Project. Reuse one attached to the issue, or use a relevant project for the
-repository and add the issue to it. If neither exists, skip status tracking.
-Move the issue to **Ready**. This is the final action before reporting the PR
-URL, branch, completed TODOs, and validation.
+After the PR is filed and all validation is complete, move the issue to
+**Ready**. This is the final action before reporting the PR URL, branch,
+completed TODOs, and validation.
 
 ## Rules
 
