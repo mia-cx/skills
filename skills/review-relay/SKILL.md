@@ -15,10 +15,11 @@ Drive the PR for the current branch to merge-readiness as a relay race: each pro
 
 ## Project status
 
-Before the first leg, find the PR's linked open issues. Move every existing
-GitHub Project item for those issues to **In Review**. Do not create project
-items solely for this update. The PR is under review from the first relay leg,
-not only after it becomes green.
+Before the first leg, find the PR's linked open issues and a relevant GitHub
+Project for each. Reuse an attached project, or use a relevant project for the
+repository and add the issue to it. If neither exists, skip status tracking.
+Move each tracked issue to **In Review**. The PR is under review from the first
+relay leg, not only after it becomes green.
 
 ## Scope: the diff, and only the diff
 

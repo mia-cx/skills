@@ -115,10 +115,11 @@ Issue-specific body deltas on top of pr-file:
 
 ### 6. Mark the issue ready for review
 
-After the PR is filed and all validation is complete, move the issue's existing
-GitHub Project item to **Ready**. Do not create a project item solely for this
-update. This is the final action before reporting the PR URL, branch, completed
-TODOs, and validation.
+After the PR is filed and all validation is complete, find a relevant GitHub
+Project. Reuse one attached to the issue, or use a relevant project for the
+repository and add the issue to it. If neither exists, skip status tracking.
+Move the issue to **Ready**. This is the final action before reporting the PR
+URL, branch, completed TODOs, and validation.
 
 ## Rules
 

@@ -16,7 +16,7 @@ Fix review findings until the current head is clean, green, and mergeable, then 
 ## Setup
 
 1. Identify the PR: the number the user gave, else `gh pr view --json number,url,headRefName,baseRefName,headRefOid` from the current branch. `gh repo view --json nameWithOwner` gives `OWNER/REPO`.
-2. Find the PR's linked open issues. Move every existing GitHub Project item for those issues to **In Review**. Do not create project items solely for this update.
+2. Find the PR's linked open issues and a relevant GitHub Project for each. Reuse an attached project, or use a relevant project for the repository and add the issue to it. If neither exists, skip status tracking. Move each tracked issue to **In Review**.
 3. Baseline: run the project's checks (tests, typecheck, lint, build) and record what passes and what already fails. A fix is only verifiable against a recorded baseline.
 4. Read the verification bar once: the sections "What counts as real", "The trigger test", and "Fixing" in [review-relay](../review-relay/SKILL.md). Those govern which comments become code changes. The rest of that skill (lineup, legs, relay log, reviewer prompt) stays closed.
 5. Run one tick over the backlog: every unresolved review thread and every unanswered conversation comment already on the PR.
