@@ -113,7 +113,12 @@ Issue-specific body deltas on top of pr-file:
   `Refs` issue with the deferral noted.
 - Tests: commands actually run, with real results.
 
-Report the PR URL, branch, completed TODOs, and validation.
+### 6. Mark the issue ready for review
+
+After the PR is filed and all validation is complete, move the issue's existing
+GitHub Project item to **Ready**. Do not create a project item solely for this
+update. This is the final action before reporting the PR URL, branch, completed
+TODOs, and validation.
 
 ## Rules
 

@@ -13,6 +13,13 @@ Drive the PR for the current branch to merge-readiness as a relay race: each pro
 
 **The baton is the head SHA.** Every handoff passes a head that already absorbed the previous leg's findings; a provider reviewing a stale head is a dropped baton, and its leg does not count.
 
+## Project status
+
+Before the first leg, find the PR's linked open issues. Move every existing
+GitHub Project item for those issues to **In Review**. Do not create project
+items solely for this update. The PR is under review from the first relay leg,
+not only after it becomes green.
+
 ## Scope: the diff, and only the diff
 
 **Every finding must be caused by this diff**: a defect these changes introduce, or a latent one they newly expose. Anchor each finding to a line the diff touched, even when the damage lands elsewhere.

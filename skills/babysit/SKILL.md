@@ -16,10 +16,11 @@ Fix review findings until the current head is clean, green, and mergeable, then 
 ## Setup
 
 1. Identify the PR: the number the user gave, else `gh pr view --json number,url,headRefName,baseRefName,headRefOid` from the current branch. `gh repo view --json nameWithOwner` gives `OWNER/REPO`.
-2. Baseline: run the project's checks (tests, typecheck, lint, build) and record what passes and what already fails. A fix is only verifiable against a recorded baseline.
-3. Read the verification bar once: the sections "What counts as real", "The trigger test", and "Fixing" in [review-relay](../review-relay/SKILL.md). Those govern which comments become code changes. The rest of that skill (lineup, legs, relay log, reviewer prompt) stays closed.
-4. Run one tick over the backlog: every unresolved review thread and every unanswered conversation comment already on the PR.
-5. Check **Done** before starting the watch. If already done, report once and end the turn.
+2. Find the PR's linked open issues. Move every existing GitHub Project item for those issues to **In Review**. Do not create project items solely for this update.
+3. Baseline: run the project's checks (tests, typecheck, lint, build) and record what passes and what already fails. A fix is only verifiable against a recorded baseline.
+4. Read the verification bar once: the sections "What counts as real", "The trigger test", and "Fixing" in [review-relay](../review-relay/SKILL.md). Those govern which comments become code changes. The rest of that skill (lineup, legs, relay log, reviewer prompt) stays closed.
+5. Run one tick over the backlog: every unresolved review thread and every unanswered conversation comment already on the PR.
+6. Check **Done** before starting the watch. If already done, report once and end the turn.
 
 ## The watch
 
