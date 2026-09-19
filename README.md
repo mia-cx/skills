@@ -8,6 +8,18 @@ npx skills add mia-cx/skills
 
 Pick the skills you want from the list. Works with Claude Code, Cursor, Codex, and anything else that reads `SKILL.md` files.
 
+## Restore upstream skills
+
+After cloning this repository, run from its root:
+
+```sh
+npx skills experimental_install
+```
+
+`skills-lock.json` records the upstream dependencies. The CLI restores them into
+`.agents/skills/` inside the checkout and refreshes their hashes. It fetches the
+current upstream versions. The global `.skill-lock.json` registry stays local.
+
 ## Start here
 
 - **[talk-normal](skills/talk-normal/SKILL.md)** talk like a normal person.
