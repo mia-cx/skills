@@ -21,9 +21,12 @@ boardroom/memos/*-narration.mp3
 .ant-colony/
 __pycache__/
 
-# Skills owned by the `skills` CLI, one entry each in .skill-lock.json.
-# Restore with `skills experimental_install`; always pass -g in this repo,
-# or the CLI installs into a nested .agents/skills/ instead.
+# Portable upstream dependencies are recorded in skills-lock.json.
+# The global install registry and project restore output are machine-local.
+.skill-lock.json
+.agents/
+
+# Skills owned by the `skills` CLI.
 # Local changes do not survive `skills update`: upstream a PR, or drop the
 # skill from the lock to take ownership of it here.
 skills/ask-matt/
