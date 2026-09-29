@@ -107,7 +107,19 @@ git status --short
 
 On failure: diagnose, fix, or record residual risk before filing the PR.
 
-### 5. Push and file the PR
+### 5. Capture UI evidence
+
+If the PR touches UI, capture the affected UI or behaviour on the base revision
+and the PR revision. Use comparable viewport sizes, data, and interaction steps.
+Include labelled before-and-after screenshots for appearance changes, and video
+or GIFs when motion or interaction is needed to show the behaviour. For new UI,
+show the previous entry point or workflow as the before state.
+
+Inspect the media, then attach or embed it in the PR so reviewers can see the
+change. Follow the repo's browser rules. If capture is blocked, report the exact
+blocker and leave this step incomplete; test results do not replace UI evidence.
+
+### 6. Push and file the PR
 
 Push the current harness-provided branch (no rename/replace). Then follow
 [pr-file](../pr-file/SKILL.md) for rebase, title, push mechanics, and creation;
@@ -122,7 +134,7 @@ Issue-specific body deltas on top of pr-file:
   `Refs` issue with the deferral noted.
 - Tests: commands actually run, with real results.
 
-### 6. Mark the issue ready for review
+### 7. Mark the issue ready for review
 
 After the PR is filed and all validation is complete, move the issue to
 **Ready**. This is the final action before reporting the PR URL, branch,
