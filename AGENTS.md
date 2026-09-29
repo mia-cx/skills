@@ -18,7 +18,7 @@ re-read is no longer in effect.
    - @~/.agents/skills/say-more/SKILL.md
    - @~/.agents/skills/momentum/SKILL.md
    - @~/.agents/skills/gh-comment/SKILL.md is not a response skill; read it
-     when you post, edit, or reply to a comment on a GitHub PR.
+     before you post, edit, or reply to anything on GitHub.
 
 Every response in the session follows the four response skills: chat, commit messages,
 PR text, docs, copy. You are not ready to work until both steps are done.
@@ -92,7 +92,9 @@ For UI copy, follow `~/.agents/skills/ui-copy/SKILL.md`. Add supplementary infor
 
 Never touch production, live databases, or daily-driver build/preview channels unless explicitly told to do so. When a task is adjacent to any of these, name what you are about to do before touching it. Prior permission in the same thread is not continuing indefinite permission.
 
-## Pull Requests
+## GitHub
+
+Follow `~/.agents/skills/gh-comment/SKILL.md` for anything you publish to GitHub under my name: PR and issue comments, inline diff comments, review-thread replies, review bodies, and discussion posts. `gh` posts as me, so the model attribution header goes on every one of them. This holds in every harness, for subagents, and for relayed reports from other models.
 
 Follow `~/.agents/skills/pr-file/SKILL.md` when filing PRs. Its conventions (conventional titles, problem-first descriptions, model/harness blurb, no drafts, rebase first) apply in every harness.
 

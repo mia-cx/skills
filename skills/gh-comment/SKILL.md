@@ -1,9 +1,10 @@
 ---
 name: gh-comment
 description: >-
-  Use when posting, editing, or replying to a comment on a GitHub pull request
-  (a conversation comment, an inline comment on a diff line, or a reply in a
-  review thread), including when another skill needs to publish results to a PR.
+  Use when posting, editing, or replying to anything on GitHub under the user's
+  account: pull request and issue comments, inline comments on a diff line,
+  review-thread replies, review bodies, and discussion posts. Also use it when
+  another skill needs to publish its results to GitHub.
 ---
 
 # GH comment
@@ -67,6 +68,8 @@ Anything uploaded this way is public to anyone with the URL. Screenshots of inte
 gh pr comment <n> --body-file "$BODY"                        # new comment
 gh pr comment <n> --body-file "$BODY" --edit-last --create-if-none   # update in place, or create the first
 ```
+
+Issues take the same flags: `gh issue comment <n> --body-file "$BODY"`.
 
 `--edit-last` targets the authenticated user's most recent comment on that PR, which may be something Mia typed by hand, not the comment you meant to update. When a comment must be updatable across a long-running job, own it with a hidden marker instead and look it up by that:
 
