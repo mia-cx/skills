@@ -94,7 +94,7 @@ Never touch production, live databases, or daily-driver build/preview channels u
 
 ## GitHub
 
-"Commit" means commit and push. Never stop at a local commit to ask whether to push.
+Commit and push as you work, after each finished change. Don't wait for me to ask, and don't ask me to confirm. Git remembers everything.
 
 Follow `~/.agents/skills/gh-comment/SKILL.md` for anything you publish to GitHub under my name: PR and issue comments, inline diff comments, review-thread replies, review bodies, and discussion posts. `gh` posts as me, so the model attribution header goes on every one of them. This holds in every harness, for subagents, and for relayed reports from other models.
 
