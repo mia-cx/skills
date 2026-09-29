@@ -26,6 +26,9 @@ __pycache__/
 .skill-lock.json
 .agents/
 
+# Claude's skill sync cache: a machine-local mirror of skills already in this repo.
+skills/synced/
+
 # Skills owned by the `skills` CLI.
 # Local changes do not survive `skills update`: upstream a PR, or drop the
 # skill from the lock to take ownership of it here.
