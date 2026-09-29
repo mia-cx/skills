@@ -23,7 +23,7 @@ Every comment body starts with this header, verbatim:
 
 One wording for every case: a new conversation comment, an inline comment on a diff line, and a reply in a thread all say *commenting*.
 
-`<actual model>` is the model that **composed the text**: `claude-opus-5`, `gpt-5.6-sol`, `gpt-5.5`. Not the harness, not the orchestrator that dispatched the work, not the wrapper agent. A Sonnet wrapper relaying a Codex report writes `gpt-5.6-sol`, because those are the words being published. When several models contributed, name the one that wrote the words and attribute the rest inline.
+`<actual model>` is the model that **composed the text**: `claude-opus-5.5`, `gpt-6-sol`, `gpt-6-astra`. Not the harness, not the orchestrator that dispatched the work, not the wrapper agent. A Sonnet wrapper relaying a Codex report writes `gpt-5.6-sol`, because those are the words being published. When several models contributed, name the one that wrote the words and attribute the rest inline.
 
 A reader deciding how much to trust a review verdict, a bug claim, or a "this is fine" needs to know a model wrote it and which one. The header is the only signal they get, so it goes on the routine comments too, not just the ones that feel consequential.
 

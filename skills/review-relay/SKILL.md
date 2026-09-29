@@ -55,27 +55,23 @@ The next reviewer grades the resulting head. This keeps provider diversity where
 
 ## Picking each leg's model
 
-Every leg runs at high reasoning effort on the top-intelligence model **within its own provider**; the relay's value is provider diversity, so a leg never switches provider to chase a score. That is **opus-5 for the claude leg and gpt-5.6-sol for the codex leg**. Fable-5 stays out despite topping the rubric: it drains usage limits about twice as fast, so it is explicit-request only.
+Every leg runs at high reasoning effort on the top-intelligence model **within its own provider**; the relay's value is provider diversity, so a leg never switches provider to chase a score. That is **opus-5.5 for the claude leg and gpt-6-astra for the codex leg**. gpt-6-astra varies more from run to run than gpt-6-sol, which a relay absorbs across laps. Fable-5.1 stays out: it drains usage limits about twice as fast, so it is explicit-request only.
 
 Intelligence outranks everything here, because a leg run cheap costs a whole lap to discover, and cost never breaks a tie; reviewing is where the budget goes. Taste breaks ties only on a UI-heavy diff, where the defect is a bad interaction or a wrong-feeling layout that a high-intelligence, low-taste reviewer scores as working code.
 
 Higher is better in every column, cost included: the cost score is per task actually run, so a model that burns usage limits fast scores low no matter what its per-token price says. The table is carried here rather than referenced, because it lives in `~/.agents/CLAUDE.md` and a codex or cursor host reads `AGENTS.md` instead; keep the two in sync when either changes.
 
-| model         | cost | intelligence | taste |
-| ------------- | ---- | ------------ | ----- |
-| opus-5        | 6    | 9            | 9     |
-| fable-5       | 2    | 9.7          | 9     |
-| gpt-5.6-sol   | 9    | 9.4          | 4     |
-| opus-4.8      | 4.5  | 8            | 8     |
-| gpt-5.6-terra | 9.5  | 7.5          | 4     |
-| gpt-5.5       | 8.5  | 7            | 4     |
-| sonnet-5      | 5.5  | 6.5          | 7     |
-| gpt-5.6-luna  | 10   | 5.5          | 3     |
-| sonnet-4.6    | 6.5  | 3.5          | 7.5   |
+| model       | cost | intelligence | consistency | taste |
+| ----------- | ---- | ------------ | ----------- | ----- |
+| opus-5.5    | 5    | 9.6          | 9           | 9     |
+| fable-5.1   | 2    | 9.4          | 8.5         | 9     |
+| gpt-6-astra | 3    | 9.6          | 5           | 2     |
+| gpt-6-sol   | 4    | 9.3          | 6.5         | 2     |
+| sonnet-5.5  | 7    | 8            | 7.5         | 7.5   |
 
 Selection mechanics:
 
-- **claude**: `model: 'opus'` for the Agent tool or Workflow `agent()`; that parameter is unversioned and takes only `opus`/`sonnet`/`fable`/`haiku`. The `claude --model` CLI flag also accepts a full versioned id, which is the only way to pin an older release like opus-4.8.
+- **claude**: `model: 'opus'` for the Agent tool or Workflow `agent()`; that parameter is unversioned and takes only `opus`/`sonnet`/`fable`/`haiku`. The `claude --model` CLI flag also accepts a full versioned id, which is the only way to pin an older release.
 - **codex**: the top-intelligence GPT model selected by the local Codex configuration; see the runtime contract below for how the leg is launched.
 - **cursor**: `--model auto`, always. This leg is billing-constrained, not rubric-selected; see below.
 
@@ -174,7 +170,7 @@ If a fan-out happens anyway, its reports are still worth reading as raw input, t
 
 ```bash
 codex exec -s read-only --color never \
-  -m gpt-5.6-sol -c model_reasoning_effort=high \
+  -m gpt-6-astra -c model_reasoning_effort=high \
   -o "$REPORT" - < "$PROMPT" > "$LOG" 2>&1
 ```
 

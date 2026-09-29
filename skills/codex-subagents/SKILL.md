@@ -1,25 +1,27 @@
 ---
 name: codex-subagents
 description: >-
-  Use when dispatching subagent work to GPT models (gpt-5.6-sol, gpt-5.5) via the Codex CLI, including inside Workflows.
+  Use when dispatching subagent work to GPT models (gpt-6-sol, gpt-6-astra) via the Codex CLI, including inside Workflows.
 ---
 
 # Codex Subagents
 
 Two dispatch mechanisms. Model choice and when-to-escalate live in CLAUDE.md.
 
+Codex is not free. Since 2026-09-29 every run costs real money, so delegate for capability or parallelism, not to save Claude tokens.
+
 ## Regular subagents: codex CLI
 
 ```bash
 TASK_FILE=/path/to/task.md
-codex exec -m gpt-5.6-sol -c model_reasoning_effort=medium -s workspace-write - < "$TASK_FILE"
+codex exec -m gpt-6-sol -c model_reasoning_effort=medium -s workspace-write - < "$TASK_FILE"
 ```
 
 - **Prompt transport**: write dynamic or untrusted task text to `TASK_FILE` with the Write tool, then pass the file on stdin. Keep task text out of the Bash command so it cannot alter shell syntax.
 - **Sandbox**: `-s workspace-write` for implementation, `-s read-only` for investigation and review.
 - **Untrusted directories**: outside a trusted git repo codex exits early — add `--skip-git-repo-check` or `git init` the scratch dir.
 - **Parallel**: one background Bash call per task. Parallel implementation tasks get separate worktrees so edits don't collide.
-- **Follow-up to the same worker**: `codex exec resume --last -m gpt-5.6-sol -c model_reasoning_effort=medium "<feedback>" </dev/null` — preserves that worker's context.
+- **Follow-up to the same worker**: `codex exec resume --last -m gpt-6-sol -c model_reasoning_effort=medium "<feedback>" </dev/null` — preserves that worker's context.
 - **Timeout**: codex runs can exceed Bash's 10-minute default — pass an explicit timeout, or run in the background and poll for a report file.
 
 ## In Workflows: Sonnet wrapper
@@ -31,7 +33,7 @@ agent(
   `Delegate the task between the tags to Codex. Create a temporary file with
 mktemp, save only the tagged task text to it with the Write tool, then pass the
 file on stdin to this fixed command (substitute only the shell-quoted temp path):
-codex exec -m gpt-5.6-sol -c model_reasoning_effort=medium -s read-only - < <temp-path>
+codex exec -m gpt-6-sol -c model_reasoning_effort=medium -s read-only - < <temp-path>
 
 Return Codex's output verbatim, adding no analysis.
 
@@ -41,16 +43,16 @@ ${task}
   {
     model: "sonnet",
     effort: "low",
-    label: "gpt-5.6-sol:review-auth",
+    label: "gpt-6-sol:review-auth",
     schema: REPORT,
   },
 );
 ```
 
-- **Label with a `gpt-5.6-sol:` prefix** — the workflow UI shows the wrapper's Claude model, so the label is the only indication of the real worker.
+- **Label with a `gpt-6-sol:` prefix** — the workflow UI shows the wrapper's Claude model, so the label is the only indication of the real worker.
 - **`schema` on the wrapper** gets structured output back from codex's free-text report.
 - **`isolation: 'worktree'`** for parallel implementation wrappers.
-- Workflow token budgets only count Claude tokens; codex work is invisible to `budget.spent()`.
+- Workflow token budgets only count Claude tokens; codex work is invisible to `budget.spent()` but still costs money.
 
 ## Orchestrating
 
@@ -68,5 +70,4 @@ When a worker misbehaves, ask what went wrong and append the fix here.
 - `-s workspace-write` mounts `.git` read-only, so a worker cannot commit even inside the workspace. Tell workers never to run git; the orchestrator commits, per TODO, by staging paths.
 - Plan before code, in two phases: first `codex exec -s read-only` with the task and "write your plan per TODO with the key choices, then stop"; review it against the acceptance criteria and post it on the issue if a human wants to see it. Phase two is a fresh `codex exec -s workspace-write` whose task file carries the approved plan, because a resumed session keeps the read-only sandbox. A single implementation run never shows its plan.
 - Codex reads `~/.codex/AGENTS.md`, which is Mia's global rules including the Memory section, so a worker will try to run `memo`. Every task file starts with "You are a subagent. Don't run memo."
-- The implementing worker owns the review loop after the PR is filed; the orchestrator never babysits in its own thread. Resume the worker with `codex exec resume --last --dangerously-bypass-approvals-and-sandbox`, bounded in the prompt to its worktree and branch, so it can commit, push, reply and resolve threads itself. Mia set this rule on 2026-09-12.
-- The worker's loop is the `babysit` skill, never `review-relay`, and it has no round cap: paste the babysit skill into the brief (the watch script `~/.claude/skills/babysit/scripts/watch.sh OWNER/REPO N --once`, the tick, the trigger test, the done comment) and stop only when Pullfrog reports green and clean, the PR is mergeable and no thread is unresolved. Mia set this on 2026-09-12.
+- Babysitting stays with the orchestrator since 2026-09-29, when Codex stopped being near-free: a review loop is hours of waiting, not a capability Codex adds. This replaces the 2026-09-12 rule that the implementing Codex worker owns its loop.
