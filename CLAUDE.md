@@ -16,19 +16,19 @@ Higher is better. Scores are Mia's judgement from use, checked against Artificia
 | model       | cost | intelligence | consistency | taste |
 | ----------- | ---- | ------------ | ----------- | ----- |
 | opus-5.5    | 5    | 9.6          | 9           | 9     |
-| fable-5.1   | 2    | 9.2          | 8.5         | 9     |
-| gpt-6-astra | 3    | 9.4          | 5           | 2     |
+| fable-5.1   | 2    | 9.4          | 8.5         | 9     |
+| gpt-6-astra | 3    | 9.2          | 5           | 2     |
 | gpt-6-sol   | 4    | 8.9          | 6.5         | 2     |
 | sonnet-5.5  | 7    | 6            | 7.5         | 7.5   |
 
 How to apply:
 
-- opus-5.5 is the default for everything: planning, implementation, UI, and review. It tops the intelligence column: above gpt-6-astra, and above fable-5.1 if slightly less intuitive, with the same taste.
+- opus-5.5 is the default for everything: planning, implementation, UI, and review. It tops the intelligence column, just above fable-5.1, with the same taste. fable-5.1 is more intuitive: it finds the simpler, more elegant solution more often.
 - These are defaults, not limits. You have standing permission to escalate: use cheaper models to gather information and try things first, and if the output doesn't meet the bar, redo the work with a smarter model without asking. Judge the output, not the price tag. Escalating costs less than shipping mediocre work.
 - Bulk or mechanical work (clear-spec implementation, data analysis, migrations): sonnet-5.5 when it meets the bar, otherwise opus-5.5.
 - Delegate for capability or parallelism, never to dodge cost: long idle loops like babysitting a PR are not worth handing to another model.
 - Anything user-facing (UI, copy, API design) needs taste ≥ 7, which rules out the GPT models.
-- GPT models are for an independent second opinion on hard reasoning (reviews, debugging), not for building. gpt-6-astra is the sharper of the two but varies run to run; gpt-6-sol is a little less sharp and a little steadier. Verify either before acting on it.
+- GPT models are for an independent second opinion on hard reasoning (reviews, debugging), not for building. gpt-6-astra finds the most robust, edge-case-aware solution, but not always the simplest or most elegant one, and it varies run to run: use it to stress-test a design, not to shape one. gpt-6-sol is a little less sharp and a little steadier. Verify either before acting on it.
 - fable-5.1 is an explicit-request model only, rare even then: it drains usage limits about twice as fast. Reach for opus-5.5 instead.
 - Never use Haiku.
 
