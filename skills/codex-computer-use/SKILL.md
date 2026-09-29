@@ -27,7 +27,7 @@ Capability depends on where this runs — check before dispatching:
 ```bash
 ARTIFACT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/codex-verify.XXXXXX")"
 
-codex exec -m gpt-6-sol -c model_reasoning_effort=medium -s workspace-write \
+codex exec -m gpt-6.1-sol -c model_reasoning_effort=medium -s workspace-write \
   -C "$ARTIFACT_DIR" --skip-git-repo-check \
   - < "$ARTIFACT_DIR/prompt.md" > "$ARTIFACT_DIR/log.md"
 ```

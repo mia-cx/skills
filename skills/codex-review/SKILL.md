@@ -1,7 +1,7 @@
 ---
 name: codex-review
 description: >-
-  Get an independent code review from the Codex CLI (gpt-6-sol) — uncommitted changes, a branch diff, a commit, or a specific implementation.
+  Get an independent code review from the Codex CLI (gpt-6.1-sol) — uncommitted changes, a branch diff, a commit, or a specific implementation.
 disable-model-invocation: true
 ---
 
@@ -36,7 +36,7 @@ codex review --commit <sha> </dev/null > "$REPORT"
 codex review - < "$PROMPT" > "$REPORT"
 ```
 
-- `~/.codex/config.toml` sets no default model, so pass `-c model="gpt-6-sol"` with high reasoning effort; use gpt-6-astra when the review needs its extra reach.
+- `~/.codex/config.toml` sets no default model, so pass `-c model="gpt-6.1-sol"` with high reasoning effort; use gpt-6-astra when the review needs its extra reach.
 - `--uncommitted`, `--base`, and `--commit` are mutually exclusive with a custom `PROMPT`. Use one of the first three command shapes for a built-in target; use the final shape when custom instructions matter more.
 - Built-in targets take `</dev/null` so codex doesn't wait on input; the custom shape uses stdin for the prompt instead.
 - Long reviews can exceed Bash's 10-minute timeout: pass an explicit timeout, or run in the background and poll for `$REPORT`.

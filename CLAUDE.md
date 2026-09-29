@@ -18,7 +18,7 @@ Higher is better. Scores are Mia's judgement from use, checked against Artificia
 | opus-5.5    | 5    | 9.6          | 9           | 9     |
 | fable-5.1   | 2    | 9.4          | 8.5         | 9     |
 | gpt-6-astra | 3    | 9.2          | 5           | 2     |
-| gpt-6-sol   | 4    | 8.9          | 6.5         | 2     |
+| gpt-6.1-sol | 4    | 8.9          | 6.5         | 2     |
 | sonnet-5.5  | 7    | 6            | 7.5         | 7.5   |
 
 How to apply:
@@ -28,7 +28,7 @@ How to apply:
 - Bulk or mechanical work (clear-spec implementation, data analysis, migrations): sonnet-5.5 when it meets the bar, otherwise opus-5.5.
 - Delegate for capability or parallelism, never to dodge cost: long idle loops like babysitting a PR are not worth handing to another model.
 - Anything user-facing (UI, copy, API design) needs taste ≥ 7, which rules out the GPT models.
-- GPT models are for an independent second opinion on hard reasoning (reviews, debugging), not for building. gpt-6-astra finds the most robust, edge-case-aware solution, but not always the simplest or most elegant one, and it varies run to run: use it to stress-test a design, not to shape one. gpt-6-sol is a little less sharp and a little steadier. Verify either before acting on it.
+- GPT models are for an independent second opinion on hard reasoning (reviews, debugging), not for building. gpt-6-astra finds the most robust, edge-case-aware solution, but not always the simplest or most elegant one, and it varies run to run: use it to stress-test a design, not to shape one. gpt-6.1-sol is a little less sharp and a little steadier. Verify either before acting on it.
 - fable-5.1 is an explicit-request model only, rare even then: it drains usage limits about twice as fast. Reach for opus-5.5 instead.
 - Never use Haiku.
 
@@ -40,11 +40,11 @@ Mechanics:
 Using GPT models inside workflows and subagents (the model parameter only takes Claude models, so use a wrapper):
 
 - Spawn a thin Claude wrapper agent with `model: 'sonnet', effort: 'low'` whose prompt instructs it to shell out to codex via Bash with exactly the prompt it was handed, and return the report (use `schema` on the wrapper to get structured output back).
-- Always label these agents with the real model as a prefix, e.g. `{label: 'gpt-6-sol:review-auth'}`: the workflow UI shows the wrapper's Claude model, so the label is the only indication of the real worker.
+- Always label these agents with the real model as a prefix, e.g. `{label: 'gpt-6.1-sol:review-auth'}`: the workflow UI shows the wrapper's Claude model, so the label is the only indication of the real worker.
 - Codex runs can exceed Bash's 10-minute timeout: pass an explicit timeout, or run in the background and poll for the report file.
 - Parallel GPT implementation agents must use `isolation: 'worktree'` so codex edits don't collide in the shared checkout.
 - Workflow token budgets only count Claude tokens; codex work is invisible to `budget.spent()` but still costs money, so count it yourself.
 
 ## Computer use
 
-- If computer use is helpful for completing or verifying work, use the `codex-computer-use` skill: it shells out to `gpt-6-sol:medium` via Codex.
+- If computer use is helpful for completing or verifying work, use the `codex-computer-use` skill: it shells out to `gpt-6.1-sol:medium` via Codex.

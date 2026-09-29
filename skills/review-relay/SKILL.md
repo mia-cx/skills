@@ -55,7 +55,7 @@ The next reviewer grades the resulting head. This keeps provider diversity where
 
 ## Picking each leg's model
 
-Every leg runs at high reasoning effort on the top-intelligence model **within its own provider**; the relay's value is provider diversity, so a leg never switches provider to chase a score. That is **opus-5.5 for the claude leg and gpt-6-astra for the codex leg**. gpt-6-astra varies more from run to run than gpt-6-sol, which a relay absorbs across laps. Fable-5.1 stays out: it drains usage limits about twice as fast, so it is explicit-request only.
+Every leg runs at high reasoning effort on the top-intelligence model **within its own provider**; the relay's value is provider diversity, so a leg never switches provider to chase a score. That is **opus-5.5 for the claude leg and gpt-6-astra for the codex leg**. gpt-6-astra varies more from run to run than gpt-6.1-sol, which a relay absorbs across laps. Fable-5.1 stays out: it drains usage limits about twice as fast, so it is explicit-request only.
 
 Intelligence outranks everything here, because a leg run cheap costs a whole lap to discover, and cost never breaks a tie; reviewing is where the budget goes. Taste breaks ties only on a UI-heavy diff, where the defect is a bad interaction or a wrong-feeling layout that a high-intelligence, low-taste reviewer scores as working code.
 
@@ -66,7 +66,7 @@ Higher is better in every column, cost included: the cost score is per task actu
 | opus-5.5    | 5    | 9.6          | 9           | 9     |
 | fable-5.1   | 2    | 9.4          | 8.5         | 9     |
 | gpt-6-astra | 3    | 9.2          | 5           | 2     |
-| gpt-6-sol   | 4    | 8.9          | 6.5         | 2     |
+| gpt-6.1-sol | 4    | 8.9          | 6.5         | 2     |
 | sonnet-5.5  | 7    | 6            | 7.5         | 7.5   |
 
 Selection mechanics:
