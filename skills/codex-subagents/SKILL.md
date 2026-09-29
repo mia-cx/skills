@@ -61,3 +61,12 @@ ${task}
 5. **Integrate** — final assembly, commits, and user-facing summary stay with the orchestrator.
 
 When a worker misbehaves, ask what went wrong and append the fix here.
+
+## Learned the hard way
+
+- `codex exec resume` accepts `-m` and `-c` but not `-s`; the resumed session keeps the sandbox it was started with.
+- `-s workspace-write` mounts `.git` read-only, so a worker cannot commit even inside the workspace. Tell workers never to run git; the orchestrator commits, per TODO, by staging paths.
+- Plan before code, in two phases: first `codex exec -s read-only` with the task and "write your plan per TODO with the key choices, then stop"; review it against the acceptance criteria and post it on the issue if a human wants to see it. Phase two is a fresh `codex exec -s workspace-write` whose task file carries the approved plan, because a resumed session keeps the read-only sandbox. A single implementation run never shows its plan.
+- Codex reads `~/.codex/AGENTS.md`, which is Mia's global rules including the Memory section, so a worker will try to run `memo`. Every task file starts with "You are a subagent. Don't run memo."
+- The implementing worker owns the review loop after the PR is filed; the orchestrator never babysits in its own thread. Resume the worker with `codex exec resume --last --dangerously-bypass-approvals-and-sandbox`, bounded in the prompt to its worktree and branch, so it can commit, push, reply and resolve threads itself. Mia set this rule on 2026-09-12.
+- The worker's loop is the `babysit` skill, never `review-relay`, and it has no round cap: paste the babysit skill into the brief (the watch script `~/.claude/skills/babysit/scripts/watch.sh OWNER/REPO N --once`, the tick, the trigger test, the done comment) and stop only when Pullfrog reports green and clean, the PR is mergeable and no thread is unresolved. Mia set this on 2026-09-12.
