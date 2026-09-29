@@ -87,3 +87,14 @@ Use `--permission-mode accept-edits` for an implementation follow-up. Add the tr
 Accept the worker's result only after checking its acceptance criteria. Correct incomplete work with a focused follow-up. Keep parent-owned integration outside the worker's scope.
 
 For Devin's internal subagent profiles, configuration details, first-party sources, or local verification evidence, read [cli-research.md](references/cli-research.md). Internal profiles select models differently from these separate CLI workers.
+
+## Learned the hard way
+
+- Print mode ends the turn on any question the worker asks, with exit 0 and no work done. Tell the worker the run is unattended: decide, note it in the plan, continue.
+- Web fetches are not covered by `accept-edits`. A bare `"webfetch"` entry did nothing, and `Fetch(domain:bun.sh)` plus `Fetch(https://*/*)` in the project-local allow list were still rejected on 2026-09-12; the working grant is unverified. Until it is, point the worker at local docs (`docs/research` in Pendia) and say web fetches are unavailable.
+- Leave the worktree clean before dispatch. An uncommitted parent change, even a `.gitignore` line, made the worker stop to ask about it.
+- Devin resolves skills through `~/.agents/skills`, so a script grant must name that path: `Exec(/home/mia/.agents/skills/babysit/scripts/watch.sh)`. A grant on the `~/.claude/skills` path does not match.
+- Mia's standing instruction, 2026-09-12: unattended workers run with `--permission-mode dangerous`, everything allowed. Print mode turns any permission prompt into a rejection, which is what broke the Fusion sidekick handoffs; grants are not worth maintaining for a bounded worktree.
+- To stop and resume a worker, find its session with `devin list --format json` (an array with `id`, `title`, `working_directory`), then `--resume <id>` with the new permission mode. Kill with a pattern that cannot match the caller, such as `pkill -f 'devin-2[2]/config'`; a plain `pkill -f devin-22` kills the shell and the watch that carry the same text.
+- Mia, 2026-09-12: run unblocked slices in parallel, one Fusion worker each, the slice's agent label as the lead paired with SWE-2 High, each in its own worktree with its own per-worker config and run directory. Tell every worker to rebase on origin/main before filing and before each push, since siblings merge underneath it.
+- Codex's GitHub re-review lags a push by minutes, and two workers declared the babysit done while it was still running, leaving fresh threads open. The brief must say: after the last push, wait for Codex's review to show completed for that head before checking the stop conditions.
