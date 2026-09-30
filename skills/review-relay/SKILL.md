@@ -65,9 +65,9 @@ Higher is better in every column, cost included: the cost score is per task actu
 | ----------- | ---- | ------------ | ----------- | ----- |
 | opus-5.5    | 5    | 9            | 9           | 9     |
 | fable-5.1   | 2    | 8.6          | 8.5         | 9     |
-| gpt-6-astra | 3    | 7.3          | 5           | 2     |
-| gpt-6.1-sol | 4    | 6.8          | 6.5         | 2     |
-| sonnet-5.5  | 7    | 6            | 7.5         | 7.5   |
+| gpt-6-astra | 3    | 8.1          | 5           | 2     |
+| gpt-6.1-sol | 4    | 7.8          | 6.5         | 2     |
+| sonnet-5.5  | 7    | 7            | 7.5         | 7.5   |
 
 Selection mechanics:
 
