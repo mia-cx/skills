@@ -10,16 +10,16 @@ Higher is better. Scores are Mia's judgement from use, checked against Artificia
 
 - **Cost**: what a task actually costs me, not per-token list price. A low token price means nothing when the model burns millions of tokens per request. Codex is no longer near-free: the subscription changed on 2026-09-29, so GPT work costs real money, gpt-6-astra especially.
 - **Intelligence**: how hard a problem the model can handle unsupervised: its ceiling. Still always run at high reasoning effort (token efficiency); bridge the gap to the ceiling with tools, skills, and prompt engineering.
-- **Consistency**: how reliably it hits its own ceiling from one run to the next.
+- **Reliability**: how reliably it hits its own ceiling from one run to the next.
 - **Taste**: everything user-facing. UI/UX, copy, code quality and API design.
 
-| model       | cost | intelligence | consistency | taste |
+| model       | cost | intelligence | reliability | taste |
 | ----------- | ---- | ------------ | ----------- | ----- |
 | opus-5.5    | 5    | 9            | 9           | 9     |
-| fable-5.1   | 2    | 8.6          | 8.5         | 9     |
-| gpt-6-astra | 3    | 8.1          | 5           | 2     |
-| gpt-6.1-sol | 4    | 7.8          | 6.5         | 2     |
-| sonnet-5.5  | 7    | 7            | 7.5         | 7.5   |
+| fable-5.1   | 2    | 8.6          | 9.5         | 9     |
+| gpt-6-astra | 3    | 8.1          | 4           | 2     |
+| gpt-6.1-sol | 4    | 7.8          | 7           | 2     |
+| sonnet-5.5  | 7    | 7            | 9           | 7.5   |
 
 How to apply:
 
