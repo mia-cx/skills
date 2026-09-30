@@ -8,7 +8,7 @@
 
 Higher is better. Scores are Mia's judgement from use, checked against Artificial Analysis benchmarks. Intelligence runs from sonnet-5.5 at 7 to opus-5.5 at 9, spaced by the real gaps, with headroom for future releases. Re-score when a release changes the picture.
 
-- **Cost**: what a task actually costs me, not per-token list price. A low token price means nothing when the model burns millions of tokens per request. Codex is no longer near-free: the subscription changed on 2026-09-29, so GPT work costs real money, gpt-6-astra especially.
+- **Cost**: what a task actually costs me, not per-token list price. A low token price means nothing when the model burns millions of tokens per request. sonnet-5.5 is half opus-5.5's price per token, but cache reads cost the same, and it reasons through far more tokens to reach opus-level answers, so agentic coding costs about the same on either. Codex is no longer near-free: the subscription changed on 2026-09-29, so GPT work costs real money, gpt-6-astra especially.
 - **Intelligence**: how hard a problem the model can handle unsupervised: its ceiling. Still always run at high reasoning effort (token efficiency); bridge the gap to the ceiling with tools, skills, and prompt engineering.
 - **Reliability**: how reliably it hits its own ceiling from one run to the next.
 - **Taste**: everything user-facing. UI/UX, copy, code quality and API design.
@@ -25,7 +25,8 @@ How to apply:
 
 - opus-5.5 is the default for everything: planning, implementation, UI, and review. It tops the intelligence column, just above fable-5.1, with the same taste. fable-5.1 is more intuitive: it finds the simpler, more elegant solution more often.
 - These are defaults, not limits. You have standing permission to escalate: use cheaper models to gather information and try things first, and if the output doesn't meet the bar, redo the work with a smarter model without asking. Judge the output, not the price tag. Escalating costs less than shipping mediocre work.
-- Bulk or mechanical work that nobody sees (clear-spec implementation, data analysis, migrations): gpt-6.1-sol, the cheapest model per task and smarter than sonnet-5.5. Verify its output against acceptance criteria, since it is less reliable. When the work touches anything user-facing, use sonnet-5.5 or opus-5.5 instead.
+- Bulk or mechanical work that nobody sees (clear-spec implementation, data analysis, migrations): gpt-6.1-sol, the cheapest model per task and smarter than sonnet-5.5. Verify its output against acceptance criteria, since it is less reliable. When the work touches anything user-facing, use opus-5.5 instead.
+- sonnet-5.5 only pays off for in-depth audits that read a lot of fresh material and hit the cache little; there its lower token price counts. Everywhere else, use opus-5.5.
 - Delegate for capability or parallelism, never to dodge cost: long idle loops like babysitting a PR are not worth handing to another model.
 - Anything user-facing (UI, copy, API design) needs taste ≥ 7, which rules out the GPT models.
 - Beyond bulk work, GPT models are for an independent second opinion on hard reasoning (reviews, debugging), not for building. gpt-6-astra finds the most robust, edge-case-aware solution, but not always the simplest or most elegant one, and it varies run to run: use it to stress-test a design, not to shape one. gpt-6.1-sol is a little less sharp and a little steadier. Verify either before acting on it.
