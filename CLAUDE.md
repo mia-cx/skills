@@ -6,7 +6,7 @@
 
 ## Picking the right models
 
-Higher is better. Scores are Mia's judgement from use, checked against Artificial Analysis benchmarks. Intelligence is scaled so sonnet-5.5 sits at 6. Re-score when a release changes the picture.
+Higher is better. Scores are Mia's judgement from use, checked against Artificial Analysis benchmarks. Intelligence runs from sonnet-5.5 at 6 to opus-5.5 at 9, spaced by the real gaps, with headroom for future releases. Re-score when a release changes the picture.
 
 - **Cost**: what a task actually costs me, not per-token list price. A low token price means nothing when the model burns millions of tokens per request. Codex is no longer near-free: the subscription changed on 2026-09-29, so GPT work costs real money, gpt-6-astra especially.
 - **Intelligence**: how hard a problem the model can handle unsupervised: its ceiling. Still always run at high reasoning effort (token efficiency); bridge the gap to the ceiling with tools, skills, and prompt engineering.
@@ -15,10 +15,10 @@ Higher is better. Scores are Mia's judgement from use, checked against Artificia
 
 | model       | cost | intelligence | consistency | taste |
 | ----------- | ---- | ------------ | ----------- | ----- |
-| opus-5.5    | 5    | 9.6          | 9           | 9     |
-| fable-5.1   | 2    | 9.4          | 8.5         | 9     |
-| gpt-6-astra | 3    | 9.2          | 5           | 2     |
-| gpt-6.1-sol | 4    | 8.9          | 6.5         | 2     |
+| opus-5.5    | 5    | 9            | 9           | 9     |
+| fable-5.1   | 2    | 8.6          | 8.5         | 9     |
+| gpt-6-astra | 3    | 7.3          | 5           | 2     |
+| gpt-6.1-sol | 4    | 6.8          | 6.5         | 2     |
 | sonnet-5.5  | 7    | 6            | 7.5         | 7.5   |
 
 How to apply:
