@@ -15,7 +15,7 @@ Higher is better. Scores are Mia's judgement from use, checked against Artificia
 
 | model       | cost | intelligence | reliability | taste |
 | ----------- | ---- | ------------ | ----------- | ----- |
-| opus-5.5    | 5    | 9            | 9           | 9     |
+| opus-5.5    | 7    | 9            | 9           | 9     |
 | fable-5.1   | 2    | 8.6          | 9.5         | 9     |
 | gpt-6-astra | 3    | 8.1          | 4           | 2     |
 | gpt-6.1-sol | 8    | 7.8          | 7           | 2     |
