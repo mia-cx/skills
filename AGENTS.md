@@ -80,6 +80,8 @@ Don't spawn sub-agents or a multi-agent panel for work a single agent finishes i
 
 When several agents do work in parallel, state file ownership up-front so they do not collide.
 
+Spawn subagents in your own harness, on the model the task favours, provided that harness offers it. Devin spawns Devin subagents on its own model, typically Fusion. Codex spawns Codex, Claude Code spawns Claude Code, and Cursor spawns Cursor. Another harness runs on a separate subscription and drains its usage limits. Reach for one only when the task needs a model id your harness lacks, usually for taste, such as Codex handing UI work to Claude.
+
 ## Visual and design work
 
 Variants only when I explicitly ask for them.
