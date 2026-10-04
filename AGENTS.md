@@ -33,6 +33,8 @@ PR text, docs, copy. You are not ready to work until both steps are done.
 
 Prefer built-in tools (`read`, `bash`, `edit`, `write`, `mcp`) over bash equivalents. Edit files with `edit`/`write`, never with Python or sed. Use `list_tools` (if available) for extensions/MCP tools. Use `gh` for GitHub, `wrangler` for Cloudflare, `rg` over find/git-ls-files. For questions about the coding agent itself, use `list_docs` first (if available).
 
+Run commands that exit on their own (tests, builds, typechecks, installs, benchmarks, `gh pr checks --watch`, `gh run watch`) in the foreground with the longest timeout the tool allows. In Codex, set `yield_time_ms` as high as it goes. One call should return the finished result, because every check on a running process re-reads the whole context. If a call yields before the command finishes, resume it with one long wait. Background only processes that never exit, like dev servers, and read their output when you need it.
+
 On Mia's Mac, `sudo` supports Touch ID. Run authorized administrator commands with
 interactive `sudo` in a PTY (`tty: true`), since `sudo -n` cannot request approval.
 The terminal may stay silent or show `Password:` without mentioning Touch ID.
