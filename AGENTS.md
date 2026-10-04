@@ -84,6 +84,17 @@ Spawn subagents in your own harness, on the model the task favours, provided tha
 
 Inside T3 Code, spawn through T3's own orchestration rather than a separate CLI process. Call `orchestrator_capabilities`, then `delegate_task` on your own provider instance and model, so I can see the child in T3 and you can track it by its `taskId`. Launch a harness CLI directly only when the T3 tools are absent.
 
+## Project direction
+
+Each repo keeps its long-term direction in `DIRECTION.md` at the root: what the project is for, where it is heading, its current state, and the decisions that shaped it. The file outlives every thread, so a fresh session understands the project without replaying old chats.
+
+- Read it before you plan, prioritise, or recap the project.
+- Update it in the same turn when I change the vision or priorities, a decision rules out an alternative, or a milestone ships.
+- Keep it tight, under 150 lines, because every planning session reads all of it. It holds direction, not a changelog or a spec.
+- Create it lazily, the first time there is direction worth writing down.
+- Only the thread that owns the project edits it. Subagents put direction-relevant findings in their report instead, so parallel edits never collide.
+- Terms go in `CONTEXT.md` (see `domain-modeling`). Implementation decisions go in code comments and ADRs.
+
 ## Visual and design work
 
 Variants only when I explicitly ask for them.
