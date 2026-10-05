@@ -21,7 +21,7 @@ brand/logo/
 
 ## 1. Brief
 
-Read the project's README, DIRECTION.md, and CONTEXT.md. Write down the name, what the product does in one sentence, and 3 to 5 concept seeds: a mechanism the product uses, a metaphor, a letterform, a shape from its domain. Ask the user only when the name is unknown.
+Read the project's README, DIRECTION.md, and CONTEXT.md. Write down the name, what the product does in one sentence, and 3 to 5 concept seeds: a mechanism the product uses, a metaphor, a letterform, a shape from its domain. Ask the user only when the name is unknown. A seed drawn from the name's origin needs that origin stated in the docs or confirmed by the user.
 
 Done when the name, the sentence, and the seeds are written down.
 
