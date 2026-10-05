@@ -8,8 +8,6 @@ description: >-
 
 Two dispatch mechanisms. Model choice and when-to-escalate live in CLAUDE.md.
 
-Codex is not free. Since 2026-09-29 every run costs real money, so delegate for capability or parallelism, not to save Claude tokens.
-
 ## Regular subagents: codex CLI
 
 ```bash
@@ -52,7 +50,7 @@ ${task}
 - **Label with a `gpt-6.1-sol:` prefix** — the workflow UI shows the wrapper's Claude model, so the label is the only indication of the real worker.
 - **`schema` on the wrapper** gets structured output back from codex's free-text report.
 - **`isolation: 'worktree'`** for parallel implementation wrappers.
-- Workflow token budgets only count Claude tokens; codex work is invisible to `budget.spent()` but still costs money.
+- Workflow token budgets only count Claude tokens; codex work is invisible to `budget.spent()`.
 
 ## Orchestrating
 
@@ -70,4 +68,4 @@ When a worker misbehaves, ask what went wrong and append the fix here.
 - `-s workspace-write` mounts `.git` read-only, so a worker cannot commit even inside the workspace. Tell workers never to run git; the orchestrator commits, per TODO, by staging paths.
 - Plan before code, in two phases: first `codex exec -s read-only` with the task and "write your plan per TODO with the key choices, then stop"; review it against the acceptance criteria and post it on the issue if a human wants to see it. Phase two is a fresh `codex exec -s workspace-write` whose task file carries the approved plan, because a resumed session keeps the read-only sandbox. A single implementation run never shows its plan.
 - Codex reads `~/.codex/AGENTS.md`, which is Mia's global rules including the Memory section, so a worker will try to run `memo`. Every task file starts with "You are a subagent. Don't run memo."
-- Babysitting stays with the orchestrator since 2026-09-29, when Codex stopped being near-free: a review loop is hours of waiting, not a capability Codex adds. This replaces the 2026-09-12 rule that the implementing Codex worker owns its loop.
+- Babysitting stays with the orchestrator: a review loop is hours of waiting, not a capability Codex adds.

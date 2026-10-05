@@ -8,7 +8,7 @@
 
 Higher is better. Scores are Mia's judgement from use, checked against Artificial Analysis benchmarks. Intelligence runs from sonnet-5.5 at 7 to opus-5.5 at 9, spaced by the real gaps, with headroom for future releases. Re-score when a release changes the picture.
 
-- **Cost**: what a task actually costs me, not per-token list price. A low token price means nothing when the model burns millions of tokens per request. sonnet-5.5 is half opus-5.5's price per token, but cache reads cost the same, and it reasons through far more tokens to reach opus-level answers, so agentic coding costs about the same on either. Codex is no longer near-free: the subscription changed on 2026-09-29, so GPT work costs real money, gpt-6-astra especially.
+- **Cost**: what a task actually costs me, not per-token list price. A low token price means nothing when the model burns millions of tokens per request. sonnet-5.5 is half opus-5.5's price per token, but cache reads cost the same, and it reasons through far more tokens to reach opus-level answers, so agentic coding costs about the same on either.
 - **Intelligence**: how hard a problem the model can handle unsupervised: its ceiling. Still always run at high reasoning effort (token efficiency); bridge the gap to the ceiling with tools, skills, and prompt engineering.
 - **Reliability**: how reliably it hits its own ceiling from one run to the next.
 - **Taste**: everything user-facing. UI/UX, copy, code quality and API design.
@@ -44,7 +44,7 @@ Using GPT models inside workflows and subagents (the model parameter only takes 
 - Always label these agents with the real model as a prefix, e.g. `{label: 'gpt-6.1-sol:review-auth'}`: the workflow UI shows the wrapper's Claude model, so the label is the only indication of the real worker.
 - Codex runs can exceed Bash's 10-minute timeout: pass an explicit timeout, or run in the background and poll for the report file.
 - Parallel GPT implementation agents must use `isolation: 'worktree'` so codex edits don't collide in the shared checkout.
-- Workflow token budgets only count Claude tokens; codex work is invisible to `budget.spent()` but still costs money, so count it yourself.
+- Workflow token budgets only count Claude tokens; codex work is invisible to `budget.spent()`.
 
 ## Computer use
 
