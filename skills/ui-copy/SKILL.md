@@ -13,7 +13,7 @@ Keep UI prose to controls, results, and requested copy. Add supplementary inform
 
 Convey through a visual example what a visual example can convey. Prefer a working product interaction. Delete text that repeats what is already visible.
 
-Never add eyebrows. No decorative preheading labels, kickers, overlines, or section numbers above headings.
+Never add eyebrows or subheadings. No decorative preheading labels, kickers, overlines, or section numbers above headings, and no taglines or subtitle lines under them. This holds for anything rendered, video frames and motion graphics included: a heading stands alone.
 
 Keep necessary labels, prices, terms, instructions, accessible alternatives, and error recovery. A missing label is not brevity. A sentence earns its place when removing it makes an action or decision harder.
 
