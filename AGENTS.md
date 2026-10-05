@@ -44,7 +44,7 @@ authentication as a blocker. Respect an explicit cancellation or authentication 
 Run every visual browser UI check in `Chromium.app` through its debug CDP port. Keep the CDP session
 open and set `Emulation.setFocusEmulationEnabled({ enabled: true })` so background animation frames
 keep running. Chromium removes the override when that session closes. Do not use Helium or browser
-extension automation for visual QA.
+extension automation for visual QA. Never use the T3 browser (the `preview_*` tools).
 
 ## Code quality
 
