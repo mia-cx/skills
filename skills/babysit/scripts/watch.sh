@@ -41,6 +41,9 @@ gh auth status >/dev/null 2>&1 || { echo "watch.sh: gh is not authenticated; run
 
 mine='(.body // "" | test("commenting on behalf of") | not)'
 state="${TMPDIR:-/tmp}/babysit-${repo//\//-}-$n"
+# Reviews go through a file, not argv: a long-running PR's bodies overflow ARG_MAX.
+reviews_file="$state.reviews"
+trap 'rm -f "$reviews_file"' EXIT
 
 since=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 head=""
@@ -57,14 +60,15 @@ save() {
 
 while true; do
   now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-  reviews=$(gh api --paginate --slurp "repos/$repo/pulls/$n/reviews" 2>/dev/null | jq 'add') || { sleep "$interval"; continue; }
+  gh api --paginate --slurp "repos/$repo/pulls/$n/reviews" 2>/dev/null | jq 'add // []' >"$reviews_file" || { sleep "$interval"; continue; }
+  [ -s "$reviews_file" ] || { sleep "$interval"; continue; }
 
   events=$(
     gh api "repos/$repo/issues/$n/comments?since=$since" --jq \
       ".[] | select($mine) | \"comment \(.id) \(.user.login): \(.body | split(\"\n\")[0])\"" 2>/dev/null
     gh api "repos/$repo/pulls/$n/comments?since=$since" --jq \
       ".[] | select($mine) | \"inline \(.id) \(.user.login) \(.path):\(.line // .original_line)\"" 2>/dev/null
-    jq -r ".[] | select(.submitted_at >= \"$since\" and $mine and (.state != \"COMMENTED\" or .body != \"\")) | \"review \(.id) \(.user.login) \(.state)\"" <<<"$reviews"
+    jq -r ".[] | select(.submitted_at >= \"$since\" and $mine and (.state != \"COMMENTED\" or .body != \"\")) | \"review \(.id) \(.user.login) \(.state)\"" "$reviews_file"
   )
 
   pr=$(gh pr view "$n" -R "$repo" --json state,headRefOid,statusCheckRollup,mergeable,reviewDecision 2>/dev/null) || { sleep "$interval"; continue; }
@@ -76,8 +80,9 @@ while true; do
 
   # A successful Pullfrog job can contain findings. Require its latest review to be
   # clean on this head, plus settled CI, before checking for unresolved discussions.
-  if jq -e --argjson reviews "$reviews" '
+  if jq -e --slurpfile loaded "$reviews_file" '
     . as $pr
+    | $loaded[0] as $reviews
     | [$reviews[] | select(.user.login | test("^pullfrog(\\[bot\\])?$"))]
       | sort_by(.submitted_at) | last as $frog
     | $pr.state == "OPEN" and $pr.mergeable == "MERGEABLE"

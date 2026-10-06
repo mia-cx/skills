@@ -43,9 +43,9 @@ Done when each direction has a seed, a system, and U written down.
 
 Write `build.mjs` in plain Node with zero dependencies. Compute every point from grid primitives: circle intersections, tangent points, lattice nodes, extended edges. Emit the mark as filled paths (arcs via the SVG `A` command) in one colour, `#111`, with a viewBox tight around the mark. Aim for a few shapes that read as one silhouette.
 
-Done when `node build.mjs` writes `mark.svg`.
-
 With nonzero fill, holes may never overlap each other or cross the outline, since either one turns the overlap into ink. Keep every hole at least a thin bridge apart. To check, rasterise the intended ink with point tests (inside the silhouette, outside every hole) and diff that against the rendered SVG.
+
+Done when `node build.mjs` writes `mark.svg`.
 
 ## 4. Correct optically
 
