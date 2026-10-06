@@ -80,6 +80,7 @@ Run `node <this skill's dir>/scripts/proof.mjs brand/logo`. It writes `proof.png
 
 - The mark reads as one silhouette at 16 px.
 - It is a mark only this project would use, more than a letter in a circle.
+- Its silhouette stays clear of famous marks. Name the closest one you can think of in the report.
 - Every guide meets the mark at an edge, tangent, or anchor.
 - The line tiers read at a glance, and the mark stays the hero.
 
