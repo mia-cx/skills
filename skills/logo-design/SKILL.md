@@ -45,6 +45,8 @@ Write `build.mjs` in plain Node with zero dependencies. Compute every point from
 
 Done when `node build.mjs` writes `mark.svg`.
 
+With nonzero fill, holes may never overlap each other or cross the outline, since either one turns the overlap into ink. Keep every hole at least a thin bridge apart. To check, rasterise the intended ink with point tests (inside the silhouette, outside every hole) and diff that against the rendered SVG.
+
 ## 4. Correct optically
 
 Geometry gets the mark close; the eye has the final say. Apply each correction in `build.mjs` as a named constant with a one-line reason:
