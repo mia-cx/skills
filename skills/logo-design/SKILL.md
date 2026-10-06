@@ -90,7 +90,7 @@ Done when every check passes, or each remaining failure is named for the report.
 
 ## 7. Report
 
-Per direction, write 2 to 3 lines: the seed, the system and U, the relationships that hold only approximately, and the optical corrections. Embed `proof.png` and each `board.png`. Ask which direction to refine.
+Per direction, write 2 to 3 lines: the seed, the system and U, the relationships that hold only approximately, and the optical corrections. Embed `proof.png` and each `board.png`. Chat clients cache images by path, so after a re-render embed a copy with a fresh name such as `proof-r2.png`. Ask which direction to refine.
 
 ## Existing logo
 
