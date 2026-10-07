@@ -13,11 +13,11 @@ description: >-
 
 ## Attribution
 
-Every comment body starts with this header, verbatim:
+Every comment body starts with this header, verbatim. GitHub renders it as a blue Note callout, set apart from the comment:
 
 ```md
-<actual model> commenting on behalf of <user's name, from AGENTS.md>.
----
+> [!NOTE]
+> <actual model> commenting on behalf of <user's name, from AGENTS.md>.
 
 <comment>
 ```
@@ -108,7 +108,7 @@ To reply and resolve in one pass, use the GraphQL `addPullRequestReviewThreadRep
 
 ## Before posting
 
-- The header is present and names the model that wrote the words.
-- The body renders as markdown: fenced blocks closed, no stray `---` splitting the reply into a second section.
+- The header is present as a `[!NOTE]` callout, followed by a blank line, and names the model that wrote the words.
+- The body renders as markdown: fenced blocks closed.
 - Inline comments cite the current head.
 - Posting is public and outward-facing: a comment can be edited or deleted afterward, but subscribers were already emailed the original.
