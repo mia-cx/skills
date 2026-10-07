@@ -46,6 +46,12 @@ open and set `Emulation.setFocusEmulationEnabled({ enabled: true })` so backgrou
 keep running. Chromium removes the override when that session closes. Do not use Helium or browser
 extension automation for visual QA. Never use the T3 browser (the `preview_*` tools).
 
+Keep Chromium behind Mia's work: start it with `open -g -n -a Chromium --args ...`, open tabs with
+`Target.createTarget({ url, background: true })`, and never call `Page.bringToFront` or
+`Target.activateTarget`. A new `--user-data-dir` profile keeps extensions on and gets Bitwarden with
+`--load-extension=<newest version folder under ~/Library/Application Support/Chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb>`.
+It keeps its store ID; Mia unlocks the vault herself.
+
 ## Code quality
 
 - Keep It Simple, Stupid. Channel "yagni" unless told otherwise.
