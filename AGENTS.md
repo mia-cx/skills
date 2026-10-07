@@ -48,9 +48,15 @@ extension automation for visual QA. Never use the T3 browser (the `preview_*` to
 
 Keep Chromium behind Mia's work: start it with `open -g -n -a Chromium --args ...`, open tabs with
 `Target.createTarget({ url, background: true })`, and never call `Page.bringToFront` or
-`Target.activateTarget`. A new `--user-data-dir` profile keeps extensions on and gets Bitwarden with
-`--load-extension=<newest version folder under ~/Library/Application Support/Chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb>`.
-It keeps its store ID; Mia unlocks the vault herself.
+`Target.activateTarget`. Each new `--user-data-dir` profile gets:
+
+- Extensions on, plus Bitwarden: `--load-extension=<newest version folder under ~/Library/Application Support/Chromium/Default/Extensions/nngceckbapebfimnlniiiahkandclblb>`.
+  It keeps its store ID; Mia unlocks the vault herself.
+- A random colour that no other running profile uses, so Mia can tell windows apart. Before the
+  first launch, write `{"browser":{"theme":{"user_color":<ARGB as signed 32-bit int>}}}` to
+  `<profile>/Default/Preferences`.
+- A first tab that says who owns the window: a `data:text/html` page in that colour, titled with
+  the issue number, showing the issue title, branch, and worktree path. Pass it as the launch URL.
 
 ## Code quality
 
