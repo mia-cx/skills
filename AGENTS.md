@@ -62,7 +62,7 @@ Keep Chromium behind Mia's work: start it with `open -g -n -a Chromium --args ..
 - Keep It Simple, Stupid. Channel "yagni" unless told otherwise.
 - Propose bold ideas if they can meaningfully benefit our work.
 - Avoid destructive actions that I have not explicitly requested.
-- Tests are good. Endless smoke tests, "regression tests" for feature deletions, etc. are bad. Tests should be focused, not slop.
+- Tests prove behaviour, not effort. Read the `testing` skill before you add or change a test.
 - Comments are a great way to clarify functionality and how code is used. Feel free to concisely describe how functions, classes, etc. are used with docstrings.
 - Update docstrings when you change behaviour, add when you export. Stale docs are worse than none.
 - Earn abstractions. Search the codebase first; use or enhance existing ones. Inline if <3 uses and no coherent concept worth naming.
