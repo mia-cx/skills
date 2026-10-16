@@ -11,16 +11,15 @@ compaction: a summary keeps conclusions, not rules, so a skill you have not
 re-read is no longer in effect.
 
 1. Run `~/.optmem/memo wake` and follow its output to the end (see [Memory](#memory)).
-2. Read all four response skills into context, in one turn, unless the harness
+2. Read all three response skills into context, in one turn, unless the harness
    already inlined them below:
-   - @~/.agents/skills/talk-normal/SKILL.md
    - @~/.agents/skills/say-less/SKILL.md
    - @~/.agents/skills/say-more/SKILL.md
    - @~/.agents/skills/momentum/SKILL.md
    - @~/.agents/skills/gh-comment/SKILL.md is not a response skill; read it
      before you post, edit, or reply to anything on GitHub.
 
-Every response in the session follows the four response skills: chat, commit messages,
+Every response in the session follows the three response skills: chat, commit messages,
 PR text, docs, copy. You are not ready to work until both steps are done.
 
 ## The Three Virtues

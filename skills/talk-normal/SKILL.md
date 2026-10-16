@@ -1,6 +1,6 @@
 ---
 name: talk-normal
-description: 'Shape every piece of output: chat responses, PR descriptions, docs, commit messages, GitHub comments, prose, copy. Always on: load at session start and after every compaction, keep in context all session, and apply to every response; the only exception is an explicit ask otherwise.'
+description: 'Shape prose for human readers: PR descriptions, docs, commit messages, GitHub comments, copy.'
 ---
 
 Talk normal. Write accessibly and soulfully for human readers. Avoid AI patterns.
