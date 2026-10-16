@@ -33,7 +33,7 @@ While exploring, look for opportunities to **prefactor** — "make the change ea
 
 Each issue is a thin vertical slice cutting through ALL integration layers end-to-end, NOT a horizontal slice of one layer:
 
-- Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests).
+- Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI).
 - A completed slice is demoable or verifiable on its own.
 - Each slice is sized to fit in a single fresh context window.
 - Prefer many thin slices over few thick ones.

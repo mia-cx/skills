@@ -68,7 +68,8 @@ When plans are part of the repo's conventions, create/update
 - Decisions, discoveries, and commands run.
 ```
 
-TODO rules: each independently committable; include tests/validation as TODOs;
+TODO rules: each independently committable; include validation as TODOs, and a
+test TODO only where the `testing` skill's "How many" table calls for one;
 prefer 3–8; split vague ones before coding; unclear requirements → Notes + ask
 before coding.
 

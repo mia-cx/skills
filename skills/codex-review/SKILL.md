@@ -46,7 +46,7 @@ codex review - < "$PROMPT" > "$REPORT"
 For a custom-prompt review, keep the prompt simple and self-contained — Codex needs no Claude-style scaffolding:
 
 ```text
-Review these changes for bugs, regressions, missing tests, security issues, and requirement mismatches.
+Review these changes for bugs, regressions, security issues, and requirement mismatches.
 
 Prioritize findings over summary. For each finding include:
 - severity
@@ -54,7 +54,7 @@ Prioritize findings over summary. For each finding include:
 - concrete failure mode
 - suggested fix direction
 
-Do not edit files. If there are no substantive findings, say so and name any residual test gaps.
+Do not edit files. If there are no substantive findings, say so. List any changed behaviour that nothing proves separately, as advisory.
 ```
 
 Keep "Do not edit files" — the 5.6 models (sol especially) are eager to start fixing what they review.

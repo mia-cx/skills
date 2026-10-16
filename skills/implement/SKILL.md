@@ -6,10 +6,8 @@ disable-model-invocation: true
 
 Implement the work described by the user in the spec or tickets.
 
-Use /tdd where possible, at pre-agreed seams.
+Follow the `testing` skill for what to test and when to run it. Run typechecking regularly.
 
-Run typechecking regularly, single test files regularly, and the full test suite once at the end.
-
-Once done, use /code-review to review the work.
+Once done, use `how-to-review` to review the work.
 
 Commit your work to the current branch.
