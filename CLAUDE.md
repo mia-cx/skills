@@ -28,7 +28,8 @@ How to apply:
 - Bulk or mechanical work that nobody sees (clear-spec implementation, data analysis, migrations): gpt-6.1-sol, the cheapest model per task and smarter than sonnet-5.5. Verify its output against acceptance criteria, since it is less reliable. When the work touches anything user-facing, use opus-5.5 instead.
 - sonnet-5.5 only pays off for in-depth audits that read a lot of fresh material and hit the cache little; there its lower token price counts. Everywhere else, use opus-5.5.
 - Delegate for capability or parallelism, never to dodge cost: long idle loops like babysitting a PR are not worth handing to another model.
-- Anything user-facing (UI, copy, API design) needs taste ≥ 7, which rules out the GPT models.
+- GPT models never make anything user-facing (UI, copy, API design), not even a first draft. User-facing work needs taste ≥ 7.
+- Copywriting also needs gpt-6-class intelligence or higher (≥ 7.8), which rules out sonnet-5.5: use opus-5.5.
 - Beyond bulk work, GPT models are for an independent second opinion on hard reasoning (reviews, debugging), not for building. gpt-6-astra finds the most robust, edge-case-aware solution, but not always the simplest or most elegant one, and it varies run to run: use it to stress-test a design, not to shape one. gpt-6.1-sol is a little less sharp and a little steadier. Verify either before acting on it.
 - fable-5.1 is an explicit-request model only, rare even then: it drains usage limits about twice as fast. Reach for opus-5.5 instead.
 - Never use Haiku.

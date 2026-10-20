@@ -93,7 +93,7 @@ Don't spawn sub-agents or a multi-agent panel for work a single agent finishes i
 
 When several agents do work in parallel, state file ownership up-front so they do not collide.
 
-Spawn subagents in your own harness, on the model the task favours, provided that harness offers it. Devin spawns Devin subagents on its own model, typically Fusion. Codex spawns Codex, Claude Code spawns Claude Code, and Cursor spawns Cursor. Another harness runs on a separate subscription and drains its usage limits. Reach for one only when the task needs a model id your harness lacks, usually for taste, such as Codex handing UI work to Claude.
+Spawn subagents in your own harness, on the model the task favours, provided that harness offers it. Devin spawns Devin subagents on its own model, typically Fusion. Codex spawns Codex, Claude Code spawns Claude Code, and Cursor spawns Cursor. Another harness runs on a separate subscription and drains its usage limits. Reach for one only when the task needs a model id your harness lacks, usually for taste, such as Codex handing user-facing work to Claude.
 
 Inside T3 Code, spawn through T3's own orchestration rather than a separate CLI process. Call `orchestrator_capabilities`, then `delegate_task` on your own provider instance and model, so I can see the child in T3 and you can track it by its `taskId`. Launch a harness CLI directly only when the T3 tools are absent.
 
@@ -111,6 +111,8 @@ Each repo keeps its long-term direction in `DIRECTION.md` at the root: what the 
 ## Visual and design work
 
 Variants only when I explicitly ask for them.
+
+GPT models never make anything user-facing: UI, copy, or API design, not even a first draft. A GPT model hands that work to Claude opus-5.5. Copywriting also needs gpt-6-class intelligence or higher, which rules out sonnet-5.5.
 
 Use the `ui-design` skill (`~/.agents/skills/ui-design/SKILL.md`).
 
