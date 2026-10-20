@@ -112,7 +112,7 @@ Each repo keeps its long-term direction in `DIRECTION.md` at the root: what the 
 
 Variants only when I explicitly ask for them.
 
-GPT models never make anything user-facing: UI, copy, or API design, not even a first draft. A GPT model hands that work to Claude opus-5.5. Copywriting also needs gpt-6-class intelligence or higher, which rules out sonnet-5.5.
+GPT models never make anything user-facing, such as UI or API design, not even a first draft. A GPT model hands that work to Claude opus-5.5. The one exception is copy: GPT models of the gpt-6 class or newer may write it, and older GPT models may not.
 
 Use the `ui-design` skill (`~/.agents/skills/ui-design/SKILL.md`).
 
