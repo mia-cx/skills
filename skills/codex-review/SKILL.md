@@ -1,7 +1,7 @@
 ---
 name: codex-review
 description: >-
-  Get an independent code review from the Codex CLI (gpt-6.1-sol) — uncommitted changes, a branch diff, a commit, or a specific implementation.
+  Get an independent code review from Codex (gpt-6.1-sol) through T3's delegate_task — uncommitted changes, a branch diff, a commit, or a specific implementation.
 disable-model-invocation: true
 ---
 
@@ -11,42 +11,34 @@ Use Codex as an independent reviewer when the user wants a second-pass review or
 
 ## Workflow
 
-1. Identify the review target: uncommitted changes, base branch, commit SHA, PR checkout, or specific files.
-2. Create a temporary artifact directory for the report and, for a custom review, the prompt.
-3. Run `codex review` from the repo root with either a built-in target or a custom prompt.
-4. Read the report and verify important claims against the code before presenting them.
+1. Identify the review target and the command that reproduces it: `git diff` plus `git status` for uncommitted changes, `git diff <base>...HEAD` for a branch, `git show <sha>` for a commit, or specific files.
+2. Write the review prompt below, naming that command.
+3. Launch it with `delegate_task`:
 
-Command shapes:
-
-```bash
-ARTIFACT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/codex-review.XXXXXX")"
-REPORT="$ARTIFACT_DIR/report.md"
-PROMPT="$ARTIFACT_DIR/prompt.md"
-
-# Review staged, unstaged, and untracked changes.
-codex review --uncommitted </dev/null > "$REPORT"
-
-# Review current branch against a base branch.
-codex review --base main </dev/null > "$REPORT"
-
-# Review a single commit.
-codex review --commit <sha> </dev/null > "$REPORT"
-
-# Use custom instructions instead of a built-in target.
-codex review - < "$PROMPT" > "$REPORT"
+```json
+{
+  "task": "<review prompt>",
+  "title": "Codex review: <target>",
+  "role": "review",
+  "mode": "async",
+  "target": { "providerInstanceId": "codex", "model": "gpt-6.1-sol", "options": { "reasoningEffort": "high" } }
+}
 ```
 
-- `~/.codex/config.toml` sets no default model, so pass `-c model="gpt-6.1-sol"` with high reasoning effort; use gpt-6-astra when the review needs its extra reach.
-- `--uncommitted`, `--base`, and `--commit` are mutually exclusive with a custom `PROMPT`. Use one of the first three command shapes for a built-in target; use the final shape when custom instructions matter more.
-- Built-in targets take `</dev/null` so codex doesn't wait on input; the custom shape uses stdin for the prompt instead.
-- Long reviews can exceed Bash's 10-minute timeout: pass an explicit timeout, or run in the background and poll for `$REPORT`.
+4. End your turn; the completion notification wakes you. The report is the task's final `summary` (`task_status`). Check `git status` afterwards.
+5. Verify important claims against the code before presenting them.
+
+- Use `gpt-6-astra` when the review needs its extra reach.
+- Leave `isolation` unset so Codex reads the same checkout, uncommitted changes included.
 
 ## Review Prompt
 
-For a custom-prompt review, keep the prompt simple and self-contained — Codex needs no Claude-style scaffolding:
+Keep the prompt simple and self-contained — Codex needs no Claude-style scaffolding:
 
 ```text
-Review these changes for bugs, regressions, security issues, and requirement mismatches.
+You are a subagent. Don't run memo.
+
+Review the changes shown by `<command>` for bugs, regressions, security issues, and requirement mismatches.
 
 Prioritize findings over summary. For each finding include:
 - severity
@@ -54,10 +46,10 @@ Prioritize findings over summary. For each finding include:
 - concrete failure mode
 - suggested fix direction
 
-Do not edit files. If there are no substantive findings, say so. List any changed behaviour that nothing proves separately, as advisory.
+Do not edit files, invoke skills, or delegate. If there are no substantive findings, say so and name what you inspected. List any changed behaviour that nothing proves separately, as advisory.
 ```
 
-Keep "Do not edit files" — the 5.6 models (sol especially) are eager to start fixing what they review.
+Keep "Do not edit files": the child has write access to the shared checkout, and sol is eager to start fixing what it reviews.
 
 Add task-specific context when useful: requirements, risky areas, expected behavior, relevant tests, or files you are unsure about.
 

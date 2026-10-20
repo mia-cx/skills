@@ -37,15 +37,14 @@ One reviewer per leg, from one provider, covering all three domains at once. Fix
 
 With Cursor omitted, the normal relay alternates Codex and Claude indefinitely. The host-aware first leg below only decides which of those two starts. A user may override the lineup for one run; record that as runtime state and never persist it into this skill's defaults.
 
-Set the lineup from the host (the agent that invoked this skill), classified once at loop start:
+Set the lineup from the host (the agent that invoked this skill), classified once at loop start by `inheritedProviderInstanceId` from `orchestrator_capabilities`:
 
-| Host | Lineup (laps) | Classified by |
-| --- | --- | --- |
-| Claude Code | codex → claude → cursor | default when nothing below matches |
-| Codex | claude → codex → cursor | `REVIEW_LOOP_RUNNER=codex`, `CODEX_THREAD_ID`, or `CODEX_CI` |
-| Cursor | codex → claude → cursor | `REVIEW_LOOP_RUNNER=cursor` or `CURSOR_AGENT` |
+| Host provider | Lineup (laps) |
+| --- | --- |
+| `codex` | claude → codex → cursor |
+| `claudeAgent`, `cursor`, or anything else | codex → claude → cursor |
 
-The host never runs the first leg: the first opinion on the diff comes from outside the agent that wrote it. Workflow wrappers that do not preserve their host's environment set `REVIEW_LOOP_RUNNER` before invoking this skill. **Cursor is opt-in**: drop it from the lineup unless the user asked for cursor reviews, leaving the alternating two-provider lap. Record the host, its evidence, and the resulting lineup in the final report.
+The host never runs the first leg: the first opinion on the diff comes from outside the agent that wrote it. **Cursor is opt-in**: drop it from the lineup unless the user asked for cursor reviews, leaving the alternating two-provider lap. Record the host, its evidence, and the resulting lineup in the final report.
 
 ### Reviewers review; the host fixes
 
@@ -59,31 +58,17 @@ Every leg runs at high reasoning effort on the top-intelligence model **within i
 
 Intelligence outranks everything here, because a leg run cheap costs a whole lap to discover, and cost never breaks a tie; reviewing is where the budget goes. Taste breaks ties only on a UI-heavy diff, where the defect is a bad interaction or a wrong-feeling layout that a high-intelligence, low-taste reviewer scores as working code.
 
-Higher is better in every column, cost included: the cost score is per task actually run, so a model that burns usage limits fast scores low no matter what its per-token price says. The table is carried here rather than referenced, because it lives in `~/.agents/CLAUDE.md` and a codex or cursor host reads `AGENTS.md` instead; keep the two in sync when either changes.
+The scores live in the model table in `~/.agents/AGENTS.md` ("Picking the right models"). No GPT model scores above 4 on taste, so a UI-heavy relay gets its taste coverage from the claude leg; say so in the report rather than swapping the codex leg to a Claude model.
 
-| model       | cost | intelligence | reliability | taste |
-| ----------- | ---- | ------------ | ----------- | ----- |
-| opus-5.5    | 7    | 9            | 9           | 9     |
-| fable-5.1   | 2    | 8.6          | 9.5         | 9     |
-| gpt-6-astra | 3    | 8.1          | 4           | 2     |
-| gpt-6.1-sol | 8    | 7.8          | 7           | 2     |
-| sonnet-5.5  | 7    | 7            | 9           | 7.5   |
+Each leg's `delegate_task` target:
 
-Selection mechanics:
+| Leg | `providerInstanceId` | `model` | `options` |
+| --- | --- | --- | --- |
+| claude | `claudeAgent` | `claude-opus-5-5` | `{ "effort": "high" }` |
+| codex | `codex` | `gpt-6-astra` | `{ "reasoningEffort": "high" }` |
+| cursor | `cursor` | `default` (Auto) | none |
 
-- **claude**: `model: 'opus'` for the Agent tool or Workflow `agent()`; that parameter is unversioned and takes only `opus`/`sonnet`/`fable`/`haiku`. The `claude --model` CLI flag also accepts a full versioned id, which is the only way to pin an older release.
-- **codex**: the top-intelligence GPT model selected by the local Codex configuration; see the runtime contract below for how the leg is launched.
-- **cursor**: `--model auto`, always. This leg is billing-constrained, not rubric-selected; see below.
-
-No GPT model scores above 4 on taste, so a UI-heavy relay gets its taste coverage from the claude leg; say so in the report rather than swapping the codex leg to a Claude model.
-
-### Codex runtime contract
-
-Codex gets the same rendered prompt as every other leg, at full length: no line limit, nothing summarized away. `--read-only-preamble` prepends the one line that keeps it read-only despite the sandbox flag it needs.
-
-Treat repository decisions and recon as authoritative. Browse or re-scrape a live integration only for a concrete unresolved contradiction, because unconstrained recon can turn one leg into a duplicate investigation.
-
-Codex produces the report at the end of its turn. Wait for the completion event rather than polling on a timer. How that event reaches you depends on the host, and a host with no terminal to attach to must not run codex interactively at all; see the host sections below. A turn that ends without a final report is a failed attempt: record it, fix the invocation, and rerun the same lineup slot. It never counts as a leg.
+Check these ids against `orchestrator_capabilities` at loop start; when a release renames one, take the top-intelligence model of the same provider.
 
 ## Runtime state and resume
 
@@ -93,26 +78,19 @@ Create a stable artifact directory for the PR under the system temp directory an
 - The environment's posture (cooperative or adversarial, per the trigger test), written once and reused as `{{ENVIRONMENT}}` by every leg, so it is decided rather than re-litigated per reviewer.
 - Acceptance-criteria sources and the open PR stack (`gh pr list --json number,headRefName,baseRefName,headRefOid`). Compare descendant diffs when deciding whether a finding is live, already fixed downstream, or superseded; a base defect that descendants inherit is still live.
 - Baseline commands/results, required CI, bot opt-ins, supported bots present, unresolved thread IDs, and which enabled bot reviews target the baton SHA.
-- Every attempted leg: provider, reviewed SHA, report/trace paths, outcome, and whether it counts.
+- Every attempted leg: provider, reviewed SHA, `taskId`, `clientRequestId`, outcome, and whether it counts.
 - A finding ledger: stable ID, failure mode, disposition, evidence, finding provider, fixing SHA, affected files, GitHub thread/comment IDs, and induced regression if any.
 
-On resume, compare the PR head with the recorded baton before doing work. Reuse valid completed legs and dispositions; rerun only stale, interrupted, failed, or empty-report attempts. Feed reviewers a compact resolved-finding ledger so a repeated rejection needs new evidence rather than another vote.
+On resume, compare the PR head with the recorded baton before doing work. Read any recorded leg still in flight with `task_status` before relaunching it. Reuse valid completed legs and dispositions; rerun only stale, interrupted, failed, or empty-report attempts. Feed reviewers a compact resolved-finding ledger so a repeated rejection needs new evidence rather than another vote.
 
 ## Launching a leg
 
-**Spawn the host's own provider through the host's native subagent mechanism; reach every other provider through that provider's CLI.** Native spawning keeps the leg inside the host's session (its own model selection, streaming, and cancellation), while a CLI shell-out is the only transport that crosses providers. So the claude leg is a subagent under Claude Code and a `claude -p` shell-out under Codex; the codex leg inverts that.
-
-| Leg | From a Claude Code host | From a Codex host | From a Cursor host |
-| --- | --- | --- | --- |
-| claude | Agent tool, or Workflow `agent()` | `claude` CLI | `claude` CLI |
-| codex | interactive `codex` in a PTY | native codex subagent, else the same PTY call | interactive `codex` in a PTY |
-| cursor | `agent` CLI | `agent` CLI | `agent` CLI |
+**Every leg, from every host, is a T3 `delegate_task` child.** It crosses providers, shows the leg in T3, and wakes this thread when the leg finishes.
 
 **Render before launching.** The template in `references/` is not sendable as-is: every `{{FIELD}}` must be substituted first. The script below does it: one fresh file per leg, substituting literally so prose full of `/`, `&`, and newlines survives, failing loudly on a field it cannot fill rather than sending the reviewer at a head it has to guess. Rendering by hand instead is where paraphrase creeps into a prompt that has to go whole. Its path is absolute because a leg runs with the target repo as cwd, not this skill's directory.
 
 ```bash
 PROMPT="$(mktemp "${TMPDIR:-/tmp}/relay-prompt-<leg>.XXXXXX.md")"
-REPORT="$(mktemp "${TMPDIR:-/tmp}/relay-<provider>-<leg>.XXXXXX.md")"
 
 ~/.claude/skills/review-relay/scripts/render-prompt.py reviewer-prompt.md \
   --field PR_URL="$PR_URL" --field HEAD_SHA="$HEAD" \
@@ -120,94 +98,36 @@ REPORT="$(mktemp "${TMPDIR:-/tmp}/relay-<provider>-<leg>.XXXXXX.md")"
   --field ENVIRONMENT='Cooperative: <what surrounds this code>' \
   --field ACCEPTANCE_CRITERIA=@/path/to/criteria.md \
   --field PRIOR_LEGS=@"$RELAY_LOG" \
-  -o "$PROMPT"                       # --read-only-preamble for the codex leg
+  -o "$PROMPT"
 ```
 
-Pass the rendered file rather than an inline string; the prompt is long and full of markdown and backticks that a shell argument mangles. The native subagent path takes the same rendered text as its prompt.
+Then launch the leg, passing the rendered file's contents whole as `task`, with the leg's target from the table above:
 
-```bash
-# claude leg, from a non-Claude host
-claude -p --model opus --permission-mode plan < "$PROMPT" > "$REPORT"
-
-# codex leg: interactive, per the Codex runtime contract above
-codex -s danger-full-access --no-alt-screen "$(<"$PROMPT")"
-
-# cursor leg, from any host
-agent -p --model auto --mode plan "$(cat "$PROMPT")" > "$REPORT"
+```json
+{
+  "task": "<contents of $PROMPT>",
+  "title": "Relay leg 3: codex @ 4f1c2ab",
+  "role": "review",
+  "mode": "async",
+  "clientRequestId": "relay-<pr>-leg-3",
+  "target": { "providerInstanceId": "codex", "model": "gpt-6-astra", "options": { "reasoningEffort": "high" } }
+}
 ```
 
-The codex leg is the exception to redirecting into `$REPORT`: it runs interactively, so its report is the final response captured off the attached session, not stdout.
+- Leave `isolation` unset: the reviewer reads the shared checkout at the baton SHA. Make no edits while a leg runs.
+- Record the returned `taskId` in runtime state, then end your turn. The completion notification wakes you; do not poll or build a watcher.
+- **The report is the task's final `summary`** (`task_status`). A task that ends without a final report is a failed attempt: record it, fix the prompt or target, and relaunch the same lineup slot with a new `clientRequestId`. It never counts as a leg.
+- Give each leg its own `clientRequestId`, stable across retries of that launch, so a lost response never starts a duplicate leg.
 
-CLI reviewers routinely outrun a 10-minute Bash timeout; pass an explicit longer timeout, or run in the background and poll for the report file.
+**Re-running the same provider** (after a stale-head review, or a second pass once this leg's fixes landed) is a new `delegate_task` with a freshly rendered prompt; `{{PRIOR_LEGS}}` carries that provider's verdicts and everyone else's. Never continue a leg through `t3_thread_send` on its `childThreadId`.
 
-**Re-running the same provider** (after a stale-head review, or a second pass once this leg's fixes landed) resumes that reviewer's session rather than paying for the full prompt again, and the follow-up carries only what changed. That path has its own ordering, and getting it wrong costs a lap: [`references/resuming-a-reviewer.md`](references/resuming-a-reviewer.md). A cross-provider handoff is never a resume; a fresh process gets the whole rendered file.
+Treat repository decisions and recon as authoritative. A reviewer browses or re-scrapes a live integration only for a concrete unresolved contradiction, because unconstrained recon can turn one leg into a duplicate investigation.
 
-Keep reviewers read-only: `--permission-mode plan` for claude, `--mode plan` for cursor. A reviewer that can write starts fixing what it finds, which strands edits outside the fix sequence in "Fixing". The codex leg is the weak point: it runs `-s danger-full-access` per its runtime contract, so nothing but the `--read-only-preamble` line stops it editing. Check `git status` after that leg.
+**Keep reviewers read-only.** Every child has write access, so the script's read-only preamble is the only guard: it forbids edits, skills, and delegation. Check `git status` after every leg. A reviewer that writes strands edits outside the fix sequence in "Fixing".
 
-Cursor specifics:
+**One leg is one reviewer.** A reviewer with a delegation tool will use it on a large diff and fan out to sub-reviewers, which is not a leg: a coordinator merging area reports it never verified is a second relay hiding inside the first. Observed on leg 14 of PR #65: one spawn became six and cost 925k subagent tokens. If a fan-out happens anyway, read its reports as raw input, the way you read a bot's comments, verify each finding yourself, and rerun the leg.
 
-**Always `--model auto`.** `auto` is the only permitted value of this flag. Auto-routed requests are the included Cursor plan usage; every other model id (`gpt-5.6-sol-high`, `claude-opus-5-thinking-high`, `composer-2.5`, anything from `agent --list-models`) bills the API pool per token. Requests to run the cursor reviewer on a specific model get the same answer: run `auto`, or drop cursor from the lineup, and say which. Cost, not capability, decides this leg's model; the rubric governs the claude and codex legs only.
-
-This path is the local `agent` CLI only. Cursor's PR-side bots are a different mechanism and never a substitute: leave `@cursor review`, `@bugbot run`, and every other PR comment trigger out of it. Bots already in the PR conversation are handled by the bot-allowlist step, which does not include Cursor.
-
-## Running legs from a Claude Code host
-
-A leg is only useful if the host finds out it finished. Everything below is in service of that one thing: the host must get a completion event it cannot miss, and a report it can read without decoding a terminal.
-
-### The claude leg
-
-Agent tool, `model: 'opus'`, backgrounded. The harness tracks the subagent and notifies you when it returns, so the next turn starts by itself. Pass the rendered prompt file's contents as the agent's prompt, and check `git status` afterwards.
-
-**Pick an agent type with no Agent tool in it.** `Explore` is the one to reach for: its toolset is everything a reviewer needs and nothing it needs to be denied, with no Edit, no Write and no Agent. Its blurb describes a search agent, but a toolset is a capability list rather than a job description, and this is the toolset the job wants. `general-purpose` has every tool, delegation included.
-
-That matters because a reviewer handed the Agent tool will use it. Give one a large diff and it splits the work into areas and fans out to sub-reviewers of its own, which is not a leg. A leg is one reviewer's own judgement over the whole diff, and that is what makes it comparable to the leg beside it and reproducible on a rerun; a coordinator merging area reports it never verified is a second relay hiding inside the first. Observed on leg 14 of PR #65: one spawn became six and cost 925k subagent tokens for a single leg.
-
-Render this leg with `--read-only-preamble` as well, which says the same thing in words. Say it and enforce it both: the words are what stops a reviewer that finds another way to delegate, and the toolset is what stops the one that ignores them. Asking was the guard that already failed once.
-
-If a fan-out happens anyway, its reports are still worth reading as raw input, the same way a bot's comments are. They are not that leg. Verify each finding yourself and rerun the leg.
-
-### The codex leg: `codex exec`, never interactive `codex`
-
-```bash
-codex exec -s read-only --color never \
-  -m gpt-6-astra -c model_reasoning_effort=high \
-  -o "$REPORT" - < "$PROMPT" > "$LOG" 2>&1
-```
-
-Run it with Bash `run_in_background: true`. A leg on a large diff runs well past the ten-minute foreground timeout, and `codex exec` exits when the turn ends, so backgrounding it produces a real completion notification.
-
-- `-s read-only` is the sandbox enforcing what `--read-only-preamble` only asks for. Reads and `git diff` both work; writes fail. Keep the preamble as the line that stops it trying, and keep the `git status` check.
-- `-o "$REPORT"` writes the final message to a file. **That file is the report**, not stdout. Stdout is progress noise; keep it as `$LOG` for diagnosing a failed leg.
-- `-` reads the prompt from stdin, so the long markdown never goes through argv.
-
-**Interactive `codex` cannot be driven from this host, and the failure is silent.** It does not exit when the turn ends; it returns to its own prompt and waits. A watcher on the process therefore waits forever, and the host sits believing the leg is still working. Observed once at a cost of two hours: the review completed, the log stopped growing, and nothing said so. Its output is also a TUI screen-repaint stream rather than a transcript, so capturing it through `script` yields megabytes of cursor moves with the report interleaved a character at a time and the early findings already scrolled off. There is no report in there worth recovering.
-
-### Watching a leg
-
-The completion notification is the mechanism. Do not build a polling loop around work the harness already tracks; you will be re-invoked.
-
-A watcher is only for a process the harness cannot see, which means one you detached yourself. When you write one, **never `pgrep -f` the command string**: the watcher's own shell carries that string in its command line, so the pattern matches the watcher, the condition never goes false, and the loop runs until it times out. Watch the pid.
-
-### Salvaging a leg someone ran interactively
-
-Codex writes a real transcript to `~/.codex/sessions/<yyyy>/<mm>/<dd>/rollout-*.jsonl` however it was launched. The report is the last assistant message:
-
-```bash
-python3 -c "
-import json,sys
-msgs=[]
-for line in open(sys.argv[1]):
-    try: d=json.loads(line)
-    except: continue
-    p=d.get('payload',{})
-    if p.get('type')=='message' and p.get('role')=='assistant':
-        t=''.join(c.get('text','') for c in p.get('content',[]))
-        if t.strip(): msgs.append(t)
-print(msgs[-1])
-" "$(ls -t ~/.codex/sessions/**/*.jsonl | head -1)" > "$REPORT"
-```
-
-Match the session file to the leg by its timestamp before trusting it. This rescues a leg already paid for; it is not the path to run one.
+**Cursor leg: always model `default` (Auto).** Auto-routed requests are the included Cursor plan usage; every other Cursor model bills the API pool per token. Requests to run the cursor reviewer on a specific model get the same answer: run Auto, or drop cursor from the lineup, and say which. Cost, not capability, decides this leg's model; the rubric governs the claude and codex legs only. Cursor's PR-side bots are a different mechanism and never a substitute: leave `@cursor review`, `@bugbot run`, and every other PR comment trigger out of it. Bots already in the PR conversation are handled by the bot-allowlist step, which does not include Cursor.
 
 ## Reviewer prompt
 
@@ -220,7 +140,7 @@ Match the session file to the leg by its timestamp before trusting it. This resc
 | `{{DIFF_TARGET}}` | the command that reproduces the diff under review, e.g. `git diff <baseRefName>...<HEAD_SHA>` |
 | `{{ACCEPTANCE_CRITERIA}}` | criteria verbatim from the PR body, linked issue, or plan file, or "None stated" |
 | `{{ENVIRONMENT}}` | the posture decided by the trigger test, plus one line on what surrounds this code, e.g. "Cooperative: a Tampermonkey userscript sharing a document with wplace. wplace does not know this code exists." |
-| `{{PRIOR_LEGS}}` | `--prior-legs @"$RELAY_LOG"`, which inlines the log's full content and never its path, or "You are the first leg; nothing has been reviewed yet." on leg 1. Resumed sessions get only the delta, per [`references/resuming-a-reviewer.md`](references/resuming-a-reviewer.md) |
+| `{{PRIOR_LEGS}}` | `--field PRIOR_LEGS=@"$RELAY_LOG"`, which inlines the log's full content and never its path, or "You are the first leg; nothing has been reviewed yet." on leg 1 |
 
 ## The relay log
 

@@ -6,4 +6,4 @@
 
 ## Computer use
 
-- If computer use is helpful for completing or verifying work, use the `codex-computer-use` skill: it shells out to `gpt-6.1-sol:medium` via Codex.
+- If computer use is helpful for completing or verifying work, use the `codex-computer-use` skill: it delegates to `gpt-6.1-sol` at medium effort.

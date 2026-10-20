@@ -14,33 +14,35 @@ Launching apps, simulators, or browsers to verify the requested work is fine wit
 
 Capability depends on where this runs — check before dispatching:
 
-- **Browser automation (the common case)**: the codex CLI drives Chrome via CDP (`browser_use` feature, stable and enabled). Needs Chrome and a display; works on the laptop, not on a headless devbox.
+- **Browser automation (the common case)**: Codex drives Chrome via CDP (`browser_use` feature, stable and enabled). Needs Chrome and a display; works on the laptop, not on a headless devbox.
 - **Full OS control** (native apps, simulators, cross-app flows): requires the Codex desktop app on macOS or Windows — macOS needs Screen Recording + Accessibility permissions. Linux is unsupported.
 - **Headless environment** (no display/Chrome): report that computer use is unavailable and fall back to non-GUI verification — curl the endpoints, run the test suite, read logs.
 
 ## Workflow
 
 1. Confirm the target is reachable: app running, URL or app name known, test credentials if the flow needs them.
-2. Create a temporary artifact directory; write the verification prompt to `$ARTIFACT_DIR/prompt.md`.
-3. Run `codex exec`:
+2. Create a temporary artifact directory: `ARTIFACT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/codex-verify.XXXXXX")"`.
+3. Launch the verification prompt below with `delegate_task`:
 
-```bash
-ARTIFACT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/codex-verify.XXXXXX")"
-
-codex exec -m gpt-6.1-sol -c model_reasoning_effort=medium -s workspace-write \
-  -C "$ARTIFACT_DIR" --skip-git-repo-check \
-  - < "$ARTIFACT_DIR/prompt.md" > "$ARTIFACT_DIR/log.md"
+```json
+{
+  "task": "<verification prompt>",
+  "title": "Codex verify: <flow>",
+  "role": "test",
+  "mode": "async",
+  "target": { "providerInstanceId": "codex", "model": "gpt-6.1-sol", "options": { "reasoningEffort": "medium" } }
+}
 ```
 
-Set the Codex working root to the temporary artifact directory. This keeps `workspace-write` available for screenshots and the report without making the source repository writable.
-
-Computer-use runs are long: pass an explicit Bash timeout, or run in the background and poll for `$ARTIFACT_DIR/report.md`.
+4. End your turn; the completion notification wakes you. Then read `$ARTIFACT_DIR/report.md` and check `git status` for stray edits.
 
 ## Verification Prompt
 
 Keep it simple and self-contained:
 
 ```text
+You are a subagent. Don't run memo.
+
 Verify this flow in <app / URL>:
 
 1. <step>
@@ -52,7 +54,7 @@ Use the browser to walk the flow. Save a screenshot per step to <artifact dir> a
 Report only — do not edit any files outside <artifact dir>. If a step cannot be completed, capture the failing state and say exactly where it stopped. If everything passes, say so explicitly.
 ```
 
-Keep "do not edit" — the 5.6 models (sol especially) are eager to start fixing what they find broken.
+Keep "do not edit": the child has write access to the shared checkout, and sol is eager to start fixing what it finds broken.
 
 ## Reporting Back
 

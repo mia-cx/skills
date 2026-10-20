@@ -18,14 +18,13 @@ param(
     [Parameter(Mandatory)][string]$AcceptanceCriteria,
     [Parameter(Mandatory)][string]$Environment,
     [Parameter(Mandatory)][string]$PriorLegs,
-    [Parameter(Mandatory)][string]$Out,
-    [switch]$Codex
+    [Parameter(Mandatory)][string]$Out
 )
 
 $ErrorActionPreference = 'Stop'
 
-# The line that keeps the codex leg read-only despite -s danger-full-access.
-$codexPreamble = 'Do not invoke any skill or delegation tool, and do not spawn sub-agents. Review yourself; do not edit files.' + "`n`n"
+# Every leg is a delegated child with write access; this line keeps it a reviewer.
+$readOnlyPreamble = 'You are a subagent. Don''t run memo. Do not invoke any skill or delegation tool, and do not spawn sub-agents. Review yourself; do not edit files.' + "`n`n"
 
 function Resolve-Value([string]$value, [string]$field) {
     if ($value.StartsWith('@')) {
@@ -57,7 +56,7 @@ foreach ($name in $fields.Keys) {
 $leftover = [regex]::Matches($text, '\{\{[A-Z_]+\}\}') | ForEach-Object { $_.Value } | Select-Object -Unique
 if ($leftover) { throw "unfilled fields remain: $($leftover -join ', ')" }
 
-if ($Codex) { $text = $codexPreamble + $text }
+$text = $readOnlyPreamble + $text
 
 Set-Content -LiteralPath $Out -Value $text -NoNewline
 Write-Output $Out

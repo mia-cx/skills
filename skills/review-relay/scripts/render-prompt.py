@@ -13,7 +13,7 @@ rather than reaching a reviewer with a head it has to guess.
     --field ENVIRONMENT='Cooperative: ...' \
     --field ACCEPTANCE_CRITERIA=@/tmp/criteria.md \
     --field PRIOR_LEGS=@"$RELAY_LOG" \
-    --read-only-preamble -o "$PROMPT"
+    -o "$PROMPT"
 """
 
 import argparse
@@ -21,9 +21,9 @@ import pathlib
 import re
 import sys
 
-# Keeps the codex reviewer read-only despite the sandbox flag its leg needs.
-# Reviewer legs are always read-only.
+# Every leg is a delegated child with write access; this line keeps it a reviewer.
 READ_ONLY_PREAMBLE = (
+    "You are a subagent. Don't run memo. "
     "Do not invoke any skill or delegation tool, and do not spawn sub-agents. "
     "Review yourself; do not edit files.\n\n"
 )
@@ -47,7 +47,6 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("template", help="file in references/, or a path")
     parser.add_argument("--field", action="append", default=[], type=parse_field, metavar="NAME=VALUE|@PATH")
-    parser.add_argument("--read-only-preamble", action="store_true", help="prefix the codex reviewer contract")
     parser.add_argument("-o", "--out", required=True, help="write the rendered prompt here")
     args = parser.parse_args()
 
@@ -67,7 +66,7 @@ def main() -> None:
         rendered = rendered.replace("{{" + name + "}}", value)
 
     out = pathlib.Path(args.out)
-    out.write_text(READ_ONLY_PREAMBLE + rendered if args.read_only_preamble else rendered)
+    out.write_text(READ_ONLY_PREAMBLE + rendered)
     print(out)
 
 
