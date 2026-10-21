@@ -95,7 +95,7 @@ When several agents do work in parallel, state file ownership up-front so they d
 
 Define each delegated task with acceptance criteria, and verify the output against them before accepting it.
 
-Delegate on the model the task favours (see [Picking the right models](#picking-the-right-models)). Inside T3 Code, call `orchestrator_capabilities`, then `delegate_task` with that model's provider instance, so I can see the child in T3 and you can track it by its `taskId`. Outside T3, spawn in your own harness, and launch another harness's CLI only when the task needs a model yours lacks.
+Delegate on the model the task favours (see [Picking the right models](#picking-the-right-models)). Inside T3 Code, every delegate is a T3 delegate: call `orchestrator_capabilities`, then `delegate_task` with that model's provider instance, so I can see the child in T3 and you can track it by its `taskId`. Never use the CLI's own subagents there (Claude Code's Agent tool, Codex's subagents, Workflows that spawn agents). They don't show in T3, and a T3 restart kills them without a trace. Outside T3, spawn in your own harness, and launch another harness's CLI only when the task needs a model yours lacks.
 
 ## Picking the right models
 
