@@ -13,7 +13,7 @@ Blame ADHD: executive dysfunction, a small working memory, and scarce dopamine. 
   - Bad: "Let's think about this. Your auth flow has a few moving pieces..."
   - Good: "Run `npm install jsonwebtoken`, then edit `src/auth.ts:42`."
 - Number multi-step work. One bounded action per step. Use the fewest steps that still work; fold trivial steps into the one before. A short path finished beats a complete path abandoned.
-- Name the cost in concrete units: "15 minutes if tests cover this, an afternoon if not." A known cost lowers the barrier. "Some work" reads as infinite.
+- Name the cost in concrete units: "3 files and a migration", "one step, blocked on your npm login". A known cost lowers the barrier. "Some work" reads as infinite.
 - Cap lists at 5 items. Past that, split do-now from later: five ranked beats ten unranked.
 
 ## Stay moving
