@@ -9,6 +9,7 @@ disable-model-invocation: true
 Always-loaded files pay their cost every session; prune hardest here. Apply [agent-copy](../agent-copy/SKILL.md); Read it first if not already loaded. Checks specific to rule and memory files:
 
 - **Right file for the audience.** Harness-agnostic guidance in AGENTS.md; harness-specific mechanics in that harness's file (CLAUDE.md, `.cursor/rules/*.mdc`). Cursor rules scope by glob; prefer a scoped rule over an always-apply one.
+- **Fresh readers.** State the current rule directly. Remove comparisons with discarded rules absent from the document, following agent-copy's fresh-reader check.
 - **When a skill covers the topic**, the memory file keeps one pointer line. Restated bullets drift from the skill.
 - **Delete what context will supply.** "When working on X, do Y" is suspect: Y is often self-evident inside X, visible in the files being edited or surfaced by typecheck, lint, or tests. *Can* be found ≠ *will* be encountered; facts in obscure corners stay written down.
 - **Under 50 lines per section.** Longer is sediment.

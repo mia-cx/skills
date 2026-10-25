@@ -7,6 +7,12 @@ description: Use when writing text an agent will consume: a skill, rule or memor
 
 How to write for agents. A skill, a rule file, a plan, and a subagent prompt are packaged differently, but the same levers make each one predictable: the agent takes the same *process* every run. The `/refine` set audits existing documents against this reference. Write new ones from it directly; for subagent prompts, apply it inline.
 
+## Fresh readers
+
+Write for a reader who has never seen earlier versions or the editing conversation. State the current instructions directly. Never treat a document as a ledger of edits or negate a discarded rule absent from the document. Include revision history only when explicitly requested.
+
+Before finishing, read the document on its own. Remove comparisons whose other side exists only in prior drafts or chat. For example, write "Creating a thread requires permission", not "Permission controls access, not thread count" when no count limit appears. Keep prohibitions that define current boundaries.
+
 ## Context pointers
 
 A **context pointer** is an in-context reference that names out-of-context material and the condition for reaching it: a skill description, an AGENTS.md line naming a doc, a plan step citing a file. The pointer's *wording*, not its target, decides whether the agent gets there. A must-have target behind a weakly worded pointer is a variance bug. Sharpen the wording first; inline the material only if sharpening fails.

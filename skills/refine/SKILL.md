@@ -16,4 +16,6 @@ Then pick the branch for the target, Read its SKILL.md, and run its target-speci
 | Plans, PRDs, handoffs, documents another agent executes | `skills/refine-plan/SKILL.md` |
 | Any other agent-consumed doc | agent-copy alone |
 
+Before committing, apply agent-copy's fresh-reader check to the whole document. Every sentence must make sense without prior drafts or the editing conversation. Remove negations of discarded rules absent from the document; retain revision history only when explicitly requested.
+
 Commit when every section is accounted for.

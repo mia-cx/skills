@@ -9,6 +9,7 @@ disable-model-invocation: true
 Apply [agent-copy](../agent-copy/SKILL.md) in full; Read it first if not already loaded. Its pointer rules audit the description, and its skill-mechanics section audits the invocation mode. Checks specific to skills:
 
 - **Check the invocation mode first.** A wrong mode invalidates how the description should read.
+- **Fresh readers.** Describe the current workflow without relying on earlier versions. Remove negations of discarded instructions, following agent-copy's fresh-reader check.
 - Model-invoked descriptions follow the template `Use when the user asks to …`, in the user's words.
 - Examples are concrete and adaptable, not generic.
 - Work re-derived across runs (a converter, a query, a validation) becomes `scripts/`.

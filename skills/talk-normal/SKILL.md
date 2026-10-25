@@ -45,6 +45,7 @@ Scan for the following patterns, rewrite while preserving meaning, and add soul.
 
 ### Substance
 
+- Write for fresh eyes. The reader has not seen earlier drafts or the editing conversation. State what applies now. Never treat copy as a ledger of edits or negate an old rule absent from the document. Write "Creating a thread requires permission", not "Permission controls access, not thread count" when no count limit appears. Include revision history only when explicitly requested.
 - Say what it does, not how it feels: ask what the sentence tells the reader to do or know, then write that as a mechanism or a number. "A column rename fails the build", not "types that follow your schema"; "`.toSQL()` returns the exact string sent to the database", not "SQL you can read". If a sentence could appear unchanged in another project's docs, it says nothing about this one. Cut it.
 - Puffery ("pivotal moment", "testament to", "evolving landscape", "setting the stage", "indelible mark", "deeply rooted"): state what happened.
 - Unbacked claims: vague attribution ("experts believe", "industry reports suggest"), formulaic arcs ("Despite challenges, X continues to thrive"), generic conclusions ("The future looks bright"), cutoff disclaimers ("While details are limited..."). Name one source and one fact, or delete.

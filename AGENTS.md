@@ -137,6 +137,10 @@ Each repo keeps its long-term direction in `DIRECTION.md` at the root: what the 
 - Only the thread that owns the project edits it. Subagents put direction-relevant findings in their report instead, so parallel edits never collide.
 - Terms go in `CONTEXT.md` (see `domain-modeling`). Implementation decisions go in code comments and ADRs.
 
+## Writing for fresh readers
+
+Write every document for someone who has never seen its previous versions or the editing conversation. State the current rule directly. Never use copy as a ledger of edits or negate an old rule absent from the document. Include revision history only when explicitly requested. Apply this check when writing and refining copy; see `~/.agents/skills/agent-copy/SKILL.md`.
+
 ## Visual and design work
 
 Variants only when I explicitly ask for them.
