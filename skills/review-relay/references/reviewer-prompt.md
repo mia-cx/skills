@@ -1,10 +1,6 @@
 # Pull request reviewer
 
-Adversarially review this pull request at the specified head. Actively try to break it.
-
-- PR: `{{PR_URL}}`
-- Head: `{{HEAD_SHA}}`
-- Diff target: `{{DIFF_TARGET}}`
+Adversarially review the pull request your task names, at the head SHA it gives. Actively try to break it. Your task also gives the diff command, the environment, the acceptance criteria, and what earlier reviews found; this file tells you how to use them.
 
 ## Scope: the diff, and only the diff
 
@@ -14,23 +10,19 @@ Read as widely as you need to: callers, callees, tests, config, persisted format
 
 The distinction in practice: the diff changes a function's return shape and an unchanged caller mishandles it. In scope: cite the changed line and name the caller as the consequence. That same caller was already mishandling a case the diff never touches. Out of scope: leave it.
 
-Reviewing beyond the diff is the most common way one leg turns into an unbounded audit. Stay inside it.
+Reviewing beyond the diff is the most common way one review turns into an unbounded audit. Stay inside it.
 
 ## The environment
 
-{{ENVIRONMENT}}
-
-Report what this environment does, including by accident, which is most of it. Do not report what it would have to go out of its way to do to you. A finding that needs the surrounding system to deliberately reach into this code's internals is not a finding here; name the actor and the observable behaviour that makes them do it, or leave it out.
+Your task states the environment's posture: cooperative or adversarial, and what surrounds this code. Report what this environment does, including by accident, which is most of it. Do not report what it would have to go out of its way to do to you. A finding that needs the surrounding system to deliberately reach into this code's internals is not a finding here; name the actor and the observable behaviour that makes them do it, or leave it out.
 
 ## Acceptance criteria
 
-{{ACCEPTANCE_CRITERIA}}
+Your task quotes them, or says none were stated. Behaviour that deviates from them is a correctness finding.
 
-## What earlier legs did
+## What earlier reviews found
 
-Reviewers before you saw earlier versions of this branch. The engineer running this review relay checked each of their findings and decided what became of it:
-
-{{PRIOR_LEGS}}
+Reviewers before you saw earlier versions of this branch. The engineer running this review checked each of their findings and decided what became of it; your task lists those decisions, or says you are the first.
 
 Read this as history, not as a boundary. It tells you which code is *newest*: anything marked Fixed was written under time pressure to close a bug, so it is the likeliest place for a fresh defect, and it deserves more scrutiny than untouched code, not less.
 
@@ -44,7 +36,16 @@ Remain read-only: inspect files and run read-only commands only. Leave edits, co
 
 Report every finding that has a concrete failure mode (`input/state → wrong outcome`), a `file:line` reference, and an actor: **who does this, and where can that be seen**. A line in this repo, a line in a dependency, a documented platform behaviour, a filed issue, a report from a user. A vivid consequence with no actor behind it is not a finding, however plausible it reads.
 
-Report each distinct defect on its own rather than collapsing several into one sample. Twenty or more findings is expected and desired on early legs, and later legs converge toward none. Do not pad the list to reach a number, and do not hold one back to keep it short. If nothing is found, say so and name what was inspected.
+Report each distinct defect on its own rather than collapsing several into one sample. Twenty or more findings is expected and desired on early reviews, and later reviews converge toward none. Do not pad the list to reach a number, and do not hold one back to keep it short. If nothing is found, say so and name what was inspected.
+
+End the report with two lines:
+
+```
+VERDICT: APPROVE or CHANGES
+SCORE: <0-10>/10
+```
+
+APPROVE means you found nothing real. The score is how ready this head is to merge.
 
 ## Domains
 
@@ -56,7 +57,7 @@ Review all three, weighting real runtime code above test code.
 
 ## Exhaustiveness
 
-- This is not a conventional PR review with an implicit finding cap, and it is not a quota either. On a large or early diff, 20+ real findings in one leg is normal; on a diff that several legs have already worked over, two is normal and zero is the goal. Judge the sweep by coverage (every changed file, every domain, examined), never by the count it produced. **A low count is a reason to check your checklist, not a reason to lower the bar.** If a full pass turns up nothing that passes the trigger test, the correct report is a clean one, and saying so is worth more than anything you could manufacture to avoid it. Coverage observations do not pad this count.
+- This is not a conventional PR review with an implicit finding cap, and it is not a quota either. On a large or early diff, 20+ real findings in one review is normal; on a diff that several reviews have already worked over, two is normal and zero is the goal. Judge the sweep by coverage (every changed file, every domain, examined), never by the count it produced. **A low count is a reason to check your checklist, not a reason to lower the bar.** If a full pass turns up nothing that passes the trigger test, the correct report is a clean one, and saying so is worth more than anything you could manufacture to avoid it. Coverage observations do not pad this count.
 - Findings are not the review budget. Maintain a changed-file × correctness/security/coverage checklist and do not conclude until every cell has been examined, including unchanged callers, callees, persisted formats, and lifecycle siblings affected by the diff.
 - Cover every changed file in every domain before going deep on any one of them, then go deep. Breadth first, so nothing is missed for lack of attention rather than lack of defects.
 - Sweep the domains one at a time, start to finish. Finishing correctness on a file is not permission to skip its security or coverage pass.

@@ -1,15 +1,16 @@
 ---
 name: review-relay
 description: >-
-  Use when the user asks for a review relay or review loop, for repeated or
-  multi-provider review passes on a pull request, for a PR to be reviewed until
-  it is clean or merge-ready, or to address review comments and resolve review
-  discussions on a PR. A request for one review pass over a diff is not a relay.
+  Use when the user asks for a review relay or review loop, for repeated review
+  passes on a pull request, for a PR to be reviewed until it is clean or
+  merge-ready, or to address review comments and resolve review discussions on
+  a PR. Several providers reviewing the same head at once is review-council. A
+  request for one review pass over a diff is not a relay.
 ---
 
 # Review relay
 
-Drive the PR for the current branch to merge-readiness as a relay race: each provider runs a read-only review leg, then you verify and fix what is real before handing the new head to the next reviewer. The race ends when a full lap comes back clean. Do not merge; that is a separate, explicit request.
+Drive the PR for the current branch to merge-readiness as a relay race: each leg, one provider reviews the head read-only, then you verify and fix what is real before handing the new head to the next provider. The race ends when a full lap comes back clean. Do not merge; that is a separate, explicit request.
 
 **The baton is the head SHA.** Every handoff passes a head that already absorbed the previous leg's findings; a provider reviewing a stale head is a dropped baton, and its leg does not count.
 
@@ -19,7 +20,7 @@ Before the first leg, find the PR's linked open issues and a relevant GitHub
 Project for each. Reuse an attached project, or use a relevant project for the
 repository and add the issue to it. If neither exists, skip status tracking.
 Move each tracked issue to **In Review**. The PR is under review from the first
-relay leg, not only after it becomes green.
+leg, not only after it becomes green.
 
 ## Scope: the diff, and only the diff
 
@@ -29,195 +30,150 @@ Read as widely as you need to: callers, callees, tests, config, persisted format
 
 The distinction in practice: the diff changes a function's return shape and an unchanged caller mishandles it. In scope: cite the changed line and name the caller as the consequence. That same caller was already mishandling a case the diff never touches. Out of scope: leave it.
 
-Reviewing beyond the diff is the most common way one leg turns into an unbounded audit. Stay inside it. The pressure to leave it comes from the reviewer, and it is persuasive by construction: an out-of-scope finding arrives fully argued with a real defect attached, so agreeing feels like diligence rather than drift. Scope is yours to hold and never the reviewer's to widen; decide it here, before the first report lands.
+Reviewing beyond the diff is the most common way one leg turns into an unbounded audit. The pressure to leave it comes from the reviewer, and it is persuasive by construction: an out-of-scope finding arrives fully argued with a real defect attached, so agreeing feels like diligence rather than drift. Scope is yours to hold and never the reviewer's to widen; decide it here, before the first report lands.
 
 ## The lineup
 
-One reviewer per leg, from one provider, covering all three domains at once. Fix before every handoff; a fresh pair of eyes on fresh code is the point.
+One reviewer per leg, from one provider, covering correctness, security, and coverage at once. Fix before every handoff; a fresh pair of eyes on fresh code is the point.
 
-With Cursor omitted, the normal relay alternates Codex and Claude indefinitely. The host-aware first leg below only decides which of those two starts. A user may override the lineup for one run; record that as runtime state and never persist it into this skill's defaults.
+At loop start, call `orchestrator_capabilities` once. For each driver kind (`claudeAgent`, `codex`, `cursor`), use the provider instance whose `canRunChildTask` is true. The host is the agent running this skill; its driver is the `driverKind` of `inheritedProviderInstanceId`.
 
-Set the lineup from the host (the agent that invoked this skill), classified once at loop start by `inheritedProviderInstanceId` from `orchestrator_capabilities`:
-
-| Host provider | Lineup (laps) |
+| Host driver | Lineup |
 | --- | --- |
-| `codex` | claude → codex → cursor |
-| `claudeAgent`, `cursor`, or anything else | codex → claude → cursor |
+| `codex` | claude → codex |
+| anything else | codex → claude |
 
-The host never runs the first leg: the first opinion on the diff comes from outside the agent that wrote it. **Cursor is opt-in**: drop it from the lineup unless the user asked for cursor reviews, leaving the alternating two-provider lap. Record the host, its evidence, and the resulting lineup in the final report.
+The lap repeats until the stop condition or the budget ends it. The host's own provider never runs the first leg, so the first opinion on the diff comes from outside the agent that wrote it.
+
+**Cursor is opt-in.** When the user asks for Cursor reviews, it joins the end of every lap on model `default` (Auto). Auto is included plan usage and every other Cursor model bills per token, so a request for Cursor on a specific model gets Auto or no Cursor leg, and the report says which. Cursor's PR-side bots (`@cursor review`, `@bugbot run`) are a separate mechanism that stays untriggered.
+
+A user may override the lineup for one run. Record the host, its evidence, and the lineup in the ledger; overrides live there and never in this skill.
 
 ### Reviewers review; the host fixes
 
-Every reviewer stays read-only. After a leg, you independently verify each claim against the code, reproduce every surviving finding, and implement the fixes inline in the current worktree. Do not spawn or shell out to a fixer agent: you already hold the acceptance criteria, relay history, and blast-radius context needed to make the change coherently.
+Every reviewer stays read-only. After a leg, you independently verify each claim against the code, reproduce every surviving finding, and implement the fixes inline in the current worktree. Keep the fixing yourself rather than handing it to a fixer agent: you hold the acceptance criteria, ledger, and blast-radius context needed to make the change coherently. The next reviewer grades the resulting head.
 
-The next reviewer grades the resulting head. This keeps provider diversity where it adds value—independent review—without handing implementation to an agent that lacks the relay's full context.
+## Models
 
-## Picking each leg's model
+Every leg runs at high reasoning effort on the top-intelligence model within its own provider. The relay's value is provider diversity, so a leg never switches provider to chase a score. Intelligence outranks cost here, because a leg run cheap costs a whole lap to discover.
 
-Every leg runs at high reasoning effort on the top-intelligence model **within its own provider**; the relay's value is provider diversity, so a leg never switches provider to chase a score. That is **opus-5.5 for the claude leg and gpt-6-astra for the codex leg**. gpt-6-astra varies more from run to run than gpt-6.1-sol, which a relay absorbs across laps. Fable-5.1 stays out: it drains usage limits about twice as fast, so it is explicit-request only.
-
-Intelligence outranks everything here, because a leg run cheap costs a whole lap to discover, and cost never breaks a tie; reviewing is where the budget goes. Taste breaks ties only on a UI-heavy diff, where the defect is a bad interaction or a wrong-feeling layout that a high-intelligence, low-taste reviewer scores as working code.
-
-The scores live in the model table in `~/.agents/AGENTS.md` ("Picking the right models"). No GPT model scores above 4 on taste, so a UI-heavy relay gets its taste coverage from the claude leg; say so in the report rather than swapping the codex leg to a Claude model.
-
-Each leg's `delegate_task` target:
-
-| Leg | `providerInstanceId` | `model` | `options` |
+| Leg | Driver | `model` | `options` |
 | --- | --- | --- | --- |
 | claude | `claudeAgent` | `claude-opus-5-5` | `{ "effort": "high" }` |
 | codex | `codex` | `gpt-6-astra` | `{ "reasoningEffort": "high" }` |
 | cursor | `cursor` | `default` (Auto) | none |
 
-Check these ids against `orchestrator_capabilities` at loop start; when a release renames one, take the top-intelligence model of the same provider.
+gpt-6-astra varies more from run to run than gpt-6.1-sol, which alternating laps absorb. Fable-5.1 drains usage limits about twice as fast, so it runs only on explicit request. No GPT model scores above 4 on taste in the model table in `~/.agents/AGENTS.md`, so on a UI-heavy diff the claude leg carries taste coverage; say so in the report rather than swapping the codex leg to a Claude model. When a release renames a model, take the top-intelligence model of the same provider.
 
-## Runtime state and resume
+## Budget
 
-Create a stable artifact directory for the PR under the system temp directory and keep `state.md` there. Before the first leg, or when resuming a handoff, record and verify:
+- **3 laps** by default. A lap is one counted leg from every provider in the lineup.
+- **Up to 5 laps** only while a real finding in security, auth, permissions, data loss, or concurrency stays open, or when the user asks.
+- **Disputes go to the user.** A finding you have rejected twice that a reviewer raises a third time stops being argued: record both sides in 2–3 lines each and carry it to the final report as a decision for the user.
+- **Budget end is not approval.** When the budget runs out first, the final report says so and lists what is still open.
 
-- PR number, base/head branches, baton SHA, host evidence, lineup, and next leg.
-- The environment's posture (cooperative or adversarial, per the trigger test), written once and reused as `{{ENVIRONMENT}}` by every leg, so it is decided rather than re-litigated per reviewer.
-- Acceptance-criteria sources and the open PR stack (`gh pr list --json number,headRefName,baseRefName,headRefOid`). Compare descendant diffs when deciding whether a finding is live, already fixed downstream, or superseded; a base defect that descendants inherit is still live.
-- Baseline commands/results, required CI, bot opt-ins, supported bots present, unresolved thread IDs, and which enabled bot reviews target the baton SHA.
-- Every attempted leg: provider, reviewed SHA, `taskId`, `clientRequestId`, outcome, and whether it counts.
-- A finding ledger: stable ID, failure mode, disposition, evidence, finding provider, fixing SHA, affected files, GitHub thread/comment IDs, and induced regression if any.
+## The ledger
 
-On resume, compare the PR head with the recorded baton before doing work. Read any recorded leg still in flight with `task_status` before relaunching it. Reuse valid completed legs and dispositions; rerun only stale, interrupted, failed, or empty-report attempts. Feed reviewers a compact resolved-finding ledger so a repeated rejection needs new evidence rather than another vote.
+One markdown file per PR at a stable path, `${TMPDIR:-/tmp}/review-<repo>-<pr>/ledger.md`, so a resumed session finds it. You author it; reviewers never touch it or see its path.
 
-## Launching a leg
+**Header**, written before the first leg and kept current:
 
-**Every leg, from every host, is a T3 `delegate_task` child.** It crosses providers, shows the leg in T3, and wakes this thread when the leg finishes.
+- PR number, base and head branches, baton SHA, host driver and its evidence, lineup, next leg.
+- The environment's posture (cooperative or adversarial, per the trigger test), decided once and reused by every leg.
+- Acceptance-criteria source, and the open PR stack (`gh pr list --json number,headRefName,baseRefName,headRefOid`). Compare descendant diffs when deciding whether a finding is live, fixed downstream, or superseded; a base defect that descendants inherit is still live.
+- Baseline commands and results, required CI, bot opt-ins, unresolved thread IDs.
+- Every attempted leg: provider, reviewed SHA, `taskId`, `clientRequestId`, verdict, score, and whether it counts.
 
-**Render before launching.** The template in `references/` is not sendable as-is: every `{{FIELD}}` must be substituted first. The script below does it: one fresh file per leg, substituting literally so prose full of `/`, `&`, and newlines survives, failing loudly on a field it cannot fill rather than sending the reviewer at a head it has to guess. Rendering by hand instead is where paraphrase creeps into a prompt that has to go whole. Its path is absolute because a leg runs with the target repo as cwd, not this skill's directory.
-
-```bash
-PROMPT="$(mktemp "${TMPDIR:-/tmp}/relay-prompt-<leg>.XXXXXX.md")"
-
-~/.claude/skills/review-relay/scripts/render-prompt.py reviewer-prompt.md \
-  --field PR_URL="$PR_URL" --field HEAD_SHA="$HEAD" \
-  --field DIFF_TARGET="git diff $BASE...$HEAD" \
-  --field ENVIRONMENT='Cooperative: <what surrounds this code>' \
-  --field ACCEPTANCE_CRITERIA=@/path/to/criteria.md \
-  --field PRIOR_LEGS=@"$RELAY_LOG" \
-  -o "$PROMPT"
-```
-
-Then launch the leg, passing the rendered file's contents whole as `task`, with the leg's target from the table above:
-
-```json
-{
-  "task": "<contents of $PROMPT>",
-  "title": "Relay leg 3: codex @ 4f1c2ab",
-  "role": "review",
-  "mode": "async",
-  "clientRequestId": "relay-<pr>-leg-3",
-  "target": { "providerInstanceId": "codex", "model": "gpt-6-astra", "options": { "reasoningEffort": "high" } }
-}
-```
-
-- Leave `isolation` unset: the reviewer reads the shared checkout at the baton SHA. Make no edits while a leg runs.
-- Record the returned `taskId` in runtime state, then end your turn. The completion notification wakes you; do not poll or build a watcher.
-- **The report is the task's final `summary`** (`task_status`). A task that ends without a final report is a failed attempt: record it, fix the prompt or target, and relaunch the same lineup slot with a new `clientRequestId`. It never counts as a leg.
-- Give each leg its own `clientRequestId`, stable across retries of that launch, so a lost response never starts a duplicate leg.
-
-**Re-running the same provider** (after a stale-head review, or a second pass once this leg's fixes landed) is a new `delegate_task` with a freshly rendered prompt; `{{PRIOR_LEGS}}` carries that provider's verdicts and everyone else's. Never continue a leg through `t3_thread_send` on its `childThreadId`.
-
-Treat repository decisions and recon as authoritative. A reviewer browses or re-scrapes a live integration only for a concrete unresolved contradiction, because unconstrained recon can turn one leg into a duplicate investigation.
-
-**Keep reviewers read-only.** Every child has write access, so the script's read-only preamble is the only guard: it forbids edits, skills, and delegation. Check `git status` after every leg. A reviewer that writes strands edits outside the fix sequence in "Fixing".
-
-**One leg is one reviewer.** A reviewer with a delegation tool will use it on a large diff and fan out to sub-reviewers, which is not a leg: a coordinator merging area reports it never verified is a second relay hiding inside the first. Observed on leg 14 of PR #65: one spawn became six and cost 925k subagent tokens. If a fan-out happens anyway, read its reports as raw input, the way you read a bot's comments, verify each finding yourself, and rerun the leg.
-
-**Cursor leg: always model `default` (Auto).** Auto-routed requests are the included Cursor plan usage; every other Cursor model bills the API pool per token. Requests to run the cursor reviewer on a specific model get the same answer: run Auto, or drop cursor from the lineup, and say which. Cost, not capability, decides this leg's model; the rubric governs the claude and codex legs only. Cursor's PR-side bots are a different mechanism and never a substitute: leave `@cursor review`, `@bugbot run`, and every other PR comment trigger out of it. Bots already in the PR conversation are handled by the bot-allowlist step, which does not include Cursor.
-
-## Reviewer prompt
-
-[`references/reviewer-prompt.md`](references/reviewer-prompt.md) is the complete reviewer prompt. Once rendered, it goes to the reviewer whole, never summarized or paraphrased, and nothing from this skill gets appended to it. Every leg renders its own copy, because the head, the diff target, and the log all move between legs.
-
-| Field | Filled with |
-| --- | --- |
-| `{{PR_URL}}` | `url` from step 1's `gh pr view` |
-| `{{HEAD_SHA}}` | the head SHA recorded in step 1 |
-| `{{DIFF_TARGET}}` | the command that reproduces the diff under review, e.g. `git diff <baseRefName>...<HEAD_SHA>` |
-| `{{ACCEPTANCE_CRITERIA}}` | criteria verbatim from the PR body, linked issue, or plan file, or "None stated" |
-| `{{ENVIRONMENT}}` | the posture decided by the trigger test, plus one line on what surrounds this code, e.g. "Cooperative: a Tampermonkey userscript sharing a document with wplace. wplace does not know this code exists." |
-| `{{PRIOR_LEGS}}` | `--field PRIOR_LEGS=@"$RELAY_LOG"`, which inlines the log's full content and never its path, or "You are the first leg; nothing has been reviewed yet." on leg 1 |
-
-## The relay log
-
-The baton carries a head SHA and a log. `$RELAY_LOG` is one append-only markdown file created at relay start (`mktemp "${TMPDIR:-/tmp}/relay-log.XXXXXX.md"`), holding every finding any leg has raised and what became of it. It exists so the relay stops re-litigating settled ground: without it, leg 3 spends its budget rediscovering what leg 1 already fixed, and there is nothing to dedupe against in step 3.
-
-**You, the host, author and maintain it. Reviewers never touch it.** They are launched read-only and their reports are raw input to step 3, where you read the cited code and decide. What the log records is your verdict after that check, not the reviewer's claim: a finding is Rejected because *you* traced why it cannot happen, and the entry carries the evidence you found. A reviewer's own confidence never lands in this file. Attribute each finding to the leg that surfaced it, so a provider that keeps raising noise is visible.
-
-Append one entry per finding, at the moment you disposition it:
+**Findings**, one entry per finding at the moment you disposition it, numbered `[F1]`, `[F2]`, … across the whole relay under a heading per leg:
 
 ```markdown
-## Leg 2: codex @ 4f1c2ab
+## Leg 2: codex @ 4f1c2ab (CHANGES, 6/10)
 - **[F7] `src/auth/session.ts:88`**: expired refresh token accepted on the retry path.
-  **Fixed** by claude in `9d3e0f1`: the retry now revalidates expiry; replaying the expired-token path rejects it.
+  **Fixed** in `9d3e0f1`: the retry now revalidates expiry; replaying the expired-token path rejects it.
   Diverged from the suggested guard at the call site: the check belongs in the token accessor, since two other callers reach the same path.
 - **[F8] `src/ui/Toast.tsx:40`**: toast timeout not cleared on unmount.
   **Rejected**: the component unmounts only with the portal, which clears the timer at `Portal.tsx:61`. No leak path.
 - **[F9] `src/db/migrate.ts:12`**: non-transactional migration.
   **Deferred**: real, but the fix restructures migration ownership beyond this PR. Reported as a blocker.
-- **[F10] `src/queue/retry.ts:31`**: duplicate job when the worker restarts mid-flush.
-  **Rejected**: the host reproduced a restart and traced the lease through the ack at `lease.ts:44`; the flush replays nothing.
 ```
 
-Every finding gets exactly one of **Fixed** (with the fixing SHA and the verification that proves it), **Rejected** (with the evidence that killed it: a traced code path, not an opinion), or **Deferred** (with the reason it outgrew this PR). A finding with no disposition means the leg is not finished.
+Every finding gets exactly one of **Fixed** (fixing SHA plus the verification that proves it), **Rejected** (the evidence that killed it: a traced code path, not an opinion), or **Deferred** (why it outgrew this PR). A finding with no disposition means the leg is not finished. What the ledger records is your verdict after checking the code, never the reviewer's confidence. Attribute each finding to its leg, so a provider that keeps raising noise is visible. The final report is written from the ledger, so write entries for a reader who was not there.
 
-The log is the source the final report is written from, so write entries for a reader who was not there.
+**Your rejections invite challenge.** You have stared at this diff since leg 1, which makes you the least fresh pair of eyes in the race. A later reviewer that disagrees is doing its job. What the ledger rules out is the unargued repeat: re-raising `[F8]` with no new evidence is noise; re-raising it with a second unmount path is a finding, and your rejection was wrong.
 
-**Reviewers receive log content as prompt text; `$RELAY_LOG` itself stays with you.** Never hand a reviewer the path. The file is live: you append to it during the very leg the reviewer is running, so a reviewer that opens it reads whichever half-written state it happened to catch, and two legs given "the log" are no longer comparable. It also sits outside the repo, where a sandboxed reviewer may fail to open it at all and silently review without it. Rendering the log into the prompt at launch freezes the snapshot that leg saw, which is what makes the leg reproducible.
+**Resume.** Compare the PR head with the recorded baton before doing work. Read any leg still in flight with `task_status` before relaunching it. Reuse valid completed legs and dispositions; rerun only stale, interrupted, failed, or empty-report attempts.
 
-Number findings `[F1]`, `[F2]`, … across the whole relay, and head each section with the leg number and provider. That numbering is what lets you hand a provider only what it has not seen.
+## Launching a leg
 
-### Publishing findings to the PR
+**Every leg is a T3 `delegate_task` child**, from every host: it crosses providers, shows the leg in T3, and wakes this thread when the leg finishes.
 
-`$RELAY_LOG` stays local relay state. Do not publish it, summarize it into a conversation comment, or maintain a cumulative relay comment on the PR.
+The reviewer's complete brief is this skill's `references/reviewer-prompt.md`. The reviewer reads it from disk, so it arrives whole and unparaphrased. The task carries only what changes per leg:
 
-After step 3 verifies a real finding and step 4 reproduces it, publish it through the **`gh-comment` skill** as its own inline diff thread against the reviewed head SHA, immediately before changing the code. The body contains only the attribution header, stable finding ID, severity, concrete failure mode, and the shortest useful reproduction or evidence. A reviewer claim that gets Rejected is not a finding and stays in `$RELAY_LOG`; clean-leg notes, provider transcripts, and relay progress stay there too.
+```markdown
+You are a read-only reviewer. Inspect files and run read-only commands only: no edits, commits, pushes, GitHub comments, thread resolutions, skills, subagents, or delegates.
 
-Anchor the thread to the exact affected diff line. When that line is not commentable, anchor it to the nearest causative changed line and name the exact affected location in the body; do not fall back to a normal PR conversation comment. Record the returned comment/thread ID in runtime state and `$RELAY_LOG` before continuing, so a retry updates or replies to the existing thread instead of duplicating it.
+Read <absolute path to references/reviewer-prompt.md> in full before anything else; it is your brief. If you cannot open it, stop and report that.
 
-After the fix is pushed, reply in that finding's thread with the fixing SHA, rationale, and verification, then resolve it. Leave a Deferred finding unresolved as a visible blocker. If later evidence overturns an already-published finding, reply with the concrete rejection evidence and resolve it rather than deleting history.
+- PR: <url>
+- Head: <sha>
+- Diff: git diff <base>...<sha>
+- Environment: <Cooperative|Adversarial>: <one line on what surrounds this code>
+- Acceptance criteria: <verbatim from the PR body, linked issue, or plan file, or "None stated">
 
-**Visual evidence is rare; text is the finding.** A relay can go start to finish, every leg, without a single image, and that is the normal outcome. Reach for one only when a defect cannot be stated in words: a layout that breaks at a specific viewport, a wrong-looking render, an animation that never settles. When one of those does come up and a desktop environment is available (a Chromium debug port, or computer use via the `codex-computer-use` skill), reproduce it there, capture the screenshot or recording, host it with the `upload-file` skill, and embed the returned URL through `gh-comment`. Put the same URL in the log entry so later legs can see what you saw. A screenshot of a stack trace or a diff is not visual evidence; paste the text.
+## Earlier findings
 
-`gh` is authenticated as the user, so every thread and reply uses the attribution header required by `gh-comment`. Leave out `$RELAY_LOG`'s path and anything else local to the session.
+<the ledger's findings, pasted as they stand at launch, or "You are the first reviewer; nothing has been reviewed yet.">
+```
 
-**Your rejections invite challenge; they do not suppress.** Every Rejected entry is a call you made, and you are the one participant in the relay who has been staring at this diff since leg 1: the least fresh pair of eyes in the race. A later reviewer that disagrees is doing its job, and the relay's whole value is the leg that sees what the previous pass dismissed. What the log forbids is the *unargued* repeat: re-raising `[F8]` with no new evidence is noise, re-raising it with a second unmount path is a finding, and it is your own rejection that was wrong. Hand a reviewer a list framed as settled and it will agree with you; that is the failure mode this section is written against.
+Paste the findings; never pass the ledger's path. You append to the ledger while the leg runs, so a reviewer that opens it reads whatever half-written state it catches. The pasted snapshot is what makes each leg reproducible.
+
+```json
+{
+  "task": "<the filled task above>",
+  "title": "Relay leg 3: codex @ 4f1c2ab",
+  "role": "review",
+  "mode": "async",
+  "clientRequestId": "relay-<pr>-leg-3",
+  "target": { "providerInstanceId": "<codex instance>", "model": "gpt-6-astra", "options": { "reasoningEffort": "high" } }
+}
+```
+
+- Leave `isolation` unset: the reviewer reads the shared checkout at the baton SHA. Make no edits while a leg runs.
+- Record the returned `taskId` in the ledger, then end your turn. The completion notification wakes you; there is nothing to poll.
+- **The report is the task's final `summary`** (`task_status`). A task that ends without one is a failed attempt: record it, fix the task or target, and relaunch the same lineup slot with a new `clientRequestId`. It never counts as a leg.
+- Give each leg its own `clientRequestId`, stable across retries of that launch, so a lost response never starts a duplicate.
+- **Re-running a provider** is a new `delegate_task` with a freshly filled task. Never continue a leg through `t3_thread_send` on its `childThreadId`.
+- **Check `git status` after every leg.** The read-only preamble is the only guard, since every child has write access. A reviewer that writes strands edits outside the fix sequence.
+- **One leg is one reviewer.** A coordinator merging sub-reviews it never verified is a second relay hiding inside the first; one spawn on PR #65 became six and cost 925k tokens. If a fan-out happens anyway, read its reports as raw input, verify each finding yourself, and rerun the leg.
+- Treat repository decisions and recon as authoritative. A reviewer re-scrapes a live integration only for a concrete unresolved contradiction.
 
 ## The leg
 
-The next provider in the lineup takes the baton and runs steps 1–7. Then the handoff: the next provider starts from the head this leg produced, plus the log it wrote.
+1. **Take the baton.** `gh pr view --json number,title,body,headRefName,baseRefName,url`, `gh pr diff`, acceptance criteria, and unresolved review threads (query below). Record the head SHA.
+2. **Launch this leg's reviewer** against that head, per "Launching a leg". One reviewer, three domains, no parallel siblings.
+3. **Verify findings yourself.** Read the cited code before acting; dedupe against the ledger. A finding survives only with a concrete failure mode; see "What counts as real". Missing coverage without a functional defect is advisory, and the leg is clean. A repeat of a rejected finding needs new evidence, not a second vote; weigh that evidence on the code, not on the earlier rejection. Write the trigger line in the ledger for every finding you carry into step 4. If the pointer you write paraphrases the reviewer's claim rather than naming somewhere you looked, the finding has not survived.
+4. **Publish, fix, and verify**, in the sequence under "Fixing". Findings from external threads get the same standard; they already have threads.
+5. **Commit and push through the `git-commit-and-push` skill.** Skip only its issue-linking step: the PR already carries the link, and a review fix closes nothing. Then, only if something was pushed, re-trigger enabled bots:
+   - **The GitHub Codex bot is opt-in.** Post `@codex review` only when the user asked for the GitHub Codex bot during this run; record the opt-in in the ledger. It is independent of the relay's codex legs.
+   - Bots that review on push need nothing. CodeRabbit reviews on its own schedule; leave it untriggered.
+6. **Resolve discussions**, now that fixes have SHAs: fixed gets the commit SHA, rationale, and verification; false positive gets the exact code path. Then resolve the thread. Deferred blockers stay unresolved.
+7. **Wait for required CI and any bot triggered in step 5**, then hand the baton to the next provider: the new head SHA and the ledger with this leg's section appended. A bot review counts only when its reviewed commit equals the current baton; a review on an older head is stale.
 
-1. **Take the baton.** `gh pr view --json number,title,body,headRefName,baseRefName,url`, `gh pr diff`, acceptance criteria from the PR body / linked issue / plan file, and unresolved review threads (query below). Record the head SHA.
-2. **Run this leg's reviewer** against that head with the rendered reviewer prompt. One reviewer, three domains, no parallel siblings.
-3. **Verify findings yourself.** Read the cited code before acting; dedupe against `$RELAY_LOG`. A finding survives only with a concrete failure mode; see "What counts as real". Missing coverage without a corresponding functional defect is advisory and the leg is clean. A single verified real finding is enough. A repeat of something an earlier leg rejected needs new evidence, not a second vote, but weigh the new evidence on the code, not on the fact that it was already rejected once. Record the trigger line in `$RELAY_LOG` for every finding you carry into step 4. A finding you cannot write one for does not reach step 4. If you find yourself writing the pointer as a paraphrase of the reviewer's claim rather than as somewhere you looked, that is the tell.
-4. **Publish, fix, and verify.** See "Fixing" for the required sequence: baseline, reproduce each surviving finding, publish it as one inline thread, implement the fix yourself, re-run the baseline, and read the diff. Publish before the code changes; rejected claims remain local. Apply the same standard to findings from external threads, except they already have threads.
-5. **Commit and push through the `git-commit-and-push` skill**: every leg, no hand-rolled `git commit`. Skip only its step 2 (`gh issue list` and `Fixes #N` refs): the PR already carries the issue link, and a review fix closes nothing. Everything else applies as written: one commit per concern, conventional subject, flavourful body, `Co-Authored-By` trailer, push at the end. Each commit is verified against the baseline before it leaves the machine. Then re-trigger only enabled review bots, and only if something was pushed:
-   - **GitHub Codex bot is opt-in.** Never post `@codex review` merely because `chatgpt-codex-connector` appears in the PR conversation. Enable it only when the user explicitly asks for the GitHub Codex bot during this relay run; record that opt-in in runtime state. When enabled: `gh pr comment <n> --body '@codex review'`.
-   - `coderabbitai` remains presence-based: when it already appears in the PR conversation, run `gh pr comment <n> --body '@coderabbitai review'`.
-
-   The local Codex reviewer in the relay lineup is independent of the GitHub Codex bot. Keeping the bot disabled does not remove or replace local Codex legs.
-6. **Resolve discussions**, now that the fixes have SHAs. For each unresolved external or relay-created thread: fixed → reply with the commit SHA, rationale, and verification; false positive or already handled → reply with the evidence (exact code path). Then resolve the thread. Leave Deferred blockers unresolved. Do not publish the relay log or a leg summary to the PR.
-7. **Wait for required CI and only the bot reviews triggered in step 5**, then hand the baton to the next provider in the lineup: the new head SHA and `$RELAY_LOG` with this leg's section appended. A disabled bot is neither triggered nor a merge-readiness gate. An enabled PR bot review counts only when its reviewed commit OID equals the current baton. Reviews racing in on an older head are recorded as stale, and the bot is re-triggered after the next push rather than credited to the new head.
-
-A leg that produces no fixes still hands off; skip the push and bot re-trigger, since nothing changed. It still writes its log section: "reviewed `<sha>`, nothing real, here is what was inspected" is the entry that proves the lap is going clean rather than going unrecorded.
+A leg with no fixes still hands off, skipping the push. It still writes its ledger section: "reviewed `<sha>`, nothing real, here is what was inspected" proves the lap is going clean rather than going unrecorded.
 
 ## What counts as real
 
-Loop-worthy: evidence-backed problems **this diff causes** (introduced by the change, or latent and newly exposed by it) that can plausibly cause wrong results, crashes, security exposure, data loss or corruption, broken compatibility, acceptance-criteria violations, or an unreliable required CI gate.
+Loop-worthy: evidence-backed problems **this diff causes** that can plausibly cause wrong results, crashes, security exposure, data loss or corruption, broken compatibility, acceptance-criteria violations, or an unreliable required CI gate.
 
-Scope is the diff, per the rule at the top of this skill. Reviewers read whatever they need for context and blast radius, but a defect the branch neither touches nor worsens belongs to another PR: log it as advisory and leave the code alone. Fixing it here grows the diff every later leg has to review, and buries the change the PR was actually opened for.
+A defect the branch neither touches nor worsens belongs to another PR: log it as advisory and leave the code alone. Fixing it here grows the diff every later leg has to review, and buries the change the PR was opened for.
 
-Missing or incomplete test coverage is not a real finding by itself. Report coverage observations separately, classify a coverage-only leg as clean, and do not fix or push them unless the user separately asks. If review of a gap exposes an actual wrong runtime outcome, report the runtime defect as the finding and the missing test only as supporting evidence.
+Missing or incomplete test coverage is not a real finding by itself. Report coverage observations separately, classify a coverage-only leg as clean, and change nothing for them unless the user asks. If a gap exposes an actual wrong runtime outcome, the runtime defect is the finding and the missing test is supporting evidence.
 
 Stop rather than churn on:
 
 - Naming/style preferences and test-helper polish.
 - States nothing produces. See the trigger test below; it is the one check a reviewer cannot argue you out of.
-- Edge-case exhaustion in tests, and extra tests for behavior already covered at the right boundary. Tests exist to prove the code works; piling on cases to make the suite look thorough is testing the tests.
+- Edge-case exhaustion in tests, and extra tests for behavior already covered at the right boundary.
 - Hypothetical fault chains with no credible runtime path, and states already excluded by types.
 
 Impact and plausibility decide, not whether a reviewer can imagine a scenario. Give extra scrutiny to high-impact boundaries (auth, persistence, destructive operations, concurrency) even when failure odds are low.
@@ -232,12 +188,12 @@ A reviewer's job is to describe a failure vividly, and a good one always will. V
 
 The last clause is the entire test. It has to point at something that exists: a line in this repo, a line in a dependency, a documented platform or browser behaviour, a filed issue, a report from a user. "A host could", "an attacker might", "a caller may one day", "nothing stops the page from": these fill in nothing. They are the reviewer imagining an actor, and **a finding whose actor is imaginary is Rejected however concrete its consequence.** Write the rejection with the clause you could not fill, so the reviewer learns which half was missing.
 
-Name the environment's posture once per relay, in runtime state, because most findings turn on it:
+The environment's posture, recorded once in the ledger, decides most findings:
 
 - **Cooperative**: a page you share a document with, a framework you run inside, a CLI that invokes you, a library you call. It will re-render, remove, replace, reorder and race you, all by accident. Guard against that. It will not go looking for your DOM to reparent into an iframe, rewrite your stylesheet's rules through CSSOM, or mint an element under your id to impersonate you. Those need intent the environment does not have, and a defence against them is speculation wearing a threat model's clothes.
 - **Adversarial**: untrusted input crossing a boundary you own. Here intent is the premise, and the trigger is satisfied by the boundary itself: anything a network client can reach is reachable whatever the UI exposes, because CORS and form validation gate browsers, not curl.
 
-Most surfaces are cooperative. Deciding this once, in writing, stops it being re-litigated by every reviewer that finds an unguarded door in a house with no burglars.
+Most surfaces are cooperative.
 
 ### Fixes to speculation are not free
 
@@ -245,23 +201,28 @@ They cost a fix, its blast radius, the tests that pin it, and every later leg's 
 
 ## Fixing
 
-Step 4 in detail. The loop grades its own work on the next pass, so a fix that trades a reported bug for an unreported one reads as progress; this sequence makes that trade visible while it is still cheap to undo.
+Step 4 in detail. The loop grades its own work on the next pass, so a fix that trades a reported bug for an unreported one reads as progress; this sequence makes that trade visible while it is still cheap to undo. Reviewer reports are evidence to investigate, not implementation briefs.
 
-You own reproduction, implementation, and proof. Reviewer reports are evidence to investigate, not implementation briefs to delegate.
+1. **Baseline before the first fix of a leg.** Run the project's checks (tests, typecheck, build, lint) and record what passes and what already fails. Pre-existing failures stay pre-existing and get reported, not folded into an unrelated fix.
+2. **Reproduce before editing.** Trace the actor, trigger, and failing state yourself. A report that does not reproduce is Rejected with the exact path that prevents it. A fix that would grow beyond the PR is Deferred, its thread left unresolved. A reviewer's suggested fix is a proposal: implement at the ownership boundary that actually prevents the failure, and record meaningful divergence in the ledger and the thread reply.
+3. **Publish** the reproduced finding as an inline thread, per "Publishing findings", before the code changes.
+4. **Fix inline.** Make the smallest coherent change in the current worktree. Check callers, callees, shared state, permissions, persistence, concurrency, and external contracts. Add or update a test only when it protects stable externally observable behavior; otherwise keep the reproduction as proof.
+5. **Re-run the baseline. Any check that went pass → fail is a regression**: revert and redesign the fix, because a regression is evidence the fix was wrong, not a new finding to schedule. Leave the check as it was. The one exception is a test that asserted the buggy behavior itself; say so in the commit message and the thread reply, with the reason the old assertion was wrong.
+6. **Read the diff before committing.** Compare `git diff` with the pre-fix state, not with the reviewer's suggested patch: it fixes the reproduced failure and nothing else.
 
-**Baseline before the first fix of a leg.** Run the project's checks (test suite, typecheck, build, lint gate) and record what passes and what is already failing. Without this, "checks pass" after a fix is uninterpretable: you cannot separate a failure you caused from one that was red when you arrived. Pre-existing failures stay pre-existing and get reported, not folded into an unrelated fix.
+**Fixes are findings too.** From leg 2 onward, check whether a finding lands in code an earlier leg of this relay touched. If it does, the earlier fix is the defect; revisit its design instead of patching its output, or the loop converges on a tower of corrections to its own mistakes.
 
-**Reproduce before editing.** Trace the actor, trigger, and failing state yourself. If the report does not reproduce, mark it Rejected with the exact path that prevents it. If the fix would grow beyond the PR, mark it Deferred and leave the thread unresolved. Treat a reviewer's suggested fix as a proposal; implement at the ownership boundary that actually prevents the failure and record meaningful divergence in the log and thread reply.
+## Publishing findings
 
-**Fix inline.** Make the smallest coherent change in the current worktree. Check callers, callees, shared state, permissions, persistence, concurrency, and external contracts before moving to the next finding. Add or update a test only when it protects stable externally observable behavior; otherwise preserve the concrete reproduction as proof.
+The ledger stays local: no relay summary, leg recap, or cumulative comment goes on the PR. Every comment goes through the **`gh-comment` skill**, attribution header included.
 
-**Re-run the baseline yourself. Any check that went pass → fail is a regression.** Revert and redesign the fix; a regression is not a new finding to schedule, it is evidence the fix was wrong. Do not adjust the check to accommodate the new behavior. The one exception is a test that was asserting the buggy behavior itself; that requires saying so explicitly in the commit message and the thread reply, with the reason the old assertion was wrong.
+- **A reproduced finding** becomes its own inline diff thread against the reviewed head SHA, posted before the code changes. The body holds the stable finding ID, severity, concrete failure mode, and the shortest useful reproduction. Anchor it to the exact affected diff line, or to the nearest causative changed line with the affected location named in the body; a conversation comment is not a fallback. Record the thread ID in the ledger, so a retry replies instead of duplicating.
+- **Rejected claims** are not findings and stay in the ledger.
+- **After the fix is pushed**, reply in the thread with the fixing SHA, rationale, and verification, then resolve it. Deferred findings stay unresolved as visible blockers. If later evidence overturns a published finding, reply with the rejection evidence and resolve it rather than deleting history.
 
-**Read the diff before committing.** Check that the implementation fixes the reproduced failure and nothing else: compare `git diff` with the pre-fix state, not with the reviewer's suggested patch.
+Text is the finding. Reach for an image only when a defect cannot be stated in words: a layout that breaks at a specific viewport, a wrong-looking render, an animation that never settles. Reproduce it in a desktop environment (a Chromium debug port, or the `codex-computer-use` skill), host the capture with the `upload-file` skill, and embed the URL; put the same URL in the ledger. A stack trace or diff gets pasted as text.
 
-**Fixes are findings too.** From leg 2 onward, before treating a finding as an original defect, check whether it lands in code an earlier leg of this relay touched. If it does, the earlier fix is the defect; revisit its design instead of patching its output. Otherwise the loop will happily converge on a tower of corrections to its own mistakes.
-
-## Discussion thread mechanics
+### Discussion thread mechanics
 
 ```bash
 # List threads; act on isResolved: false, isOutdated: false
@@ -273,7 +234,7 @@ gh api graphql -f owner=OWNER -f repo=REPO -F number=N -f query='
         comments(first:20){nodes{author{login} body}}}}}}}'
 
 # Reply, then resolve
-gh api graphql -f threadId=ID -f body="..." -f query='
+gh api graphql -f threadId=ID -F body=@"$BODY" -f query='
   mutation($threadId:ID!,$body:String!){
     addPullRequestReviewThreadReply(input:{pullRequestReviewThreadId:$threadId,body:$body}){comment{id}}}'
 gh api graphql -f threadId=ID -f query='
@@ -282,26 +243,26 @@ gh api graphql -f threadId=ID -f query='
 
 ## Stop condition
 
-All true for the latest pushed head:
+All true for the latest pushed head, or the budget is spent:
 
-- A full lap is clean: every provider in the lineup has reviewed a head no later leg changed, and none of them found anything real. A provider that reviewed an older head never got the current baton; it runs again. A leg whose only output was coverage observations counts as clean and hands off the unchanged baton; coverage never keeps the relay alive by itself.
+- A full lap is clean: every provider in the lineup has reviewed a head no later leg changed, and none found anything real. A provider that reviewed an older head runs again. A coverage-only leg counts as clean; coverage never keeps the relay alive by itself.
 - No actionable unresolved discussion threads remain.
 - Required CI passes, or a failure is proven unrelated and reported as such.
-- Every re-triggered supported bot reviewed the latest head and raised nothing real.
-- The project's checks pass locally, with nothing regressed from the baseline recorded at the start of the last leg.
+- Every triggered bot reviewed the latest head and raised nothing real.
+- The project's checks pass locally, with nothing regressed from the last baseline.
 - The worktree and the pushed PR head agree.
-- The acceptance criteria still hold against the full cumulative diff, not just the last leg's changes.
-- Any behavior that depends on a real sandbox, browser, credential, deployment, or third-party integration has either been smoke-tested in that environment or remains an explicit manual handoff. More static review legs do not substitute for this evidence.
+- The acceptance criteria hold against the full cumulative diff, not just the last leg's changes.
+- Behavior that depends on a real sandbox, browser, credential, deployment, or third-party integration has been smoke-tested there, or remains an explicit manual handoff. More static review legs do not substitute for that evidence.
 
 ## Final report
 
-When every stop condition is satisfied and the PR appears mergeable, stop and hand control to the user. Do not merge, approve, or otherwise advance the stack. Write the overview from `$RELAY_LOG`, which already holds the per-leg detail:
+Stop and hand control to the user. Do not merge, approve, or advance the stack. Write the report from the ledger:
 
-- The final head SHA, PR/base branches, host and the evidence that classified it, lineup, and every leg and failed attempt in order.
-- Every reported finding, grouped by disposition: real and fixed; rejected with concrete evidence; deferred upstream; already fixed or superseded; and advisory coverage observations. Preserve stable finding IDs and severity where available. Surface the **Rejected** and **Deferred** groups explicitly: they are decisions the relay made on the user's behalf without changing any code, so they are the entries most likely to be wrong and least likely to be noticed.
-- For every real finding: the concrete failure mode, inline thread, which provider found it, the host's fix, fixing commit SHA, affected files, and regression proof.
-- Any regression introduced during the relay and how it was corrected or reverted, plus pre-existing failures left in place.
-- The complete verification result: local checks, required CI, unresolved-thread count, bot opt-ins and any enabled bot result against the final SHA.
-- Remaining risks and exact manual checks for anything automation could not prove (real integrations, UI flows, credentials, deploy behavior), including expected results and failure signals; explicitly say when none remain.
+- Whether the relay ended clean or on budget, the final head SHA, PR and base branches, host and its evidence, lineup, and every leg and failed attempt in order with its verdict and score.
+- Every finding, grouped by disposition: fixed; rejected with evidence; deferred; already fixed or superseded; advisory coverage observations; disputes left for the user, with both sides. Surface the **Rejected**, **Deferred**, and disputed groups explicitly: they are decisions made on the user's behalf without changing code, so they are the most likely to be wrong and the least likely to be noticed.
+- For every real finding: the failure mode, its inline thread, which provider found it, the fixing SHA, affected files, and regression proof.
+- Any regression introduced during the relay and how it was corrected, plus pre-existing failures left in place.
+- The verification result: local checks, required CI, unresolved-thread count, bot opt-ins and results against the final SHA.
+- Remaining risks and exact manual checks for anything automation could not prove, with expected results and failure signals; say so explicitly when none remain.
 
-End by asking the user to review and either merge or provide corrections. This overview is a mandatory user gate, not merely a progress update, even when every reviewer and check is clean.
+End by asking the user to review and either merge or send corrections. This report is a user gate, not a progress update, even when every reviewer and check is clean.
