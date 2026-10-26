@@ -17,8 +17,8 @@ and the diff comes last.
 Stage 1 runs every time you touch code, whether or not a review is coming.
 Stages 2 and 3 run when you review, and they only pay off if stage 1 happened.
 Jumping straight to stage 3 is reading text and calling it a review. To hand the
-diff to an outside reviewer once you are done here, use `codex-review` or
-`review-relay`.
+diff to an outside reviewer once you are done here, use `codex-review`,
+`review-relay`, or `review-council`.
 
 ## 1. Produce with the reason attached
 

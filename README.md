@@ -44,6 +44,7 @@ Written for my ADHD brain.
   - **[refine-skill](skills/refine-skill/SKILL.md)** slim a SKILL.md: invocation mode, description, body, references.
 - **[agent-copy](skills/agent-copy/SKILL.md)** write copy for agents, not humans.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
+- **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.
 - **[babysit](skills/babysit/SKILL.md)** watch a PR's reviewers, fix what is real, resolve threads, repeat until green.
 
 ## Inspirations
