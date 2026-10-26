@@ -50,7 +50,7 @@ Silence means wait only while **Done** remains unmet. Once done, stop the monito
 2. **Verify.** Read the cited code before acting. Apply the trigger test to every claim. Real: fix it. Imaginary: reply with the code path that prevents it. Real but larger than this PR: leave the thread unresolved and name it as a blocker. A question gets an answer, not a change, unless the answer is a change.
 3. **Fix**, per review-relay "Fixing": reproduce, smallest coherent change in the current worktree, re-run the baseline, read the diff. Commit and push through the `git-commit-and-push` skill, skipping only its issue-linking step: the PR already carries the link.
 4. **Reply and resolve** every thread through the `gh-comment` skill (attribution header, body in a file). Replies follow say-less: fixed is the SHA plus one sentence on what changed and how it was verified; rejected is the code path, one or two sentences. Then resolve the thread. Deferred blockers stay open.
-5. **Re-trigger** bots that need a nudge, only after a push: `@coderabbitai review` when that bot already reviews this PR; `@codex review` only when the user opted in for this run. Bots that review on push need nothing. A human review still at "changes requested" gets re-requested: `gh pr edit N --add-reviewer <login>`.
+5. **Re-trigger** bots that need a nudge, only after a push: `@codex review` only when the user opted in for this run. Bots that review on push need nothing, and CodeRabbit reviews on its own schedule; leave it untriggered. A human review still at "changes requested" gets re-requested: `gh pr edit N --add-reviewer <login>`.
 6. **Check Done.** Return to the watch only if it is unmet.
 
 ## Done
