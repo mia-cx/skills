@@ -61,6 +61,12 @@
       "skillPath": "skills/in-progress/loop-me/SKILL.md",
       "computedHash": "72e01a16929dbf6583afc469a49d64b28b1be4a6034c900decd94cd5a69ba6e6"
     },
+    "modernize": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "skillPath": "skills/modernize/SKILL.md",
+      "computedHash": "ef60debce4f34f309c6f15375cde504f6c59eefd2f8763f3118ff9f4a22466e2"
+    },
     "prototype": {
       "source": "mattpocock/skills",
       "sourceType": "github",
