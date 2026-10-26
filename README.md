@@ -46,6 +46,7 @@ Written for my ADHD brain.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
 - **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.
 - **[babysit](skills/babysit/SKILL.md)** watch a PR's reviewers, fix what is real, resolve threads, repeat until green.
+- **[autopilot](skills/autopilot/SKILL.md)** issue to mergeable PR while you're away; add "ship it" to merge too.
 
 ## Inspirations
 
@@ -62,3 +63,5 @@ Written for my ADHD brain.
   - [better-*](https://github.com/jakubkrehel/skills) by jakubkrehel
 - agent-copy & refine-*
   - [writing-for-agents](https://skills.sh/mattpocock/skills/writing-for-agents) by Matt Pocock
+- autopilot & review-council
+  - [full-send, full-stop, council](https://github.com/t3dotgg/tstack) by Theo
