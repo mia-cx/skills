@@ -75,6 +75,9 @@ simple:
 
 <One or two sentences explaining how this PR solves it.>
 
+Risk: <low|standard|high>, <why, in one clause>
+Revert: <the one step that undoes it, plus anything a revert leaves behind>
+
 <Closes #N>
 
 ---
@@ -82,6 +85,15 @@ Made with <actual model> using <actual harness>.
 ```
 
 - Open with the problem, then the solution. Remove headings that add no clarity.
+- `Risk` and `Revert` go in every body, repo template or not, because review
+  depth and merge rules read them. Risk is set by what the diff touches, never
+  by who wrote it:
+  - **low**: docs, copy, tests, or UI whose behavior nothing else shares.
+  - **high**: auth, permissions, billing, CI and release workflows, installers
+    and updaters, migrations and persisted formats, destructive operations.
+  - **standard**: everything else.
+- `Revert` is usually "revert this PR". Name what a revert leaves behind: an
+  applied migration, a published package, external state.
 - Name the actual model and harness that produced the change; never guess or use
   a generic attribution. Name multiple contributors succinctly when needed.
 - Include validation only when the repo template requires it or the result is
