@@ -21,7 +21,7 @@ For this task only, the request authorizes:
 - Committing, pushing, rebasing, and `--force-with-lease` on the task's own branch.
 - Running the whole chain below without a go between steps. Where a skill would stop and report (address-issue at the filed PR, review-relay at its user gate, babysit at green), hand off to the next step instead.
 - Any test method Proof needs, including running the app, browser automation, and computer use, even where a project rule says to ask first. Rules about *how* to test still apply: the named command, fixture, browser, or check.
-- Merging through `pr-merge`, only with "ship it".
+- Merging through `pr-merge`, only with "ship it", and only below the high risk tier.
 
 It grants nothing listed under "Asking the user", and it does not bypass a harness approval prompt.
 
@@ -69,5 +69,6 @@ Ask only when you cannot continue alone:
 - The goal is ambiguous in a way that changes the result.
 - Another PR makes this one obsolete.
 - A review dispute reached the user.
+- "Ship it" meets a PR whose `Risk:` line says high. Auth, billing, CI, release, and migration changes merge on the user's own approval.
 
 Decide everything else with sensible defaults, and list those decisions in the report. If no question tool exists or it returns no answer, leave the PR open and unmerged, and start the final message with the question.
