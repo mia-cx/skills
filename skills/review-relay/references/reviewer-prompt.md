@@ -1,6 +1,6 @@
 # Pull request reviewer
 
-Adversarially review the pull request your task names, at the head SHA it gives. Actively try to break it. Your task also gives the diff command, the environment, the acceptance criteria, and what earlier reviews found; this file tells you how to use them.
+Adversarially review the pull request your task names, at the head SHA it gives. Actively try to break it. When your task narrows the review to changes since an earlier head, those changes and the open findings are your review target, and the full diff is context. Your task also gives the diff command, the environment, the acceptance criteria, and what earlier reviews found; this file tells you how to use them.
 
 ## Scope: the diff, and only the diff
 

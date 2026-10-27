@@ -67,8 +67,17 @@ gpt-6-astra varies more from run to run than gpt-6.1-sol, which alternating laps
 
 ## Budget
 
-- **3 laps** by default. A lap is one counted leg from every provider in the lineup.
-- **Up to 5 laps** only while a real finding in security, auth, permissions, data loss, or concurrency stays open, or when the user asks.
+Review depth follows the PR's risk tier, read from the `Risk:` line in its body. When the line is missing, classify the diff by `pr-file`'s tiers, add the line to the PR body, and record the tier in the ledger. A lap is one counted leg from every provider in the lineup.
+
+| Tier | Budget |
+| --- | --- |
+| low | 1 leg, from the first provider in the lineup; a clean leg is a clean lap |
+| standard | 3 laps |
+| high | 5 laps |
+
+The user may override the budget for one run.
+
+- **Three laps without a clean one means question the approach**, not the latest patch. Before a fourth lap, write in the ledger whether the design itself is producing the findings. If it is, stop and ask the user instead of patching again.
 - **Disputes go to the user.** A finding you have rejected twice that a reviewer raises a third time stops being argued: record both sides in 2–3 lines each and carry it to the final report as a decision for the user.
 - **Budget end is not approval.** When the budget runs out first, the final report says so and lists what is still open.
 
@@ -117,6 +126,7 @@ Read <absolute path to references/reviewer-prompt.md> in full before anything el
 - PR: <url>
 - Head: <sha>
 - Diff: git diff <base>...<sha>
+- Review: <"the full diff", or "changes since <sha this provider last reviewed>: git diff <that sha>..<head>, plus open findings">
 - Environment: <Cooperative|Adversarial>: <one line on what surrounds this code>
 - Acceptance criteria: <verbatim from the PR body, linked issue, or plan file, or "None stated">
 
@@ -124,6 +134,8 @@ Read <absolute path to references/reviewer-prompt.md> in full before anything el
 
 <the ledger's findings, pasted as they stand at launch, or "You are the first reviewer; nothing has been reviewed yet.">
 ```
+
+A provider's first leg reviews the full diff. Its later legs review only what changed since the head it last reviewed, plus open findings, because repeat passes over unchanged code mostly resurface old code rather than new bugs. The full diff stays available as context.
 
 Paste the findings; never pass the ledger's path. You append to the ledger while the leg runs, so a reviewer that opens it reads whatever half-written state it catches. The pasted snapshot is what makes each leg reproducible.
 
@@ -264,5 +276,6 @@ Stop and hand control to the user. Do not merge, approve, or advance the stack. 
 - Any regression introduced during the relay and how it was corrected, plus pre-existing failures left in place.
 - The verification result: local checks, required CI, unresolved-thread count, bot opt-ins and results against the final SHA.
 - Remaining risks and exact manual checks for anything automation could not prove, with expected results and failure signals; say so explicitly when none remain.
+- For a bug class raised twice or more, one proposed fix at the source so review stops having to catch it: a lint rule, a check, or an `AGENTS.md` line. Propose it; it does not go in this PR.
 
 End by asking the user to review and either merge or send corrections. This report is a user gate, not a progress update, even when every reviewer and check is clean.

@@ -30,7 +30,7 @@ Resolve each driver's instance from `orchestrator_capabilities` as review-relay'
 
 ## Budget and scope
 
-Review-relay's budget applies in rounds: 3 by default, up to 5 while a real security, auth, permissions, data-loss, or concurrency finding stays open, or on request.
+Review-relay's risk-tiered budget applies in rounds: low gets 1 round, standard 3, high 5.
 
 Fight scope creep. Several reviewers raise more out-of-scope material than one, and each item arrives argued. The diff rule in review-relay holds for every member; an out-of-scope finding is logged advisory and changes nothing, however many members raise it.
 
