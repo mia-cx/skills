@@ -43,6 +43,7 @@ Written for my ADHD brain.
   - **[refine-rule](skills/refine-rule/SKILL.md)** slim always-loaded rules: AGENTS.md, CLAUDE.md, Cursor rules.
   - **[refine-skill](skills/refine-skill/SKILL.md)** slim a SKILL.md: invocation mode, description, body, references.
 - **[agent-copy](skills/agent-copy/SKILL.md)** write copy for agents, not humans.
+- **[seo](skills/seo/SKILL.md)** diagnose search visibility, improve content, and research earned links.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
 - **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.
 - **[babysit](skills/babysit/SKILL.md)** watch a PR's reviewers, fix what is real, resolve threads, repeat until green.
@@ -65,3 +66,6 @@ Written for my ADHD brain.
   - [writing-for-agents](https://skills.sh/mattpocock/skills/writing-for-agents) by Matt Pocock
 - autopilot & review-council
   - [full-send, full-stop, council](https://github.com/t3dotgg/tstack) by Theo
+- seo
+  - [Technical SEO checklist](https://x.com/suraj_sharma14/status/2116062550416871512) by Suraj Sharma
+  - [Backlink tactics](https://x.com/borjafat/status/2116164330014007296) by Borja
