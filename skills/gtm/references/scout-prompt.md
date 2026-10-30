@@ -33,6 +33,8 @@ Record for each lead:
 
 Record communities where the audience gathers repeatedly: name, URL, an activity signal (members, posts per week), the self-promotion rule, and how a maker can join in openly, such as a weekly showcase thread.
 
+Also record the 5–10 accounts or creators this audience follows in your direction: handle, URL, what their best-performing posts have in common, and questions in their replies that go unanswered.
+
 ## Report
 
 Stop at 15 qualifying leads, or after 3 consecutive searches surface nothing new. Report in Markdown: leads ranked best first, then spaces, then the searches you ran and every source you could not reach.

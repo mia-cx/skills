@@ -67,6 +67,8 @@ Written for my ADHD brain.
   - [writing-for-agents](https://skills.sh/mattpocock/skills/writing-for-agents) by Matt Pocock
 - autopilot & review-council
   - [full-send, full-stop, council](https://github.com/t3dotgg/tstack) by Theo
+- gtm
+  - [The Ultimate Guide to Organic Marketing & Content](https://x.com/ryangrowthh/status/2116221594267730298) by Ryan
 - seo
   - [Technical SEO checklist](https://x.com/suraj_sharma14/status/2116062550416871512) by Suraj Sharma
   - [Backlink tactics](https://x.com/borjafat/status/2116164330014007296) by Borja
