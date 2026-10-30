@@ -1,6 +1,6 @@
 ---
 name: gtm
-description: Use when the user asks for go-to-market work: finding people who have the problem a product solves, drafting cold emails, replies, or community posts to them, or planning organic social content.
+description: Use when the user asks for go-to-market work: finding people who have the problem a product solves, drafting cold emails, replies, or community posts to them, planning organic social content, or planning a launch.
 ---
 
 # GTM
@@ -90,6 +90,10 @@ Close by asking which leads the user will post and which the agents should post.
 ## Organic content
 
 When the user asks for a content plan or social posts, or the leads show many people describing the same problem, read [references/organic.md](references/organic.md). Run the scouts first when no recent leads exist, because the plan is built from their evidence.
+
+## Launch
+
+When the user is planning a launch or announcement, read [references/launch.md](references/launch.md). It reuses the scouts' leads and niche accounts to choose who shares the launch.
 
 ## Posting
 
