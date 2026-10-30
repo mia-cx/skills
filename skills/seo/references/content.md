@@ -22,9 +22,23 @@ Use existing editorial and UI copy conventions. Preserve the product's terminolo
 
 Apply the provider's documented crawl and snippet controls. Preserve deliberate training and retrieval policies; different crawlers serve different purposes. Google AI Overviews and AI Mode use existing SEO fundamentals and require no special AI schema or text file. Add `llms.txt` only for an identified consumer or explicit request, with no ranking claim.
 
-For a visibility audit, save a repeatable set of real audience questions. Record provider, model when exposed, date, locale, exact prompt, and returned source URLs. Separate brand mentions, citations, referrals, and conversions. Read the cited pages to identify evidence gaps. A single answer is a noisy observation, not a ranking or proof of causation.
+For a visibility audit, build the question set from buyer decisions: the questions people ask before choosing a product like this one. Track each question both as a search query and as an AI prompt, and measure Google and AI answers separately, because either can move while the other stays flat. Record provider, model when exposed, date, locale, exact prompt, and returned source URLs. Separate brand mentions, citations, referrals, and conversions. A single answer is a noisy observation, not a ranking or proof of causation.
 
-Recheck comparable questions and search metrics after changes have had time to be discovered. Keep the same market and device segments when comparing organic traffic. Where available, report qualified visits and conversions alongside impressions, clicks, and CTR. Distinguish correlation from demonstrated effects.
+Diagnose every question the product loses before creating anything:
+
+- No page answers it: plan one.
+- A page exists but answers weakly: improve that page.
+- The page cannot be crawled or indexed: fix it per [technical.md](technical.md).
+- The answer leans on third-party pages: read each cited page and act by who controls it.
+
+| Source | Action |
+| --- | --- |
+| Own: pages the site controls | Improve them |
+| Claim: profiles and listings the business can take over | Claim them and correct the facts |
+| Earn: reviews, editorial mentions, community threads | Earn a place per [links.md](links.md); the `gtm` skill joins relevant threads |
+| Contest: outdated or wrong information | Ask the publisher for a correction, with evidence |
+
+Make one change at a time, then rerun the same questions after the change has had time to be discovered. Keep the same market and device segments when comparing organic traffic. Where available, report qualified visits and conversions alongside impressions, clicks, and CTR. Distinguish correlation from demonstrated effects.
 
 ## Primary references
 

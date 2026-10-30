@@ -23,7 +23,7 @@ Choose the relevant references:
 
 1. Record the baseline. Identify inspected URLs, data source, date range, and relevant device or market segments. Separate observed defects from hypotheses. Compare equivalent periods and account for seasonality when investigating traffic loss.
 2. Find the constraint. Distinguish discovery, crawling, indexing, relevance, click-through, and conversion problems. A crawlable page is not necessarily indexed; an indexed page is not necessarily competitive.
-3. Choose the smallest useful intervention. For broad requests, fix unintended access or indexing blockers before expanding content. Rank remaining work by audience value, evidence, expected impact, and effort. Each action needs an affected URL or template, a reason, and a verification method.
+3. Choose the smallest useful intervention. For broad requests, fix unintended access or indexing blockers before expanding content. Rank remaining work by audience value, evidence, expected impact, and effort; a technical issue on a page that answers a buying question outranks site-wide warnings. Each action needs an affected URL or template, a reason, and a verification method.
 4. Complete authorized work and verify its result. Report what changed, what the checks establish, and anything still dependent on external access or recrawling. Technical checks cannot establish future ranking gains.
 
 For an audit, lead with the highest-impact findings. Give evidence, the proposed fix, and a success check for each. State coverage and limitations; sampled templates do not establish site-wide coverage. Reuse existing project tracking when follow-up is needed.
