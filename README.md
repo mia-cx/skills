@@ -69,6 +69,8 @@ Written for my ADHD brain.
   - [full-send, full-stop, council](https://github.com/t3dotgg/tstack) by Theo
 - gtm
   - [The Ultimate Guide to Organic Marketing & Content](https://x.com/ryangrowthh/status/2116221594267730298) by Ryan
+  - [How to Engineer Virality on X](https://x.com/0xfJuan/status/2114746175026798821) by Juan
 - seo
   - [Technical SEO checklist](https://x.com/suraj_sharma14/status/2116062550416871512) by Suraj Sharma
   - [Backlink tactics](https://x.com/borjafat/status/2116164330014007296) by Borja
+  - [Granola's AEO workflow](https://x.com/wespreadjam/status/2115568290307469548) by Jam
