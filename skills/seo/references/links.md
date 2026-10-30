@@ -1,6 +1,6 @@
 # Earned links and outreach
 
-Choose opportunities by relevance to readers and the usefulness of the destination. Treat the source post's tiers and AI-mention totals as unverified claims, not a universal priority order.
+Choose opportunities by relevance to readers and the usefulness of the destination.
 
 ## Find a reason to cite the site
 
@@ -23,7 +23,7 @@ Use public search and available backlink data without claiming completeness. Rea
 
 Keep a compact prospect record in the project's existing tracker. Include source URL, relevant passage, proposed destination, reader benefit, evidence, public contact route, and status. Distinguish discovered, verified, drafted, sent, and published. Never mark a link delivered without checking the published source and destination.
 
-Draft a short, specific message with the exact page or broken URL, the suggested addition, and its supporting evidence. For journalist requests, lead with the usable answer. Deduplicate against existing requests and outreach before preparing another pitch. Sending or following up requires authorization under the main skill's boundaries.
+Draft a short, specific message with the exact page or broken URL, the suggested addition, and its supporting evidence. For journalist requests, lead with the usable answer. Deduplicate against existing requests and outreach before preparing another pitch.
 
 When a link appears, verify its destination, placement, and link attributes. Record the date and available referral or conversion outcomes. Qualified discovery matters more than raw link totals.
 
@@ -31,6 +31,6 @@ When a link appears, verify its destination, placement, and link attributes. Rec
 
 Earn independent editorial citations. Do not build reciprocal-link networks, buy ranking links, require dofollow placements, or automate comment and directory spam. Google's spam policies explicitly cover excessive link exchanges and links created primarily to manipulate rankings.
 
-Paid placements need appropriate qualification such as `rel="sponsored"` or `nofollow`. Relevant ordinary cross-links can help readers; their existence does not justify a link-exchange campaign. Keep recommendations and reviews truthful, and disclose commercial relationships where applicable.
+Paid placements need appropriate qualification such as `rel="sponsored"` or `nofollow`. Keep recommendations and reviews truthful, and disclose commercial relationships where applicable.
 
 Use [Google's current spam policies](https://developers.google.com/search/docs/essentials/spam-policies#link-spam) to assess a proposed tactic before recommending it.

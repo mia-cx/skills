@@ -13,7 +13,7 @@ For each proposed page or substantial update, record its target audience and int
 - Answer the main question early. Add firsthand tests, worked examples, original research, or evidence missing from existing results. Preserve observations and calculations so claims remain checkable.
 - Refresh inaccurate prices, screenshots, steps, and product limits. Merge competing pages only when they serve the same intent; plan equivalent redirects and update internal links.
 - Link from relevant existing pages using descriptive anchors. Connect detailed answers to broader guides and relevant product pages. Avoid mechanical keyword repetition or site-wide link dumps.
-- Credit actual authors and relevant experience when appropriate. Request missing facts instead of inventing bios, testimonials, credentials, or research. Improve vague prose by adding substance; automated AI-detection scores are not an editing target.
+- Credit actual authors and relevant experience when appropriate. Request missing facts instead of inventing bios, testimonials, credentials, or research. Improve vague prose by adding substance.
 - For programmatic content, require distinct user value and verified facts per page. Review a small representative batch before expanding. Do not generate near-identical location or keyword pages to capture rankings.
 
 Use existing editorial and UI copy conventions. Preserve the product's terminology and supported capabilities.
