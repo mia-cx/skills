@@ -55,15 +55,15 @@ Every reviewer stays read-only. After a leg, you independently verify each claim
 
 ## Models
 
-Every leg runs at high reasoning effort on the top-intelligence model within its own provider. The relay's value is provider diversity, so a leg never switches provider to chase a score. Intelligence outranks cost here, because a leg run cheap costs a whole lap to discover.
+Every leg runs at high reasoning effort on its provider's model below. The relay's value is provider diversity, so a leg never switches provider to chase a score.
 
 | Leg | Driver | `model` | `options` |
 | --- | --- | --- | --- |
 | claude | `claudeAgent` | `claude-opus-5-5` | `{ "effort": "high" }` |
-| codex | `codex` | `gpt-6-astra` | `{ "reasoningEffort": "high" }` |
+| codex | `codex` | `gpt-6.1-sol` | `{ "reasoningEffort": "high" }` |
 | cursor | `cursor` | `default` (Auto) | none |
 
-gpt-6-astra varies more from run to run than gpt-6.1-sol, which alternating laps absorb. Fable-5.1 drains usage limits about twice as fast, so it runs only on explicit request. No GPT model scores above 4 on taste in the model table in `~/.agents/AGENTS.md`, so on a UI-heavy diff the claude leg carries taste coverage; say so in the report rather than swapping the codex leg to a Claude model. When a release renames a model, take the top-intelligence model of the same provider.
+gpt-6.1-sol reviews better than gpt-6-astra in most cases and costs far less; use Astra only when the user asks for it. Fable-5.1 drains usage limits about twice as fast, so it runs only on explicit request. No GPT model scores above 4 on taste in the model table in `~/.agents/AGENTS.md`, so on a UI-heavy diff the claude leg carries taste coverage; say so in the report rather than swapping the codex leg to a Claude model. When a release renames a model, take its successor.
 
 ## Budget
 
@@ -146,7 +146,7 @@ Paste the findings; never pass the ledger's path. You append to the ledger while
   "role": "review",
   "mode": "async",
   "clientRequestId": "relay-<pr>-leg-3",
-  "target": { "providerInstanceId": "<codex instance>", "model": "gpt-6-astra", "options": { "reasoningEffort": "high" } }
+  "target": { "providerInstanceId": "<codex instance>", "model": "gpt-6.1-sol", "options": { "reasoningEffort": "high" } }
 }
 ```
 

@@ -17,7 +17,7 @@ Run [review-relay](../review-relay/SKILL.md) with the changes below. Its project
 | Member | Driver | `model` | `options` |
 | --- | --- | --- | --- |
 | Claude | `claudeAgent` | `claude-opus-5-5` | `{ "effort": "high" }` |
-| Codex | `codex` | `gpt-6-astra` | `{ "reasoningEffort": "high" }` |
+| Codex | `codex` | `gpt-6.1-sol` | `{ "reasoningEffort": "high" }` |
 
 Resolve each driver's instance from `orchestrator_capabilities` as review-relay's lineup does. Every member sits in every round, the host's own provider included: a round's opinions are independent, so no member goes first. If a member's provider cannot run a child task, report that instead of substituting another model.
 
@@ -50,7 +50,7 @@ Rounds: 2
 | Member | Round 1 | Round 2 |
 | --- | --- | --- |
 | claude-opus-5.5 | 7/10 | 9/10 |
-| gpt-6-astra | 6/10 | 9/10 |
+| gpt-6.1-sol | 6/10 | 9/10 |
 ```
 
 A member that gave no score gets `no score`. Update the table after every round, so the PR always shows where the council stands.
