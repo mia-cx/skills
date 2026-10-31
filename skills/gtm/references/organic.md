@@ -1,20 +1,12 @@
 # Organic content
 
-Outreach answers one person; a post answers everyone with the same problem at once. Plan it from the evidence the scouts gathered, so every topic traces back to people who asked for it.
+A post answers everyone with the problem at once. Build the plan from the scouts' evidence, so each topic traces back to people who asked.
 
-## Find the topics
+1. **Topics.** Cluster verified leads by the words people use. A question that keeps coming up with no good answer anywhere is the strongest topic. Note what the niche accounts' best posts share and what their replies ask that the posts never answer.
+2. **Pillars.** Choose 3–4 topics where that demand overlaps with something the user knows unusually well or has lived. Each pillar cites its leads.
+3. **Channels.** Pick where the scouts' spaces are, matched to the user's strength: writers to X, LinkedIn, newsletters; on-camera to short video; talkers to podcasts and YouTube. Ask what time the user can commit, and start with 1–2 channels at a cadence they can keep.
+4. **Drafts.** Most posts help without selling (answers, how-tos, teardowns, build logs); a few convert (demos, launches, pricing). Mix written and video, short and long.
 
-Cluster the verified leads by the words people use for the problem. A question that keeps coming up without a good answer anywhere is the strongest topic. Study the niche accounts the scouts reported: what their best posts share, and what their replies ask for that the posts never answer.
+Write `.gtm/content.md`: pillars with evidence, channels and cadence, and 5–10 first drafts labelled by pillar and funnel stage. Posting follows the main skill's rules.
 
-## Plan
-
-- **Pillars.** Choose 3–4 topics where audience demand overlaps with something the user is unusually good at or has lived through. Each pillar cites the leads behind it.
-- **Funnel.** Most posts help without selling: answers, how-tos, teardowns, build logs. A few convert: demos, launches, pricing. Product claims come from the copy sheet only.
-- **Channels.** Pick where the scouts' spaces are, crossed with the user's strength: writing suits X, LinkedIn, and newsletters; being on camera suits short video; talking suits podcasts and YouTube. Ask the user how much time they can commit, then start with 1–2 channels at a cadence they can sustain.
-- **Formats.** Cover written and video, short and long. One channel can carry all four.
-
-Write the plan to `.gtm/content.md`: pillars with their evidence, channels and cadence, and the first 5–10 drafts, each labelled with its pillar and funnel stage. Drafts follow the main skill's posting rules: agents publish only what the user names.
-
-## Iterate
-
-When the user shares metrics or analytics access exists, review them weekly. Make more versions of posts that clearly outperform, and retire formats that underperform across several posts.
+When metrics are available, review them weekly: make more versions of clear outliers, and retire formats that underperform across several posts.
