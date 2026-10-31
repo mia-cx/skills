@@ -28,7 +28,7 @@ Use Codex as an independent reviewer when the user wants a second-pass review or
 4. End your turn; the completion notification wakes you. The report is the task's final `summary` (`task_status`). Check `git status` afterwards.
 5. Verify important claims against the code before presenting them.
 
-- Use `gpt-6-astra` when the review needs its extra reach.
+- Use `gpt-6-astra` only when the user asks for it.
 - Leave `isolation` unset so Codex reads the same checkout, uncommitted changes included.
 
 ## Review Prompt
