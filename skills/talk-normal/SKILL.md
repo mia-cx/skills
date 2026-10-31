@@ -42,6 +42,7 @@ Scan for the following patterns, rewrite while preserving meaning, and add soul.
 - Synonym cycling ("protagonist", "main character", "central figure" in one paragraph): pick one word and repeat it.
 - False ranges ("from X to Y" with no real scale): list the topics directly.
 - Superficial -ing tails ("...highlighting the importance of", "...ensuring reliability", "...reflecting a commitment to", "...showcasing"): delete, or expand into a sentence with a real fact.
+- Staged reveals: a fact held back and delivered as a payoff, the way a comic lands a punchline. It shows up as a short closing kicker ("It never said so.", "The template never reads them."), a reassure-then-twist ("So nothing got deleted. You're looking at a different page."), a run of short sentences that each land like a drum hit, or a thing given feelings to build a mystery ("It wanted no space."). Put the fact where it belongs and join it to its cause with because, so, but, or and: "The page you're on never had your answers; they're on the form page, untouched." Short sentences are for plain points, never for payoffs.
 
 ### Substance
 
@@ -63,7 +64,7 @@ Removing patterns is half the job. Sterile, voiceless writing is just as obvious
 
 - Have opinions: react to facts instead of neutrally listing pros and cons.
 - Acknowledge complexity: "impressive but also kind of unsettling" beats "impressive".
-- Vary rhythm: short sentences, then longer ones that take their time.
+- Vary rhythm: short sentences, then longer ones that take their time. Vary it because the thoughts differ in size, not to time a punchline (see staged reveals).
 - Use "I" when it fits. First person isn't unprofessional.
 - Let some mess in: perfect structure looks machine-made.
 - Be specific: "agents churning away at 3am", not "concerning".
