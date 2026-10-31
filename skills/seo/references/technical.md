@@ -9,7 +9,9 @@ node <this skill's dir>/scripts/inspect.mjs https://example.com/ https://example
 node <this skill's dir>/scripts/inspect.mjs --sitemap https://example.com/sitemap.xml | jq -c 'select(.issues | length > 0)'
 ```
 
-Each URL prints one JSON line: redirect chain, `X-Robots-Tag`, meta robots, canonical, title, description, H1 count, the robots.txt rule that applies, and `issues`. Sitemap mode streams every listed URL, including nested sitemaps. The script reads unrendered HTML, so check client-rendered content in a browser.
+Each URL prints one JSON line: redirect chain, `X-Robots-Tag`, meta robots, canonical, title, description, H1 count, the start of the body text, the `<a href>` count, the robots.txt rule that applies, and `issues`. Each origin prints one more line, with the status a missing page returns and the sitemaps robots.txt lists. Sitemap mode streams every listed URL, including nested sitemaps. The script reads unrendered HTML, so an empty `bodyStart` means the page's content depends on JavaScript.
+
+Before changing anything, save the output for the main pages. Rerun it after the fix and show the user the before and after for each page.
 
 ## Discovery and indexing
 
@@ -19,7 +21,7 @@ Each URL prints one JSON line: redirect chain, `X-Robots-Tag`, meta robots, cano
 - Keep sitemap URLs canonical, indexable, successful, and on the intended origin. Exclude redirects, errors, and private pages. Use truthful modification dates. Submission aids discovery but does not guarantee indexing. Submit through Search Console only when authorized; otherwise provide the sitemap URL and exact remaining action.
 - Align canonical tags, internal links, sitemap entries, and redirects. Use absolute preferred URLs and preserve meaningful locale or pagination distinctions. Canonical tags are signals, not guaranteed directives.
 
-Repair broken internal links and unintended orphan pages with relevant contextual links. Collapse redirect chains to their intended destination. Redirect retired URLs only to equivalent replacements; keep genuinely removed content at 404 or 410. Inspect query parameters and faceted navigation before applying blanket canonical or crawl rules.
+Repair broken internal links and unintended orphan pages with relevant contextual links. Collapse redirect chains to their intended destination. Redirect retired URLs only to equivalent replacements; keep genuinely removed content at 404 or 410. A page that does not exist returns 404, not 200 with a "not found" message. List the sitemap in robots.txt. Inspect query parameters and faceted navigation before applying blanket canonical or crawl rules.
 
 Use Search Console URL Inspection when available to compare the declared and Google-selected canonical, indexing state, and rendered content. Distinguish live eligibility checks from Google's stored index state.
 

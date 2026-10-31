@@ -1,11 +1,13 @@
 // Usage: node inspect.mjs <url>... | node inspect.mjs --sitemap <sitemap-url>
 // Fetches each URL as Googlebot would see the raw HTML (no rendering) and prints one JSON line per URL:
-// redirect chain, X-Robots-Tag, meta robots, canonical, title, description, H1 count, robots.txt verdict, issues.
+// redirect chain, X-Robots-Tag, meta robots, canonical, title, description, H1 count, start of body text,
+// <a href> count, robots.txt verdict, issues. Each origin also gets one line: missing-page status and listed sitemaps.
 // Filter problems with: | jq 'select(.issues | length > 0)'
 
 const UA = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 const MAX_HOPS = 10
 const CONCURRENCY = 6
+const BODY_PREVIEW = 120
 
 const get = (url) => fetch(url, { redirect: 'manual', headers: { 'user-agent': UA } })
 
@@ -62,7 +64,9 @@ async function inspect(url) {
     at = new URL(next, at).href
   }
   const html = res.status === 200 && (res.headers.get('content-type') ?? '').includes('html') ? await res.text() : ''
-  const head = html.slice(0, html.search(/<\/head>/i) + 1 || undefined)
+  const headEnd = html.search(/<\/head>/i)
+  const head = headEnd < 0 ? html : html.slice(0, headEnd)
+  const body = (headEnd < 0 ? html : html.slice(headEnd)).replace(/<(script|style|noscript|template)\b[\s\S]*?<\/\1>/gi, '')
   const { origin, pathname, search } = new URL(at)
   const metaRobots = tags(head, 'meta').filter((m) => /^(robots|googlebot)$/i.test(m.name ?? ''))
     .map((m) => m.content).join(', ') || null
@@ -76,6 +80,8 @@ async function inspect(url) {
     title: text(head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]) ?? null,
     description: tags(head, 'meta').find((m) => m.name?.toLowerCase() === 'description')?.content ?? null,
     h1Count: (html.match(/<h1\b/gi) ?? []).length,
+    bodyStart: text(body)?.slice(0, BODY_PREVIEW) || null,
+    links: (body.match(/<a\b[^>]*\bhref\s*=/gi) ?? []).length,
     robotsTxt: robotsVerdict(await robotsFor(origin), pathname + search),
   }
   report.issues = [
@@ -87,8 +93,25 @@ async function inspect(url) {
     html && !report.title && 'missing title',
     html && !report.description && 'missing description',
     html && report.h1Count === 0 && 'no h1 in raw HTML',
+    html && !report.bodyStart && 'no body text in raw HTML',
+    html && report.links === 0 && 'no <a href> links in raw HTML',
   ].filter(Boolean)
   return report
+}
+
+/** Site-wide checks, printed once per origin: soft 404s and the sitemap's listing in robots.txt. */
+async function inspectOrigin(origin) {
+  const probe = await get(`${origin}/seo-inspect-missing-${Date.now()}`)
+  const sitemaps = [...(await robotsFor(origin)).matchAll(/^\s*sitemap\s*:\s*(\S+)/gim)].map(([, s]) => s)
+  return {
+    origin,
+    missingPageStatus: probe.status,
+    sitemaps,
+    issues: [
+      probe.status === 200 && 'missing pages return 200 (soft 404)',
+      !sitemaps.length && 'robots.txt lists no sitemap',
+    ].filter(Boolean),
+  }
 }
 
 async function sitemapUrls(url) {
@@ -107,9 +130,16 @@ async function main(args) {
     process.exit(1)
   }
   const queue = [...urls]
+  const origins = new Set()
+  const failed = (e) => [`fetch failed: ${e.cause?.code ?? e.message}`]
   await Promise.all(Array.from({ length: CONCURRENCY }, async () => {
     for (let url; (url = queue.shift());) {
-      console.log(JSON.stringify(await inspect(url).catch((e) => ({ url, issues: [`fetch failed: ${e.cause?.code ?? e.message}`] }))))
+      const { origin } = new URL(url)
+      if (!origins.has(origin)) {
+        origins.add(origin)
+        console.log(JSON.stringify(await inspectOrigin(origin).catch((e) => ({ origin, issues: failed(e) }))))
+      }
+      console.log(JSON.stringify(await inspect(url).catch((e) => ({ url, issues: failed(e) }))))
     }
   }))
 }
