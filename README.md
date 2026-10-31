@@ -74,3 +74,4 @@ Written for my ADHD brain.
   - [Technical SEO checklist](https://x.com/suraj_sharma14/status/2116062550416871512) by Suraj Sharma
   - [Backlink tactics](https://x.com/borjafat/status/2116164330014007296) by Borja
   - [Granola's AEO workflow](https://x.com/wespreadjam/status/2115568290307469548) by Jam
+  - [Indexing checklist for AI-built sites](https://x.com/Voxyz_ai/status/2116304148228722833) by Voxyz
