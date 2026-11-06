@@ -48,7 +48,7 @@ Open every lead yourself. Keep it only when the quote is at the URL, by that aut
 
 ## 4. Draft
 
-Write every draft yourself, in the user's first person.
+Write every draft yourself, in the user's first person. For Mia, write in her voice per [talk-like-mia](../talk-like-mia/SKILL.md).
 
 - Open on a detail only their post contains, and help first, even when the answer is not the product.
 - Then offer the product and state the relationship ("I make X"). One link, to the copy-sheet page matching their problem.

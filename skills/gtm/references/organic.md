@@ -16,7 +16,7 @@ One creator's reading of X's open-source ranking code ([Ryan, Nov 2026](https://
 - Write for shares and replies: give people a reason to send the link to someone or add their own take.
 - One idea per post, with one takeaway, one audience, and one call to action. Split roundups.
 - A post has about 48 hours, and small accounts get a boost on fresh posts, so the user should be around to reply in the first hour.
-- Mute trolls instead of arguing, and avoid negativity. The user edits every draft into their own words before it goes out.
+- Mute trolls instead of arguing, and avoid negativity. Drafts are in the user's own voice (for Mia, [talk-like-mia](../../talk-like-mia/SKILL.md)), and the user reviews each before it goes out.
 - Try each format X is pushing: articles, threads, media, an article with a quote post.
 
 ## Iterate
