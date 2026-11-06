@@ -23,6 +23,7 @@ current upstream versions. The global `.skill-lock.json` registry stays local.
 ## Start here
 
 - **[talk-normal](skills/talk-normal/SKILL.md)** talk like a normal person.
+- **[talk-like-mia](skills/talk-like-mia/SKILL.md)** talk like me on discord, measured from 120k of my messages.
 - **[say-less](skills/say-less/SKILL.md)** stop yapping.
 - **[say-more](skills/say-more/SKILL.md)** explain stuff only when asked.
 - **[momentum](skills/momentum/SKILL.md)** kill your executive dysfunction.
