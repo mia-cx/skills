@@ -70,8 +70,11 @@ Written for my ADHD brain.
 - gtm
   - [The Ultimate Guide to Organic Marketing & Content](https://x.com/ryangrowthh/status/2116221594267730298) by Ryan
   - [How to Engineer Virality on X](https://x.com/0xfJuan/status/2114746175026798821) by Juan
+  - [The X Algorithm Explained](https://x.com/ryangrowthh/status/2117684231983800732) by Ryan
+  - [Make your product videos look expensive](https://x.com/leomeethewoo/status/2103529310208606701) by leo
 - seo
   - [Technical SEO checklist](https://x.com/suraj_sharma14/status/2116062550416871512) by Suraj Sharma
   - [Backlink tactics](https://x.com/borjafat/status/2116164330014007296) by Borja
   - [Granola's AEO workflow](https://x.com/wespreadjam/status/2115568290307469548) by Jam
+  - [Ramp's AEO pages](https://x.com/wespreadjam/status/2117333079106932897) by Jam
   - [Indexing checklist for AI-built sites](https://x.com/Voxyz_ai/status/2116304148228722833) by Voxyz

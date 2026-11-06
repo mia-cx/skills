@@ -13,7 +13,7 @@ Save the output for the main pages before changing anything, rerun it after, and
 
 ## Discovery and indexing
 
-- Block only pages meant to stay out, such as admin and login. A robots.txt block stops crawling, not indexing, and hides any `noindex` from the crawler; private content needs access control.
+- Block only pages meant to stay out, such as admin and login. A robots.txt block stops crawling, not indexing, and hides any `noindex` from the crawler; private content needs access control. Check the CDN's bot protection too, since it can block search and AI crawlers that robots.txt allows.
 - When content or links exist only after JavaScript runs, fix it with the framework's existing static generation, prerendering, or SSR. Link pages with `<a href>`.
 - Sitemaps list only canonical, indexable, 200 URLs on the right origin, with truthful modification dates, and robots.txt names the sitemap.
 - Canonicals, internal links, sitemap entries, and redirects agree. Each page's canonical points at itself unless it duplicates another. Keep meaningful locale and pagination distinctions, and inspect query parameters and faceted navigation before any blanket canonical or crawl rule.

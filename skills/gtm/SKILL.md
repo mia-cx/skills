@@ -1,6 +1,6 @@
 ---
 name: gtm
-description: Use when the user asks for go-to-market work: finding people who have the problem a product solves, drafting cold emails, replies, or community posts to them, planning organic social content, or planning a launch.
+description: Use when the user asks for go-to-market work: finding people who have the problem a product solves, drafting cold emails, replies, or community posts to them, planning organic social content, a launch, a product video, or a whole go-to-market plan.
 ---
 
 # GTM
@@ -78,7 +78,7 @@ Ask which leads the user posts and which the agents post.
 
 ## Posting
 
-Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else, including venues that ban AI-written posts, stays with the user. Post at most 3 per venue per day, because bursts trip spam filters. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
+Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else, including venues that ban AI-written posts, stays with the user. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because consecutive link posts trip anti-spam auto-bans. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
 
 ## Boundaries
 
@@ -90,5 +90,7 @@ Agents post only the leads the user names, through a tool already signed in as t
 
 - Content plan or social posts, or many leads sharing one problem: read [references/organic.md](references/organic.md).
 - A launch or announcement: read [references/launch.md](references/launch.md).
+- A product or demo video: read [references/video.md](references/video.md).
+- A whole go-to-market plan: give the 3–5 moves from this skill and `seo` that fit the product best, each with a concrete example (a post line, a page title, a prompt to track).
 
-Both build on the scouts' leads, so run the scouts first when none are recent.
+Content and launches build on the scouts' leads, so run the scouts first when none are recent.

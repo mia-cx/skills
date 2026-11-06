@@ -9,4 +9,16 @@ A post answers everyone with the problem at once. Build the plan from the scouts
 
 Write `.gtm/content.md`: pillars with evidence, channels and cadence, and 5–10 first drafts labelled by pillar and funnel stage. Posting follows the main skill's rules.
 
+## On X
+
+One creator's reading of X's open-source ranking code ([Ryan, Nov 2026](https://x.com/ryangrowthh/status/2117684231983800732)) is unofficial, and X changes the weights without notice. Per predicted action: copying the link 20, reply, quote, or DM share 5, follow 4, repost 1, like 0.66, profile click 0. A block costs 31, "not interested" 52, a mute 59, and a report 234, so one annoyed viewer cancels hundreds of likes. What follows from it:
+
+- Write for shares and replies: give people a reason to send the link to someone or add their own take.
+- One idea per post, with one takeaway, one audience, and one call to action. Split roundups.
+- A post has about 48 hours, and small accounts get a boost on fresh posts, so the user should be around to reply in the first hour.
+- Mute trolls instead of arguing, and avoid negativity. The user edits every draft into their own words before it goes out.
+- Try each format X is pushing: articles, threads, media, an article with a quote post.
+
+## Iterate
+
 When metrics are available, review them weekly: make more versions of clear outliers, and retire formats that underperform across several posts.

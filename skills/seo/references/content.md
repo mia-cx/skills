@@ -11,17 +11,18 @@ Group queries that need the same answer and map each group to an existing page b
 - Answer the main question early, with evidence existing results lack: firsthand tests, worked examples, original data.
 - Refresh stale prices, screenshots, steps, and limits. Merge pages only when they serve the same intent, with redirects and updated internal links.
 - Link from relevant pages with descriptive anchors.
+- Name the real author and their firsthand experience; the founder's own story beats generic copy. Ask the user for it rather than inventing a bio.
 - Programmatic pages each need distinct value and verified facts. Review a small batch before expanding; near-identical location or keyword pages count as scaled content abuse.
 
 ## AI search visibility
 
 Google AI Overviews and AI Mode run on ordinary SEO and need no special schema or file. Add `llms.txt` only for a named consumer or an explicit request. Respect the site's existing training and retrieval crawler policies.
 
-Build the question set from buyer decisions: what people ask before choosing a product like this one. Track each question as a search query and as an AI prompt, measured separately, since either can move alone. Record provider, model, date, locale, exact prompt, and cited URLs. One answer is a noisy sample.
+Build the question set from buyer decisions: what people ask before choosing a product like this one, phrased the way they would ask an assistant ("help me plan dinner, I have ADHD"). Track each question as a search query and as an AI prompt in ChatGPT, Claude, Perplexity, and Google, measured separately, since either can move alone. Record provider, model, date, locale, exact prompt, which brands get recommended, and cited URLs. One answer is a noisy sample.
 
 Diagnose every lost question before creating anything:
 
-- No page answers it: plan one.
+- No page answers it: plan one page per buying decision and buyer type (small and large businesses get separate pages), backed by comparison and how-to pages on the questions around the purchase.
 - A page answers weakly: improve it.
 - The page cannot be crawled or indexed: [technical.md](technical.md).
 - The answer cites third-party pages: act by who controls each one.
@@ -33,7 +34,7 @@ Diagnose every lost question before creating anything:
 | Earn: reviews, editorial mentions, community threads | [links.md](links.md); the `gtm` skill joins threads |
 | Contest: outdated or wrong information | Ask the publisher for a correction, with evidence |
 
-Make one change at a time, then rerun the same questions once it has been crawled. Compare the same segments, and report qualified visits and conversions alongside clicks and citations.
+Make one change at a time, then rerun the same questions monthly. Compare the same segments, and report qualified visits and conversions alongside clicks and citations.
 
 ## Primary references
 
