@@ -18,6 +18,10 @@ Classify every task as one of two kinds:
 
 That asymmetry drives the whole pick: the user's day is best spent on the HITL tasks that set the most AFK work in motion.
 
+## Write it the user's way
+
+When the user has skills that define how an agent writes to them, such as `talk-normal` and the response skills it loads, read them before writing and apply every one to the whole output: the Rebrief, the Signal list, and the spoken script. Those skills already record how this user reads fastest and gets to work soonest, which is this skill's purpose.
+
 ## Find the vision
 
 Read the sources in this order and stop at the first one that states where the effort is heading:
@@ -105,7 +109,7 @@ A scheduling agent consumes this block as written: it places Signal items in the
 
 When the user asks to listen, voice the Rebrief and Signal list with ElevenLabs:
 
-1. Write a spoken script to `~/.cache/signal/<project>-<date>.txt`: the Rebrief and Signal sections as plain spoken prose, every PR and issue called by its name, with no URLs, numbers-as-names, markdown, or Agents and Noise lists. Separate topics with blank lines.
+1. Write a spoken script to `~/.cache/signal/<project>-<date>.txt`: the Rebrief and Signal sections as plain spoken prose, every PR and issue called by its name, with no URLs, numbers-as-names, markdown, or Agents and Noise lists. Separate topics with blank lines. Keep it matter-of-fact, the way a colleague reads out a task list: plain statements, no dramatic framing, emphasis words, exclamations, or audio tags.
 2. Run `~/.agents/skills/signal/speak.sh <script>.txt <script>.mp3`. It reads `ELEVENLABS_API_KEY` from the environment or `~/.config/elevenlabs/env`, and `ELEVENLABS_VOICE_ID` when set.
 3. Embed the mp3 by its absolute path in the reply.
 

@@ -27,7 +27,9 @@ awk -v RS= -v max="$MAX_CHARS" -v dir="$tmp" '
 
 : >"$out"
 for f in "$tmp"/*.txt; do
-  jq -Rs --arg model "$model" '{text: ., model_id: $model}' "$f" |
+  # High stability and zero style keep the read even and matter-of-fact.
+  jq -Rs --arg model "$model" \
+    '{text: ., model_id: $model, voice_settings: {stability: 0.8, similarity_boost: 0.9, style: 0}}' "$f" |
     curl -sSf "https://api.elevenlabs.io/v1/text-to-speech/$voice?output_format=mp3_44100_128" \
       -H "xi-api-key: $ELEVENLABS_API_KEY" -H 'Content-Type: application/json' --data-binary @- >>"$out"
 done
