@@ -1,6 +1,6 @@
 ---
 name: signal
-description: Use when the user plans their day or tomorrow, asks what to work on next, or wants to prioritise, and when an agent picks or schedules the next tasks from a vision, roadmap, PRD, or wayfinder map.
+description: Use when the user plans their day or tomorrow, asks what to work on next, wants to prioritise, or returns to a shelved project, and when an agent picks or schedules the next tasks from a vision, roadmap, PRD, or wayfinder map.
 ---
 
 # Signal
@@ -30,6 +30,17 @@ A wayfinder map (label `wayfinder:map`) supplies three things: its Destination, 
 
 When no source states a destination, ask the user for it in one question before picking, because ranking without a destination ranks by mood.
 
+## Re-entry
+
+A project is **shelved** when the user says they are getting back into it, or when its newest commit, issue, and PR activity is more than a week old. A shelved project gets a **Rebrief** before the pick, because the user has lost the context the pick assumes. The Rebrief restores that context from the tracker and git, never from the user's memory:
+
+- **Where it stopped**: the last merge, the last closed decision, and the last thing the user said they wanted, each in one line with its link.
+- **In flight**: every open PR, branch, and worktree with its state (green, approved, conflicting, stale) and what it needs next.
+- **Waiting on the user**: questions agents or contributors asked them in issues and PRs that are still unanswered, quoted short.
+- **Moved underneath**: what changed while the project sat: base branch commits, releases, dependency or CI breakage.
+
+Stale in-flight work becomes candidates: rebases and CI reruns are AFK; merges and unanswered questions are HITL. On re-entry, open the Signal list with one small warm-up item ahead of the starred one, such as a merge or a reply, so the first action is a quick win.
+
 ## Pick
 
 1. **Close out the last day** when its Signal list is available. Mark each item done or not done, then carry or drop each unfinished one. An item carried a second time is mis-sized or was never signal: split it, or move it to Noise.
@@ -51,6 +62,10 @@ When no source states a destination, ask the user for it in one question before 
 
 ```markdown
 **Destination:** <one line>
+
+## Rebrief
+
+<re-entry only: the four Re-entry headings, one to three lines each>
 
 ## Signal (HITL)
 
