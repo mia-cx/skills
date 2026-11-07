@@ -81,3 +81,4 @@ Written for my ADHD brain.
   - [Granola's AEO workflow](https://x.com/wespreadjam/status/2115568290307469548) by Jam
   - [Ramp's AEO pages](https://x.com/wespreadjam/status/2117333079106932897) by Jam
   - [Indexing checklist for AI-built sites](https://x.com/Voxyz_ai/status/2116304148228722833) by Voxyz
+  - [Ranking without backlinks](https://x.com/asaio87/status/2118989064305037690) by Andrei Saioc

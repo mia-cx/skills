@@ -14,7 +14,7 @@ Read `DIRECTION.md`, the existing SEO setup, and any search data to learn the au
 Match the request: an audit produces findings, a fix ships and verifies, a content request skips the technical audit. Read only the references the task reaches:
 
 - Crawling, indexing, metadata, structured data, performance: [technical.md](references/technical.md).
-- Keywords, page planning, content updates, AI search visibility: [content.md](references/content.md).
+- Keywords, page planning, updates from Search Console queries, AI search visibility: [content.md](references/content.md).
 - Backlinks, mentions, journalist requests: [links.md](references/links.md).
 
 ## Work from evidence

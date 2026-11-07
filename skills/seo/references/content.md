@@ -4,7 +4,9 @@
 
 Find audience needs in product facts, customer and support questions, and Search Console queries, then read the current results for the target market to see intent and format. Without live results or keyword tools, label query choices as hypotheses.
 
-Group queries that need the same answer and map each group to an existing page before proposing a new URL. Each proposal records audience, intent, URL, the evidence it adds, internal links, and the visitor's next action.
+A new or low-authority site starts with the queries nobody targets: keyword difficulty near 0 and listed volume 0–50. Tools undercount long-tail volume, and there is no one to beat.
+
+Group queries that need the same answer and map each group to an existing page before proposing a new URL. Build each page in the format the current top results share: landing page, listicle, how-to, comparison, or tool. Each proposal records audience, intent, URL, the evidence it adds, internal links, and the visitor's next action. Ship a first batch of 10–15 pages, linked to each other only where a reader would click.
 
 ## Improve the page
 
@@ -13,6 +15,15 @@ Group queries that need the same answer and map each group to an existing page b
 - Link from relevant pages with descriptive anchors.
 - Name the real author and their firsthand experience; the founder's own story beats generic copy. Ask the user for it rather than inventing a bio.
 - Programmatic pages each need distinct value and verified facts. Review a small batch before expanding; near-identical location or keyword pages count as scaled content abuse.
+
+## Optimise from Search Console
+
+Once a page has at least 7 days of data, open its queries in Search Console:
+
+- A query with impressions that the page never answers: add the sentence, paragraph, or section that does.
+- A query at positions 10–30: give it its own H2 or paragraph. These are the closest wins.
+
+Rewrite only the sections that change, request indexing in URL Inspection, and repeat weekly. Rankings come from this loop more than from the first draft. Judge the programme at 3 months, not sooner.
 
 ## AI search visibility
 
