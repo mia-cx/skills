@@ -22,8 +22,11 @@ current upstream versions. The global `.skill-lock.json` registry stays local.
 
 ## Start here
 
-- **[talk-normal](skills/talk-normal/SKILL.md)** talk like a normal person.
-- **[talk-like-mia](skills/talk-like-mia/SKILL.md)** cold emails, pitches, and social posts in my voice, measured from 120k of my discord messages.
+- **[byline](skills/byline/SKILL.md)** everything with my name on it:
+  - writing like a normal person, without the AI tells.
+  - cold emails, pitches, and social posts in my voice, measured from 120k of my discord messages.
+  - go-to-market: scouts find people who posted the problem your product solves, and you get a drafted reply and a send link for each.
+  - seo: diagnose search visibility, improve content, and research earned links.
 - **[say-less](skills/say-less/SKILL.md)** stop yapping.
 - **[say-more](skills/say-more/SKILL.md)** explain stuff only when asked.
 - **[momentum](skills/momentum/SKILL.md)** kill your executive dysfunction.
@@ -44,8 +47,6 @@ Written for my ADHD brain.
   - **[refine-rule](skills/refine-rule/SKILL.md)** slim always-loaded rules: AGENTS.md, CLAUDE.md, Cursor rules.
   - **[refine-skill](skills/refine-skill/SKILL.md)** slim a SKILL.md: invocation mode, description, body, references.
 - **[agent-copy](skills/agent-copy/SKILL.md)** write copy for agents, not humans.
-- **[seo](skills/seo/SKILL.md)** diagnose search visibility, improve content, and research earned links.
-- **[gtm](skills/gtm/SKILL.md)** scouts find people who posted the problem your product solves; you get a drafted reply and a send link for each.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
 - **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.
 - **[babysit](skills/babysit/SKILL.md)** watch a PR's reviewers, fix what is real, resolve threads, repeat until green.
@@ -53,7 +54,7 @@ Written for my ADHD brain.
 
 ## Inspirations
 
-- talk-normal, say-less, say-more, momentum:
+- byline, say-less, say-more, momentum:
   - [Unslop](https://skills.sh/cursor/plugins/unslop)
   - [i-have-adhd](https://skills.sh/ayghri/i-have-adhd/i-have-adhd)
 - ui-design
@@ -68,12 +69,12 @@ Written for my ADHD brain.
   - [writing-for-agents](https://skills.sh/mattpocock/skills/writing-for-agents) by Matt Pocock
 - autopilot & review-council
   - [full-send, full-stop, council](https://github.com/t3dotgg/tstack) by Theo
-- gtm
+- byline: go-to-market
   - [The Ultimate Guide to Organic Marketing & Content](https://x.com/ryangrowthh/status/2116221594267730298) by Ryan
   - [How to Engineer Virality on X](https://x.com/0xfJuan/status/2114746175026798821) by Juan
   - [The X Algorithm Explained](https://x.com/ryangrowthh/status/2117684231983800732) by Ryan
   - [Make your product videos look expensive](https://x.com/leomeethewoo/status/2103529310208606701) by leo
-- seo
+- byline: seo
   - [Technical SEO checklist](https://x.com/suraj_sharma14/status/2116062550416871512) by Suraj Sharma
   - [Backlink tactics](https://x.com/borjafat/status/2116164330014007296) by Borja
   - [Granola's AEO workflow](https://x.com/wespreadjam/status/2115568290307469548) by Jam

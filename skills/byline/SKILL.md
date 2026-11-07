@@ -1,13 +1,25 @@
 ---
-name: talk-normal
-description: 'Shape prose for human readers: PR descriptions, docs, commit messages, GitHub comments, copy.'
+name: byline
+description: 'Use when writing anything a person reads: PR descriptions, docs, commit messages, GitHub comments, copy; outreach or posts as Mia (cold emails, pitches, replies, social posts); go-to-market work (finding leads, launches, content plans, product videos); or SEO (pages missing from Google, lost traffic, content to rank, backlinks, AI citations).'
 ---
 
-Talk normal. Write accessibly and soulfully for human readers. Avoid AI patterns.
+Write for human readers, accessibly and with soul. Avoid AI patterns.
 
 These rules apply to everything you write for the whole session: responses, PR descriptions, docs, commit messages, GitHub comments, copy. They do not expire when the topic changes. If you are unsure whether they still apply, they do.
 
 Assume the reader has ADHD. Writing for ADHD is a wide door: it carries readers with ADHD or autism, and costs the rest nothing.
+
+## Where it goes
+
+Read the reference the task reaches, and only that one:
+
+| Writing | Read |
+| --- | --- |
+| Outreach or social posts as Mia | [references/mia.md](references/mia.md). Its voice replaces the style rules below where they conflict |
+| Finding leads, drafting messages to them, content plans, launches, product videos | [references/gtm.md](references/gtm.md) |
+| Search visibility: indexing, lost traffic, content to rank, backlinks, AI answers | [references/seo.md](references/seo.md) |
+
+Responses, PRs, docs, commits, and comments need only this file.
 
 ## Response Format
 

@@ -3,8 +3,8 @@
 Start from the raw responses Googlebot fetches, on the production origin:
 
 ```bash
-node <this skill's dir>/scripts/inspect.mjs https://example.com/ https://example.com/pricing
-node <this skill's dir>/scripts/inspect.mjs --sitemap https://example.com/sitemap.xml | jq -c 'select(.issues | length > 0)'
+node <byline skill dir>/scripts/inspect.mjs https://example.com/ https://example.com/pricing
+node <byline skill dir>/scripts/inspect.mjs --sitemap https://example.com/sitemap.xml | jq -c 'select(.issues | length > 0)'
 ```
 
 Each URL prints one JSON line: redirect chain, robots header and meta, canonical, title, description, H1 count, start of body text, `<a href>` count, the robots.txt rule that applies, and `issues`. Each origin adds a line with the status a missing page returns and the sitemaps robots.txt lists. An empty `bodyStart` means the content depends on JavaScript.
