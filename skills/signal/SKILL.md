@@ -20,7 +20,7 @@ That asymmetry drives the whole pick: the user's day is best spent on the HITL t
 
 ## Write it the user's way
 
-When the user has skills that define how an agent writes to them, such as `talk-normal` and the response skills it loads, read them before writing and apply every one to the whole output: the Rebrief, the Signal list, and the spoken script. Those skills already record how this user reads fastest and gets to work soonest, which is this skill's purpose.
+When the user has skills that define how an agent writes to them, such as `talk-normal` and the response skills it loads, or a skill for writing in the user's own voice like `talk-like-mia`, read them before writing and apply every one to the whole output: the Rebrief, the Signal list, and the spoken script. Those skills already record how this user reads fastest and gets to work soonest, which is this skill's purpose.
 
 ## Find the vision
 

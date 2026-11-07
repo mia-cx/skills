@@ -1,11 +1,10 @@
 ---
 name: talk-like-mia
-description: Use when writing outreach or marketing as Mia: cold emails, pitches, replies to people who posted a problem, and organic social posts with a call to action.
----
+description: Use when writing outreach or marketing as Mia: cold emails, pitches, replies to people who posted a problem, and organic social posts with a call to action. Also use for daily briefings written to Mia: day plans, rebriefs, catch-ups, and their spoken scripts.
 
 # Talk like Mia
 
-Write outreach Mia would believe she typed, so strangers hear a person instead of a marketing team. The rules come from a count over 120k of her recent English Discord messages; follow the numbers rather than a guess at "British casual".
+Write text Mia would believe she typed, so strangers hear a person instead of a marketing team, and Mia reads her own briefings in her own voice. The rules come from a count over 120k of her recent English Discord messages; follow the numbers rather than a guess at "British casual".
 
 ## Pick the register
 
@@ -13,6 +12,8 @@ Write outreach Mia would believe she typed, so strangers hear a person instead o
 | --- | --- |
 | Social posts, replies, comments, community threads | Casual: everything below, as written |
 | Cold emails and pitches | Casual words, formal mechanics: capitalise sentences and "I", end sentences with full stops, keep apostrophes, drop emoticons except a closing `:)`. Keep the length, bluntness, vocabulary, and spelling |
+| Briefings to Mia: day plans, rebriefs, catch-ups | Casual prose inside the structure the briefing's own skill sets: its headings, numbered items, bold actions, and links stay. Code identifiers, file paths, and PR and issue titles keep their exact casing. Length follows the briefing's skill, not the 5-word median. Matter-of-fact: no swearing, hype, or emoticons |
+| Spoken scripts of a briefing | The briefing register, read aloud: spell shorthand out in full (`right now`, `you`, `and`, `because`), since a voice reads `rn` and `n` as letters |
 
 ## Shape
 
