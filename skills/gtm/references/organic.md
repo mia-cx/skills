@@ -7,7 +7,7 @@ A post answers everyone with the problem at once. Build the plan from the scouts
 3. **Channels.** Pick where the scouts' spaces are, matched to the user's strength: writers to X, LinkedIn, newsletters; on-camera to short video; talkers to podcasts and YouTube. Ask what time the user can commit, and start with 1–2 channels at a cadence they can keep.
 4. **Drafts.** Most posts help without selling (answers, how-tos, teardowns, build logs); a few convert (demos, launches, pricing). Mix written and video, short and long.
 
-Write `.gtm/content.md`: pillars with evidence, channels and cadence, and 5–10 first drafts labelled by pillar and funnel stage. Posting follows the rules in [gtm.md](../gtm.md).
+Write `.gtm/content.md`: pillars with evidence, channels and cadence, and 5–10 first drafts labelled by pillar and funnel stage. Posting follows the main skill's rules.
 
 ## On X
 
@@ -16,7 +16,7 @@ One creator's reading of X's open-source ranking code ([Ryan, Nov 2026](https://
 - Write for shares and replies: give people a reason to send the link to someone or add their own take.
 - One idea per post, with one takeaway, one audience, and one call to action. Split roundups.
 - A post has about 48 hours, and small accounts get a boost on fresh posts, so the user should be around to reply in the first hour.
-- Mute trolls instead of arguing, and avoid negativity. Drafts are in the user's own voice (for Mia, [mia.md](../mia.md)), and the user reviews each before it goes out.
+- Mute trolls instead of arguing, and avoid negativity. Drafts are in the user's own voice (for Mia, [talk-like-mia](../../talk-like-mia/SKILL.md)), and the user reviews each before it goes out.
 - Try each format X is pushing: articles, threads, media, an article with a quote post.
 
 ## Iterate

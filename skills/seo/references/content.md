@@ -31,7 +31,7 @@ Diagnose every lost question before creating anything:
 | --- | --- |
 | Own: pages the site controls | Improve them |
 | Claim: profiles and listings the business can take over | Claim them and correct the facts |
-| Earn: reviews, editorial mentions, community threads | [links.md](links.md); [gtm.md](../gtm.md) joins threads |
+| Earn: reviews, editorial mentions, community threads | [links.md](links.md); the `gtm` skill joins threads |
 | Contest: outdated or wrong information | Ask the publisher for a correction, with evidence |
 
 Make one change at a time, then rerun the same questions monthly. Compare the same segments, and report qualified visits and conversions alongside clicks and citations.

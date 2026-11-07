@@ -28,7 +28,7 @@ Evidence: <link>
 What's your take after trying it?
 ```
 
-They write in their own words; paid partnerships are disclosed. Sending briefs follows the posting rules in [gtm.md](../gtm.md).
+They write in their own words; paid partnerships are disclosed. Sending briefs follows the main skill's posting rules.
 
 Ready when: one claim with evidence, angles matched to briefed people with access, an owner for questions and for business follow-ups, and a clear way to try the product.
 

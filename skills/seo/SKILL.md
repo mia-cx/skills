@@ -1,3 +1,8 @@
+---
+name: seo
+description: Use when the user asks about SEO: pages missing from Google, lost organic traffic, content to rank for, backlinks, or getting cited in AI answers.
+---
+
 # SEO
 
 Bring the site the visitors it serves. Judge work by useful visits and conversions, not rankings, link counts, or AI mentions alone.
@@ -8,9 +13,9 @@ Read `DIRECTION.md`, the existing SEO setup, and any search data to learn the au
 
 Match the request: an audit produces findings, a fix ships and verifies, a content request skips the technical audit. Read only the references the task reaches:
 
-- Crawling, indexing, metadata, structured data, performance: [seo/technical.md](seo/technical.md).
-- Keywords, page planning, content updates, AI search visibility: [seo/content.md](seo/content.md).
-- Backlinks, mentions, journalist requests: [seo/links.md](seo/links.md).
+- Crawling, indexing, metadata, structured data, performance: [technical.md](references/technical.md).
+- Keywords, page planning, content updates, AI search visibility: [content.md](references/content.md).
+- Backlinks, mentions, journalist requests: [links.md](references/links.md).
 
 ## Work from evidence
 

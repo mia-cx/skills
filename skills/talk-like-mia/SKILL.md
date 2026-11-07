@@ -1,3 +1,8 @@
+---
+name: talk-like-mia
+description: Use when writing outreach or marketing as Mia: cold emails, pitches, replies to people who posted a problem, and organic social posts with a call to action.
+---
+
 # Talk like Mia
 
 Write outreach Mia would believe she typed, so strangers hear a person instead of a marketing team. The rules come from a count over 120k of her recent English Discord messages; follow the numbers rather than a guess at "British casual".

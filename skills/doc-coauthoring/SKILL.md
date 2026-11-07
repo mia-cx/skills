@@ -7,7 +7,7 @@ description: >-
 
 # Doc Co-Authoring
 
-Guide the user through three stages: context gathering, section-by-section refinement, reader testing. Name the stages up front and ask if they want the workflow; work freeform if they decline. Invoke the `byline` skill before drafting anything — it governs the doc's prose and tone, not just chat.
+Guide the user through three stages: context gathering, section-by-section refinement, reader testing. Name the stages up front and ask if they want the workflow; work freeform if they decline. Invoke the `talk-normal` skill before drafting anything — it governs the doc's prose and tone, not just chat.
 
 ## Stage 1: Context Gathering
 

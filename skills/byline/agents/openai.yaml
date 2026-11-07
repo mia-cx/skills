@@ -1,4 +1,0 @@
-interface:
-  display_name: "Byline"
-  short_description: "Prose without AI tells, Mia's voice, outreach, and SEO"
-  default_prompt: "Use $byline for all output: lead with the outcome, say less, strip AI tells."

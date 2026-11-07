@@ -1,3 +1,8 @@
+---
+name: gtm
+description: Use when the user asks for go-to-market work: finding people who have the problem a product solves, drafting cold emails, replies, or community posts to them, planning organic social content, a launch, a product video, or a whole go-to-market plan.
+---
+
 # GTM
 
 Find people who publicly described the problem the product solves, and hand the user a drafted message for each, with a link that sends it. Scouts search in parallel; you verify, draft, and post only when asked.
@@ -27,7 +32,7 @@ Launch three scouts in one turn as T3 `delegate_task` children: model `claude-so
 ```markdown
 You are a subagent. Don't run memo. You are read-only: search and read, never post, message, sign up, or edit files.
 
-Read <absolute path to references/gtm/scout-prompt.md> in full first; it is your brief.
+Read <absolute path to references/scout-prompt.md> in full first; it is your brief.
 
 - Direction: <scout row from the table>
 - Copy sheet: <absolute path to .gtm/copy.md>
@@ -43,7 +48,7 @@ Open every lead yourself. Keep it only when the quote is at the URL, by that aut
 
 ## 4. Draft
 
-Write every draft yourself, in the user's first person. For Mia, write in her voice per [mia.md](mia.md).
+Write every draft yourself, in the user's first person. For Mia, write in her voice per [talk-like-mia](../talk-like-mia/SKILL.md).
 
 - Open on a detail only their post contains, and help first, even when the answer is not the product.
 - Then offer the product and state the relationship ("I make X"). One link, to the copy-sheet page matching their problem.
@@ -73,7 +78,7 @@ Ask which leads the user posts and which the agents post.
 
 ## Posting
 
-Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else, including venues that ban AI-written posts, stays with the user. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because consecutive link posts trip anti-spam auto-bans. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
+Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else, including venues that ban AI-written posts, stays with the user. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because consecutive link posts trip anti-spam auto-bans. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
 
 ## Boundaries
 
@@ -83,9 +88,9 @@ Agents post only the leads the user names, through a tool already signed in as t
 
 ## Beyond outreach
 
-- Content plan or social posts, or many leads sharing one problem: read [gtm/organic.md](gtm/organic.md).
-- A launch or announcement: read [gtm/launch.md](gtm/launch.md).
-- A product or demo video: read [gtm/video.md](gtm/video.md).
-- A whole go-to-market plan: give the 3–5 moves from this file and [seo.md](seo.md) that fit the product best, each with a concrete example (a post line, a page title, a prompt to track).
+- Content plan or social posts, or many leads sharing one problem: read [references/organic.md](references/organic.md).
+- A launch or announcement: read [references/launch.md](references/launch.md).
+- A product or demo video: read [references/video.md](references/video.md).
+- A whole go-to-market plan: give the 3–5 moves from this skill and `seo` that fit the product best, each with a concrete example (a post line, a page title, a prompt to track).
 
 Content and launches build on the scouts' leads, so run the scouts first when none are recent.
