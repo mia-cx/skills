@@ -1,6 +1,7 @@
 ---
 name: talk-like-mia
 description: Use when writing outreach or marketing as Mia: cold emails, pitches, replies to people who posted a problem, and organic social posts with a call to action. Also use for daily briefings written to Mia: day plans, rebriefs, catch-ups, and their spoken scripts.
+---
 
 # Talk like Mia
 
