@@ -1,6 +1,6 @@
 ---
 name: signal
-description: Use when the user plans their day or tomorrow, asks what to work on next, wants to prioritise, or returns to a shelved project, and when an agent picks or schedules the next tasks from a vision, roadmap, PRD, or wayfinder map.
+description: Use when the user plans their day or tomorrow, asks what to work on next, wants to prioritise, or asks to be caught up on a project, and when an agent picks or schedules the next tasks from a vision, roadmap, PRD, or wayfinder map.
 ---
 
 # Signal
@@ -30,16 +30,26 @@ A wayfinder map (label `wayfinder:map`) supplies three things: its Destination, 
 
 When no source states a destination, ask the user for it in one question before picking, because ranking without a destination ranks by mood.
 
-## Re-entry
+## Rebrief
 
-A project is **shelved** when the user says they are getting back into it, or when its newest commit, issue, and PR activity is more than a week old. A shelved project gets a **Rebrief** before the pick, because the user has lost the context the pick assumes. The Rebrief restores that context from the tracker and git, never from the user's memory:
+A **Rebrief** restores the context the pick assumes, so the user can pick a project back up where it was left. Include it when the user asks ("catch me up", "rebrief me") or when the project's newest commit, issue, and PR activity is more than a month old.
 
-- **Where it stopped**: the last merge, the last closed decision, and the last thing the user said they wanted, each in one line with its link.
-- **In flight**: every open PR, branch, and worktree with its state (green, approved, conflicting, stale) and what it needs next.
-- **Waiting on the user**: questions agents or contributors asked them in issues and PRs that are still unanswered, quoted short.
+Scale its depth to the time away, measured from that newest activity:
+
+- **Under a week**: one short paragraph: what moved and what waits on the user.
+- **Up to a month**: one paragraph per heading below.
+- **Over a month**: every heading in full, opening with the destination and the decisions that shaped the route so far.
+
+The headings:
+
+- **Where it stopped**: the last things merged, decided, and asked for.
+- **In flight**: every open PR, branch, and worktree, with its state (green, approved, conflicting, stale) and what it needs next.
+- **Waiting on the user**: unanswered questions agents or contributors asked them in issues and PRs.
 - **Moved underneath**: what changed while the project sat: base branch commits, releases, dependency or CI breakage.
 
-Stale in-flight work becomes candidates: rebases and CI reruns are AFK; merges and unanswered questions are HITL. On re-entry, open the Signal list with one small warm-up item ahead of the starred one, such as a merge or a reply, so the first action is a quick win.
+Write summaries of the material, never pointers to it. For each PR, issue, or decision, say what it changes or decided and why it exists, in plain sentences, so the user understands it without opening it. The link rides inside its name.
+
+Stale in-flight work becomes candidates: rebases and CI reruns are AFK; merges and unanswered questions are HITL. After a Rebrief, open the Signal list with one small warm-up item ahead of the starred one, such as a merge or a reply, so the first action is a quick win.
 
 ## Pick
 
@@ -65,27 +75,39 @@ Stale in-flight work becomes candidates: rebases and CI reruns are AFK; merges a
 
 ## Rebrief
 
-<re-entry only: the four Re-entry headings, one to three lines each>
+<only when included; depth per Rebrief>
 
 ## Signal (HITL)
 
-1. ⭐ <item>. Done when <criterion>. Releases: <AFK tasks, or none>
-2. <item>. ...
+1. ⭐ **<action>**
+   <brief>
+   Done when <criterion>. Releases: <AFK tasks, or none>.
+2. **<action>** ...
 
 ## Agents (AFK)
 
-- <item>: <model>. Done when <criterion>. <now | after Signal item N>
+- <link>: <model>. Done when <criterion>. <now | after Signal item N>
 
 ## Noise
 
 - <candidate left out>: <why not today>
 ```
 
-Give each item a checkable done criterion and its size in concrete units ("one grilling session", "one PR", "3 files"), never in hours. Link issues and PRs as named markdown links.
+A Signal item is a self-contained brief, because the user acts on it without opening anything. In 2–4 sentences it says what the thing is (what the PR changes, what the ticket asks), why it exists, and why it is on today's list: its rank, what it unblocks, and why now. Size it in concrete units ("one grilling session", "one PR", "3 files"), never in hours.
+
+An Agents item is a pointer: a link, a model, and a done criterion. Agents read the links themselves, so spend no words explaining them.
 
 The Noise list is a parking lot. Naming what was left out lets the user stop holding it in their head, and it is the first place the next pick looks.
 
 A scheduling agent consumes this block as written: it places Signal items in the user's day in order, starred first, dispatches every AFK item marked `now`, and dispatches the rest as their Signal items close.
+
+## Listen
+
+When the user asks to listen, voice the Rebrief and Signal list with ElevenLabs:
+
+1. Write a spoken script to `~/.cache/signal/<project>-<date>.txt`: the Rebrief and Signal sections as plain spoken prose, every PR and issue called by its name, with no URLs, numbers-as-names, markdown, or Agents and Noise lists. Separate topics with blank lines.
+2. Run `~/.agents/skills/signal/speak.sh <script>.txt <script>.mp3`. It reads `ELEVENLABS_API_KEY` from the environment or `~/.config/elevenlabs/env`, and `ELEVENLABS_VOICE_ID` when set.
+3. Embed the mp3 by its absolute path in the reply.
 
 ## During the day
 
