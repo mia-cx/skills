@@ -34,6 +34,7 @@ skills/synced/
 # skill from the lock to take ownership of it here.
 skills/ask-matt/
 skills/codebase-design/
+skills/create-formal-verification-skill/
 skills/diagnosing-bugs/
 skills/domain-modeling/
 skills/grill-with-docs/
@@ -41,11 +42,13 @@ skills/grilling/
 skills/handoff/
 skills/improve-codebase-architecture/
 skills/loop-me/
+skills/maintain-formal-verification-skill/
 skills/modernize/
 skills/prototype/
 skills/research/
 skills/security-audit/
 skills/setup-matt-pocock-skills/
+skills/statechart/
 skills/tdd/
 skills/teach/
 skills/to-questionnaire/

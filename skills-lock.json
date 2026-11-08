@@ -13,6 +13,13 @@
       "skillPath": "skills/engineering/codebase-design/SKILL.md",
       "computedHash": "5a17552cc1482f1a40124bf4e6c9dbd90ac0dbb47e71c07d47369f9e5f2ae3b5"
     },
+    "create-formal-verification-skill": {
+      "source": "cursor/plugins",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "pstack/skills/create-formal-verification-skill/SKILL.md",
+      "computedHash": "ecccfa683447517ba3ebcfbd3099e1f8b05b4b41875a0194942182564d553997"
+    },
     "diagnosing-bugs": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -61,6 +68,13 @@
       "skillPath": "skills/in-progress/loop-me/SKILL.md",
       "computedHash": "72e01a16929dbf6583afc469a49d64b28b1be4a6034c900decd94cd5a69ba6e6"
     },
+    "maintain-formal-verification-skill": {
+      "source": "cursor/plugins",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "pstack/skills/maintain-formal-verification-skill/SKILL.md",
+      "computedHash": "a41b8cffadbd598e4e06dbe57e0ee5c4307f3252814257ccaef198363b359d6c"
+    },
     "modernize": {
       "source": "t3dotgg/tstack",
       "sourceType": "github",
@@ -90,6 +104,13 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
       "computedHash": "552b0f48b9fe054aa93c5d432fefbd7bd9645e3f2d20b4e22432453a81800b21"
+    },
+    "statechart": {
+      "source": "cursor/plugins",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "pstack/skills/statechart/SKILL.md",
+      "computedHash": "ab7f305663449c2f6d832cd273879cee3caeebd65536fa525ccaf03eb6963374"
     },
     "tdd": {
       "source": "mattpocock/skills",
