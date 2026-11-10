@@ -45,8 +45,9 @@ Written for my ADHD brain.
   - **[refine-rule](skills/refine-rule/SKILL.md)** slim always-loaded rules: AGENTS.md, CLAUDE.md, Cursor rules.
   - **[refine-skill](skills/refine-skill/SKILL.md)** slim a SKILL.md: invocation mode, description, body, references.
 - **[agent-copy](skills/agent-copy/SKILL.md)** write copy for agents, not humans.
-- **[seo](skills/seo/SKILL.md)** diagnose search visibility, improve content, and research earned links.
-- **[gtm](skills/gtm/SKILL.md)** scouts find people who posted the problem your product solves; you get a drafted reply and a send link for each.
+- **[seo](skills/seo/SKILL.md)** diagnose search visibility, improve content, earn links, and get cited in AI answers.
+- **[gtm](skills/gtm/SKILL.md)** positioning, outreach, content, X, launches, video, retention and paid ads, one reference per job. Its scouts find people who posted the problem your product solves.
+- **[marketing-agents](skills/marketing-agents/SKILL.md)** automate marketing work with agents: a weekly report, research bots, a coordinator, a campaign run on tickets.
 - **[byline](skills/byline/SKILL.md)** talk-normal, talk-like-mia, gtm, and seo in one go, for rewriting marketing copy.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
 - **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.
@@ -70,7 +71,8 @@ Written for my ADHD brain.
   - [writing-for-agents](https://skills.sh/mattpocock/skills/writing-for-agents) by Matt Pocock
 - autopilot & review-council
   - [full-send, full-stop, council](https://github.com/t3dotgg/tstack) by Theo
-- gtm
+- gtm, seo, marketing-agents
+  - Free Game, a private marketing course distilled from free posts on X
   - [The Ultimate Guide to Organic Marketing & Content](https://x.com/ryangrowthh/status/2116221594267730298) by Ryan
   - [How to Engineer Virality on X](https://x.com/0xfJuan/status/2114746175026798821) by Juan
   - [The X Algorithm Explained](https://x.com/ryangrowthh/status/2117684231983800732) by Ryan

@@ -7,7 +7,7 @@ description: 'Use when writing or rewriting copy that sells or gets found: marke
 
 Each skill owns one job in the copy: gtm decides what is true and who it is for, seo decides what each page answers, talk-normal decides how each sentence reads, and talk-like-mia decides whose voice it is. Read all four in one turn before you start:
 
-- [gtm](../gtm/SKILL.md)
+- [gtm](../gtm/SKILL.md), plus its [writing](../gtm/references/writing.md) and [outreach](../gtm/references/outreach.md) references
 - [seo](../seo/SKILL.md), plus its [content reference](../seo/references/content.md)
 - [talk-normal](../talk-normal/SKILL.md)
 - [talk-like-mia](../talk-like-mia/SKILL.md)
@@ -30,7 +30,7 @@ Done when every page has one search intent, one next action for the visitor, a t
 
 - The headline answers the page's main question in the words the copy sheet's phrasings use. Use a searcher's phrase where it reads naturally, once.
 - Each page leads with evidence other results lack: a number, a real input and output, or Mia's firsthand story.
-- Claims follow gtm's drafting rule: the copy sheet only, and anything else becomes a question for the user.
+- Claims come from the copy sheet only, and anything else becomes a question for the user.
 - talk-normal governs every sentence.
 
 ## 4. Voice
@@ -41,8 +41,8 @@ Who is speaking decides the register:
 | --- | --- |
 | Product pages, pricing, docs, titles, meta descriptions | talk-normal mechanics. From talk-like-mia, keep the bluntness, specifics, spelling, and Never list |
 | Mia speaking in first person: about page, origin story, founder note | talk-like-mia email register |
-| Social posts, launch posts, replies, community threads | talk-like-mia casual register, with gtm's drafting and posting rules |
-| Cold emails and pitches | talk-like-mia email register, with gtm's length limit and opt-out line |
+| Social posts, launch posts, replies, community threads | talk-like-mia casual register, with outreach.md's drafting and posting rules |
+| Cold emails and pitches | talk-like-mia email register, with outreach.md's length limits and opt-out line |
 
 ## 5. Check
 
