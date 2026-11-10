@@ -39,7 +39,14 @@ Open on a problem buyers already pay to hear about: one that three competitors a
 we helped [company like theirs] fix [the problem from the ads] in [how long]. want the breakdown?
 ```
 
-The customer, fix and time must be a real result from the copy sheet. Propose a test: each DM to 50 people, then 3 new versions of the one with most replies after a week, then the rest of the list. The user sends every message inside LinkedIn's weekly invitation and message limits. A weekly rerun of steps 1–3 is fine.
+The customer, fix and time must be a real result from the copy sheet.
+
+Build the list one of two ways, and ask the user which:
+
+- **Free.** LinkedIn's people search, filtered by the job title from the ads, plus company and location. Send each person a connection request; once they accept, send the DM. Free accounts can attach a note to only a few requests a month, so put the DM's problem line in those notes and send the full DM after acceptance.
+- **Sales Navigator (optional, paid subscription).** Filter by job title, industry and company headcount, and message people outside the user's network with InMail credits. Confirm the current price with the user before suggesting it.
+
+Propose a test: each DM to 50 people, then 3 new versions of the one with most replies after a week, then the rest of the list. On the free route, the test runs at the pace people accept requests. The user sends every message inside LinkedIn's weekly invitation and message limits. A weekly rerun of steps 1–3 is fine.
 
 ## Find people
 
