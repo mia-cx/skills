@@ -14,8 +14,10 @@ Read `DIRECTION.md`, the existing SEO setup, and any search data to learn the au
 Match the request: an audit produces findings, a fix ships and verifies, a content request skips the technical audit. Read only the references the task reaches:
 
 - Crawling, indexing, metadata, structured data, performance: [technical.md](references/technical.md).
-- Keywords, page planning, updates from Search Console queries, AI search visibility: [content.md](references/content.md).
+- Keywords, buyer pages, refreshes, title tests, ranking on other platforms: [content.md](references/content.md).
+- Google Business Profile and the map pack: [local.md](references/local.md).
 - Backlinks, mentions, journalist requests: [links.md](references/links.md).
+- Recommendations and citations in AI answers: [ai-search.md](references/ai-search.md).
 
 ## Work from evidence
 
@@ -28,6 +30,6 @@ An audit leads with the highest-impact findings, each with evidence, fix, and su
 
 ## Boundaries
 
-Preserve deliberate privacy, staging restrictions, and crawler policies. Sending outreach, submitting listings, and changing account settings each need the user's go.
+Preserve deliberate privacy, staging restrictions, and crawler policies. Sending outreach, submitting listings, spending money, and changing account settings each need the user's go.
 
 Verify time-sensitive search-engine claims against current primary documentation, because SEO advice goes stale faster than training data. SEO blogs and social posts are leads, not proof. Never invent search volume, rankings, results, authorship, or citations, and promise no ranking or indexing date.
