@@ -7,8 +7,8 @@ description: 'Use when writing or rewriting copy that sells or gets found: marke
 
 Each skill owns one job in the copy: gtm decides what is true and who it is for, seo decides what each page answers, talk-normal decides how each sentence reads, and talk-like-mia decides whose voice it is. Read all four in one turn before you start:
 
-- [gtm](../gtm/SKILL.md), plus its [writing](../gtm/references/writing.md) and [outreach](../gtm/references/outreach.md) references
-- [seo](../seo/SKILL.md), plus its [content reference](../seo/references/content.md)
+- [gtm](../gtm/SKILL.md), plus its [gtm-writing](../gtm-writing/SKILL.md) and [gtm-outreach](../gtm-outreach/SKILL.md) branches
+- [seo](../seo/SKILL.md), plus its [seo-content](../seo-content/SKILL.md) branch
 - [talk-normal](../talk-normal/SKILL.md)
 - [talk-like-mia](../talk-like-mia/SKILL.md)
 
@@ -22,7 +22,7 @@ Done when the copy sheet has the one-sentence problem, the audience, every claim
 
 ## 2. Map
 
-When the site is live, run seo's `inspect.mjs` on its pages and save the output for the before and after. Map each copy-sheet phrasing to the existing page that should answer it, per seo's content reference, and propose a new URL only for a phrasing no page fits.
+When the site is live, run [seo-technical](../seo-technical/SKILL.md)'s `inspect.mjs` on its pages and save the output for the before and after. Map each copy-sheet phrasing to the existing page that should answer it, per seo-content, and propose a new URL only for a phrasing no page fits.
 
 Done when every page has one search intent, one next action for the visitor, a title, and a meta description, and no two pages share an intent.
 
@@ -41,8 +41,8 @@ Who is speaking decides the register:
 | --- | --- |
 | Product pages, pricing, docs, titles, meta descriptions | talk-normal mechanics. From talk-like-mia, keep the bluntness, specifics, spelling, and Never list |
 | Mia speaking in first person: about page, origin story, founder note | talk-like-mia email register |
-| Social posts, launch posts, replies, community threads | talk-like-mia casual register, with outreach.md's drafting and posting rules |
-| Cold emails and pitches | talk-like-mia email register, with outreach.md's length limits and opt-out line |
+| Social posts, launch posts, replies, community threads | talk-like-mia casual register, with gtm-outreach's drafting and posting rules |
+| Cold emails and pitches | talk-like-mia email register, with gtm-outreach's length limits and opt-out line |
 
 ## 5. Check
 

@@ -11,7 +11,7 @@ Turn marketing work the user already does by hand into agents that run in the us
 
 Automate one job the user already does by hand, because known steps give the agent its brief and give the user a baseline to judge it against. Add the next agent only once the last one runs clean.
 
-Build in the stack the user already has: their agent tool, scheduler, data sources, and the chat or inbox where they read reports. Ask what they have before proposing anything new. Tools named in the references are practitioners' examples; swap in what the user can reach. Use a plain script where the steps never vary, and an agent where it has to work out the steps toward a goal.
+Build in the stack the user already has: their agent tool, scheduler, data sources, and the chat or inbox where they read reports. Ask what they have before proposing anything new. Tools named in the branch skills are practitioners' examples; swap in what the user can reach. Use a plain script where the steps never vary, and an agent where it has to work out the steps toward a goal.
 
 ## Context before prompts
 
@@ -21,11 +21,11 @@ An agent returns the most generic answer until it reads the user's own material,
 - 3 finished examples the user was happy with
 - a style guide with a banned-words list
 
-Keep them in one folder the agent reads before every run. When output is wrong, fix those files rather than the draft, because most bad output traces to missing input. Build the folder with [context.md](references/context.md).
+Keep them in one folder the agent reads before every run. When output is wrong, fix those files rather than the draft, because most bad output traces to missing input. Build the folder with [marketing-agents-context](../marketing-agents-context/SKILL.md).
 
 ## Approval before anything goes out
 
-Agents draft; the user sends. Sending, publishing, deleting, paying, changing a price and messaging a customer each wait for the user's go, enforced in the agent tool's permission settings, because a rule in a prompt is a request and enforces nothing. Route every new agent's output to the user first. Set this up with [guardrails.md](references/guardrails.md) before any agent runs unattended.
+Agents draft; the user sends. Sending, publishing, deleting, paying, changing a price and messaging a customer each wait for the user's go, enforced in the agent tool's permission settings, because a rule in a prompt is a request and enforces nothing. Route every new agent's output to the user first. Set this up with [marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md) before any agent runs unattended.
 
 ## What stays with the user
 
@@ -36,13 +36,13 @@ Agents take the work and much of the checking; the user keeps the accountability
 
 ## Routing
 
-| Job | Read |
-| --- | --- |
-| First scheduled agent: the weekly report, a competitor check, the charter, dry runs, scheduling | [first-agent.md](references/first-agent.md) |
-| Context folder, standing brief, playbook from recordings, corrections into rules | [context.md](references/context.md) |
-| Permissions, logins, spend caps, quality checks, the review ladder | [guardrails.md](references/guardrails.md) |
-| A coordinator over worker agents, handoffs, always-on agent design | [coordinator.md](references/coordinator.md) |
-| Research bots sharing one folder and a weekly shortlist | [research-team.md](references/research-team.md) |
-| A whole campaign planned, ticketed and reviewed with agents | [campaign.md](references/campaign.md) |
+Each job is its own skill. Read the SKILL.md of every branch the job reaches, and follow it with this skill's rules. Any new agent also reaches marketing-agents-guardrails.
 
-Read every file the job reaches. Any new agent also reaches guardrails.md.
+| Job | Branch |
+| --- | --- |
+| First scheduled agent: the weekly report, a competitor check, the charter, dry runs, scheduling | [marketing-agents-first-agent](../marketing-agents-first-agent/SKILL.md) |
+| Context folder, standing brief, playbook from recordings, corrections into rules | [marketing-agents-context](../marketing-agents-context/SKILL.md) |
+| Permissions, logins, spend caps, quality checks, the review ladder | [marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md) |
+| A coordinator over worker agents, handoffs, always-on agent design | [marketing-agents-coordinator](../marketing-agents-coordinator/SKILL.md) |
+| Research bots sharing one folder and a weekly shortlist | [marketing-agents-research-team](../marketing-agents-research-team/SKILL.md) |
+| A whole campaign planned, ticketed and reviewed with agents | [marketing-agents-campaign](../marketing-agents-campaign/SKILL.md) |

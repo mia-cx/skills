@@ -23,26 +23,26 @@ Done when the copy sheet has the one-sentence problem, the audience, every claim
 
 ## 2. Pick the job
 
-Read only the references the job reaches:
+Each job is its own skill. Read the SKILL.md of every branch the job reaches, and follow it with this skill's copy sheet and boundaries:
 
-| Job | Read |
+| Job | Branch |
 | --- | --- |
-| Positioning, market research, a one-page strategy, the funnel | [foundations.md](references/foundations.md) |
-| Finding people who posted the problem; replies, cold email, DMs | [outreach.md](references/outreach.md) |
-| Posts and short copy that get read | [writing.md](references/writing.md) |
-| A content plan or brand | [organic.md](references/organic.md) |
-| Growing on X | [x.md](references/x.md) |
-| A launch or announcement | [launch.md](references/launch.md) |
-| A product video or short-form video | [video.md](references/video.md) |
-| An AI-generated film | [ai-film.md](references/ai-film.md) |
-| Retention, churn, check-ins, pricing | [retention.md](references/retention.md) |
-| Paid ads | [paid-ads.md](references/paid-ads.md) |
-| Search and AI answers | the [seo](../seo/SKILL.md) skill |
-| Automating any of this with agents | the [marketing-agents](../marketing-agents/SKILL.md) skill |
+| Positioning, market research, a one-page strategy, the funnel | [gtm-foundations](../gtm-foundations/SKILL.md) |
+| Finding people who posted the problem; replies, cold email, DMs | [gtm-outreach](../gtm-outreach/SKILL.md) |
+| Posts and short copy that get read | [gtm-writing](../gtm-writing/SKILL.md) |
+| A content plan or brand | [gtm-organic](../gtm-organic/SKILL.md) |
+| Growing on X | [gtm-x](../gtm-x/SKILL.md) |
+| A launch or announcement | [gtm-launch](../gtm-launch/SKILL.md) |
+| A product video or short-form video | [gtm-video](../gtm-video/SKILL.md) |
+| An AI-generated film | [gtm-ai-film](../gtm-ai-film/SKILL.md) |
+| Retention, churn, check-ins, pricing | [gtm-retention](../gtm-retention/SKILL.md) |
+| Paid ads | [gtm-paid-ads](../gtm-paid-ads/SKILL.md) |
+| Search and AI answers | [seo](../seo/SKILL.md) |
+| Automating any of this with agents | [marketing-agents](../marketing-agents/SKILL.md) |
 
-A whole go-to-market plan: work through foundations.md, then give the 3–5 moves from the other references and seo that fit the product best, each with a concrete example (a post line, a page title, a prompt to track).
+A whole go-to-market plan: work through gtm-foundations, then give the 3–5 moves from the other branches and seo that fit the product best, each with a concrete example (a post line, a page title, a prompt to track).
 
-Content, launches and video build on outreach's leads, so run its scouts first when none are recent.
+Content, launches and video build on gtm-outreach's leads, so run its scouts first when none are recent.
 
 ## Boundaries
 
@@ -50,4 +50,4 @@ Content, launches and video build on outreach's leads, so run its scouts first w
 - Always disclose the relationship to the product; never pose as a customer or a neutral third party.
 - Claims come from the copy sheet. Anything else becomes a question for the user.
 - One message per person, and follow-ups only when the user asks.
-- Anything public or sent goes out only after the user approves it, under the posting rules in outreach.md.
+- Anything public or sent goes out only after the user approves it, under [gtm-outreach](../gtm-outreach/SKILL.md#posting-rules)'s posting rules.

@@ -45,9 +45,30 @@ Written for my ADHD brain.
   - **[refine-rule](skills/refine-rule/SKILL.md)** slim always-loaded rules: AGENTS.md, CLAUDE.md, Cursor rules.
   - **[refine-skill](skills/refine-skill/SKILL.md)** slim a SKILL.md: invocation mode, description, body, references.
 - **[agent-copy](skills/agent-copy/SKILL.md)** write copy for agents, not humans.
-- **[seo](skills/seo/SKILL.md)** diagnose search visibility, improve content, earn links, and get cited in AI answers.
-- **[gtm](skills/gtm/SKILL.md)** positioning, outreach, content, X, launches, video, retention and paid ads, one reference per job. Its scouts find people who posted the problem your product solves.
-- **[marketing-agents](skills/marketing-agents/SKILL.md)** automate marketing work with agents: a weekly report, research bots, a coordinator, a campaign run on tickets.
+- **[seo](skills/seo/SKILL.md)** diagnose search visibility and route to the job.
+  - **[seo-technical](skills/seo-technical/SKILL.md)** crawling and indexing, checked with `inspect.mjs`.
+  - **[seo-content](skills/seo-content/SKILL.md)** keywords, buyer pages, refreshes and title tests.
+  - **[seo-local](skills/seo-local/SKILL.md)** the map pack and Google Business Profile.
+  - **[seo-links](skills/seo-links/SKILL.md)** backlinks worth earning.
+  - **[seo-ai-search](skills/seo-ai-search/SKILL.md)** get recommended and cited in AI answers.
+- **[gtm](skills/gtm/SKILL.md)** the copy sheet every go-to-market job starts from, and the route to the job.
+  - **[gtm-foundations](skills/gtm-foundations/SKILL.md)** positioning, market research, a one-page plan, the funnel.
+  - **[gtm-outreach](skills/gtm-outreach/SKILL.md)** scouts find people who posted the problem; you get a drafted reply and a send link for each.
+  - **[gtm-writing](skills/gtm-writing/SKILL.md)** posts and short copy that get read.
+  - **[gtm-organic](skills/gtm-organic/SKILL.md)** a brand document and a content map.
+  - **[gtm-x](skills/gtm-x/SKILL.md)** what X's feed rewards.
+  - **[gtm-launch](skills/gtm-launch/SKILL.md)** story, demo, people, places, launch week.
+  - **[gtm-video](skills/gtm-video/SKILL.md)** premium product videos and short-form formats.
+  - **[gtm-ai-film](skills/gtm-ai-film/SKILL.md)** a film from image and video models, errors caught before they cost money.
+  - **[gtm-retention](skills/gtm-retention/SKILL.md)** onboarding, behaviour messages, check-ins, pricing signals.
+  - **[gtm-paid-ads](skills/gtm-paid-ads/SKILL.md)** ads you can measure.
+- **[marketing-agents](skills/marketing-agents/SKILL.md)** automate marketing work with agents, starting from one manual task.
+  - **[marketing-agents-first-agent](skills/marketing-agents-first-agent/SKILL.md)** the weekly report as a scheduled agent.
+  - **[marketing-agents-context](skills/marketing-agents-context/SKILL.md)** the context folder and standing brief.
+  - **[marketing-agents-guardrails](skills/marketing-agents-guardrails/SKILL.md)** permissions, spend caps, quality checks.
+  - **[marketing-agents-coordinator](skills/marketing-agents-coordinator/SKILL.md)** one coordinator over worker agents.
+  - **[marketing-agents-research-team](skills/marketing-agents-research-team/SKILL.md)** research bots sharing one folder.
+  - **[marketing-agents-campaign](skills/marketing-agents-campaign/SKILL.md)** a whole campaign on tickets.
 - **[byline](skills/byline/SKILL.md)** talk-normal, talk-like-mia, gtm, and seo in one go, for rewriting marketing copy.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
 - **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.

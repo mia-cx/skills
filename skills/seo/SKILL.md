@@ -11,13 +11,13 @@ Bring the site the visitors it serves. Judge work by useful visits and conversio
 
 Read `DIRECTION.md`, the existing SEO setup, and any search data to learn the audience, the public pages, and what a visitor should do next. Ask only for what changes the work. Without Search Console or analytics access, work from public pages and source code and mark those measurements unknown.
 
-Match the request: an audit produces findings, a fix ships and verifies, a content request skips the technical audit. Read only the references the task reaches:
+Match the request: an audit produces findings, a fix ships and verifies, a content request skips the technical audit. Each job is its own skill. Read the SKILL.md of every branch the task reaches, and follow it with this skill's method and boundaries:
 
-- Crawling, indexing, metadata, structured data, performance: [technical.md](references/technical.md).
-- Keywords, buyer pages, refreshes, title tests, ranking on other platforms: [content.md](references/content.md).
-- Google Business Profile and the map pack: [local.md](references/local.md).
-- Backlinks, mentions, journalist requests: [links.md](references/links.md).
-- Recommendations and citations in AI answers: [ai-search.md](references/ai-search.md).
+- Crawling, indexing, metadata, structured data, performance: [seo-technical](../seo-technical/SKILL.md).
+- Keywords, buyer pages, refreshes, title tests, ranking on other platforms: [seo-content](../seo-content/SKILL.md).
+- Google Business Profile and the map pack: [seo-local](../seo-local/SKILL.md).
+- Backlinks, mentions, journalist requests: [seo-links](../seo-links/SKILL.md).
+- Recommendations and citations in AI answers: [seo-ai-search](../seo-ai-search/SKILL.md).
 
 ## Work from evidence
 
