@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Part of [gtm](../gtm/SKILL.md): its copy sheet and boundaries apply here.
 
-Two jobs share this skill: a polished product video, and short-form posts built on proven formats. An AI-generated film is [gtm-ai-film](../gtm-ai-film/SKILL.md). In all of them, claims on screen come from the copy sheet, and the user watches motion and listens to sound, because you can do neither.
+Two jobs share this skill: a polished product video, and short-form posts built on proven formats. An AI-generated film is [gtm-ai-film](../gtm-ai-film/SKILL.md). In all of them, claims on screen come from the copy sheet, and the user watches motion and listens to sound, because you can do neither. A finished video can go to any platform; publishing on YouTube is [gtm-youtube](../gtm-youtube/SKILL.md), and on X is [gtm-x](../gtm-x/SKILL.md).
 
 ## Product video
 
@@ -28,10 +28,10 @@ Platforms push formats they already recognize, so reuse a proven format and keep
 
 Find formats through outliers: videos that beat their creator's usual views. A big account's views mostly reflect its audience; the gap shows the format did the work. Favor creators under about 100,000 followers with several breakouts, since their formats fit small accounts.
 
-1. **Teardown.** For a video the user sends, get its transcript (on Instagram, the caption), top comments and numbers against the creator's recent videos. Return: the first line verbatim, each beat in order, what viewers came for, what commenters keep asking, what to keep and swap for this product, 5 hooks from different angles, and claims to verify. Mark why-it-worked as opinion, since the data only shows that it did. Save the structure to `.gtm/templates.md`.
+1. **Teardown.** For a video the user sends, get its transcript (the caption, where the platform has no transcript), top comments and numbers against the creator's recent videos. Return: the first line verbatim, each beat in order, what viewers came for, what commenters keep asking, what to keep and swap for this product, 5 hooks from different angles, and claims to verify. Mark why-it-worked as opinion, since the data only shows that it did. Save the structure to `.gtm/templates.md`.
 2. **Voice.** Once, study the user's 30 latest captions and any transcripts. Save their go-to words, words they avoid, how their videos open and close, and AI-sounding habits to keep out to `.gtm/voice.md`. For Mia, start from [talk-like-mia](../talk-like-mia/SKILL.md).
 3. **Scripts.** From a voice note, build 3 scripts on 3 templates, using only the user's words and claims: first line, on-screen text, beats, ending and caption. Check them against `.gtm/voice.md`, save the user's edits back to it, and log the chosen script in `.gtm/log.md`.
-4. **Review.** Weekly, compare the week's videos with the user's 3-month baseline. Name the 3 strongest and 3 weakest and what the strong ones share (hook, format, length, topic), state the sample size behind every pattern, and call anything under 6 videos early. Compare saves on TikTok only. Add 3–5 lessons to `.gtm/lessons.md`.
+4. **Review.** Weekly, compare the week's videos with the user's 3-month baseline. Name the 3 strongest and 3 weakest and what the strong ones share (hook, format, length, topic), state the sample size behind every pattern, and call anything under 6 videos early. Compare a metric only across platforms where the data source reports it; one practitioner's database has saves for TikTok alone. Add 3–5 lessons to `.gtm/lessons.md`.
 
 One practitioner runs these as scheduled bots on Virlo, a paid viral-video database; any source of transcripts, comments and per-video views works.
 

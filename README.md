@@ -54,12 +54,15 @@ Written for my ADHD brain.
 - **[gtm](skills/gtm/SKILL.md)** the copy sheet every go-to-market job starts from, and the route to the job.
   - **[gtm-foundations](skills/gtm-foundations/SKILL.md)** positioning, market research, a one-page plan, the funnel.
   - **[gtm-outreach](skills/gtm-outreach/SKILL.md)** scouts find people who posted the problem; you get a drafted reply and a send link for each.
-  - **[gtm-writing](skills/gtm-writing/SKILL.md)** posts and short copy that get read.
-  - **[gtm-organic](skills/gtm-organic/SKILL.md)** a brand document and a content map.
-  - **[gtm-x](skills/gtm-x/SKILL.md)** what X's feed rewards.
-  - **[gtm-launch](skills/gtm-launch/SKILL.md)** story, demo, people, places, launch week.
-  - **[gtm-video](skills/gtm-video/SKILL.md)** premium product videos and short-form formats.
+  - **[gtm-organic](skills/gtm-organic/SKILL.md)** a brand document, a content map, and which platforms carry it.
+  - **[gtm-writing](skills/gtm-writing/SKILL.md)** posts and short copy that get read, on any platform.
+  - **[gtm-video](skills/gtm-video/SKILL.md)** premium product videos and short-form formats, on any platform.
   - **[gtm-ai-film](skills/gtm-ai-film/SKILL.md)** a film from image and video models, errors caught before they cost money.
+  - **[gtm-x](skills/gtm-x/SKILL.md)** what X's feed rewards.
+  - **[gtm-linkedin](skills/gtm-linkedin/SKILL.md)** LinkedIn posts, articles that rank, DMs from competitors' ads.
+  - **[gtm-reddit](skills/gtm-reddit/SKILL.md)** Reddit research, subreddits, posting without getting removed.
+  - **[gtm-youtube](skills/gtm-youtube/SKILL.md)** demos that show up in Google, titles and thumbnails.
+  - **[gtm-launch](skills/gtm-launch/SKILL.md)** story, demo, people, places, launch week.
   - **[gtm-retention](skills/gtm-retention/SKILL.md)** onboarding, behaviour messages, check-ins, pricing signals.
   - **[gtm-paid-ads](skills/gtm-paid-ads/SKILL.md)** ads you can measure.
 - **[marketing-agents](skills/marketing-agents/SKILL.md)** automate marketing work with agents, starting from one manual task.

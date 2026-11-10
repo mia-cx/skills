@@ -65,11 +65,11 @@ Paid partnerships are disclosed, because undisclosed paid posts break platform r
 
 ## 5. Places
 
-Pick the 5 places the buyer already browses when they need this, from [Places](#places); five good fits beat fifty submissions. Check each site accepts the product's stage and what its free route costs (a queue, a badge, participation). Draft one core description saying what it does, for whom, and how it differs, then adapt the wording per site with screenshots, matching categories and a working URL. In communities, the user takes part before posting the link, then shares it as a story or a request for feedback, because most subreddits and Lobsters remove plain self-promotion. Done when 5 places have a tailored listing draft.
+Pick the 5 places the buyer already browses when they need this, from [Places](#places); five good fits beat fifty submissions. Check each site accepts the product's stage and what its free route costs (a queue, a badge, participation). Draft one core description saying what it does, for whom, and how it differs, then adapt the wording per site with screenshots, matching categories and a working URL. In communities, the user takes part before posting the link, then shares it as a story or a request for feedback, because most subreddits and Lobsters remove plain self-promotion; Reddit specifics are in [gtm-reddit](../gtm-reddit/SKILL.md). Done when 5 places have a tailored listing draft.
 
 ## 6. Launch day
 
-Keep the launch in one post so every quote points to the same place; X shows one post per conversation. Line up a thunderclap: founders, friends and partners post at one set time. Anchor the launch on the platform or ecosystem the product builds on, and use integrations as the onboarding story. Name owners before posting: one for product questions, one for business follow-ups.
+Keep the launch in one post so every quote points to the same place; X shows one post per conversation ([gtm-x](../gtm-x/SKILL.md)). Line up a thunderclap: founders, friends and partners post at one set time. Anchor the launch on the platform or ecosystem the product builds on, and use integrations as the onboarding story. Name owners before posting: one for product questions, one for business follow-ups.
 
 Draft answers where each question was asked: under the post, its quotes, and creators' posts. Propose a DM only when someone said something it answers; check their profile first. A like alone is no reason.
 
@@ -101,8 +101,8 @@ After week one, keep the weekly recap and review numbers weekly. Build community
 
 A menu from two practitioners' lists, not a checklist.
 
-- **Reddit**: r/SideProject, r/indiehackers, r/microsaas, r/buildinpublic, r/alphaandbetausers, r/roastmystartup, r/IMadeThis, r/EntrepreneurRideAlong, r/startups, r/nocode, r/webdev, r/programming
-- **Communities**: Indie Hackers, Hacker News, Lobsters, DEV, Hashnode, Devpost, StackShare, freeCodeCamp Forum, Elpha, NoCodeFounders, the Indie Hackers and SaaS Community Discords
+- **Reddit**: the subreddits in [gtm-reddit](../gtm-reddit/SKILL.md#pick-subreddits)
+- **Communities**: Indie Hackers, Hacker News, Lobsters, DEV, Hashnode, Devpost, StackShare, freeCodeCamp Forum, Elpha, NoCodeFounders, the Indie Hackers and SaaS Community Discords, LinkedIn and Facebook groups
 - **Launch sites**: Product Hunt, BetaPage, Launching Next, MicroLaunch, Tiny Startups, Uneed, Fazier, DevHunt (developer tools), Peerlist
 - **Directories**: AlternativeTo, SaaSHub, G2, Capterra, TrustRadius, LibHunt and OpenAlternative (open source), AppSumo (a marketplace)
 - **AI directories**: Futurepedia, There's An AI For That, Future Tools, AI Agent Store

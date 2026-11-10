@@ -81,7 +81,8 @@ Ask which leads the user posts and which the agents post, then follow [Posting r
 | Public reply | 2–4 sentences |
 | Email | Under 120 words, with a subject naming their post |
 | Email to a Microsoft-hosted address | Under 40 words, because one practitioner reports Microsoft-hosted prospects reply about 6.5 times less often than Google Workspace ones |
-| LinkedIn DM | 2 lines, under 20 words |
+
+LinkedIn DMs follow [gtm-linkedin](../gtm-linkedin/SKILL.md#dms-from-competitors-ads), and Reddit replies follow [gtm-reddit](../gtm-reddit/SKILL.md) on top of these rules.
 
 ## Posting rules
 
@@ -98,20 +99,6 @@ When the user runs an email campaign of their own, read its numbers before rewri
 | Bounces over 2% | The list | Clean or replace the list |
 
 One lead per 300 contacts is a great campaign and one per 500 is solid, so 2–3 leads from 1,000 contacts is working.
-
-## LinkedIn DMs
-
-Open on a problem buyers already pay to hear about: one that three competitors all advertise this month.
-
-1. Open linkedin.com/ad-library (no account needed). Ask the user for the 3 companies they lose deals to, and search each as advertiser, last 30 days.
-2. For each ad, note the opening problem, the offer, and the job title it targets. Collect 5–10 ads on the problem all three share.
-3. Draft 3 DMs in this shape, keeping the problem and dropping the ad wording, since a DM that reads like an ad gets ignored:
-
-```
-we helped [company like theirs] fix [the problem from the ads] in [how long]. want the breakdown?
-```
-
-The customer, fix and time must be a real result from the copy sheet. Propose a test: each DM to 50 people, then 3 new versions of the one with most replies after a week, then the rest of the list. The user sends every message at a human pace inside LinkedIn's weekly limits, because LinkedIn's terms prohibit third-party messaging automation and it restricts accounts that look automated. You research and draft; a weekly rerun of steps 1–3 is fine.
 
 ## Do the work first
 

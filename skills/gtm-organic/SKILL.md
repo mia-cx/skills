@@ -47,7 +47,7 @@ Lens alone gives original posts nobody asked for; research alone gives the posts
 
 ## 3. Pick channels and cadence
 
-- **One platform first**, where the scouts found the audience, matched to the user's strength: writers to X, LinkedIn or newsletters; on-camera people to short video ([gtm-video](../gtm-video/SKILL.md)); talkers to podcasts and YouTube.
+- **One platform first**, where the scouts found the audience, matched to the user's strength: writers to [X](../gtm-x/SKILL.md), [LinkedIn](../gtm-linkedin/SKILL.md) or newsletters; on-camera people to short video ([gtm-video](../gtm-video/SKILL.md)); talkers to podcasts and [YouTube](../gtm-youtube/SKILL.md). Each platform branch covers how pieces are shaped, posted and timed there.
 - **The user's own account**, because early on a founder's account drives more growth than a company page or paid campaigns. On a team, each person's account is a channel.
 - **A cadence they can keep for months.** Practitioners recommend 3–5 posts a week, or daily. Ask what time the user can commit and start lower; consistency beats volume. Payoff takes months.
 
@@ -70,7 +70,7 @@ Quote a customer or caller publicly only with their permission.
 
 ## Reshape per platform
 
-The same article on five sites reaches nobody new. Rebuild each piece in its platform's native form: articles as YouTube demos and short clips that show the result at once; original findings as Reddit answers or answers to existing Quora questions; research reports as SlideShare decks or carousels with one answer per slide, captions and alt text; tutorials on DEV or Hashnode; design case studies on Behance or Dribbble; essays on Substack or Medium; DIY processes on Instructables. End each piece with a related guide, partner with complementary creators, and repeat the formats that bring enquiries. Each version is worth reading on its own, because rewording one thin article across many sites for links is link spam ([seo](../seo/SKILL.md)).
+The same article on five sites reaches nobody new. Rebuild each piece in its platform's native form: articles as [YouTube](../gtm-youtube/SKILL.md) demos and short clips that show the result at once; original findings as [Reddit](../gtm-reddit/SKILL.md) answers or answers to existing Quora questions; research reports as SlideShare decks or carousels with one answer per slide, captions and alt text; tutorials on DEV or Hashnode; design case studies on Behance or Dribbble; essays on Substack or Medium; DIY processes on Instructables. End each piece with a related guide, partner with complementary creators, and repeat the formats that bring enquiries. Each version is worth reading on its own, because rewording one thin article across many sites for links is link spam ([seo](../seo/SKILL.md)).
 
 ## Iterate
 

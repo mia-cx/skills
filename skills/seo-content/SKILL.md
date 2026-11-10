@@ -70,9 +70,9 @@ To test angles first, propose three search ads, one angle each, at about $20 a d
 
 ## Rank on sites that already rank
 
-When LinkedIn, Medium, or forum threads hold page one for a target query, draft a complete answer for that platform under the user's own account: query early in the headline (on LinkedIn it sets the URL), answer and example up front, one link to the next step, and a link back from the user's site. Write for that platform's readers; [site reputation abuse](https://developers.google.com/search/docs/essentials/spam-policies#site-reputation) covers hosting thin third-party pages to borrow a site's ranking.
+When LinkedIn, Medium, or forum threads hold page one for a target query, draft a complete answer for that platform under the user's own account: query early in the headline, answer and example up front, one link to the next step, and a link back from the user's site. Write for that platform's readers; [site reputation abuse](https://developers.google.com/search/docs/essentials/spam-policies#site-reputation) covers hosting thin third-party pages to borrow a site's ranking. LinkedIn articles follow [gtm-linkedin](../gtm-linkedin/SKILL.md#articles-that-rank).
 
-Where results show videos, propose a demo of the product doing that exact task: task in the title, captions, chapters, embedded beside the written answer.
+Where results show videos, propose a demo of the product doing that exact task, per [gtm-youtube](../gtm-youtube/SKILL.md#demos-for-video-results).
 
 For a rising search, check its Google Trends history to rule out seasonality, read the original announcement, and draft what it means for the user's buyers; reporters covering it are outreach for [gtm-outreach](../gtm-outreach/SKILL.md).
 

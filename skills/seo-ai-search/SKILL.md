@@ -47,7 +47,7 @@ Label every cited third-party source by who controls it, and ask why competitors
 ## 4. Fill the gap
 
 - **Pages per decision and buyer.** A small business and a large one ask the same question with different requirements. In a category with low visibility, study what assistants cite there, then plan one page per segment ("accounts payable software for small businesses", "... for large businesses"), backed by comparison and how-to pages on the questions around the purchase.
-- **Threads.** Join only the Reddit and forum threads cited for tracked questions, in communities close to the buyer. Draft a full answer the community would value without the link, and add the link only where it helps, since a bare link reads as spam. The user approves every post.
+- **Threads.** Join only the Reddit and forum threads cited for tracked questions, in communities close to the buyer. Draft a full answer the community would value without the link, and add the link only where it helps, since a bare link reads as spam. The user approves every post; Reddit posting follows [gtm-reddit](../gtm-reddit/SKILL.md).
 - **Agent access.** When the product has an API, draft a `SKILL.md` that tells an agent how to use it. With the user's go to publish it in a public GitHub repo, `npx skills add <org>/<repo>` lists it on skills.sh with its install command. One builder reports assistants now send them customers through integrations.
 
 ## 5. Rerun

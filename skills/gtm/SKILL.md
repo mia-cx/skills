@@ -1,6 +1,6 @@
 ---
 name: gtm
-description: 'Use when the user asks for go-to-market work: positioning, finding people who have the problem, cold emails, replies or DMs, posts or a content plan, growing on X, a launch, a product video, retention or pricing, paid ads, or a whole go-to-market plan.'
+description: 'Use when the user asks for go-to-market work: positioning, finding people who have the problem, cold emails, replies or DMs, posts or a content plan, posting on X, LinkedIn, Reddit or YouTube, a launch, a product video, retention or pricing, paid ads, or a whole go-to-market plan.'
 ---
 
 # GTM
@@ -23,18 +23,23 @@ Done when the copy sheet has the one-sentence problem, the audience, every claim
 
 ## 2. Pick the job
 
-Each job is its own skill. Read the SKILL.md of every branch the job reaches, and follow it with this skill's copy sheet and boundaries:
+Each job is its own skill. Read the SKILL.md of every branch the job reaches, and follow it with this skill's copy sheet and boundaries.
+
+Making a piece and placing it are separate branches. Writing and video make pieces any platform can reuse; each platform branch decides how a piece is shaped, posted and timed there. A post for LinkedIn reaches gtm-writing and gtm-linkedin.
 
 | Job | Branch |
 | --- | --- |
 | Positioning, market research, a one-page strategy, the funnel | [gtm-foundations](../gtm-foundations/SKILL.md) |
-| Finding people who posted the problem; replies, cold email, DMs | [gtm-outreach](../gtm-outreach/SKILL.md) |
-| Posts and short copy that get read | [gtm-writing](../gtm-writing/SKILL.md) |
-| A content plan or brand | [gtm-organic](../gtm-organic/SKILL.md) |
-| Growing on X | [gtm-x](../gtm-x/SKILL.md) |
+| Finding people who posted the problem; replies, cold email | [gtm-outreach](../gtm-outreach/SKILL.md) |
+| A content plan or brand, and which platforms carry it | [gtm-organic](../gtm-organic/SKILL.md) |
+| Writing posts and short copy | [gtm-writing](../gtm-writing/SKILL.md) |
+| Making a product video or short-form video | [gtm-video](../gtm-video/SKILL.md) |
+| Making an AI-generated film | [gtm-ai-film](../gtm-ai-film/SKILL.md) |
+| X: the feed, account reputation, the daily article routine | [gtm-x](../gtm-x/SKILL.md) |
+| LinkedIn: posts, articles that rank, DMs | [gtm-linkedin](../gtm-linkedin/SKILL.md) |
+| Reddit: research, subreddits, posting without removal | [gtm-reddit](../gtm-reddit/SKILL.md) |
+| YouTube: demos for video results, titles and thumbnails | [gtm-youtube](../gtm-youtube/SKILL.md) |
 | A launch or announcement | [gtm-launch](../gtm-launch/SKILL.md) |
-| A product video or short-form video | [gtm-video](../gtm-video/SKILL.md) |
-| An AI-generated film | [gtm-ai-film](../gtm-ai-film/SKILL.md) |
 | Retention, churn, check-ins, pricing | [gtm-retention](../gtm-retention/SKILL.md) |
 | Paid ads | [gtm-paid-ads](../gtm-paid-ads/SKILL.md) |
 | Search and AI answers | [seo](../seo/SKILL.md) |
