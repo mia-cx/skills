@@ -146,7 +146,7 @@ Every PR and project carries a [0rwx](https://0rwx.com) level. The level measure
 - `AI:W` AI collaboration: AI wrote it; I read it.
 - `AI:X` AI made: AI wrote it and I did not read it.
 
-A PR gets its level as a GitHub label (see `pr-file`). A project's README shows its badge directly under the title, at the level most of its code was made at. Update the badge when that changes. Swap `W` for the level:
+A PR gets its level as a GitHub label (see `pr-file`); one that merges unread is `AI:X`. A project's README shows its badge directly under the title. Projects are `AI:W`: I review everything eventually, use my own software, and cut a release only once it all works as I intend. Swap `W` for another level only when I say so:
 
 ```html
 <a href="https://0rwx.com"><picture>
