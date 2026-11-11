@@ -155,6 +155,8 @@ A PR gets its level as a GitHub label (see `pr-file`); one that merges unread is
 </picture></a>
 ```
 
+Add the badge as you go, never as a sweep across repos. When you work in a repo whose `AGENTS.md` does not mention the 0rwx badge, add the badge to the README if it is missing. Then record it in the repo's `AGENTS.md`, creating the file if needed, with the line `The README carries the 0rwx AI:W badge.` Commit both changes together. After that, future threads read the line and skip the README check.
+
 ## Writing for fresh readers
 
 Write every document for someone who has never seen its previous versions or the editing conversation. State the current rule directly. Never use copy as a ledger of edits or negate an old rule absent from the document. Include revision history only when explicitly requested. Apply this check when writing and refining copy; see `~/.agents/skills/agent-copy/SKILL.md`.
