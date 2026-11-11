@@ -103,7 +103,31 @@ Made with <actual model> using <actual harness>.
   reference, `Refs` included, as close intent. When the PR only advances a
   larger issue, file a sub-issue for this slice and close that.
 
-### 5. Push and create the PR
+### 5. Pick the 0rwx label
+
+Every PR gets one 0rwx label (see `AGENTS.md`, AI disclosure), judged from
+who wrote the diff and whether the user reads it before it merges:
+
+| Label  | When                                                          |
+| ------ | ------------------------------------------------------------- |
+| `AI:0` | The user wrote it with no AI input.                           |
+| `AI:R` | The user wrote it; AI only researched or advised.             |
+| `AI:W` | AI wrote it and the PR waits for the user's review.           |
+| `AI:X` | AI wrote it and merges unread: autopilot, "ship it".          |
+
+Create the label when the repo lacks it. `--force` makes this safe to rerun:
+
+```bash
+gh label create "AI:W" --force --color 6e40c9 \
+  --description "0rwx: AI wrote it; a human read it"
+```
+
+Descriptions: `AI:0` "0rwx: hand made", `AI:R` "0rwx: AI read, a human
+wrote it", `AI:X` "0rwx: AI made, unread". When the label no longer fits,
+because review was skipped or the user rewrote the diff, swap it with
+`gh pr edit --remove-label --add-label`.
+
+### 6. Push and create the PR
 
 Push the current branch. Use a normal push when possible. If the rebase rewrote
 an already-published branch, use `--force-with-lease` only after confirming the
@@ -116,12 +140,13 @@ gh pr create \
   --base "<base>" \
   --head "<current-branch>" \
   --title "type(scope): short description" \
-  --body-file "<body-file>"
+  --body-file "<body-file>" \
+  --label "AI:W"
 ```
 
 Do not pass `--draft`. The requested result is a real PR ready for CI and review.
 
-### 6. Verify and report
+### 7. Verify and report
 
-Verify the created PR's URL, title, base, head, and non-draft state with
+Verify the created PR's URL, title, base, head, label, and non-draft state with
 `gh pr view`. Report the URL, rebase result, and checks actually run.

@@ -137,6 +137,24 @@ Each repo keeps its long-term direction in `DIRECTION.md` at the root: what the 
 - Only the thread that owns the project edits it. Subagents put direction-relevant findings in their report instead, so parallel edits never collide.
 - Terms go in `CONTEXT.md` (see `domain-modeling`). Implementation decisions go in code comments and ADRs.
 
+## AI disclosure
+
+Every PR and project carries a [0rwx](https://0rwx.com) level. The level measures how much of the work I can still read, not which tool made it:
+
+- `AI:0` hand made: AI never touched the work.
+- `AI:R` AI inspired: AI read and advised; I wrote it.
+- `AI:W` AI collaboration: AI wrote it; I read it.
+- `AI:X` AI made: AI wrote it and I did not read it.
+
+A PR gets its level as a GitHub label (see `pr-file`). A project's README shows its badge directly under the title, at the level most of its code was made at. Update the badge when that changes. Swap `W` for the level:
+
+```html
+<a href="https://0rwx.com"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://0rwx.com/static/AI-W-dark.svg">
+  <img alt="AI:W" src="https://0rwx.com/static/AI-W-light.svg" height="48">
+</picture></a>
+```
+
 ## Writing for fresh readers
 
 Write every document for someone who has never seen its previous versions or the editing conversation. State the current rule directly. Never use copy as a ledger of edits or negate an old rule absent from the document. Include revision history only when explicitly requested. Apply this check when writing and refining copy; see `~/.agents/skills/agent-copy/SKILL.md`.
