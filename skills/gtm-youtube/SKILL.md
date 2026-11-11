@@ -12,11 +12,11 @@ Google shows videos on the results page for some questions, and a demo that answ
 
 ## Demos for video results
 
-1. Search the user's buyer questions and note which ones show video results.
+1. Search the user's buyer questions and note which ones show video results. For software, search the "best X" query on a phone too; a row of videos there calls for a video.
 2. Pick one specific product question.
-3. Record the product completing that exact task.
+3. Record the product completing that exact task, long-form first; cut short clips from it afterwards.
 4. Name the task in the video title.
-5. Add captions and chapters.
+5. Add chapters starting at 00:00, and captions corrected by hand.
 6. Answer related buyer questions in the description.
 7. Embed the video next to the written answer on the user's site ([seo-content](../seo-content/SKILL.md)).
 

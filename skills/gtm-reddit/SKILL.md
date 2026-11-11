@@ -32,5 +32,6 @@ Choose by one test: would the buyer browse here when they need what the product 
 ## Posting
 
 - Post at most one link per subreddit per day, even where the rules allow more, because consecutive link posts trip anti-spam auto-bans.
+- Mention the company in at most one answer per subreddit per week, posted as the user with the relationship disclosed. The same cap holds on Quora.
 - Agents post only leads the user names, through a browser signed in as the user; subreddits that ban AI-written posts stay with the user ([gtm-outreach](../gtm-outreach/SKILL.md#posting-rules)).
 - Stop all posting on any removal, warning or rate limit.

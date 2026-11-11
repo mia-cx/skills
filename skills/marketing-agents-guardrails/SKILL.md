@@ -13,7 +13,8 @@ Limit what an agent can do and spend, and check its work before the user sees it
 ## Gate irreversible actions
 
 - Set sending, publishing, deleting, paying and price changes to ask-first in the tool's permission settings. In Claude Code that is an `ask` or `deny` permission rule in `settings.json`; in Grok Bot it is Settings → Bot → "When Grok Bot wants to". Other tools call it per-action approval.
-- Keep each gate narrow, so the agent still reads, sorts and drafts before it stops for the user.
+- Keep each gate narrow, so the agent still reads, sorts and drafts before it stops for the user. Each approval request shows the diff or the exact message first.
+- Enforce actions the agent must never take alone in code, not the prompt: a `deny` rule, or a Claude Code `PreToolUse` hook that refuses the matching command or file edit. A prompt line is only a request.
 - Keep anything a client sees as a draft the user sends. A cautionary case: an AI-drafted proposal promised an 80:1 return on ad spend, and an agent that can send can send that.
 
 ## Connect the fewest logins
@@ -30,6 +31,7 @@ Emails, transcripts and web pages can carry hidden instructions, and anything in
 
 - Let the agent use credentials without seeing them: the tool or a secret store injects keys, and keys stay out of prompts and files the agent reads.
 - A compromised cloud loop can take over every machine connected to it, so give each connection the least access it needs.
+- Read every file of a third-party skill, plugin or repo before installing it. An installer that pipes a script from a branch into the shell (`curl | bash`) runs whatever that branch holds at install time.
 
 ## Cap spend
 

@@ -27,7 +27,7 @@ Point new links at pages at positions 10–30 in Search Console, after making th
 ## Run a weekly routine
 
 1. Pick 2–3 site categories where the buyers already look (a SaaS: software directories, startup launches, developer resources; a local service: local listings, community partnerships) and shortlist 20 scored prospects.
-2. Build one submission kit in the repo: URL, one-line and one-paragraph descriptions tailored per audience, logo, screenshots, founder bio and story, tagline, examples. Ask the user for the bio.
+2. Build one submission kit in the repo: URL, one-line description, one-paragraph descriptions tailored per audience, logo, screenshots, founder bio and story, tagline, examples. Ask the user for the bio. The name, one-line description, and logo stay identical on every listing, so search engines and AI tools resolve them to one product. For launch platforms and software directories, 20–30 well-chosen beat 300.
 3. Work five prospects a week: Monday research and score, Tuesday prepare, Wednesday draft the submission or pitch, Thursday follow up, Friday check results. Where a platform wants a contribution rather than a form, spend the slot on that.
 4. After a month, keep the sources that approved, sent visitors, reached the right audience, or led to relationships, and put next month's time there.
 
@@ -39,14 +39,14 @@ Every earned link answers the writer's question "what does this give my readers?
 
 | Opportunity | What earns the link |
 | --- | --- |
-| Roundups ("best X for Y") | Search the buying query in Google and ChatGPT and open the cited listicles; offer a tested feature or example covering a buyer need the list misses. Recheck the entry later and send updates |
+| Roundups ("best X for Y") | Search the buying query in Google and ChatGPT and open the cited listicles that name competitors but not the product; offer a tested feature or example covering a buyer need the list misses, in a 120–180-word pitch with evidence. One follow-up after a week, then stop. Recheck the entry later and send updates |
 | Original research | The site's own data with method, sample, dates, and limits, each finding a self-contained quotable sentence, at a stable URL linked to product pages |
 | Journalist requests | Qwoted, Featured, SourceBottle, ResponseSource, Dot Star Media; answer only current requests inside real expertise, direct answer first, plus a verifiable number or example. Log requests so none repeat |
 | Free tools | A calculation the audience repeats, tested with normal and odd inputs, at a permanent URL; also publish to npm, browser extension stores, or WordPress plugins where it fits |
 | Competitor links | Read the sentence around each link to learn why it was cited; create the evidence that publisher lacks |
 | Broken links | Dead competitor URLs with backlinks, or guides naming shut-down tools; read the archived page and offer a replacement serving the same reader |
 | Visuals and video | Offer a graphic or short demo for one named section of a text-heavy guide; make it after the author agrees, from their checked facts, with credit wording |
-| Owed links | Unlinked brand mentions, reused charts and quotes, removed pages that still have backlinks (restore or redirect to an equivalent), vendor case studies of the user's real workflow |
+| Owed links | Unlinked brand mentions (search `"brand" -site:yoursite.com`), reused charts and quotes, removed pages that still have backlinks (restore or redirect to an equivalent), and a customer story about a tool the user relies on, sent to that vendor, since vendors link to those |
 
 ## Where to find prospects
 
@@ -64,6 +64,8 @@ Launch platforms and community posting belong to [gtm-outreach](../gtm-outreach/
 ## Link policy
 
 Earn editorial citations. Google's [link spam policy](https://developers.google.com/search/docs/essentials/spam-policies#link-spam) names bought links that pass ranking credit, excessive link exchanges, required dofollow, low-quality directory links, and automated posting. Fill in every profile created, and skip directories whose free route demands a reciprocal badge. Paid placements carry `rel="sponsored"` or `nofollow`, and commercial relationships are disclosed.
+
+Refuse outright: link exchange and credit networks, paid Reddit or Quora "tasks", fake accounts, self-written reviews, mass AI posts across a site network, and city × service template pages.
 
 Some shortcuts sit beside that line. Present them to the user as decisions, each needing their go:
 

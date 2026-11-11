@@ -1,15 +1,18 @@
 // Usage: node inspect.mjs <url>... | node inspect.mjs --sitemap <sitemap-url>
 // Fetches each URL as Googlebot would see the raw HTML (no rendering) and prints one JSON line per URL:
 // redirect chain, X-Robots-Tag, meta robots, canonical, title, description, H1 count, start of body text,
-// <a href> count, robots.txt verdict, issues. Each origin also gets one line: missing-page status and listed sitemaps.
+// <a href> count, robots.txt verdict, issues. Each origin also gets one line: missing-page status, listed sitemaps,
+// and what each AI search bot gets for the home page (robots.txt verdict and response status).
 // Filter problems with: | jq 'select(.issues | length > 0)'
 
 const UA = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 const MAX_HOPS = 10
 const CONCURRENCY = 6
 const BODY_PREVIEW = 120
+// Crawlers that fetch pages for AI answers. Blocking one removes the site from that assistant's answers.
+const AI_SEARCH_BOTS = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot', 'bingbot']
 
-const get = (url) => fetch(url, { redirect: 'manual', headers: { 'user-agent': UA } })
+const get = (url, ua = UA) => fetch(url, { redirect: 'manual', headers: { 'user-agent': ua } })
 
 const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' }
 const decode = (s) => s?.replace(/&(#x[\da-f]+|#\d+|\w+);/gi, (m, e) =>
@@ -20,8 +23,8 @@ const attrs = (tag) =>
 const tags = (html, name) => [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map(([t]) => attrs(t))
 const text = (s) => s && decode(s.replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim()
 
-/** Google's robots.txt rules for Googlebot: most specific matching group, longest matching rule, allow wins ties. */
-export function robotsVerdict(robotsTxt, path) {
+/** Google's robots.txt rules for one crawler: its own group, else `*`; longest matching rule; allow wins ties. */
+export function robotsVerdict(robotsTxt, path, agent = 'googlebot') {
   const groups = []
   let current, inAgents = false
   for (const raw of robotsTxt.split(/\r?\n/)) {
@@ -37,8 +40,9 @@ export function robotsVerdict(robotsTxt, path) {
       if (value) current.rules.push({ allow: k === 'allow', pattern: value })
     } else inAgents = false
   }
-  const pick = (agent) => groups.filter((g) => g.agents.includes(agent)).flatMap((g) => g.rules)
-  const rules = groups.some((g) => g.agents.includes('googlebot')) ? pick('googlebot') : pick('*')
+  const token = agent.toLowerCase()
+  const pick = (name) => groups.filter((g) => g.agents.includes(name)).flatMap((g) => g.rules)
+  const rules = groups.some((g) => g.agents.includes(token)) ? pick(token) : pick('*')
   const matches = (pattern) => new RegExp('^' + pattern.replace(/[.+?^{}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*')).test(path)
   const best = rules.filter((r) => matches(r.pattern))
     .sort((a, b) => b.pattern.length - a.pattern.length || b.allow - a.allow)[0]
@@ -99,17 +103,31 @@ async function inspect(url) {
   return report
 }
 
-/** Site-wide checks, printed once per origin: soft 404s and the sitemap's listing in robots.txt. */
+/**
+ * Site-wide checks, printed once per origin: soft 404s, the sitemap's listing in robots.txt, and access for
+ * AI search bots. The bot status only spoofs the user agent, so a firewall that verifies bot IPs can refuse
+ * it while letting the real crawler through; its security event log tells the two apart.
+ */
 async function inspectOrigin(origin) {
   const probe = await get(`${origin}/seo-inspect-missing-${Date.now()}`)
-  const sitemaps = [...(await robotsFor(origin)).matchAll(/^\s*sitemap\s*:\s*(\S+)/gim)].map(([, s]) => s)
+  const robotsTxt = await robotsFor(origin)
+  const sitemaps = [...robotsTxt.matchAll(/^\s*sitemap\s*:\s*(\S+)/gim)].map(([, s]) => s)
+  const aiSearchBots = Object.fromEntries(await Promise.all(AI_SEARCH_BOTS.map(async (bot) => [bot, {
+    robotsTxt: robotsVerdict(robotsTxt, '/', bot),
+    status: (await get(`${origin}/`, `Mozilla/5.0 (compatible; ${bot}/1.0)`)).status,
+  }])))
   return {
     origin,
     missingPageStatus: probe.status,
     sitemaps,
+    aiSearchBots,
     issues: [
       probe.status === 200 && 'missing pages return 200 (soft 404)',
       !sitemaps.length && 'robots.txt lists no sitemap',
+      ...Object.entries(aiSearchBots).flatMap(([bot, { robotsTxt: verdict, status }]) => [
+        verdict.startsWith('disallow') && `robots.txt blocks ${bot}`,
+        status >= 400 && `${bot} gets ${status}`,
+      ]),
     ].filter(Boolean),
   }
 }

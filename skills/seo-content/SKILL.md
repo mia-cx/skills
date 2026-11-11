@@ -36,11 +36,26 @@ Done when every query is grouped with those needing the same answer and mapped t
 
 ## Build the pages buyers check before paying
 
-Pricing (real prices, plan limits, discount and trial terms beside signup), a comparison with each rival on the same criteria, "alternative to X" pages, migration guides, and feature or integration demos answering stalling objections. Each carries a trial or demo button.
+Pricing (real prices, plan limits, discount and trial terms beside signup), a comparison with each rival on the same criteria, "alternative to X" pages, "best X for [buyer]" lists, migration guides, and feature or integration demos answering stalling objections. Each carries a trial or demo button. These decision pages are also what AI answers cite most.
+
+Rules for decision pages (thresholds from published SEO skills; rules of thumb, not tested):
+
+- Build the page type that 6 or more of the top 10 results share. If all ten are blog posts and the user sells a product, skip the query. Two queries share a page when 4 or more of their top 10 match.
+- Answer in the first 40–80 words and name the product, because AI engines lift passages, not pages.
+- A "best of" list has 5–8 options. Every price comes from the vendor's own page with a "checked on" date, every option including the user's gets one real drawback, and the user's product is not ranked first.
+- Add one thing the top 10 lack (the user's own number, test, or screenshot) and show the method.
 
 Grow topics from a product page: one broad guide to its buyer questions, detail pages linked both ways, existing answers reused, then the buyer's next problem.
 
-Programmatic pages each need distinct value and verified facts, stored per row in the spreadsheet the template reads. Merge rows needing the same answer, review a small batch before expanding, and fix pages Google drops within 60 days. Near-identical location or keyword pages count as scaled content abuse, so a row without its own facts gets no page. Pace a new domain slower than you can produce, because a burst of pages with no brand searches or links reads as generated.
+Programmatic pages each need distinct value and verified facts, stored per row in the spreadsheet the template reads. Merge rows needing the same answer, review a small batch before expanding, and fix pages Google drops within 60 days. Near-identical location or keyword pages count as scaled content abuse, so a row without its own facts gets no page.
+
+## Pace a new domain
+
+A burst of pages with no brand searches or links reads as generated, so a new domain publishes 1–4 pages a week (practitioners disagree on the number, not the direction) and waits 2–3 months before judging a change. Its order: week 0 the [seo-technical](../seo-technical/SKILL.md) checks, Bing, and a first run of the buyer questions; at launch Search Console, sitemap, and directories; from month 1 one decision page a week with a demo video each; from month 3 the Search Console loops below (refreshes, title tests, pruning), which need data a new site lacks.
+
+## Grade drafts before publishing
+
+Score every draft against a written rubric before it ships. One published skill scores 8 areas out of 5 and passes at 32 of 40 with no area under 3; agree the areas with the user (answer up front, information gain, accuracy, trust signals, internal links, and so on). A draft that fails goes back with the failing areas named.
 
 ## Improve pages that already rank
 
