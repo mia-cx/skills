@@ -113,7 +113,7 @@ who wrote the diff and whether the user reads it before it merges:
 | `AI:0` | The user wrote it with no AI input.                           |
 | `AI:R` | The user wrote it; AI only researched or advised.             |
 | `AI:W` | AI wrote it and the PR waits for the user's review.           |
-| `AI:X` | AI wrote it and merges unread: autopilot, "ship it".          |
+| `AI:X` | A simple change AI wrote and self-reviewed; merges unread.    |
 
 Create the label when the repo lacks it. `--force` makes this safe to rerun:
 

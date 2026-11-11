@@ -155,7 +155,15 @@ A PR gets its level as a GitHub label (see `pr-file`); one that merges unread is
 </picture></a>
 ```
 
-Add the badge as you go, never as a sweep across repos. When you work in a repo whose `AGENTS.md` does not mention the 0rwx badge, add the badge to the README if it is missing. Then record it in the repo's `AGENTS.md`, creating the file if needed, with the line `The README carries the 0rwx AI:W badge.` Commit both changes together. After that, future threads read the line and skip the README check.
+Add the badge as you go, never as a sweep across repos. When you work in a repo whose `AGENTS.md` does not mention the 0rwx badge, add the badge to the README if it is missing. If the repo has a `CONTRIBUTING.md`, add this section to it:
+
+```md
+## AI disclosure
+
+This project is [0rwx](https://0rwx.com) `AI:W`: AI writes most of the code, and every release is reviewed in use and at the architecture level before it ships. Each PR carries its own level, `AI:0`, `AI:R`, `AI:W` or `AI:X`. State yours in your PR description.
+```
+
+Then record it in the repo's `AGENTS.md`, creating the file if needed, with the line `The README carries the 0rwx AI:W badge.` Commit all of it together. After that, future threads read the line and skip the README check.
 
 ## Writing for fresh readers
 
