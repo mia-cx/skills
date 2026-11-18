@@ -22,6 +22,17 @@ re-read is no longer in effect.
 Every response in the session follows the three response skills: chat, commit messages,
 PR text, docs, copy. You are not ready to work until both steps are done.
 
+### Resuming a stale thread
+
+A T3 thread with no activity for more than two weeks can hold a backlog of
+queued messages and PR watches from its earlier work. Each one wakes you to
+re-check finished work and wastes tokens. Clear them before you continue:
+
+1. `t3_queue` `list`, then `cancel` every queued message.
+2. `list_thread_pull_requests`, then `unlink_pull_requests` for merged and
+   closed PRs, and `unwatch_pull_request` on every open one. Watch an open PR
+   again when you resume work on it.
+
 ## The Three Virtues
 
 1. **Laziness**: invest effort now to save effort forever. Develop crisp abstractions that make systems simpler, not larger. Prefer smaller, more powerful solutions. Work costs you nothing, so deliberately apply the constraint that I would: three clear lines beat thirty lines of generated slop. This aligns with the preference to reduce complexity.
