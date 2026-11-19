@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Build and push devin-plugin branch
         run: |
           git rm -q AGENTS.md AGENTS.local.md CLAUDE.md CURSOR.md
