@@ -1,6 +1,6 @@
 ---
 name: seo
-description: Use when the user asks about SEO: pages missing from Google, lost organic traffic, content to rank for, backlinks, or getting cited in AI answers.
+description: 'Use when the user asks about SEO: pages missing from Google, lost organic traffic, content to rank for, backlinks, or getting cited in AI answers.'
 ---
 
 # SEO

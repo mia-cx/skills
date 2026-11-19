@@ -1,6 +1,6 @@
 ---
 name: marketing-agents
-description: Use when the user asks to automate marketing with agents: automate our weekly report, give a bot our playbook, stop a bot sending or overspending, check a bot's work, put a coordinator over bots, build a research bot, design an always-on agent, or run this campaign with agents.
+description: 'Use when the user asks to automate marketing with agents: automate our weekly report, give a bot our playbook, stop a bot sending or overspending, check a bot''s work, put a coordinator over bots, build a research bot, design an always-on agent, or run this campaign with agents.'
 ---
 
 # Marketing agents
