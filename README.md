@@ -15,6 +15,10 @@ npx skills add mia-cx/skills
 
 Pick the skills you want from the list. Works with Claude Code, Cursor, Codex, and anything else that reads `SKILL.md` files.
 
+## Devin
+
+Devin installs this repository from the `devin-plugin` branch, which a workflow rebuilds on every push to `main`. That build carries `devin/AGENTS.md` as its only always-on rule; the root `AGENTS.md`, `AGENTS.local.md` and `CLAUDE.md` stay with local coding harnesses.
+
 ## Restore upstream skills
 
 After cloning this repository, run from its root:
