@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build and push devin-plugin branch
         run: |
-          git rm -q --cached AGENTS.md AGENTS.local.md CLAUDE.md CURSOR.md
+          git rm -q AGENTS.md AGENTS.local.md CLAUDE.md CURSOR.md
           git mv devin/AGENTS.md AGENTS.md
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
