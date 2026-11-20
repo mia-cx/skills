@@ -1,0 +1,64 @@
+.DS_Store
+.references/
+.worktrees/
+node_modules/
+
+# Boardroom smoke-test / meeting transcripts (timestamped outputs)
+boardroom/debates/*.json
+boardroom/debates/2*.md
+boardroom/memos/2*.md
+boardroom/expertise/*.md
+boardroom/scratchpads/*.md
+boardroom/visuals/*.mmd
+boardroom/visuals/*.svg
+boardroom/memos/*-narration.txt
+boardroom/memos/*-narration.mp3
+
+# Keep any future intentionally checked-in demos under a separate examples/fixtures path.
+
+.env*
+!.env*.example
+.ant-colony/
+__pycache__/
+
+# Portable upstream dependencies are recorded in skills-lock.json.
+# The global install registry and project restore output are machine-local.
+.skill-lock.json
+.agents/
+
+# Claude's skill sync cache: a machine-local mirror of skills already in this repo.
+skills/synced/
+
+# Skills owned by the `skills` CLI.
+# Local changes do not survive `skills update`: upstream a PR, or drop the
+# skill from the lock to take ownership of it here.
+skills/ask-matt/
+skills/codebase-design/
+skills/create-formal-verification-skill/
+skills/diagnosing-bugs/
+skills/domain-modeling/
+skills/grill-with-docs/
+skills/grilling/
+skills/handoff/
+skills/improve-codebase-architecture/
+skills/loop-me/
+skills/maintain-formal-verification-skill/
+skills/modernize/
+skills/prototype/
+skills/research/
+skills/security-audit/
+skills/setup-matt-pocock-skills/
+skills/statechart/
+skills/tdd/
+skills/teach/
+skills/to-questionnaire/
+skills/triage/
+skills/untangle-codebase/
+skills/wayfinder/
+skills/wizard/
+skills/writing-beats/
+skills/writing-fragments/
+skills/writing-shape/
+.obsidian/vault-stats.json
+.obsidian/workspace.json
+.obsidian/plugins/novel-word-count/data.json
