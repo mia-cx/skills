@@ -130,12 +130,6 @@
       "skillPath": "skills/productivity/to-questionnaire/SKILL.md",
       "computedHash": "befbec7005695163741a57bc94810dc5048fb766baaa485d5160b1d7f86335c1"
     },
-    "transitions-dev": {
-      "source": "Jakubantalik/transitions.dev",
-      "sourceType": "github",
-      "skillPath": "skills/transitions-dev/SKILL.md",
-      "computedHash": "221aa2b675784d694578b547fa3ec32189d4d5ae23c3173f36e739d09eb7569f"
-    },
     "transitions-polish": {
       "source": "Jakubantalik/transitions.dev",
       "sourceType": "github",

@@ -1,6 +1,6 @@
 ---
 name: expressive-web
-description: Use when the user asks for a scroll-driven, spatial, animated, procedural, or WebGPU experience, a hero or landing page that feels alive, or asks to make a marketing page use the web as a medium. Micro-interactions belong to transitions-dev. Stage 5 of ui-design.
+description: Use when the user asks for a scroll-driven, spatial, animated, procedural, or WebGPU experience, a hero or landing page that feels alive, or asks to make a marketing page use the web as a medium. Motion tokens and timing belong to transitions-polish. Stage 5 of ui-design.
 ---
 
 # Expressive web
@@ -11,7 +11,7 @@ Use capabilities that a static brochure cannot offer. In an expressive web or ma
 
 Choose the technique because it communicates something specific. Let the product remain operable while people explore it. Operational interfaces can be direct and efficient while their marketing experience is more expressive. Do not force a GPU scene into a form that gains nothing from it.
 
-Read and use [transitions-dev](../transitions-dev/SKILL.md) when implementing motion. It owns transition recipes and motion tokens; do not inline them here.
+Read and use [transitions-polish](../transitions-polish/SKILL.md) when implementing motion. It owns the motion tokens and timing rules; do not inline them here.
 
 An optional preflight can generate a page image through an available image-generation tool. Treat it as a concrete composition reference. Inspect it for impossible interactions, unreadable text, and layouts that cannot adapt. Recreate the feasible design as responsive UI. Never ship a flattened image in place of the interface. Use only models actually available in the runtime.
 
