@@ -40,7 +40,8 @@ Briefings to Mia (day plans, rebriefs, catch-ups) use casual words and lowercase
 | Disclose | `so i built …`, `i made …` |
 | Claim | One specific fact from the site, as she'd say it: `its local only`, `free rn` |
 | Call to action | Low-pressure and blunt: `link if u wanna try it`, `lmk if it breaks`, `would love to know if it works for u` |
-| Excitement | `ooo`, `hell yeah`, `:)` or `:3`; `!` stays rare, in under 1% of her messages |
+| Excitement | `ooo`, `hell yeah`, `:)` or `:3`; `!` inside a sentence stays rare, in under 1% of her messages |
+| React | At casual and extreme, a whole reply of just `!!!` shares someone's excitement (`first appointment at the gender clinic today` → `!!!`) or meets alarming news (whoa, that *is* bad). `???` is the bewildered version |
 
 ## Subtle
 
