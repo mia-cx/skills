@@ -26,7 +26,7 @@ Done when each claim you plan to make has a source: a file and line, a commit, a
 
 ## 2. Ask Mia for the story
 
-The repo holds the decisions, not the moment that started them. Ask Mia one question: what made her build this? A specific annoyance, a moment, a thing she saw. Her answer opens the post. When DIRECTION or a research note already records the moment, ask her to confirm it in stead.
+The repo holds the decisions, not the moment that started them. Ask Mia one question: what made her build this, and what was wrong with what already existed? Her answer is usually a few drivers. They are the post's spine: one section each, in her order, and the first sentence names them. When DIRECTION or a research note already records the moment, ask her to confirm it in stead.
 
 ## 3. Pick one reader, one action, one takeaway
 
@@ -63,8 +63,8 @@ Then the body, in this shape:
 
 1. **Open on Mia's story or the claim**, in one plain sentence. Crunch Time opens on the moment; Quiet Cost opens on the claim.
 2. **Why it exists**: the annoyance in a paragraph or two of prose, as Mia would tell it.
-3. **Each feature**: lead with the rule it follows, in one sentence. Then the obvious version a reader would expect, and why Mia didn't build it. Then only as much of how it works as proves the rule. Give each feature a `##` heading when there are three or more; the page title is the post's only `#`.
-4. **What it can't do yet**: anything unbuilt is "planned" or "next", with what it waits on.
+3. **Each feature**: lead with the rule it follows, in one sentence, stated as what the project does in Mia's voice ("Caelestis draws inside Wplace's map"), not as an instruction to the reader. Then the obvious version a reader would expect, and why Mia didn't build it. Then only as much of how it works as proves the rule. Give each feature a `##` heading when there are three or more; the page title is the post's only `#`.
+4. **What it can't do yet**, when that serves the takeaway: anything unbuilt is "planned" or "next", with what it waits on. A roadmap belongs in DIRECTION, not here.
 5. **Close** on the takeaway in one line, then the action as a question to the reader.
 
 Rules for every sentence:
@@ -72,6 +72,8 @@ Rules for every sentence:
 - **Plain words.** CONTEXT.md terms are for your grounding. In the post, "the artist", not "the Author"; "a name it hides", not "a Redacted name". Explain a term once, where the reader first needs it.
 - **Prose that thinks out loud**, like Mia's posts. A list only for a procedure or a recap.
 - **Code**: in a private repo, quote the smallest snippet that proves the claim, 10 lines at most. In a public repo, link the file at a commit (`https://github.com/<owner>/<repo>/blob/<sha>/<path>#L<a>-L<b>`) and quote only when the snippet is the point.
+- **Links prove, they don't decorate.** Link where a reader would doubt the claim or want to dig in, a few per section at most. Your full claim-to-source list goes in the hand-back, not the post.
+- **Mia's own words stay verbatim**: her title, her drivers, any phrase she gave you, even where the voice level wouldn't produce them.
 - **Shipped means merged to main.** Everything else is planned, next, or an idea, said as such.
 - **Synthetic examples only.** Invent every name, message, track and record. Real user data, real people's personal details and anything from Mia's own data stay out, even when the repo's fixtures hold them.
 - **The project is the subject.** Leave out Mia's identity: her gender, health, background and where she lives.
