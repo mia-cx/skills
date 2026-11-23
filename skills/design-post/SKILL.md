@@ -89,6 +89,8 @@ Read the draft as it will render, line by line, against:
 - shipped versus planned against `main`;
 - every name and example: invented, never real;
 - talk-like-mia's Never list and the subtle level;
+- headings as plain labels or questions, the way Mia's posts use them ("So why FLAC?"), never slogans;
+- slop cadence: tricolon summaries ("one X, two Y, one fix under all three"), sections that open with the same sentence shape, and a close that sums up the post in stead of just ending it;
 - the opening sentence and the closing line against the comment's reader, action and takeaway.
 
 ## 6. Hand back
