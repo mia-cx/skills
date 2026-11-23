@@ -8,11 +8,11 @@ disable-model-invocation: true
 
 Part of [marketing-agents](../marketing-agents/SKILL.md): its context and approval rules apply here.
 
-Give an agent the user's own process, examples and rules so it works at their level instead of the generic default. What the agent reads matters more than how the request is worded, so spend effort on the files, not on clever prompts.
+Give an agent the user's own process, examples and rules so it works at their level instead of the generic default. What the agent reads matters more than how the request is worded, so spend effort on the files, not on clever prompts. Anthropic calls this context engineering: the smallest set of high-signal material that gets the result. OpenAI's agent guide says to write instructions from the procedures the user already follows.
 
 ## Write the brief first
 
-A vague request lets the agent fill the gaps and return work that only looks finished. Before a job runs, get three things from the user in writing: the audience, what is out of scope, and the definition of done.
+A vague request lets the agent fill the gaps and return work that only looks finished: Anthropic's research agents, given vague tasks, duplicated each other's work and left gaps. Before a job runs, get three things from the user in writing: the audience, what is out of scope, and the definition of done.
 
 When the user can't fill them in, interview them: one question per message about what you don't understand, until all three are written. If two rounds of corrections haven't landed, stop tweaking and rewrite the prompt.
 
@@ -24,16 +24,18 @@ One folder per job, read first on every run:
 context/
 ├── brief.md      ← audience, out of scope, definition of done
 ├── process.md    ← the playbook
-├── examples/     ← 3 finished examples the user was happy with
+├── examples/     ← 3 finished examples the user was happy with, varied in topic or format
 ├── style.md      ← style rules and banned words (start with 10)
 └── rules.md      ← one line per correction
 ```
+
+Pick varied examples, because Anthropic recommends "diverse, canonical examples" and near-identical ones teach the agent to copy one shape.
 
 Fit it to the stack: a coding agent reads it from the repo; a Claude Project, custom GPT or Gemini Gem takes the same files as uploads, with the standing brief in its instructions box.
 
 ## Standing brief
 
-Fill this with the user and put it where the agent reads it every time, so the user never re-explains the business. The last rule matters most: every correction becomes a new line, so the brief improves each week. One practitioner's advice: give it a month before judging it.
+Fill this with the user and put it where the agent reads it every time, so the user never re-explains the business. The last rule matters most: every correction becomes a new line, kept short by the monthly pruning in [Turn corrections into rules](#turn-corrections-into-rules). One practitioner's advice: give it a month before judging it.
 
 ```
 ROLE
@@ -63,7 +65,7 @@ HOW TO WORK WITH ME
 
 ## Extract the playbook
 
-The user doesn't have to write `process.md` from scratch. Have the agent extract it from finished work and recordings of the user doing the job. Comparing recordings side by side shows where the user does the job inconsistently, which is exactly where an agent would guess. One practitioner says this cut a 10–14 day process to 5 days (anecdote).
+The user doesn't have to write `process.md` from scratch. Have the agent extract it from finished work and recordings of the user doing the job. Comparing recordings side by side shows where the user does the job inconsistently, which is exactly where an agent would guess. One former agency COO says this cut a 10–14 day process to 5 days (his anecdote).
 
 ```
 Here are [5] finished examples of [job] and [3] recordings of me doing it. If you can't open a recording, tell me.
@@ -81,12 +83,14 @@ Where you can't tell why I did something, ask me. Never guess.
 Save it as "[job] playbook" in [folder].
 ```
 
-- Build a playbook only where it saves 20–30 minutes per client or run (one practitioner's threshold).
+- Build a playbook only where it saves 20–30 minutes per client or run (the same COO's threshold).
 - Some agent tools record one browser task and turn it into a draft skill. A recording knows only that one run, so add by hand what to do when a file is missing or a number looks off.
 
 ## Turn corrections into rules
 
 Fix the file, not the draft. On every correction, propose one rule line, and add it to `rules.md` or the charter once the user agrees. Write down why the output missed, because that is how the user's taste compounds into the system.
+
+Prune the rules monthly: merge lines that say the same thing and delete ones the agent no longer breaks. A file that only grows gets worse, because models recall less as their context fills (Anthropic calls it context rot) and miss facts buried in the middle of long inputs (Liu et al., *Lost in the middle*).
 
 To find the rules that matter most, run a revision diagnostic on the user's past feedback: the last ~500 revision comments from email, Slack or doc comments, or as many as exist.
 
@@ -95,4 +99,15 @@ Help me understand the distribution of the top revision reasons based on these c
 Then for the top 3 reasons, tell me what was missing from the brief, and write each one as a check I can add to my charter.
 ```
 
-Add the top reason to the charter as a pass/fail line. One former agency COO traced 80% of a 50%+ revision rate to bad briefing, incomplete onboarding information, and no client-specific do's-and-don'ts list. In his example, a creative agency at a 70% average revision rate found 40% of revisions came from incomplete briefs and 30% from onboarding gaps.
+Add the top reason to the charter as a pass/fail line. One former agency COO traced 80% of his agency's 50%+ revision rate to bad briefing, incomplete onboarding information, and no client-specific do's-and-don'ts list. In his example, a creative agency at a 70% average revision rate found 40% of revisions came from incomplete briefs and 30% from onboarding gaps. These are his figures, not a study.
+
+## Sources
+
+- [Anthropic: Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- [Anthropic: How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+- [OpenAI: A practical guide to building agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf)
+- [Nelson F. Liu et al., *Lost in the middle: how language models use long contexts* (2023)](https://arxiv.org/abs/2307.03172)
+- [Ethan Mollick, *On-boarding your AI intern* (2023)](https://www.oneusefulthing.org/p/on-boarding-your-ai-intern)
+- [Addy Osmani, *Critical thinking when agents do the work* (2026)](https://x.com/addyosmani/status/2117512471930167377)
+- [Kyle Hunt, *How to build a $1M company with Grok Bot* (2026)](https://x.com/huntkyle/status/2118086670918750341)
+- [@notkvtwts, *How to actually make money with AI* (2026)](https://x.com/notkvtwts/status/2115810173830750575)

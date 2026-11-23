@@ -8,12 +8,12 @@ disable-model-invocation: true
 
 Part of [marketing-agents](../marketing-agents/SKILL.md): its context and approval rules apply here.
 
-Run a multi-channel campaign that agents research, build and check, while the user agrees the offer and approves every launch. Every asset can pass its own checks and still contradict the others, so the campaign is planned, ticketed and reviewed as one.
+Run a multi-channel campaign that agents research, build and check, while the user agrees the offer and approves every launch. Every asset can pass its own checks and still contradict the others, because agents working in parallel make implicit decisions they can't see in each other's work (Walden Yan, *Don't build multi-agents*), so the campaign is planned, ticketed and reviewed as one.
 
 ## Steps
 
 1. **Plan out loud.** Ask the user to talk for 5–10 minutes into a transcription tool, or write freely: the goal, the context, what they've tried, what they're unsure about. Save it as `plan.md`.
-2. **Question the plan.** Interview the user with [grilling](../grilling/SKILL.md) until the offer, the goal and what counts as a qualified lead are written to `brief.md`. The lead definition decides which results count later. Creative waits for an agreed offer.
+2. **Question the plan.** Interview the user, one question per message (a `grilling` skill does this if one is installed), until the offer, the goal and what counts as a qualified lead are written to `brief.md`. The lead definition decides which results count later. Creative waits for an agreed offer.
 3. **Build the folder** below. Done when each channel brief points to `brief.md`.
 4. **Research and brief** with the goal prompt. Done when `creative-brief.md` is ready for the user's review.
 5. **Ticket it.** Done when every deliverable has a ticket naming what it depends on. A coordinator hands out the ready ones ([marketing-agents-coordinator](../marketing-agents-coordinator/SKILL.md)).
@@ -74,7 +74,7 @@ do not produce or publish ads. ask if required context is missing.
 
 ## Tickets
 
-Each ticket names the deliverable, the context to read, the checks before review, what it depends on, and who or which agent has it. When one is blocked on the user, it records the exact question and other work carries on.
+Each ticket names the deliverable, the context to read, the checks before review, what it depends on, and who or which agent has it, because Anthropic found agents without an objective, an output format, sources and clear boundaries duplicate work and leave gaps. When one is blocked on the user, it records the exact question and other work carries on.
 
 Dependencies set the order: research runs in parallel, final copy needs an agreed offer, ads need a page to point to, and follow-up emails match what someone signed up for.
 
@@ -113,13 +113,13 @@ if blocked, name the missing input or decision.
 otherwise, mark ready for review. do not publish.
 ```
 
-Inside a ticket an agent loops make, check, fix, with a retry limit and a budget ([marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md#define-verified-before-the-run)). When it keeps failing the same check, it asks the user for the missing photo, tool or decision. Passing checks doesn't make creative good; the user judges the direction.
+Inside a ticket an agent loops make, check, fix, with a retry limit and a budget ([marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md#define-verified-before-the-run)). When it keeps failing the same check, it asks the user for the missing photo, tool or decision, the hand-back OpenAI's agent guide sets once failures pass a threshold. Passing checks doesn't make creative good; the user judges the direction.
 
 ## Check the campaign as a whole
 
 Before launch, check every asset against the others:
 
-- Does the ad promise what the landing page delivers?
+- Does the ad promise what the landing page delivers? A link that promises more than the page delivers spends the visitor's trust (NN/g, *Information scent*).
 - Does the email use the same offer?
 - Are dates, links and claims the same everywhere?
 
@@ -128,6 +128,8 @@ When the offer changes during review, every asset that mentions it goes back for
 ## Learn from results
 
 Start from one question, such as "which creative angles brought qualified leads last month, and what should we test next?" It takes spend, lead outcomes and each ad's angle, from the ad platform, analytics and the CRM. Campaign and ad IDs say what ran, UTM tags say where visits came from, and where they carry through to the CRM a sale ties back to an ad ([gtm-paid-ads](../gtm-paid-ads/SKILL.md)).
+
+Before launch, put `utm_source`, `utm_medium` and `utm_campaign` on every campaign link to the user's site, spelled in one agreed lowercase form, because Google Analytics reports missing values as "(not set)" and counts "Meta" and "meta" as two sources.
 
 Flag missing tracking instead of crediting every sale to an ad, and a failed data update instead of reporting old numbers. Then ask the user for what the numbers can't show (late follow-ups, an offer changed halfway, an ad that drew the wrong buyers) and save it next to the results.
 
@@ -141,3 +143,12 @@ Each time the user steps in to fix the agents' work, fix the cause:
 | the output looked right but wasn't useful | the brief and the definition of a good result |
 
 Run the workflow on the next campaign. If it gets worse, it was relying on instructions buried in the last conversation; move them into its files.
+
+## Sources
+
+- [Walden Yan, *Don't build multi-agents* (2025)](https://cognition.com/blog/dont-build-multi-agents)
+- [Anthropic: How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+- [OpenAI: A practical guide to building agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf)
+- [Raluca Budiu, NN/g: *Information scent* (2020)](https://www.nngroup.com/articles/information-scent/)
+- [Google Analytics Help: Collect campaign data with custom URLs](https://support.google.com/analytics/answer/10917952)
+- [Shann Holmberg, *How to become a marketing engineer* (2026)](https://x.com/shannholmberg/status/2098004743536750869)
