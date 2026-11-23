@@ -51,6 +51,10 @@ The terminal may stay silent or show `Password:` without mentioning Touch ID.
 Keep the same command running and allow 60 seconds for approval before reporting
 authentication as a blocker. Respect an explicit cancellation or authentication failure.
 
+Mia browses only in Helium. Chromium (Blink) and Zen (Gecko) are agent test browsers, so Mia can
+keep working while agents test. When Mia must sign in or approve something herself (OAuth, consent
+screens), give her the link to open in Helium. Never open it for her in Chromium or Zen.
+
 Run every visual browser UI check in `Chromium.app` through its debug CDP port. Keep the CDP session
 open and set `Emulation.setFocusEmulationEnabled({ enabled: true })` so background animation frames
 keep running. Chromium removes the override when that session closes. Do not use Helium or browser
