@@ -87,7 +87,7 @@ LinkedIn DMs follow [gtm-linkedin](../gtm-linkedin/SKILL.md#dms-from-competitors
 
 ## Posting rules
 
-Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else, including venues that ban AI-written posts and every LinkedIn message, stays with the user. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because platforms count repeated similar posts as spam (Reddit's spam rules name it) and many communities cap self-promotion. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
+Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else stays with the user: every Reddit post and comment (Reddit's Responsible Builder Policy requires agents to run as labelled apps), venues that ban AI-written posts, and every LinkedIn message. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because platforms count repeated similar posts as spam (Reddit's spam rules name it) and many communities cap self-promotion. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
 
 ## Cold email campaigns
 
