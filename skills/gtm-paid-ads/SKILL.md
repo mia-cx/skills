@@ -8,40 +8,73 @@ disable-model-invocation: true
 
 Part of [gtm](../gtm/SKILL.md): its copy sheet and boundaries apply here.
 
-Paid ads only pay when the platform learns from correct data and the user can tell what the ads really add. Fix tracking first, match pages to ads, measure incrementally, then feed the account better creative. The playbook is one practitioner's, written for Meta and Google ads on an online store; their numbers are unverified claims. Every change that spends money waits for the user's go.
+Paid ads only pay when the platform learns from correct data and the user can tell what the ads really add, because platform reports count sales that follow an ad, not sales it caused. Fix tracking first, match pages to ads, measure incrementally, then feed the account better creative. The workflow is one practitioner's (Korzhov), written for Meta and Google ads on an online store; numbers marked as his are unverified claims. Every change that spends money waits for the user's go.
 
 ## 1. Count each sale once
 
-Ad platforms optimise on the conversion events they receive, so a duplicated or missing sale teaches the algorithm wrong data. The practitioner claims most accounts send duplicates or miss about a quarter of orders.
+Ad platforms optimise on the conversion events they receive: Meta uses only events matched to a person for attribution and delivery optimisation, so a duplicated or missing sale teaches the algorithm wrong data. Korzhov claims most accounts send duplicates or miss about a quarter of orders.
 
-Send the purchase event from both browser and server with the same event ID, so Meta merges them: Google Tag Manager, GA4, server-side tagging (such as Stape), and the Meta Conversions API. Done when Meta Events Manager counts each test order once and event match quality is above 7.
+Send the purchase event from both browser and server with the same event ID and the same event name, so Meta discards a duplicate that arrives within 48 hours of the first: Google Tag Manager, GA4, server-side tagging (such as Stape), and the Meta Conversions API. Check event match quality in Events Manager, which Meta scores out of 10 without publishing a target; Korzhov aims above 7, and sending more customer information parameters raises it. Done when Events Manager counts each test order once and event match quality is recorded.
 
 ## 2. Match the page to the ad
 
-Most paid traffic leaves in the gap between what the ad promised and what the page says, and closing it costs less than more spend. Draft landing-page variants whose headline and first section match each ad, with claims from the copy sheet. Measure with product analytics such as PostHog, calculate the A/B sample size before starting, and call the test only when it is reached. Done when every live ad points to a page that repeats its promise.
+People click on a guess of what the page holds and leave when it doesn't confirm the promise (NN/g, information scent), so a page that repeats the ad's promise wastes less of the spend. Draft landing-page variants whose headline and first section match each ad, with claims from the copy sheet. Measure with product analytics such as PostHog, calculate the A/B sample size before starting, and call the test only when it is reached, because checking until a result looks significant turns noise into false wins (Evan Miller). Done when every live ad points to a page that repeats its promise.
 
 ## 3. Measure what ads add
 
-Platforms credit themselves with more sales than they cause; the practitioner puts it at 2–5 times. Propose a regional holdout: Meta ads off in 5 matched regions for 4 weeks, then compare the real sales drop with what Meta attributed. The test regions lose those sales, so the user picks regions small enough to afford it. For an ongoing per-channel estimate, marketing mix modelling with Google Meridian or Meta Robyn (both free) works. Done when the user knows the ratio between attributed and real sales.
+Platforms credit themselves with more sales than they cause: across 15 randomised Facebook experiments, tracking-based estimates were off by a factor of three in half the studies, mostly too high (Gordon et al. 2019), and eBay's brand-keyword search ads showed no measurable short-term benefit (Blake, Nosko and Tadelis 2015). Korzhov puts the over-crediting at 2–5 times; the size varies by account.
+
+Propose a randomised holdout. Where Meta offers its person-level Conversion Lift test, prefer it, because Meta rates it statistically stronger than a geo test. Otherwise run a geo experiment (Vaver and Koehler, Google):
+
+1. Split matched regions at random into ads-on and ads-off groups. Size the test with a power analysis, for example in Meta's open-source [GeoLift](https://facebookincubator.github.io/GeoLift/), which picks markets and duration, because ad effects are small next to weekly sales swings and small tests often can't read them (Lewis and Rao 2015). Korzhov's default is 5 regions off for 4 weeks.
+2. Compare each group's sales with its own pre-test weeks. What the ads added is how much more the ads-off group changed than the ads-on group.
+3. Compare that with the sales Meta attributed.
+
+The holdout loses the sales ads would have brought, so the user picks a holdout small enough to afford it. For an ongoing per-channel estimate, propose marketing mix modelling with Google [Meridian](https://developers.google.com/meridian) or Meta [Robyn](https://facebookexperimental.github.io/Robyn/) (both free and open source), calibrated with the holdout result. Done when the user knows the ratio between attributed and measured sales, with the test's confidence range.
 
 ## 4. Creative in volume
 
-Run time is the only public signal that an ad performs: nobody keeps paying for a loser, so an ad live for 60+ days probably pays for itself.
+The ad itself drives more sales lift than reach, targeting or timing (Nielsen's analysis of about 500 consumer-goods campaigns), and run time is the best public hint of which competitor ads work: an ad live for 60+ days is probably paying for itself. That is a heuristic, not proof, because the Ad Library shows when an ad ran, not what it spent or earned, and brand ads and neglected accounts run long too.
 
-1. Write a scraper for the Meta Ad Library (free and public) covering up to 30 competitors, keeping ads live more than 60 days.
-2. Rebuild each format for the product with the user's own footage, wording and claims. Copy structure only, because reused wording or footage invites IP complaints.
+1. List up to 30 competitors' active ads that have run more than 60 days, with copy, format and start date. Read the [Meta Ad Library](https://www.facebook.com/ads/library/) by hand, or call the Ad Library API (`ads_archive`, which returns `ad_delivery_start_time`) for ads that reached the EU. Never scrape the library, because Meta's terms forbid automated collection without its written permission.
+2. Rebuild each format for the product with the user's own footage, wording and claims. Copy the structure only, because copyright protects a competitor's expression, not the idea or method behind it (US Copyright Office, Circular 33), and reused wording or footage invites IP complaints.
 3. Upload them paused for the user to review.
 
-The account that tests more creatives usually wins. For volume, batch phone-style ads from one product photo and a 30-second script: Veo, Seedance or Kling for video, ElevenLabs for voice, auto-captions, exported in 9:16 and 4:5 with varied hooks, voices and openings. Label them as AI and keep them from implying a real customer said anything, because fake testimonials can breach the FTC's 2024 rule and platform AI-disclosure rules. Video craft lives in [gtm-video](../gtm-video/SKILL.md).
+Korzhov claims the account that tests more creatives usually wins. For volume, batch phone-style ads from one product photo and a 30-second script: Veo, Seedance or Kling for video, ElevenLabs for voice, auto-captions, exported in 9:16 and 4:5 with varied hooks, voices and openings. Label them as AI, check the platform's AI-disclosure rules, and keep them from implying a real customer said anything, because the FTC bans testimonials that misrepresent that the person exists or used the product (16 CFR 465), and ads showing "actual consumers" must use real ones or clearly say they aren't (16 CFR 255.2). Video craft lives in [gtm-video](../gtm-video/SKILL.md).
 
 ## 5. An agent on the account
 
-Agents bidding with the same rules and platform data tie; the winner has inputs others lack: the product's review data, a scrape of competitors, and what a customer really costs across channels. When the user asks for an agent on the account, propose these rules:
+Korzhov's reasoning: agents bidding with the same rules and platform data tie, so the winner has inputs others lack: the product's review data, a scrape of competitors' sites, and what a customer really costs across channels. When the user asks for an agent on the account, propose his rules, fitted to how Meta learns:
 
-- Check the account hourly.
+- Check the account hourly for spend anomalies.
+- Leave ad sets in Meta's learning phase alone, and batch changes into one edit, because an ad set needs about 50 optimisation events in 7 days to stabilise and changes can restart learning (Meta).
 - Pause ads costing over 3x the target cost per customer, after 50 conversions.
-- Raise budget 20% on ads that won three days in a row.
+- Raise budget 20% on ads that won three days in a row (Korzhov's number).
 - Draft three new versions of the best ad.
 - Post every action with its reason to Slack, and keep a log.
 
-The user sets spend caps on the ad platform itself before it runs, because rules inside an agent cannot stop a bug from spending past them. The practitioner's Claude skills for the full playbook: https://github.com/irinabuht12-oss/marketing-skills
+The user sets spend caps on the ad platform itself before it runs (Meta's account spending limit, Google Ads budgets), because rules inside an agent cannot stop a bug from spending past them. A Google Ads campaign can spend up to twice its daily budget on a given day, but no more than 30.4 times it in a month.
+
+## Sources
+
+- [Gordon, Zettelmeyer, Bhargava and Chapsky, *A Comparison of Approaches to Advertising Measurement: Evidence from Big Field Experiments at Facebook* (Marketing Science, 2019)](https://www.kellogg.northwestern.edu/faculty/gordon_b/files/fb_comparison.pdf)
+- [Blake, Nosko and Tadelis, *Consumer Heterogeneity and Paid Search Effectiveness* (NBER, 2014; Econometrica, 2015)](https://www.nber.org/system/files/working_papers/w20171/w20171.pdf)
+- [Lewis and Rao, *The Unfavorable Economics of Measuring the Returns to Advertising* (QJE, 2015)](https://ideas.repec.org/a/oup/qjecon/v130y2015i4p1941-1973.html)
+- [Vaver and Koehler, *Measuring Ad Effectiveness Using Geo Experiments* (Google, 2011)](https://research.google/pubs/measuring-ad-effectiveness-using-geo-experiments/)
+- [Nielsen: When it comes to advertising effectiveness, what is key? (2017)](https://www.nielsen.com/insights/2017/when-it-comes-to-advertising-effectiveness-what-is-key/)
+- [Raluca Budiu, NN/g: Information Scent (2020)](https://www.nngroup.com/articles/information-scent/)
+- [Evan Miller, *How Not To Run an A/B Test* (2010)](https://www.evanmiller.org/how-not-to-run-an-ab-test.html)
+- [Meta for Developers: Deduplicate Pixel and server events](https://developers.facebook.com/docs/marketing-api/conversions-api/deduplicate-pixel-and-server-events/)
+- [Meta for Developers: Conversions API best practices](https://developers.facebook.com/docs/marketing-api/conversions-api/best-practices/)
+- [Meta for Developers: Understanding and optimizing your ad campaign (learning phase)](https://developers.meta.com/vr/resources/optimize-ad-campaign/)
+- [Meta Transparency Center: Ad Library tools](https://transparency.meta.com/researchtools/ad-library-tools/)
+- [Meta for Developers: Ad Library API (ads_archive)](https://developers.facebook.com/docs/graph-api/reference/ads_archive/) and [ArchivedAd fields](https://developers.facebook.com/docs/graph-api/reference/archived-ad/)
+- [Meta: Automated Data Collection Terms](https://www.facebook.com/legal/automated_data_collection_terms)
+- [Meta Open Source: GeoLift](https://facebookincubator.github.io/GeoLift/) and [its walkthrough](https://facebookincubator.github.io/GeoLift/docs/GettingStarted/Walkthrough/)
+- [Google: Meridian](https://developers.google.com/meridian)
+- [Meta: Robyn](https://facebookexperimental.github.io/Robyn/)
+- [Google Ads Help: About overdelivery and your average daily budget](https://support.google.com/google-ads/answer/2375423?hl=en)
+- [US Copyright Office: Circular 33, Works Not Protected by Copyright](https://www.copyright.gov/circs/circ33.pdf)
+- [eCFR: 16 CFR Part 465, Use of consumer reviews and testimonials](https://www.ecfr.gov/current/title-16/chapter-I/subchapter-D/part-465)
+- [eCFR: 16 CFR Part 255, Guides concerning endorsements and testimonials](https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255)
+- [@korzhov_dm: eleven marketing-engineering workflows, from ad agents to incrementality](https://x.com/korzhov_dm/status/2118984106335756532)
