@@ -1,6 +1,6 @@
 ---
 name: webmcp
-description: 'Use when making a website or web app usable by AI agents: exposing its actions as WebMCP tools (`document.modelContext`, `toolname` forms), or reviewing a site for agent navigability.'
+description: 'Use when making a website or web app usable by AI agents: exposing its actions as WebMCP tools (`document.modelContext`, `toolname` forms, an MCP server bridged to the page), or reviewing a site for agent navigability.'
 ---
 
 # WebMCP
@@ -16,7 +16,7 @@ This skill covers agents acting on a page the user has open. Getting crawled, re
 1. **Read the baseline.** Agents without WebMCP navigate through the accessibility tree, and the declarative API builds its schema from form labels, so semantic, labelled markup comes first. Check it against [ui-a11y](../ui-a11y/SKILL.md). Done when every control the tools will touch has an accessible name and every form field has a `name` and a `<label>`.
 2. **List the journeys.** Write down what a user comes to do on each page state, as verbs: search, filter, add to cart, book, export. Each verb is one candidate tool. Done when every candidate maps to something a person can already do in the UI, and no two overlap.
 3. **Annotate forms.** Each `<form>` that performs a listed verb becomes a declarative tool ([Declarative](#declarative-forms)). Done when every such form has `toolname` and `tooldescription`.
-4. **Register the rest.** Verbs that are not a single form submission (reading app state, multi-step edits, filtering a client-side list) become imperative tools that call the same service the UI calls ([Imperative](#imperative-tools)). Done when every remaining candidate is registered for exactly the page states where it works, and every write tool carries its annotations ([Security](#security)).
+4. **Register the rest.** Verbs that are not a single form submission (reading app state, multi-step edits, filtering a client-side list) become imperative tools that call the same service the UI calls ([Imperative](#imperative-tools)). When the site already runs an MCP server, bridge its server-side tools instead of rewriting them ([Bridging](#bridging-an-mcp-server)). Done when every remaining candidate is registered for exactly the page states where it works, and every write tool carries its annotations ([Security](#security)).
 5. **Run every tool.** In Chrome with `chrome://flags/#enable-webmcp-testing` on, open DevTools → Application → WebMCP. Run each tool from **Available Tools** with valid input, then with bad input. Then give a real agent a plain-language task with the [Model Context Tool Inspector](https://chromewebstore.google.com/detail/model-context-tool-inspec/gbpdfapgefenggkahomfgkhfehlcenpd) extension or [webmcp-extension](https://github.com/GoogleChromeLabs/webmcp-extension). Done when each tool succeeds, bad input returns a message the agent fixes on retry, the UI shows every change, and the agent picks the right tool unprompted.
 6. **Ship.** Register the site in the [origin trial](https://developer.chrome.com/origintrials/#/register_trial/4163014905550602241) and serve its token in `<meta http-equiv="origin-trial" content="…">` or an `Origin-Trial` header. The API exists only in secure contexts (HTTPS or localhost).
 
@@ -110,6 +110,23 @@ In Svelte 5, `$effect` runs client-only and its return value is the cleanup, so 
 
 React has [`use-webmcp-tool`](https://www.npmjs.com/package/use-webmcp-tool); Angular and Vue ship their own integrations. Put route-scoped tools in the route's component and app-wide tools (search, navigation) in the root layout.
 
+## Bridging an MCP server
+
+A bridge reads a remote MCP server's `tools/list` and registers one page tool per server tool, relaying each call back to the server. Choose where each tool runs by what it touches: the DOM, UI state and Web APIs stay as page tools; durable data, secrets, third-party APIs and work that outlives the tab stay on the server and get bridged. The agent sees one list either way.
+
+Cloudflare offers two bridges:
+
+- **Edge bridge** (developer preview): Dashboard → Agent Readiness → WebMCP, with the Site MCP Server pack on. Cloudflare injects `<script type="module" src="/.webmcp/bridge.js" data-mcp-url="/mcp">` into every HTML response; nothing changes at the origin. Set the zone's MCP URL when the server lives elsewhere than `/mcp`. Confirm with `curl -s https://<site> | grep webmcp`. Turn it off per hostname with a Configuration Rule whose action sets `webmcp_enabled: false`.
+- **Agents SDK** (experimental): `await registerWebMcp({ url: "/mcp", prefix: "remote." })` from `agents/experimental/webmcp`, run in the page. It adds auth headers (`getHeaders`), a name prefix, re-sync on `tools/list_changed`, and `dispose()`. In `agents` 0.34 it registers on `navigator.modelContext`, the API's earlier name, so confirm the tools appear in DevTools before relying on it.
+
+Both bridges pass every listed tool through unchanged, so the server decides what the page gets:
+
+- **Scope.** A server built for Claude or Cursor often lists dozens of tools, past the [budget](#tool-design). Point the bridge at an endpoint that lists only the tools a visitor on that page should have, such as `/mcp/web`, written to the tool design rules.
+- **Auth.** The edge bridge calls with the visitor's cookies (`credentials: "same-origin"`) and no bearer token. The bridged endpoint must accept the session cookie, and it should require `Content-Type: application/json` with CORS closed so another site cannot post with those cookies.
+- **Confirmation.** The SDK forwards only `readOnlyHint`, so MCP's `destructiveHint` never becomes `consequentialHint`, and the edge bridge documents no mapping. Keep irreversible tools off the bridged list, or end them at a step the user confirms in the UI: a checkout link, not a completed purchase.
+- **Errors.** The SDK turns an `isError` result into a thrown error, which the agent receives without its message. Return recoverable errors as ordinary text content.
+- **Names.** A page tool and a bridged tool with the same name collide silently. Prefix the bridged set.
+
 ## Security
 
 An agent carries the user's session, so every tool acts as the user.
@@ -127,3 +144,4 @@ The explainers describe features no browser ships yet: continuation tokens for t
 
 - [Explainer](https://github.com/webmachinelearning/webmcp) and [specification](https://webmachinelearning.github.io/webmcp/)
 - Chrome: [overview](https://developer.chrome.com/docs/ai/webmcp), [best practices](https://developer.chrome.com/docs/ai/webmcp/best-practices), [secure tools](https://developer.chrome.com/docs/ai/webmcp/secure-tools), [declarative API](https://developer.chrome.com/docs/ai/webmcp/declarative-api), [DevTools](https://developer.chrome.com/docs/devtools/application/webmcp)
+- Cloudflare: [edge bridge](https://blog.cloudflare.com/webmcp), [Commerce.com rollout](https://blog.cloudflare.com/webmcp-commerce/), [Agents SDK adapter](https://github.com/cloudflare/agents/blob/main/experimental/webmcp.md)
