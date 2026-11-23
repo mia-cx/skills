@@ -134,12 +134,12 @@ How to apply:
 - opus-5.5 is the default for everything: planning, implementation, UI, and review. It tops the intelligence column, just above fable-5.1, with the same taste. fable-5.1 is more intuitive: it finds the simpler, more elegant solution more often.
 - These are defaults, not limits. You have standing permission to escalate: use cheaper models to gather information and try things first, and if the output doesn't meet the bar, redo the work with a smarter model without asking. Judge the output, not the price tag. Escalating costs less than shipping mediocre work.
 - Bulk or mechanical work that nobody sees (clear-spec implementation, data analysis, migrations): gpt-6.1-sol, the cheapest model per task and smarter than sonnet-5.5. Verify its output against acceptance criteria, since it is less reliable. When the work touches anything user-facing, use opus-5.5 instead.
+- Large batch jobs (scripted API calls over many items: labelling, judging, scoring, synthetic data) run on a non-frontier model: luna, terra, haiku, or sonnet. Frontier models (opus, sol, fable, astra) are reserved for agentic work and small runs.
 - sonnet-5.5 only pays off for in-depth audits that read a lot of fresh material and hit the cache little; there its lower token price counts. Everywhere else, use opus-5.5.
 - Delegate for capability or parallelism, never to dodge cost: long idle loops like babysitting a PR are not worth handing to another model.
 - GPT models never make anything user-facing, such as UI or API design, not even a first draft. User-facing work needs taste ≥ 7. The one exception is copy: GPT models of the gpt-6 class or newer may write it, and older GPT models may not.
 - Beyond bulk work, GPT models are for an independent second opinion on hard reasoning (reviews, debugging), not for building. Use gpt-6.1-sol: it is the steadier of the two and far cheaper. gpt-6-astra can be sharper, but it varies too much run to run, so run it only when I ask for it. Verify either before acting on it.
 - fable-5.1 is an explicit-request model only, rare even then: it drains usage limits about twice as fast. Reach for opus-5.5 instead.
-- Never use Haiku.
 
 ## Project direction
 
@@ -147,7 +147,7 @@ Each repo keeps its long-term direction in `DIRECTION.md` at the root: what the 
 
 - Read it before you plan, prioritise, or recap the project.
 - Update it in the same turn when I change the vision or priorities, a decision rules out an alternative, or a milestone ships.
-- Keep it tight, under 150 lines, because every planning session reads all of it. It holds direction, not a changelog or a spec.
+- Cap it by the kind of content, not by length. It holds only the purpose, the heading, the current state and the decisions, each stated as its conclusion. Study results, measurements, experiment write-ups, changelogs and specs go in their own files (for example `docs/research/<study>.md`); DIRECTION states the conclusion and links the file.
 - Create it lazily, the first time there is direction worth writing down.
 - Only the thread that owns the project edits it. Subagents put direction-relevant findings in their report instead, so parallel edits never collide.
 - Terms go in `CONTEXT.md` (see `domain-modeling`). Implementation decisions go in code comments and ADRs.
