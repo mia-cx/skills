@@ -13,7 +13,16 @@ Read these in one turn before you start: [say-less](../say-less/SKILL.md), [say-
 
 Read the README, `CONTEXT.md`, `DIRECTION.md`, the research notes (`docs/research/`, `research/`, ADRs), and the code behind each feature you might write about. Check the repo's visibility with `gh repo view --json visibility`.
 
-Done when each claim you plan to make has a source: a file and line, a commit, or a decision in DIRECTION. A claim without one becomes a question for Mia.
+Then read the GitHub history. It holds most of the *why*: PRDs and their sub-issues, wayfinder maps, issues, and pull requests both open and closed, with their review threads. A closed PR that never merged is often the obvious version Mia rejected, with her reason in the thread.
+
+```sh
+gh issue list --state all --limit 200 --json number,title,state,labels
+gh pr list --state all --limit 200 --json number,title,state,mergedAt
+gh issue view <n> --comments
+gh pr view <n> --comments
+```
+
+Done when each claim you plan to make has a source: a file and line, a commit, an issue or PR, or a decision in DIRECTION. A claim without one becomes a question for Mia.
 
 ## 2. Ask Mia for the story
 
@@ -74,7 +83,7 @@ Done when the post is 800–1500 words and every feature has its rule, its rejec
 
 Read the draft as it will render, line by line, against:
 
-- every claim against its source from step 1;
+- every claim against its source from step 1, and every "shipped" against a merged PR;
 - shipped versus planned against `main`;
 - every name and example: invented, never real;
 - talk-like-mia's Never list and the subtle level;
