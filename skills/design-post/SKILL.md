@@ -7,7 +7,7 @@ description: 'Use when drafting a design post about one of Mia''s projects for m
 
 A design post tells a stranger why a project exists and why it went this way and not the obvious way. It is Mia's writing under Mia's name, so every claim traces to the repo, and nothing leaves her machine until she says yes.
 
-Read these in one turn before you start: [say-less](../say-less/SKILL.md), [say-more](../say-more/SKILL.md), [momentum](../momentum/SKILL.md), [talk-like-mia](../talk-like-mia/SKILL.md), and two of Mia's own posts in `mia-cx/mia-cx` under `vaults/blog/`: `Crunch Time.md` and `The Quiet Cost of Carelessness.md`. Those two are the shape to match.
+Read these in one turn before you start: [say-less](../say-less/SKILL.md), [say-more](../say-more/SKILL.md), [momentum](../momentum/SKILL.md), [talk-like-mia](../talk-like-mia/SKILL.md), and two of Mia's own posts in `mia-cx/mia-cx` under `vaults/blog/`: `Crunch Time.md` and `The Quiet Cost of Carelessness.md`. Those two are the voice to match. [examples/caelestis.md](examples/caelestis.md) is a finished design post Mia approved, as it looked at hand-back: match its shape, and take nothing from it as a fact about another project.
 
 ## 1. Read the repo
 
