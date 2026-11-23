@@ -37,11 +37,11 @@ Any of the four in the diff means roll back first and investigate second.
 
 - Block only pages meant to stay out, such as admin and login. A robots.txt block stops crawling, not indexing, and hides any `noindex` from the crawler; private content needs access control. Check the CDN's bot protection too ([AI crawlers](#ai-crawlers)).
 - The www and bare hosts redirect to one canonical host in a single hop.
-- When content or links exist only after JavaScript runs, fix it with the framework's existing static generation, prerendering, or SSR. Link pages with `<a href>`.
-- Sitemaps list only canonical, indexable, 200 URLs on the right origin, with truthful modification dates, and robots.txt names the sitemap. Sitemap generation can stop silently, so after each publish confirm the new URL appears in `--sitemap` output.
+- When content or links exist only after JavaScript runs, fix it with the framework's existing static generation, prerendering, or SSR, because Google recommends server-side or pre-rendering and not every bot runs JavaScript. Link pages with `<a href>`, the only links Google reliably parses.
+- Sitemaps list only canonical, indexable, 200 URLs on the right origin, with `lastmod` dates that change only on significant updates (Google ignores dates it finds inaccurate), and robots.txt names the sitemap. Sitemap generation can stop unnoticed, so after each publish confirm the new URL appears in `--sitemap` output.
 - Canonicals, internal links, sitemap entries, and redirects agree. Each page's canonical points at itself unless it duplicates another. Keep meaningful locale and pagination distinctions, and inspect query parameters and faceted navigation before any blanket canonical or crawl rule.
 - Missing pages return 404 or 410. Redirect a retired URL only to an equivalent page, in one hop; collapse existing chains.
-- Fix broken internal links, and link orphan pages from relevant pages and the navigation.
+- Fix broken internal links, and link every page that matters from at least one other page and, where it fits, the navigation.
 
 ## AI crawlers
 
@@ -56,38 +56,55 @@ Training crawlers and search crawlers are separate, and each robots.txt setting 
 | Microsoft | (none listed) | Bingbot, which feeds Copilot |
 
 - Read the live robots.txt (inspect.mjs fetches it), never the repo copy: a CDN can prepend its own rules. OpenAI applies a robots.txt change to ChatGPT search in about 24 hours.
+- ChatGPT-User and Perplexity-User fetch on a user's request and may ignore robots.txt, so a robots.txt rule cannot keep them out; access control can.
 - `aiSearchBots` reports the robots.txt verdict and the status each search bot gets for the home page. The status probe only spoofs the user agent, so a firewall that verifies bot IPs may refuse it while admitting the real crawler; the firewall's event log tells them apart.
-- On Cloudflare, check three settings with the user. AI Crawler and Agent access policies (Security → Settings → Bot traffic) set Search, Agent, and Training separately; Search on Block shuts out AI search crawlers, and Training actions also hit crawlers used for both search and training. Managed robots.txt prepends Disallow rules for training crawlers to the origin's file. Bot Fight Mode challenges automated traffic, ignores WAF skip rules, and labels what it challenged in Security → Analytics → Events, so check those events after launch.
+- On Cloudflare, check three settings with the user. AI Crawler and Agent access policies (Security → Settings, filter Bot traffic) set Search, Agent, and Training separately; Search on Block shuts out AI search crawlers, and Training actions also hit crawlers used for both search and training. With Bot Preference Sync on and any of those policies on Block (or Training on Disallow), Cloudflare prepends matching rules to the origin's robots.txt. Bot Fight Mode challenges automated traffic, ignores WAF skip rules, and labels what it challenged in Security → Analytics → Events, so check those events after launch.
 
 ## Bing Webmaster Tools
 
-Bing's index feeds Copilot, and Bing reports AI citations, which Google does not. The user sets it up in about ten minutes: My Sites → Import from Google Search Console (verifies the site and brings its sitemaps), confirm the sitemap, and turn on IndexNow, which tells Bing and other participating engines (not Google) when a URL changes. Most CMSs ship IndexNow or a plugin; on Cloudflare it is Crawler Hints. The AI Performance report it unlocks belongs to [seo-ai-search](../seo-ai-search/SKILL.md#2-measure).
+Bing's index feeds Copilot, and Bing reports AI citations, which Google does not: Search Console folds AI Overviews and AI Mode traffic into the Performance report's "Web" search type. The user sets it up: My Sites → Import from Google Search Console (verifies the site and brings its sitemaps), confirm the sitemap, and turn on IndexNow, which tells Bing and other participating engines (not Google) when a URL changes. Most CMSs ship IndexNow or a plugin; on Cloudflare it is Crawler Hints. The AI Performance report it unlocks belongs to [seo-ai-search](../seo-ai-search/SKILL.md#2-measure).
 
 ## Verify from Google's side
 
-With Search Console access, run URL Inspection on the money pages first (home, pricing, main product page): stored index state, declared versus Google-selected canonical, and whether the rendered HTML shows the answer rather than an empty shell. Without access, hand the user that list of checks, plus submitting the sitemap under Sitemaps, which needs their account.
+With Search Console access, run URL Inspection on the money pages first (home, pricing, main product page): stored index state, last crawl date, declared versus Google-selected canonical, and whether the rendered HTML shows the answer rather than an empty shell. Request indexing once per changed page; Google says repeat requests don't speed crawling, which takes a few days to a few weeks. Without access, hand the user that list of checks, plus submitting the sitemap under Sitemaps, which needs their account.
 
 ## Page meaning
 
 - Titles and descriptions are specific to each page and match its intent. Google truncates titles to the device width and may rewrite either, so skip character quotas and put the distinguishing words first.
 - Keep the title and H1 saying the same thing, because Google draws rewritten titles from on-page headings and other prominent text.
-- Headings form a clear hierarchy for readers. Multiple H1s are valid.
+- Headings form a clear hierarchy for readers. Multiple H1s are valid: Google says heading count and order don't matter for Search.
 - Structured data describes only what the page shows, uses a supported type, and passes the Rich Results Test. Valid markup earns no guaranteed rich result. On a site with a real hierarchy, show breadcrumbs and mark them up with `BreadcrumbList`.
-- Google retired FAQ rich results in May 2026, so FAQPage markup earns nothing in Google Search. Check the [search changelog](https://developers.google.com/search/updates) before relying on any rich result.
+- Google stopped showing FAQ rich results on 7 May 2026, so FAQPage markup earns nothing in Google Search. Check the [search changelog](https://developers.google.com/search/updates) before relying on any rich result.
 - Informative images get descriptive alt text; decorative ones get `alt=""`.
 
 ## Performance
 
-Field Core Web Vitals pass at the 75th percentile with LCP ≤ 2.5 s, INP ≤ 200 ms, and CLS ≤ 0.1. Lab tools diagnose; only field data proves a pass. Measure first, then fix the measured cause: oversized images, render-blocking resources, excess JavaScript, long tasks, layout shift. Serve images at display size in WebP or AVIF, reserve their dimensions, load the LCP image eagerly, and fix anything broken on mobile.
+Field Core Web Vitals pass at the 75th percentile with LCP ≤ 2.5 s, INP ≤ 200 ms, and CLS ≤ 0.1. Lab tools diagnose; only field data proves a pass. Google uses Core Web Vitals in ranking but still ranks the most relevant page above a faster one, so fix speed after crawling, indexing and content. Measure first, then fix the measured cause: oversized images, render-blocking resources, excess JavaScript, long tasks, layout shift. Serve images at display size in WebP or AVIF, reserve their dimensions, never lazy-load the LCP image, and fix anything broken on mobile.
 
-## Primary references
+## Sources
 
-- [SEO starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)
-- [Blocking indexing with noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing)
-- [Canonicalization](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
-- [Title links](https://developers.google.com/search/docs/appearance/title-link)
-- [Structured data policies](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)
-- [Core Web Vitals](https://web.dev/articles/vitals)
-- AI crawlers: [OpenAI](https://developers.openai.com/api/docs/bots), [Anthropic](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), [Perplexity](https://docs.perplexity.ai/guides/bots), [Google-Extended](https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers)
-- Cloudflare: [AI crawler policies](https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/), [managed robots.txt](https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/), [Bot Fight Mode](https://developers.cloudflare.com/bots/get-started/bot-fight-mode/)
-- [IndexNow](https://www.bing.com/indexnow/getstarted)
+- [Google Search Central: SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)
+- [Google Search Central: Block indexing with noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing)
+- [Google Search Central: JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)
+- [Google Search Central: SEO link best practices](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)
+- [Google Search Central: Build and submit a sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
+- [Google Search Central: Consolidate duplicate URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
+- [Google Search Central: Ask Google to recrawl your URLs](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl)
+- [Google Search Central: Influencing your title links](https://developers.google.com/search/docs/appearance/title-link)
+- [Google Search Central: Structured data policies](https://developers.google.com/search/docs/appearance/structured-data/sd-policies)
+- [Google Search Central: Latest documentation updates](https://developers.google.com/search/updates)
+- [Google Search Central: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+- [Google Search Central: Understanding page experience](https://developers.google.com/search/docs/appearance/page-experience)
+- [Google: Google's common crawlers (Google-Extended)](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers)
+- [W3C WAI: Decorative images](https://www.w3.org/WAI/tutorials/images/decorative/)
+- [web.dev: Web Vitals](https://web.dev/articles/vitals)
+- [web.dev: Optimize Largest Contentful Paint](https://web.dev/articles/optimize-lcp)
+- [OpenAI: Overview of OpenAI crawlers](https://developers.openai.com/api/docs/bots)
+- [Anthropic: Does Anthropic crawl data from the web?](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler)
+- [Perplexity: Perplexity crawlers](https://docs.perplexity.ai/docs/resources/perplexity-crawlers)
+- [Cloudflare: AI Crawler and Agent access policies](https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/)
+- [Cloudflare: Managed robots.txt](https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/)
+- [Cloudflare: Bot Fight Mode](https://developers.cloudflare.com/bots/get-started/bot-fight-mode/)
+- [Cloudflare: Crawler Hints](https://developers.cloudflare.com/cache/advanced-configuration/crawler-hints/)
+- [IndexNow: FAQ](https://www.indexnow.org/faq)
+- [Bing Webmaster Blog: Introducing AI Performance in Bing Webmaster Tools (2026)](https://blogs.bing.com/webmaster/2026/2/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview/)

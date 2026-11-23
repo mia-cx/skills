@@ -28,9 +28,9 @@ Match the request: an audit produces findings, a fix ships and verifies, a conte
 
 An audit leads with the highest-impact findings, each with evidence, fix, and success check, and states its coverage: sampled templates are not the whole site.
 
-Every number comes from a tool or a page fetched this session; anything unchecked is written "not checked". Before trusting a data connection, ask it for the top 5 pages by clicks and compare with Search Console. The free stack covers most work: Google Search Console (an MCP connector such as mcp-gsc, read-only by default), Bing Webmaster Tools, Ahrefs Webmaster Tools, and Screaming Frog (free to 500 URLs).
+Every number comes from a tool or a page fetched this session; anything unchecked is written "not checked". Before trusting a data connection, ask it for the top 5 pages by clicks and compare with Search Console. The free stack covers most work: Google Search Console (an MCP connector such as mcp-gsc, read-only unless `GSC_ALLOW_DESTRUCTIVE` is set), Bing Webmaster Tools, Ahrefs Webmaster Tools, and Screaming Frog (free to 500 URLs).
 
-Judge a third-party SEO skill or tool by its findings and their evidence. A quick test: ask which bot decides whether a site appears in ChatGPT search (OAI-SearchBot; GPTBot is for training). Ignore 0–100 site scores, whose weights were never validated against rankings or citations.
+Judge a third-party SEO skill or tool by its findings and their evidence. A quick test: ask which bot decides whether a site appears in ChatGPT search (OAI-SearchBot; GPTBot is for training). Ignore 0–100 site scores: each is the vendor's own weighting, and even Ahrefs warns against judging a site by its site-wide Domain Rating alone.
 
 ## Boundaries
 
@@ -38,4 +38,12 @@ Preserve deliberate privacy, staging restrictions, and crawler policies. Sending
 
 Permission tiers for site changes: reading data and writing drafts are free; publishing and changing a title need the user's go on the diff; deleting a page or changing robots.txt or a canonical happens only on the user's explicit go for that exact diff, with the block enforced in a hook where the harness allows ([marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md#gate-irreversible-actions)).
 
-Verify time-sensitive search-engine claims against current primary documentation, because SEO advice goes stale faster than training data. SEO blogs and social posts are leads, not proof. Never invent search volume, rankings, results, authorship, or citations, and promise no ranking or indexing date.
+Verify time-sensitive search-engine claims against current primary documentation, because SEO advice goes stale faster than training data. SEO blogs and social posts are leads, not proof. Never invent search volume, rankings, results, authorship, or citations, and promise no ranking or indexing date: Google says a change can take from a few hours to several months to show.
+
+## Sources
+
+- [Google Search Central: SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)
+- [OpenAI: Overview of OpenAI crawlers](https://developers.openai.com/api/docs/bots)
+- [Ahrefs: What is Domain Rating (DR)?](https://help.ahrefs.com/en/articles/1409408-what-is-domain-rating-dr)
+- [mcp-gsc: Google Search Console MCP server](https://github.com/AminForou/mcp-gsc)
+- [Screaming Frog: SEO Spider](https://www.screamingfrog.co.uk/seo-spider/)
