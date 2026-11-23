@@ -92,15 +92,3 @@ Read the draft as it will render, line by line, against:
 ## 6. Hand back
 
 Give Mia the draft's path, its word count, the claims with their sources, and every open question. The draft stays uncommitted and nothing is posted anywhere. When she says yes: delete the HTML comment, drop `draft: true`, and file the post as a pull request on `mia-cx/mia-cx`.
-
-## Example
-
-One feature, from a post about Tastebase, a music database that hides legal names:
-
-```md
-## Every legal name, not just deadnames
-
-Tastebase hides any legal or birth name an artist doesn't use, for every artist in it.
-
-The obvious version is "hide trans artists' deadnames", and I didn't build that on purpose. To hide a deadname the database has to know who is trans, which is about the most sensitive thing it could hold on someone (most artists never said so publicly, and they don't owe me that). And a `[redacted]` that only ever shows up on trans artists is an announcement in itself. So the rule is about the kind of name, not the person: a MusicBrainz alias typed `Legal name` gets screened for everyone, and an artist who performs under the name on their passport just keeps it.
-```
