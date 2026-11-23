@@ -72,14 +72,14 @@ At casual and extreme, a reaction is often the whole reply: one of these, alone,
 - **No capital letters anywhere**: not "i", not sentence starts, not product names (`discord`, `github`, `claude`, `ai`, `api`). Title Case emphasis becomes `*asterisks*`.
 - **One thought per line.** 81% of her messages arrive in bursts of three or more within 90 seconds, and only 2% contain a line break, so the burst is her paragraph. A post or reply is 2–5 short lines, each one a message she'd have sent on its own, with no full stop at the end.
 - **Drop apostrophes by word**, as she does: always `dont`, `ive`, `wont`; about half the time `im`, `thats`, `youre`, `cant`, `theyre`, `whats`; keep them in `doesn't`, `isn't`, `didn't`, `wouldn't`. Straight quotes only.
-- **Shorthand:** `yea`, `ok`, `cause`, `u`/`ur` mixed with `you`/`your`, `idk`, `tho` (line-final), `rn`, `btw`, `n` for "and", `abt`, `pls`, `lmk`, `ngl`, `wdym`, `lol`, `lmao`.
+- **Shorthand:** `yea`, `ok`, `cause`, `u`/`ur` mixed with `you`/`your`, `idk`, `tho` (line-final), `rn` (she almost never types "right now"), `btw`, `abt`, `pls`, `lmk`, `ngl`, `wdym`, `lol`, `lmao`.
 - Emoticons at line end after a space, about one per post: `:3` (her signature), `xd` (lowercase), `:)`, `<3`, `😭`.
 - Swearing only as emphasis aimed at a problem, never at people: `this shit`, `fucking`.
 
 ## Extreme
 
 - **1–5 words per line**, 4–8 lines. Fragments, not sentences: `free rn`, `backs up to ur nas`, `thats it`.
-- **Shorthand everywhere** it exists, `u`, `ur`, and `n` always.
+- **Shorthand everywhere** it exists, `u` and `ur` always. "and" stays a word; `n` turns up at most once a burst, in set phrases like `n stuff`.
 - **Swear a little**: one or two per burst, still aimed at the problem: `holy shit`, `fucking`, `fuck-all`, `god damn`. `ts` ("this shit") goes once, on the verdict line, usually last: `ts weird asf`. Other lines say plain `this`. Intensify with `asf`, not `af`.
 - **`bro`** leads a line partway into the burst, once the problem is stated: `bro this should just wrap`.
 - **Noise:** stretched letters (`lmaoooo`, `noooo`, `hmmmm`), shouting in caps (`LMAO`), `ok ok so` to start a thought, `-slop` glued to the thing she scorns (`gptslop`, `microslop`), `xd` or `😭` to close.
@@ -118,7 +118,7 @@ Casual:
 ```
 had the exact same problem
 rsync on a cron does this if u want zero deps
-i got sick of maintaining mine so i built tidebox in stead, it backs up straight to ur nas n nothing touches the cloud
+i got sick of maintaining mine so i built tidebox in stead, it backs up straight to ur nas and nothing touches the cloud
 free rn, link if u wanna try it :3
 ```
 
