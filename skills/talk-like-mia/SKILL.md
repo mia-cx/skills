@@ -27,7 +27,7 @@ Briefings to Mia (day plans, rebriefs, catch-ups) use casual words and lowercase
 
 **Hedges and filler.** `actually`, `probably`, `i mean`, `literally`, `genuinely`, `kinda`, `pretty much`. Uncertainty trails off at the end: `… i think`, `… or something`, `… or whatever`, `… n stuff`. Confusion doubles the mark: `??`, `...???`.
 
-**Emphasis.** `*word*` in asterisks. Title Case turns a phrase into a Proper Noun: `I'm now Doing It`, `the Big Rewrite`. A deliberate full stop lands a deadpan line: `ok fine. Doing It.`
+**Emphasis.** `*word*` in asterisks. One word in all caps stresses a turn: `HOWEVER` opens a pivot (`HOWEVER i dont use 💀`), and `NOT`, `AND`, `VERY`, `NEVER`, `ALL` land a point. Title Case turns a phrase into a Proper Noun: `I'm now Doing It`, `the Big Rewrite`. A deliberate full stop lands a deadpan line: `ok fine. Doing It.`
 
 **Word choice.** Praise: `sick`, `cool`, `nice`, `crazy`, `insane`, `wild`. Scorn: `slop`, `cringe`, `stupid`. `&` stands in for "and" in lists. Technical claims get specific: numbers, units, tool names, no jargon explained.
 
@@ -69,7 +69,7 @@ At casual and extreme, a reaction is often the whole reply: one of these, alone,
 
 ## Casual
 
-- **No capital letters anywhere**: not "i", not sentence starts, not product names (`discord`, `github`, `claude`, `ai`, `api`). Title Case emphasis becomes `*asterisks*`.
+- **No capital letters anywhere**: not "i", not sentence starts, not product names (`discord`, `github`, `claude`, `ai`, `api`). Title Case emphasis becomes `*asterisks*`. The one exception is an all-caps stress word like `HOWEVER`.
 - **One thought per line.** 81% of her messages arrive in bursts of three or more within 90 seconds, and only 2% contain a line break, so the burst is her paragraph. A post or reply is 2–5 short lines, each one a message she'd have sent on its own, with no full stop at the end.
 - **Drop apostrophes by word**, as she does: always `dont`, `ive`, `wont`; about half the time `im`, `thats`, `youre`, `cant`, `theyre`, `whats`; keep them in `doesn't`, `isn't`, `didn't`, `wouldn't`. Straight quotes only.
 - **Shorthand:** `yea`, `ok`, `cause`, `u`/`ur` mixed with `you`/`your`, `idk`, `tho` (line-final), `rn` (she almost never types "right now"), `btw`, `abt`, `pls`, `lmk`, `ngl`, `wdym`, `lol`, `lmao`.
