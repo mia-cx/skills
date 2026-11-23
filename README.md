@@ -83,6 +83,7 @@ Written for my ADHD brain.
   - **[marketing-agents-coordinator](skills/marketing-agents-coordinator/SKILL.md)** one coordinator over worker agents.
   - **[marketing-agents-research-team](skills/marketing-agents-research-team/SKILL.md)** research bots sharing one folder.
   - **[marketing-agents-campaign](skills/marketing-agents-campaign/SKILL.md)** a whole campaign on tickets.
+- **[webmcp](skills/webmcp/SKILL.md)** hand browser agents real tools instead of screenshots and clicks.
 - **[byline](skills/byline/SKILL.md)** talk-normal, talk-like-mia, gtm, and seo in one go, for rewriting marketing copy.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
 - **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.
