@@ -40,9 +40,9 @@ Who is speaking decides the register:
 | Surface | Voice |
 | --- | --- |
 | Product pages, pricing, docs, titles, meta descriptions | talk-normal mechanics. From talk-like-mia, keep the bluntness, specifics, spelling, and Never list |
-| Mia speaking in first person: about page, origin story, founder note | talk-like-mia email register |
-| Social posts, launch posts, replies, community threads | talk-like-mia casual register, with gtm-outreach's drafting and posting rules |
-| Cold emails and pitches | talk-like-mia email register, with gtm-outreach's length limits and opt-out line |
+| Mia speaking in first person: about page, origin story, founder note | talk-like-mia subtle level |
+| Social posts, launch posts, replies, community threads | talk-like-mia casual level, with gtm-outreach's drafting and posting rules |
+| Cold emails and pitches | talk-like-mia subtle level, with gtm-outreach's length limits and opt-out line |
 
 ## 5. Check
 
