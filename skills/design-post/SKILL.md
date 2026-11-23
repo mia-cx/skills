@@ -72,7 +72,7 @@ Rules for every sentence:
 - **Plain words.** CONTEXT.md terms are for your grounding. In the post, "the artist", not "the Author"; "a name it hides", not "a Redacted name". Explain a term once, where the reader first needs it.
 - **Prose that thinks out loud**, like Mia's posts. A list only for a procedure or a recap.
 - **Code**: in a private repo, quote the smallest snippet that proves the claim, 10 lines at most. In a public repo, link the file at a commit (`https://github.com/<owner>/<repo>/blob/<sha>/<path>#L<a>-L<b>`) and quote only when the snippet is the point.
-- **Links prove, they don't decorate.** Link where a reader would doubt the claim or want to dig in, a few per section at most. Your full claim-to-source list goes in the hand-back, not the post.
+- **Links prove, they don't decorate.** Link where a reader would doubt the claim or want to dig in, a few per section at most. When the thing itself is live (a dashboard, a store listing), link that over its docs or source. Your full claim-to-source list goes in the hand-back, not the post.
 - **Mia's own words stay verbatim**: her title, her drivers, any phrase she gave you, even where the voice level wouldn't produce them.
 - **Shipped means merged to main.** Everything else is planned, next, or an idea, said as such.
 - **Synthetic examples only.** Invent every name, message, track and record. Real user data, real people's personal details and anything from Mia's own data stay out, even when the repo's fixtures hold them.
