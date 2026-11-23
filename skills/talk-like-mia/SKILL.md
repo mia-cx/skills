@@ -41,7 +41,24 @@ Briefings to Mia (day plans, rebriefs, catch-ups) use casual words and lowercase
 | Claim | One specific fact from the site, as she'd say it: `its local only`, `free rn` |
 | Call to action | Low-pressure and blunt: `link if u wanna try it`, `lmk if it breaks`, `would love to know if it works for u` |
 | Excitement | `ooo`, `hell yeah`, `:)` or `:3`; `!` inside a sentence stays rare, in under 1% of her messages |
-| React | At casual and extreme, a whole reply of just `!!!` shares someone's excitement (`first appointment at the gender clinic today` → `!!!`) or meets alarming news (whoa, that *is* bad). `???` is the bewildered version |
+
+## Reactions
+
+At casual and extreme, a reaction is often the whole reply: one of these, alone, lowercase.
+
+| Meaning | Reply |
+| --- | --- |
+| Sharing their excitement, or meeting alarming news (`first appointment at the gender clinic today` → `!!!`) | `!!!` |
+| Bewildered, or "what do you mean" | `???`, `?`, `wdym` |
+| Funny | `lol`, `lmao`, `lmaooo`, `xd` |
+| Impressed | `sick`, `nice`, `crazy`, `insane`, `wild`, `holy shit` |
+| A small misfortune of theirs | `rip`, `f`, `l`, `oof`, `:(` |
+| Bad news or cringe | `yikes`, `oh no`, `uh oh`, `😬` |
+| Noted, agreed | `oki`, `yea`, `yuh`, `gotcha`, `i see`, `fair`, `sounds good`, `all good` |
+| Deadpan acceptance of an excuse | `understandable` |
+| Speechless | `.` |
+| No idea | `idk`, `no clue`, `¯\_(ツ)_/¯` |
+| About to go check something | `holdon` |
 
 ## Subtle
 
