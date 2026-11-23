@@ -31,7 +31,7 @@ The repo holds the decisions, not the moment that started them. Ask Mia one ques
 ## 3. Pick one reader, one action, one takeaway
 
 - **Reader**: one kind of person and where they will find the post, e.g. "a developer who stores data about real people, from Lobsters".
-- **Action**: what they do after reading, e.g. "reply with how they handle names they can't recognise".
+- **Action**: what they do after reading, e.g. "check what their own userscript re-renders on every fetch". The post earns it; it never asks for it.
 - **Takeaway**: the one sentence they remember.
 - **Titles**: a primary and an alternative, each a claim, not a topic.
 
@@ -65,7 +65,7 @@ Then the body, in this shape:
 2. **Why it exists**: the annoyance in a paragraph or two of prose, as Mia would tell it.
 3. **Each feature**: lead with the rule it follows, in one sentence, stated as what the project does in Mia's voice ("Caelestis draws inside Wplace's map"), not as an instruction to the reader. Then the obvious version a reader would expect, and why Mia didn't build it. Then only as much of how it works as proves the rule. Give each feature a `##` heading when there are three or more; the page title is the post's only `#`.
 4. **What it can't do yet**, when that serves the takeaway: anything unbuilt is "planned" or "next", with what it waits on. A roadmap belongs in DIRECTION, not here.
-5. **Close** on the takeaway in one line, then the action as a question to the reader.
+5. **Close** on the takeaway in one line, and stop.
 
 Rules for every sentence:
 
@@ -89,7 +89,7 @@ Read the draft as it will render, line by line, against:
 - shipped versus planned against `main`;
 - every name and example: invented, never real;
 - talk-like-mia's Never list and the subtle level;
-- the opening sentence and the closing question against the comment's reader, action and takeaway.
+- the opening sentence and the closing line against the comment's reader, action and takeaway.
 
 ## 6. Hand back
 
