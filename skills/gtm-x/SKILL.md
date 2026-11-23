@@ -8,67 +8,65 @@ disable-model-invocation: true
 
 Part of [gtm](../gtm/SKILL.md): its copy sheet and boundaries apply here.
 
-Grow the user's reach on X by writing for what the For You feed rewards: shares and replies, one interest community, and an account reputation that keeps posts out of the filters. The mechanics below come from one creator's reading of X's open-source ranking code ([Ryan, Nov 2026](https://x.com/ryangrowthh/status/2117684231983800732)). They're unofficial, parts of the system are closed, and X changes the weights without notice, so aim at what the system serves: keeping people on X, sharing and talking. Drafts follow [gtm-writing](../gtm-writing/SKILL.md), in the user's voice (for Mia, [talk-like-mia](../talk-like-mia/SKILL.md)), and the user approves each before it goes out.
+Grow the user's reach on X by writing for what the For You feed rewards: shares and replies, one interest community, and an account that stays clear of the visibility labels. The mechanics below come from X's open-source feed code ([xai-org/x-algorithm](https://github.com/xai-org/x-algorithm), read on 21 Nov 2026) and one creator's reading of it ([Ryan, Nov 2026](https://x.com/ryangrowthh/status/2117684231983800732)). Parts of the system are closed and X changes parameters without notice, so aim at what the code rewards, sharing and conversation, rather than one exact number. Drafts follow [gtm-writing](../gtm-writing/SKILL.md), in the user's voice (for Mia, [talk-like-mia](../talk-like-mia/SKILL.md)), and the user approves each before it goes out.
 
 ## How the feed picks posts
 
 Each feed refresh passes three stages:
 
-1. **Find.** Retrieval pulls roughly 2,000+ candidate posts.
-2. **Score.** For each post and viewer, a model predicts the chance of each action (like, reply, share, follow, mute and so on), multiplies each by a weight and adds them up. It reads mostly the viewer's last ~1,000 actions, so per-viewer gaming is out of reach.
-3. **Filter.** Posts older than about 48 hours, already seen, from blocked or muted accounts, spam and low-reputation accounts drop out. Reposts and replies from accounts the viewer doesn't follow drop out too, and posts from non-followed accounts get a score discount.
+1. **Find.** Retrieval narrows millions of posts to a few thousand candidates (by default up to 1,200 from followed accounts and 1,000 from Phoenix).
+2. **Score.** For each post and viewer, a model predicts the chance of each action (like, reply, share, follow, mute and so on), multiplies each by a weight and adds them up. It reads the viewer's last ~1,000 engagements (sequence length 1,024), so per-viewer gaming is out of reach.
+3. **Filter.** Posts older than 48 hours, already seen, or from blocked or muted accounts drop out, as do reposts and replies from accounts the viewer doesn't follow. A separate visibility system drops posts carrying spam or safety labels.
 
 Candidates come from four sources:
 
 | Source | Pulls |
 | --- | --- |
-| Thunder | Recent posts from accounts the viewer follows and interacts with |
-| Phoenix | Posts from accounts the viewer doesn't follow, matched to their interest profile |
-| SimClusters | Posts liked by the interest community the viewer belongs to |
-| Popular Posts | A small shared list of popular recent posts |
+| Thunder | Recent posts from accounts the viewer follows |
+| Phoenix | Posts from accounts the viewer doesn't follow, matched to their engagement history |
+| SimClusters | Posts popular in the interest communities the viewer belongs to |
+| Popular Posts | A shared list of popular recent posts |
 
-Followers via Thunder are round one, and reach stops there unless the ranking model scores the post well or other people quote it to their followers. Phoenix drives broad virality; SimClusters drives virality inside one community. Hence:
+Followed and unfollowed candidates are ranked together, but posts from accounts the viewer doesn't follow are multiplied by a discount below 1, so followers are the surest audience. Phoenix drives broad virality; SimClusters drives virality inside one community, which it finds from overlapping clusters in the follow graph (Satuluri et al., *SimClusters*). Hence:
 
 - **One idea per post, one topic per account.** Mixed topics confuse which community a post belongs to. Name the one interest community the user wants to be placed in, and check drafts against it.
-- **One self-contained post per launch.** X shows one post per conversation, so a launch spread over five tweets reaches non-followers through one at most. Put everything a stranger needs in the main post; [gtm-launch](../gtm-launch/SKILL.md) covers what goes in it.
-- **About 48 hours per post.** A post makes or misses its reach in two days. Small accounts get a boost on fresh posts, so the user should be around to reply in the first hour. Big accounts get no guaranteed reach.
+- **One self-contained post per launch.** X keeps only the highest-scoring post per conversation, so a launch spread over five tweets reaches non-followers through one at most. Put everything a stranger needs in the main post; [gtm-launch](../gtm-launch/SKILL.md) covers what goes in it.
+- **48 hours per post.** A post makes or misses its reach in two days. Accounts under 50,000 followers get an experimental boost on posts under 2 hours old with fewer than 200 impressions, so the user should be around to reply in those first 2 hours. Follower count isn't scored, so big accounts get no guaranteed reach.
 
 ## What the score rewards
 
-Snapshot of the production weights per predicted action, as quoted on 30 Oct 2026:
+Production default weights per predicted action, 21 Nov 2026:
 
 | Positive | Weight | Negative | Weight |
 | --- | --- | --- | --- |
 | Share via copy link | 20 | Not dwelled (scrolled past) | −0.02 |
 | Reply, quote, share via DM | 5 | Block author | −31.2 |
-| Follow author | 4 | Not interested | −52.3 |
-| Share | 2 | Mute author | −58.8 |
+| Follow author | 4 | Not interested | −53.07 |
+| Share | 2.118 | Mute author | −58.8 |
 | Repost | 1 | Report | −234 |
-| Like | 0.66 | | |
-| Click into post | 0.3 | | |
+| Like | 0.708 | | |
+| Click into post | 0.274 | | |
 | Open link | 0.2 | | |
 | Dwell, photo expand | 0.05 | | |
 | Profile click, video quality view | 0 | | |
 
-A copied link is worth about 30 likes and a reply about 7.5. One mute cancels about 89 likes and one report about 355, so a few annoyed viewers wipe out hundreds of likes. Profile clicks earn nothing, so posts built to send people to a profile gain nothing from it. The like weight went from 0.5 to 0.66 between August and October 2026 unannounced; re-check the code before building a tactic on one exact number.
+Each weight multiplies one viewer's predicted probability of that action, not a count of actions, so a weight ratio is no exchange rate between likes and shares. X's code calls reading it that way "incorrect": negative weights are large because those actions are rare, and mass blocking or reporting mainly changes what viewers similar to the blockers see. A post people are likely to share or answer outranks one they'd only like; a post viewers are likely to mute sinks for them. Profile clicks weigh 0, so posts built to send people to a profile gain nothing from it. The like weight has moved from 0.5 in August (Ryan's reading) to 0.708 in November 2026; re-check `home-mixer/params/param.rs` before building a tactic on one exact number.
 
 Write for shares and replies:
 
-- Give people a reason to send the link to someone or add their own take. For each draft, write one line on why someone would forward it or reply; rewrite drafts with a weak answer.
-- Draw on the user's experience, network and job, because that insight can't be copied.
-- Make it easy to scan and forward. Credit others, and use X's native image and video.
-- Try each format X is pushing: articles, threads, media, an article with a quote post.
-- For video, the user's camera, mic and lighting matter.
+- Give people a reason to send the link to someone or add their own take, because content that is useful, surprising or awe-inspiring gets shared more (Berger & Milkman, "What Makes Online Content Viral?"). Anger spreads too, but on X it also earns mutes and blocks. For each draft, write one line on why someone would forward it or reply; rewrite drafts with a weak answer.
+- Ryan's practice: draw on the user's experience, network and job, because that insight can't be copied; make posts easy to scan and forward; credit others and use X's native image and video; try each format X is pushing (articles, threads, media); for video, invest in camera, mic and lighting.
 
 ## Account reputation
 
-Each account carries a credibility score computed PageRank-style from who follows and engages with it, so engagement from well-connected accounts in the niche counts for more than a large follower count. It lifts or caps every post.
+Who engages matters more than how many follow. X raises the reply weight for posts from accounts the viewer mutually follows (the bidirectional follow boost, 15 since July 2026), and SimClusters places the account by who engages with it.
 
-- Build the network by engaging genuinely with people in the niche. Engagement groups no longer have their old effect.
-- Keep the user's posts their own. X tracks inauthentic behaviour over time, so an account where AI writes and posts everything risks a label. You draft; the user edits and posts.
-- Mute or block trolls instead of arguing, and keep away from negative and political content. Being muted, blocked or reported cuts reach, and too many blocks and reports relative to likes can trigger a spam or inauthenticity label that limits the account or single posts.
-- Suggest Premium, and ID verification if the user is comfortable with it.
-- Ask the user to check X's transparency tool, which shows labels on the account and posts marked as spam, and to report what it says, even "none".
+- Build the network by engaging genuinely with people in the niche, so mutual follows form there.
+- Keep the user out of engagement groups. X's authenticity policy bans coordinating to exchange likes, replies, reposts or follows, and X's code ignores engagement on posts opened outside the Home feed, as from a group chat.
+- Keep the user's posts their own. X runs models that read an account's actions over time for signs of inauthentic behaviour. You draft; the user edits and posts.
+- Mute or block trolls instead of arguing, and keep away from content that draws blocks and reports. X labels accounts from blocks, reports and spam reports relative to likes, and labels limit the account or single posts.
+- Suggest Premium if the user wants it: X Help lists reply prioritisation among its features, and ID verification comes with it.
+- Ask the user to check X's [Under the Hood](https://x.com/i/jf/under_the_hood) tool, which shows the visibility-limiting labels on the account and its posts, and to report what it says, even "none".
 
 ## A daily article routine
 
@@ -76,12 +74,25 @@ One founder reached 5,000 followers in 5 months with this recipe. Treat it as on
 
 - One topic. Build in public, share real numbers, lead with proof.
 - One long article a day, written to be bookmarked, on fresh trends, giving everything away.
-- 2–3 short posts a day that quote the article or share one idea from it; get someone else to quote it too.
-- Package each article as one story across cover, title and first line: copy the cover styles of winning articles, put a number in the first line, add screenshots as proof. Keep promises specific, because numbers, names and timeframes beat vague promises.
-- Links in the body are a common worry, but opening a link carries a small positive weight (0.2). Include one when it helps the reader, and compare.
+- 2–3 short posts a day that quote the article or share one idea from it; ask someone who genuinely finds it useful to quote it too.
+- Package each article as one story across cover, title and first line: copy the cover styles of winning articles, add screenshots as proof, and put a number in the first line, because numerals catch scanning readers' eyes (Nielsen, NN/g eyetracking). Keep promises specific: numbers, names and timeframes.
+- Links in the body are a common worry, but opening a link carries a small positive weight (0.2) and the published scoring has no link penalty. Include one when it helps the reader, and compare.
 
-Posting volume has no published threshold, and X doesn't give every post a chance when an account floods. Give each post its own job, such as sending people to the day's article. Watch reach per post rather than total reach: when adding posts makes each reach fewer people, cut back to the ones that pull.
+X multiplies each further post by the same author in one viewer's feed by a decaying factor, so more posts compete with each other. Give each post its own job, such as sending people to the day's article. Watch reach per post rather than total reach: when adding posts makes each reach fewer people, cut back to the ones that pull.
 
 ## Iterate
 
 When metrics are available, review them weekly: make more versions of clear outliers, and retire formats that underperform across several posts.
+
+## Sources
+
+- [xAI: X For You feed algorithm (GitHub)](https://github.com/xai-org/x-algorithm)
+- [xAI: production weights and how to read them, `param.rs` (GitHub)](https://github.com/xai-org/x-algorithm/blob/main/home-mixer/params/param.rs)
+- [xAI: bidirectional follow boost change (GitHub)](https://github.com/xai-org/x-algorithm/blob/main/docs/BIDIRECTIONAL_BOOST_CHANGE.md)
+- [Satuluri et al., *SimClusters: Community-Based Representations for Heterogeneous Recommendations at Twitter* (2020)](https://dl.acm.org/doi/10.1145/3394486.3403370)
+- [Jonah Berger and Katherine L. Milkman, *What Makes Online Content Viral?* (2012)](https://journals.sagepub.com/doi/10.1509/jmr.10.0353)
+- [Jakob Nielsen, *Show Numbers as Numerals When Writing for Online Readers* (2007)](https://www.nngroup.com/articles/web-writing-show-numbers-as-numerals/)
+- [X Help: Authenticity policy](https://help.x.com/en/rules-and-policies/authenticity)
+- [X Help: About X Premium](https://help.x.com/en/using-x/x-premium)
+- [@ryangrowthh: how the X algorithm finds, scores and filters posts](https://x.com/ryangrowthh/status/2117684231983800732)
+- [@NicholasDulait: 5,000 followers in 5 months with daily articles](https://x.com/NicholasDulait/status/2119431609472397409)
