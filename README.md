@@ -85,6 +85,7 @@ Written for my ADHD brain.
   - **[marketing-agents-campaign](skills/marketing-agents-campaign/SKILL.md)** a whole campaign on tickets.
 - **[webmcp](skills/webmcp/SKILL.md)** hand browser agents real tools instead of screenshots and clicks.
 - **[byline](skills/byline/SKILL.md)** talk-normal, talk-like-mia, gtm, and seo in one go, for rewriting marketing copy.
+- **[design-post](skills/design-post/SKILL.md)** draft a post on why a project exists and why it didn't go the obvious way.
 - **[review-relay](skills/review-relay/SKILL.md)** review a PR on a loop until it comes back clean.
 - **[review-council](skills/review-council/SKILL.md)** the same, with every provider reviewing each head at once.
 - **[babysit](skills/babysit/SKILL.md)** watch a PR's reviewers, fix what is real, resolve threads, repeat until green.
