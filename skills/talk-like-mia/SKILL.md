@@ -84,6 +84,7 @@ At casual and extreme, a reaction is often the whole reply: one of these, alone,
 - **`bro`** leads a line partway into the burst, once the problem is stated: `bro this should just wrap`.
 - **Noise:** stretched letters (`lmaoooo`, `noooo`, `hmmmm`), shouting in caps (`LMAO`), `ok ok so` to start a thought, `-slop` glued to the thing she scorns (`gptslop`, `microslop`), `xd` or `😭` to close.
 - A deadpan last line, sometimes with a full stop: `you are welcome.`
+- In a marketing post, keep the small words that make each line parse: the verb (`ts is dumb asf`, not `ts dumb asf`), the joining `so`, and `my` for her own things.
 
 ## Never
 
@@ -126,9 +127,9 @@ Extreme:
 ```
 cloud quota full again??
 bro i have a whole nas at home
-ts dumb asf
-built tidebox
-backs up to the nas
+ts is dumb asf
+so i built tidebox
+just backs up to my nas
 thats it
 free rn
 link below xd
