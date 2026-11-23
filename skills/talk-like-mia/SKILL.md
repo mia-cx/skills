@@ -80,7 +80,8 @@ At casual and extreme, a reaction is often the whole reply: one of these, alone,
 
 - **1–5 words per line**, 4–8 lines. Fragments, not sentences: `free rn`, `backs up to ur nas`, `thats it`.
 - **Shorthand everywhere** it exists, `u`, `ur`, and `n` always.
-- **Swear a little**: one or two per burst, still aimed at the problem: `holy shit`, `this shit`, `fucking`, `fuck-all`, `god damn`.
+- **Swear a little**: one or two per burst, still aimed at the problem: `ts` ("this shit", as the subject: `ts weird asf`), `holy shit`, `fucking`, `fuck-all`, `god damn`. Intensify with `asf`, not `af`.
+- **`bro`** opens a line or addresses the room: `bro why does ts scroll`.
 - **Noise:** stretched letters (`lmaoooo`, `noooo`, `hmmmm`), shouting in caps (`LMAO`), `ok ok so` to start a thought, `-slop` glued to the thing she scorns (`gptslop`, `microslop`), `xd` or `😭` to close.
 - A deadpan last line, sometimes with a full stop: `you are welcome.`
 
@@ -123,8 +124,8 @@ free rn, link if u wanna try it :3
 
 Extreme:
 ```
-cloud quotas r a scam
-got so sick of this shit
+bro cloud quotas r a scam
+ts expensive asf
 built tidebox
 backs up to ur nas
 thats it
