@@ -101,7 +101,7 @@ An always-on agent watches sources and acts without being asked. The patterns be
 
 Give every event, thread and task an ID with its related IDs, so the agent can follow links hop by hop to recover old context.
 
-**Never block.** A long tool starts in the background and reports back as a new event; a blocking call leaves the agent deaf until it finishes. Replace `run()` with `start()`, which returns "Started" at once, and `stop()`. For runs that must survive a crash or a multi-day approval, use a durable workflow engine such as Temporal, which hands a crashed run to another process that resumes where it stopped. A step that was mid-call when the worker died runs again from the start, so make every paid or outbound step safe to repeat, for example by checking for its earlier result first, as Temporal recommends.
+**Never block.** A long tool starts in the background and reports back as a new event; a blocking call leaves the agent deaf until it finishes. Replace `run()` with `start()`, which returns "Started" at once, and `stop()`. For runs that must survive a crash or a multi-day approval, use a durable workflow engine such as Temporal, which hands a crashed run to another process that resumes where it stopped. A step that was mid-call when the worker died runs again from the start, so make every paid or outbound step safe to repeat: send an idempotency key that the receiving service enforces, such as the workflow run ID plus the step's ID, as Temporal recommends. Where the service can't deduplicate, have the run stop and ask the user before it repeats the step.
 
 **Keep the brain in the cloud and the hands where they live.** Keep state in a database, run on stateless cloud compute, and reach the user's machines through a thin daemon, so a sleeping laptop doesn't stop the agent. See Anthropic's [Decoupling the brain from the hands](https://www.anthropic.com/research/managed-agents) and DeepSeek's [research prototype](https://github.com/deepseek-ai/dsh-superagent-prototype), which it labels not an official product. A compromised cloud loop reaches every connected machine, so apply [marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data) to each connection.
 
@@ -117,6 +117,7 @@ Give every event, thread and task an ID with its related IDs, so the agent can f
 - [Jessica S. Ancker et al., *Effects of workload, work complexity, and repeated alerts on alert fatigue in a clinical decision support system* (2017)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5387195/)
 - [Temporal docs: Understanding Temporal](https://docs.temporal.io/evaluate/understanding-temporal)
 - [Temporal docs: Activities](https://docs.temporal.io/activities)
+- [Temporal docs: Activity definition, idempotency](https://docs.temporal.io/activity-definition#idempotency)
 - [Slack docs: Unfurling links in messages](https://docs.slack.dev/messaging/unfurling-links-in-messages/)
 - [DeepSeek Harness, *Exploring super-agent design* (2026)](https://x.com/DeepSeekHarness/status/2116857257245987236)
 - [DeepSeek: dsh-superagent research prototype](https://github.com/deepseek-ai/dsh-superagent-prototype)
