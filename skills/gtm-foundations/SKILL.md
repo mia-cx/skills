@@ -77,12 +77,12 @@ Marketing runs from first contact to payment; the stages adapt Dave McClure's AA
 | Stage | Done looks like | Reference |
 | --- | --- | --- |
 | Acquisition | A written ideal-user profile, chosen channels, content loops, partners, a referral programme | [gtm-outreach](../gtm-outreach/SKILL.md), [gtm-organic](../gtm-organic/SKILL.md), [gtm-x](../gtm-x/SKILL.md), [gtm-launch](../gtm-launch/SKILL.md), [gtm-video](../gtm-video/SKILL.md), [seo](../seo/SKILL.md), [gtm-paid-ads](../gtm-paid-ads/SKILL.md) |
-| Onboarding | One countable event defines "onboarded": the first action that shows the user got value (a saved note, a first transaction). A first "aha" moment is built into that flow | [gtm-retention](../gtm-retention/SKILL.md) |
+| Onboarding | "Onboarded" is defined as a key action still repeated at a set frequency weeks after sign-up, such as Pinterest's weekly savers four weeks in (Casey Winters). The first value event, the user's first key action or "aha" moment, is built into the onboarding flow | [gtm-retention](../gtm-retention/SKILL.md) |
 | Engagement | The hero features are known, how often users repeat the key action is measured, and so is the path from casual to power user | [gtm-retention](../gtm-retention/SKILL.md) |
 | Retention | Users segmented by usage, churn reasons tracked, win-back campaigns planned | [gtm-retention](../gtm-retention/SKILL.md) |
 | Monetisation | Why, how and what the product charges, written down before launch, because pricing left until after the build is a main reason new products miss their revenue targets (Ramanujam and Tacke, *Monetizing Innovation*) | [gtm-retention](../gtm-retention/SKILL.md) |
 
-Measure every stage: web analytics and Search Console for the site, product analytics inside the product. When the onboarding event can't be counted yet, write "unknown" and make instrumenting it the first initiative.
+Measure every stage: web analytics and Search Console for the site, product analytics inside the product. When the key action can't be counted yet, write "unknown" and make instrumenting it the first initiative.
 
 ## Running the plan
 
@@ -106,6 +106,7 @@ Run the week from a board for the big picture, a calendar for daily tasks, and a
 - [Google Analytics Help: Engagement rate and bounce rate](https://support.google.com/analytics/answer/12195621?hl=en)
 - [Dave McClure, *Startup Metrics for Pirates: AARRR!* (2007)](https://www.slideshare.net/dmc500hats/startup-metrics-for-pirates-long-version)
 - [Brian Balfour, *Building a Growth Framework Towards a $100 Million Product*](https://brianbalfour.com/essays/hubspot-growth-framework-100m)
+- [Casey Winters, *Why Onboarding is the Most Crucial Part of Your Growth Strategy* (2017)](https://www.caseyaccidental.com/p/why-onboarding-is-the-most-crucial-part-of-your-growth-strategy)
 - [Ehrenberg-Bass Institute: Answering critics, on Riebe, Wright, Stern and Sharp (2014)](https://marketingscience.info/news-and-insights/answering-critics)
 - [Madhavan Ramanujam and Georg Tacke, *Monetizing Innovation* (Wiley, 2016)](https://www.wiley.com/en-us/Monetizing+Innovation%3A+How+Smart+Companies+Design+the+Product+Around+the+Price-p-9781119240860)
 - [@kunalvg: community, strategy and marketing missteps](https://x.com/kunalvg/status/1685889947461402624)
