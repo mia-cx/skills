@@ -77,8 +77,8 @@ Marketing runs from first contact to payment; the stages adapt Dave McClure's AA
 | Stage | Done looks like | Reference |
 | --- | --- | --- |
 | Acquisition | A written ideal-user profile, chosen channels, content loops, partners, a referral programme | [gtm-outreach](../gtm-outreach/SKILL.md), [gtm-organic](../gtm-organic/SKILL.md), [gtm-x](../gtm-x/SKILL.md), [gtm-launch](../gtm-launch/SKILL.md), [gtm-video](../gtm-video/SKILL.md), [seo](../seo/SKILL.md), [gtm-paid-ads](../gtm-paid-ads/SKILL.md) |
-| Onboarding | "Onboarded" is a key action that shows the user got value (a saved note, a transaction), repeated at a set frequency. A first "aha" moment is built into that flow | [gtm-retention](../gtm-retention/SKILL.md) |
-| Engagement | The hero features are known, and so is the path from casual to power user | [gtm-retention](../gtm-retention/SKILL.md) |
+| Onboarding | One countable event defines "onboarded": the first action that shows the user got value (a saved note, a first transaction). A first "aha" moment is built into that flow | [gtm-retention](../gtm-retention/SKILL.md) |
+| Engagement | The hero features are known, how often users repeat the key action is measured, and so is the path from casual to power user | [gtm-retention](../gtm-retention/SKILL.md) |
 | Retention | Users segmented by usage, churn reasons tracked, win-back campaigns planned | [gtm-retention](../gtm-retention/SKILL.md) |
 | Monetisation | Why, how and what the product charges, written down before launch, because pricing left until after the build is a main reason new products miss their revenue targets (Ramanujam and Tacke, *Monetizing Innovation*) | [gtm-retention](../gtm-retention/SKILL.md) |
 
