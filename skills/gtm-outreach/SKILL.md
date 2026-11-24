@@ -49,11 +49,13 @@ Write every draft yourself, in the user's first person, following [Drafting rule
 | X reply | `https://x.com/intent/tweet?in_reply_to=<post id>&text=<encoded draft>` |
 | Elsewhere | Permalink to the post to reply to |
 
-Done when every kept lead has a draft and a send link.
+A Hacker News lead gets notes instead of a draft: the facts that answer their question, with no first-person reply to paste, because HN bans generated or AI-edited comments. The user writes the reply.
+
+Done when every kept lead has a draft (notes for Hacker News) and a send link.
 
 ## 4. Hand back
 
-Append each lead to `.gtm/leads.md`: status `drafted`, date, venue, author, URL, quote, draft, send link. In chat, list the 3–5 best spaces with their self-promotion rules, then the leads in rank order:
+Append each lead to `.gtm/leads.md`: status `drafted`, date, venue, author, URL, quote, draft (or notes), send link. In chat, list the 3–5 best spaces with their self-promotion rules, then the leads in rank order:
 
 ```markdown
 ### 1. r/selfhosted · u/quietfox · 3 days ago
@@ -64,7 +66,7 @@ Draft text here.
 [Reply on Reddit](https://www.reddit.com/r/selfhosted/comments/…)
 ```
 
-Reddit and LinkedIn leads go to the user to post. Hacker News leads go to the user with notes instead of a draft, because HN bans generated or AI-edited comments; the user writes the reply. For the rest, ask which ones the agents post, then follow [Posting rules](#posting-rules).
+Reddit, LinkedIn and Hacker News leads go to the user to post. For the rest, ask which ones the agents post, then follow [Posting rules](#posting-rules).
 
 ## Drafting rules
 
