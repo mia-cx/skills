@@ -67,13 +67,13 @@ Every relationship is disclosed in the post itself, not only in a bio: payment, 
 
 From [Places](#places), rank the sites the buyer already browses when they need this as likely, possible or long shot, and take the top 3–5. Weinberg and Mares's Bullseye (*Traction*) tests a few channels cheaply, then puts the effort into the one that works, because one channel usually dominates. Check each site accepts the product's stage and what its free route costs (a queue, a badge, participation). Draft one core description saying what it does, for whom, and how it differs, then adapt the wording per site with screenshots, matching categories and a working URL.
 
-In communities, the user takes part before posting the link, then shares it as a story or a request for feedback, because each community caps self-promotion its own way: Reddit leaves it to each subreddit (some ban it, many allow at most 10% of your activity there), Lobsters asks for under a quarter of your stories and comments and none in your first 70 days, and Show HN takes only things people can try, never landing or sign-up pages. Reddit specifics are in [gtm-reddit](../gtm-reddit/SKILL.md). Done when the top 3–5 places have a tailored listing draft; after launch, count the sign-ups each brought.
+In communities, the user takes part before posting the link, then shares it as a story or a request for feedback, because each community caps self-promotion its own way: Reddit leaves it to each subreddit (some ban it, many allow at most 10% of your activity there), Lobsters asks for under a quarter of your stories and comments and none in your first 70 days, and Show HN takes only things people can try, never landing or sign-up pages. Reddit specifics are in [gtm-reddit](../gtm-reddit/SKILL.md). Hacker News asks people to write their own text, bans generated or AI-edited comments, and asks that nobody automate posting, so for Show HN hand the user notes (what to link, what to say it does, what's new), never a draft, and the user writes and posts it. Done when the top 3–5 places have a tailored listing draft, or notes for Show HN; after launch, count the sign-ups each brought.
 
 ## 6. Launch day
 
 Keep the launch in one post so every quote points to the same place; X shows one post per conversation ([gtm-x](../gtm-x/SKILL.md)). Line up a thunderclap on X: founders, friends and partners post at one set time. On Product Hunt, ask people to try it and leave feedback, never to upvote, because Product Hunt removes launches that ask for or reward upvotes. On Hacker News, ask people only to try it, because HN forbids asking anyone to upvote or comment and penalises submissions that do. Anchor the launch on the platform or ecosystem the product builds on, and use integrations as the onboarding story. Name owners before posting: one for product questions, one for business follow-ups.
 
-Draft answers where each question was asked: under the post, its quotes, and creators' posts. Propose a DM only when someone said something it answers; check their profile first. A like alone is no reason.
+Draft answers where each question was asked: under the post, its quotes, and creators' posts. On Hacker News, list the questions with the facts that answer them, and the user replies in their own words. Propose a DM only when someone said something it answers; check their profile first. A like alone is no reason.
 
 Ready when: one claim with evidence, angles matched to briefed people with access, both owners named, and a clear way to try the product.
 
@@ -125,6 +125,7 @@ Google lists low-quality directory links, excessive link exchanges and automated
 - [Product Hunt: How to promote your launch and what to avoid](http://help.producthunt.com/en/articles/17734384-5-how-to-promote-your-launch-and-what-to-avoid)
 - [Hacker News: Show HN guidelines](https://news.ycombinator.com/showhn.html)
 - [Hacker News: FAQ](https://news.ycombinator.com/newsfaq.html)
+- [Hacker News: Guidelines](https://news.ycombinator.com/newsguidelines.html)
 - [Reddit Help: How do I keep spam out of my community?](https://support.reddithelp.com/hc/en-us/articles/28012014962580-How-do-I-keep-spam-out-of-my-community)
 - [Lobsters: About](https://lobste.rs/about)
 - [Google Search Central: Spam policies](https://developers.google.com/search/docs/essentials/spam-policies)

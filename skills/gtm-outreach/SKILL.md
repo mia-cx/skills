@@ -64,7 +64,7 @@ Draft text here.
 [Reply on Reddit](https://www.reddit.com/r/selfhosted/comments/…)
 ```
 
-Reddit and LinkedIn leads go to the user to post. For the rest, ask which ones the agents post, then follow [Posting rules](#posting-rules).
+Reddit and LinkedIn leads go to the user to post. Hacker News leads go to the user with notes instead of a draft, because HN bans generated or AI-edited comments; the user writes the reply. For the rest, ask which ones the agents post, then follow [Posting rules](#posting-rules).
 
 ## Drafting rules
 
@@ -87,7 +87,7 @@ LinkedIn DMs follow [gtm-linkedin](../gtm-linkedin/SKILL.md#dms-from-competitors
 
 ## Posting rules
 
-Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else stays with the user: every Reddit post and comment (Reddit's Responsible Builder Policy requires agents to run as labelled apps), venues that ban AI-written posts, and every LinkedIn message. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because platforms count repeated similar posts as spam (Reddit's spam rules name it) and many communities cap self-promotion. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
+Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else stays with the user: every Reddit post and comment (Reddit's Responsible Builder Policy requires agents to run as labelled apps), every Hacker News submission and comment (HN asks that nobody automate posting), venues that ban AI-written posts, and every LinkedIn message. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because platforms count repeated similar posts as spam (Reddit's spam rules name it) and many communities cap self-promotion. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
 
 ## Cold email campaigns
 
@@ -123,6 +123,7 @@ Pick partners by fit, not reach, because engagement with sponsored posts peaks a
 - [Yahoo: Sender FAQs](https://senders.yahooinc.com/faqs/)
 - [Microsoft: Outlook's new requirements for high-volume senders (2025)](https://techcommunity.microsoft.com/blog/microsoftdefenderforoffice365blog/strengthening-email-ecosystem-outlook%E2%80%99s-new-requirements-for-high%E2%80%90volume-senders/4399730)
 - [Apple: Mail Privacy Protection](https://www.apple.com/legal/privacy/data/en/mail-privacy-protection/)
+- [Hacker News: Guidelines](https://news.ycombinator.com/newsguidelines.html)
 - [Reddit Help: How do I keep spam out of my community?](https://support.reddithelp.com/hc/en-us/articles/28012014962580-How-do-I-keep-spam-out-of-my-community)
 - [AIGA: Position on spec work](https://www.aiga.org/resources/aiga-position-on-spec-work)
 - [@coldemailchris: the cold email cheat sheet](https://x.com/coldemailchris/status/2119415642202034427)
