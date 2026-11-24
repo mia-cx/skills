@@ -93,7 +93,7 @@ After an agent summarises calls, research or data, open a couple of the original
 
 ## Review ladder
 
-AI quality is uneven in ways you can't see in advance: in a field experiment with 758 BCG consultants, AI help made them faster and better on most tasks, yet 19% less likely to get the right answer on one that looked just as hard (Dell'Acqua et al.). So every new agent, and every new job for an old one, starts at full review, and review drops only as a measured clean-run rate earns it. The ladder below is one former agency COO's rule of thumb, not a tested measure. Log every reviewed run's outcome so the counts are real, and count only runs someone reviewed.
+AI quality is uneven in ways you can't see in advance: in a field experiment with 758 BCG consultants, AI help made them faster and better on most tasks, yet 19 percentage points less likely to get the right answer on one that looked just as hard (Dell'Acqua et al.). So every new agent, and every new job for an old one, starts at full review, and review drops only as a measured clean-run rate earns it. The ladder below is one former agency COO's rule of thumb, not a tested measure. Log every reviewed run's outcome so the counts are real, and count only runs someone reviewed.
 
 1. 100% review on every new agent.
 2. Once 9 of the last 10 reviewed runs pass without revision, review 50%.

@@ -32,7 +32,7 @@ Read everything new since your last run:
 - [notes pages, draft folders, report sheets]
 - the group channel, for anything an agent flagged
 
-Send me one page in [Slack / email], in this order:
+Send me one page in [my Slack channel], in this order:
 1. What needs my decision today. For each: 1 problem, 3 options, 1 recommendation
 2. Drafts in my review pile, oldest first, with links
 3. Anything off: a missing file, a number that moved more than [20]% since last week, an agent that skipped its run
@@ -51,7 +51,7 @@ Rules:
 - Ask me first before you contact a client or edit another agent's instructions.
 ```
 
-The chief of staff reads private drafts built from text that came from outside, so fix where it sends in the connection, not the prompt: a Slack webhook or mail connector that reaches only the user's own channel or inbox, with no tool that picks a recipient. A link in the page can still leak data when the app previews it, and Slack unfurls links in app and webhook messages by default, so the connector sends every message with `unfurl_links` and `unfurl_media` set to `false`. Without such a connector, it saves the page where the user opens it ([lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data)).
+The chief of staff reads private drafts built from text that came from outside, so fix where it sends in the connection, not the prompt: a Slack webhook that reaches only the user's own channel, with no tool that picks a recipient. A link in the page can still leak data when the app previews it, and Slack unfurls links in app and webhook messages by default, so the connector sends every message with `unfurl_links` and `unfurl_media` set to `false`. Don't email the page: mail security scanners, such as Microsoft's Safe Links, can open its links before the user does, and nothing in the message can stop them. Without the webhook, it saves the page where the user opens it ([lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data)).
 
 ## A first worker: the auditor
 
@@ -74,7 +74,7 @@ One practitioner's framework covers 8 areas: strategy, delivery, client manageme
 ## Handoffs and silence
 
 - Pass work between agents as a file plus the five-part handoff note in the prompt above, and have each agent read the source document, not the last agent's summary. Anthropic's subagents store their work and pass back a reference, which "prevents information loss"; chained summaries drop detail at every hop. The "what's decided" line carries the implicit decisions Yan warns get lost.
-- Give every scheduled agent the line "If nothing changed since your last run, send me nothing." A routine that pings with no news trains the user to ignore it, and they miss the day it matters: in a study of clinical alerts, the chance of acting on a reminder fell 30% with each extra reminder in the same visit (Ancker et al.).
+- Give every scheduled agent the line "If nothing changed since your last run, send me nothing." Every ping with no news makes the one that matters easier to skip: in a study of clinical alerts, clinicians were 30% less likely to act on a reminder for each extra reminder in the same visit, and less likely the more of their reminders were repeats (Ancker et al.).
 
 ## Keep, kill, and drift
 
@@ -101,7 +101,7 @@ An always-on agent watches sources and acts without being asked. The patterns be
 
 Give every event, thread and task an ID with its related IDs, so the agent can follow links hop by hop to recover old context.
 
-**Never block.** A long tool starts in the background and reports back as a new event; a blocking call leaves the agent deaf until it finishes. Replace `run()` with `start()`, which returns "Started" at once, and `stop()`. For runs that must survive a crash or a multi-day approval, use a durable workflow engine such as Temporal, which hands a crashed run to another process that resumes where it stopped. A step that was mid-call when the worker died runs again from the start, so make every paid or outbound step safe to repeat: send an idempotency key that the receiving service enforces, such as the workflow run ID plus the step's ID, as Temporal recommends. Where the service can't deduplicate, have the run stop and ask the user before it repeats the step.
+**Never block.** A long tool starts in the background and reports back as a new event; a blocking call leaves the agent deaf until it finishes. Replace `run()` with `start()`, which returns "Started" at once, and `stop()`. For runs that must survive a crash or a multi-day approval, use a durable workflow engine such as Temporal, which hands a crashed run to another process that resumes where it stopped. A step that was mid-call when the worker died runs again from the start, so make every paid or outbound step safe to repeat: send an idempotency key that the receiving service enforces, such as the workflow run ID plus the step's ID, as Temporal recommends. Where the service can't deduplicate, turn off automatic retries for that step, because Temporal retries a failed step by default (in Temporal, a retry policy with a maximum of 1 attempt), and have the run stop and ask the user to check before it repeats the step.
 
 **Keep the brain in the cloud and the hands where they live.** Keep state in a database, run on stateless cloud compute, and reach the user's machines through a thin daemon, so a sleeping laptop doesn't stop the agent. See Anthropic's [Decoupling the brain from the hands](https://www.anthropic.com/research/managed-agents) and DeepSeek's [research prototype](https://github.com/deepseek-ai/dsh-superagent-prototype), which it labels not an official product. A compromised cloud loop reaches every connected machine, so apply [marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data) to each connection.
 
@@ -118,7 +118,9 @@ Give every event, thread and task an ID with its related IDs, so the agent can f
 - [Temporal docs: Understanding Temporal](https://docs.temporal.io/evaluate/understanding-temporal)
 - [Temporal docs: Activities](https://docs.temporal.io/activities)
 - [Temporal docs: Activity definition, idempotency](https://docs.temporal.io/activity-definition#idempotency)
+- [Temporal docs: Retry policies, default behavior](https://docs.temporal.io/encyclopedia/retry-policies#default-behavior)
 - [Slack docs: Unfurling links in messages](https://docs.slack.dev/messaging/unfurling-links-in-messages/)
+- [Microsoft Learn: Safe Links in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/defender-office-365/safe-links-about)
 - [DeepSeek Harness, *Exploring super-agent design* (2026)](https://x.com/DeepSeekHarness/status/2116857257245987236)
 - [DeepSeek: dsh-superagent research prototype](https://github.com/deepseek-ai/dsh-superagent-prototype)
 - [Kyle Hunt, *How to build a $1M company with Grok Bot* (2026)](https://x.com/huntkyle/status/2118086670918750341)
