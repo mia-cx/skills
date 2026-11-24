@@ -65,7 +65,7 @@ Launch platforms and community posting belong to [gtm-outreach](../gtm-outreach/
 
 Earn editorial citations. Google's [link spam policy](https://developers.google.com/search/docs/essentials/spam-policies#link-spam) names bought links that pass ranking credit, excessive link exchanges, required links that the site owner can't qualify, low-quality directory links, and automated link creation. Since 2022 SpamBrain detects sites buying and selling links and neutralises those links, and a pattern of them can bring a manual action on part or all of the site. Fill in every profile created, and skip directories whose free route demands a reciprocal badge. Paid placements carry `rel="sponsored"` or `nofollow`, and commercial relationships are disclosed.
 
-Refuse outright: link exchange and credit networks, paid Reddit or Quora "tasks", fake accounts, self-written reviews, mass AI posts across a site network, and city × service template pages (doorway abuse).
+Refuse outright: link exchange and credit networks, paid Reddit or Quora "tasks", fake accounts, self-written reviews, mass AI posts across a site network, and doorway pages: city × service templates that target near-identical searches and funnel readers to one destination. A local page with its own verified facts is not one ([seo-content](../seo-content/SKILL.md)).
 
 Some shortcuts sit beside that line. Present them to the user as decisions, each needing their go:
 
