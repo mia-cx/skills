@@ -59,7 +59,7 @@ Use lists for discovery only, picking entries where the business qualifies and b
 - Government, supplier, and business listings, with details identical across all.
 - A longer searchable list: https://backlinkforme.com/backlinks (maintained by the list's author).
 
-Launch platforms and community posting belong to [gtm-outreach](../gtm-outreach/SKILL.md), which also governs cold email: outreach follows the recipient country's email law (CAN-SPAM in the US, business-to-business included; PECR in the UK, where companies may be emailed but sole traders need consent), and every message goes out only after the user approves it.
+Launch platforms and community posting belong to [gtm-outreach](../gtm-outreach/SKILL.md), which also governs cold email: outreach follows the recipient country's email law (CAN-SPAM in the US, business-to-business included; PECR in the UK, where companies, LLPs, and Scottish partnerships may be emailed but sole traders and other partnerships need consent, and a named person's work address still falls under UK GDPR), and every message goes out only after the user approves it.
 
 ## Link policy
 
@@ -90,6 +90,7 @@ Some shortcuts sit beside that line. Present them to the user as decisions, each
 - [Ahrefs: What is Domain Rating (DR)?](https://help.ahrefs.com/en/articles/1409408-what-is-domain-rating-dr)
 - [US Federal Trade Commission: CAN-SPAM Act, a compliance guide for business](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business)
 - [UK Information Commissioner's Office: Electronic mail marketing (PECR)](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guide-to-pecr/electronic-and-telephone-marketing/electronic-mail-marketing/)
+- [UK Information Commissioner's Office: Business-to-business marketing](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/business-to-business-marketing/)
 - [@asaio87: link targets and monthly link pace](https://x.com/asaio87/status/2119171723849245031)
 - [@2whazzuup: directories, weekly routine and journalist platforms](https://x.com/2whazzuup/status/2119247229601062993)
 - [@TheoAGI: roundup pitches and vendor customer stories](https://x.com/TheoAGI/status/2120163220312699025)
