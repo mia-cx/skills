@@ -51,7 +51,7 @@ Content, launches and video build on gtm-outreach's leads, so run its scouts fir
 
 ## Boundaries
 
-- Reach people only through a public reply or a contact route they published. Never guess, scrape, or buy an address: US law treats harvested and generated addresses as an aggravated spam violation (CAN-SPAM, 15 U.S.C. 7704(b)).
+- Reach people only through a public reply or a contact route they published. Never guess, scrape, or buy an address: none of them is a route the person chose, and US law makes unlawful commercial email sent to automatically harvested or generated addresses an aggravated violation (CAN-SPAM, 15 U.S.C. 7704(b)).
 - Always disclose the relationship to the product; never pose as a customer or a neutral third party, because the FTC treats undisclosed connections and fake testimonials as deceptive (16 CFR 255 and 465).
 - Claims come from the copy sheet. Anything else becomes a question for the user.
 - One message per person, and follow-ups only when the user asks.
