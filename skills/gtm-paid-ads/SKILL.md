@@ -27,7 +27,7 @@ Platforms credit themselves with more sales than they cause: across 15 randomise
 Propose a randomised holdout. Where Meta offers its person-level Conversion Lift test, prefer it, because Meta rates it statistically stronger than a geo test. Otherwise run a geo experiment (Vaver and Koehler, Google):
 
 1. Split matched regions at random into ads-on and ads-off groups. Size the test with a power analysis, for example in Meta's open-source [GeoLift](https://facebookincubator.github.io/GeoLift/), which picks markets and duration, because ad effects are small next to weekly sales swings and small tests often can't read them (Lewis and Rao 2015). Korzhov's default is 5 regions off for 4 weeks.
-2. Compare each group's sales with its own pre-test weeks. What the ads added is how much more the ads-off group changed than the ads-on group.
+2. Compare each group's sales with its own pre-test weeks. What the ads added is how much more the ads-on group changed than the ads-off group.
 3. Compare that with the sales Meta attributed.
 
 The holdout loses the sales ads would have brought, so the user picks a holdout small enough to afford it. For an ongoing per-channel estimate, propose marketing mix modelling with Google [Meridian](https://developers.google.com/meridian) or Meta [Robyn](https://facebookexperimental.github.io/Robyn/) (both free and open source), calibrated with the holdout result. Done when the user knows the ratio between attributed and measured sales, with the test's confidence range.
