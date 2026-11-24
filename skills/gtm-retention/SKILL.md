@@ -18,7 +18,7 @@ Define onboarded as a key action repeated at a set frequency, because one first 
 2. **Frequency**: how often a user should get that value, benchmarked on the offline habit it replaces. Grubhub used monthly, from how often people phoned restaurants.
 3. **Definition**: users still doing the key action at that frequency some weeks after sign-up. Pinterest counted weekly savers four weeks after sign-up. When cohorts take long to settle, use a leading indicator; Grubhub used a second order within 30 days of the first.
 
-Then propose where the first "aha" moment sits inside the onboarding flow, so a new user feels the value before they leave. Done when the definition is one sentence, with the share of a sign-up cohort old enough to check that meets it, or a proposal to instrument it.
+Track the first time a user does the key action as its own event, the first value event: it marks the "aha" moment, while onboarded marks the habit, often weeks later. Propose where the first value event sits inside the onboarding flow, so a new user feels the value before they leave. Done when the definition is one sentence, with the share of a sign-up cohort old enough to check that meets it, or a proposal to instrument it.
 
 ## 2. Why people stay and leave
 
@@ -37,7 +37,7 @@ Done when every question has an answer or a named source of data that would answ
 
 Trigger messages on what each person did, because behaviour happens only when motivation, ability and a prompt come together at the same moment (Fogg Behavior Model), and a message fired by an action arrives while the motivation is still there:
 
-1. Send the email tool (Klaviyo or the product's own) product events: signed up, reached the onboarded event, went quiet, bought.
+1. Send the email tool (Klaviyo or the product's own) product events: signed up, reached the first value event, became onboarded, went quiet, bought.
 2. Draft five flows, each fired by one behaviour.
 3. Hold out a random 10% of users who receive nothing, because only a randomised control group shows what the messages caused; intuition misjudges such changes often (Kohavi and Thomke).
 4. Fix the test's sample size and end date before it starts, and compare revenue or retention between the groups only at the end, because stopping when a difference first looks significant inflates false positives (Evan Miller). On a small list, say plainly that the test may show nothing either way.
