@@ -74,7 +74,7 @@ Log each edit with date and URL, open the live URL to confirm it shipped, and tr
 
 ## Test titles
 
-A title change reports back once Google recrawls and reprocesses the page (a few days to a few weeks) and shows the new title link; a new article takes months. Target pages at positions 3–10 with a few hundred impressions and CTR 40% or more below the site's own norm for that position: average CTR across the site's pages at each position in Search Console, because published curves disagree (Advanced Web Ranking's July 2026 US desktop data puts position 3 at 3.89%; one practitioner's norm is 9%) and swing with AI Overviews and other results-page features. A page can win its main keyword yet get skipped on queries whose words the title lacks.
+A title change reports back once Google recrawls and reprocesses the page (a few days to a few weeks) and shows the new title link; a new article takes months. Target pages at positions 3–10 with a few hundred impressions and CTR 40% or more below the site's own norm for that position, as a screen rather than a verdict. Compare by query and device, not by page: a page's average position blends every impression across its queries and devices, so half its impressions at 1 and half at 9 read as 5. Build the norm from the site's own query rows at each position, because published curves disagree (Advanced Web Ranking's July 2026 US desktop data puts position 3 at 3.89%; one practitioner's norm is 9%) and swing with AI Overviews and other results-page features. A page can win its main keyword yet get skipped on queries whose words the title lacks.
 
 1. Search the query in a private window, since Google rewrites titles that are stuffed, boilerplate, half-empty, obsolete, or inaccurate. Note query words the results above use and this title lacks.
 2. Draft at least three candidates: query words first, a specific promise ("7 ways to get more leads"), a reason to click now, nothing the page fails to deliver. Use a year only when the page is current for that year: one SearchPilot split test found month and year in titles lifted organic sessions about 5% on a listings site, but Google rewrites obsolete titles and flags dates changed without real updates.
@@ -104,6 +104,7 @@ For a rising search, check its Google Trends history to rule out seasonality, re
 - [Google Search Central: Control your snippets](https://developers.google.com/search/docs/appearance/snippet)
 - [Google Search Central: SEO link best practices](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)
 - [Google Search Central: Ask Google to recrawl your URLs](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl)
+- [Search Console Help: What are impressions, position, and clicks?](https://support.google.com/webmasters/answer/7042828)
 - [Search Console Help: Performance report data discrepancies](https://support.google.com/webmasters/answer/17010575)
 - [Google Trends Help: FAQ about Google Trends data](https://support.google.com/trends/answer/4365533)
 - [Google Ads Help: About responsive search ads](https://support.google.com/google-ads/answer/7684791)
