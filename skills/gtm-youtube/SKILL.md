@@ -26,7 +26,7 @@ Decide the title and thumbnail before making the video, because a click is the f
 
 After publishing:
 
-- Test up to 3 title and thumbnail pairs with YouTube Studio's A/B test on desktop. It picks the winner by watch time share, not clicks, because YouTube learned that a click doesn't mean the viewer actually watched.
+- On a long-form video, with advanced features enabled on the channel, test up to 3 title and thumbnail pairs with YouTube Studio's A/B test on desktop; Shorts can't be tested. It picks the winner by watch time share, not clicks, because YouTube learned that a click doesn't mean the viewer actually watched.
 - Read the audience retention report per video: "intro" is the share still watching at 30 seconds, where a low figure suggests the opening didn't match the title and thumbnail, and "typical retention" compares the video with the user's 10 latest of similar length.
 
 ## Feed it from other work
