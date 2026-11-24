@@ -21,7 +21,7 @@ Turn one weekly manual task into an agent that runs on a schedule and reports to
    ```
    Don't run anything yet. List every step in order, every app you'd open and every call you're unsure about.
    ```
-7. **Three live runs.** Run the job by hand on 3 different inputs. The user reviews everything and you fix the charter after each run, because one clean run only proves the easy case. Three runs catch a misread job, not rare failures (Anthropic started its agent evals with about 20 real queries); the [review ladder](../marketing-agents-guardrails/SKILL.md#review-ladder) catches the rest. Done after 3 runs with no charter change in the last one.
+7. **Three live runs.** Run the job by hand on 3 different inputs. The user reviews everything and you fix the charter after each run, because one clean run only proves the easy case. Three runs catch a misread job, not rare failures (Anthropic started its agent evals with about 20 real queries); after scheduling, the [review ladder](../marketing-agents-guardrails/SKILL.md#review-ladder) sets how much of the work the user reviews, and the charter's pass/fail lines check costly mistakes on every run. Done after 3 runs with no charter change in the last one.
 8. **Schedule.** Use the clock for reports (weekdays at 7am, Mondays at 8am, the 1st of the month) and an event trigger, such as a new message, for work that only matters when something happens. Use the scheduler the user runs: cron, a scheduled CI job, or the agent tool's routines. Start at full review on the review ladder.
 9. **Score it after 2–3 weeks.** Report runs, clean runs, fixes and hours saved, and propose keep or kill.
 
