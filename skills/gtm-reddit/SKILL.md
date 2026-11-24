@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Part of [gtm](../gtm/SKILL.md): its copy sheet and boundaries apply here.
 
-Reddit is where people vent about a category and ask for tools by name, and AI answers cite it often: in one vendor's data on 100K+ AI answers, Reddit ranked second among non-corporate sources, behind YouTube (Kumar 2026). Every subreddit is its own community with its own rules, and Reddit's rules ask people to participate authentically in communities where they have a personal interest. Posts come from [gtm-writing](../gtm-writing/SKILL.md); this skill covers what changes on Reddit.
+Reddit is where people vent about a category and ask for tools by name, and AI answers cite it: in one vendor's data on 100K+ AI answers, Reddit and community forums drew 3.3% of citations, behind YouTube and video (4.2%) and tech and business media (3.8%) (Kumar 2026). Every subreddit is its own community with its own rules, and Reddit's rules ask people to participate authentically in communities where they have a personal interest. Posts come from [gtm-writing](../gtm-writing/SKILL.md); this skill covers what changes on Reddit.
 
 ## Research
 
