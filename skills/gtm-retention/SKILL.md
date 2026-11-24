@@ -27,7 +27,7 @@ Draft answers in `.gtm/retention.md`, marking guesses as guesses:
 - **Hero features**: which features bring people back?
 - **Levelling up**: how does a casual user become a power user?
 - **Segments**: which usage numbers split users meaningfully?
-- **Churn**: why do people leave, and what would win them back? For software, set six-month user retention beside the practitioner benchmarks Lenny Rachitsky collected from about 20 growth leaders: roughly 25% good and 45% great for consumer social, 40% and 70% for consumer SaaS, 60% and 80% for SMB SaaS.
+- **Churn**: why do people leave, and what would win them back? For software, set six-month user retention beside the practitioner benchmarks Lenny Rachitsky collected from about 20 growth leaders, counted from the same starting group each uses: roughly 25% good and 45% great of registered users for consumer social, 40% and 70% of paid subscribers for consumer SaaS, 60% and 80% of paying companies (not seats) for SMB SaaS.
 - **Analytics**: web analytics for the site, and a product analytics tool for what happens inside the product. Propose one where either is missing.
 - **Pricing**: why, how and what the product charges.
 
