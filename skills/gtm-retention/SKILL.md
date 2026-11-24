@@ -16,7 +16,7 @@ Define onboarded as a key action repeated at a set frequency, because one first 
 
 1. **Key action**: the action that only happens when a user got value, such as "document shared" in a writing app or "transaction made" in a wallet. Find it in the product code or analytics.
 2. **Frequency**: how often a user should get that value, benchmarked on the offline habit it replaces. Grubhub used monthly, from how often people phoned restaurants.
-3. **Definition**: users still doing the key action at that frequency some weeks after sign-up. Pinterest counted weekly savers four weeks after sign-up. When cohorts take long to settle, use a leading indicator; Grubhub used a second order within 30 days.
+3. **Definition**: users still doing the key action at that frequency some weeks after sign-up. Pinterest counted weekly savers four weeks after sign-up. When cohorts take long to settle, use a leading indicator; Grubhub used a second order within 30 days of the first.
 
 Then propose where the first "aha" moment sits inside the onboarding flow, so a new user feels the value before they leave. Done when the definition is one sentence, with the share of a sign-up cohort old enough to check that meets it, or a proposal to instrument it.
 
