@@ -77,12 +77,13 @@ STEPS
 - Open the outliers from my saved search first; they're free to read.
 - Run a single search on [data source] for [topic]: TikTok and Instagram, past week, outliers only, [outlier score threshold], creators under [100,000] followers, [language]. One page.
 - Drop paid posts and anything already in outliers.md.
+- For each of the 5 you send, run one more search for the same hook or format with the same filters but without the outlier filter. One page. If [data source] can't return videos that did badly, say so; an empty result doesn't mean none flopped.
 
 SEND ME 5, HIGHEST SCORE FIRST
 - Link, creator, followers, views and score.
 - First line, hook type and format.
 - Your best guess at why it took off, marked as opinion.
-- Up to 3 videos in my niche with the same hook or format that flopped, and what differs.
+- Up to 3 videos in my niche with the same hook or format that flopped, and what differs, or a note that [data source] can't show them.
 - Whether my business could shoot it this week.
 
 Add them to outliers.md. On a day with nothing new, stay silent.
@@ -138,10 +139,10 @@ STEPS
 - Mark each one MAKE or SKIP, judged only on whether my buyer would care.
 
 SEND ME
-For each MAKE: an example link, its stage, and what we'd actually shoot. For each sound, say whether it is in TikTok's Commercial Music Library. Save it as trends.md.
+For each MAKE: an example link, its stage, and what we'd actually shoot. For each sound, say whether TikTok's Commercial Music Library lists it for [region] and for the placement we'd post it in. Save it as trends.md.
 ```
 
-On TikTok, a business may post only sounds from the Commercial Music Library or tracks it has licensed itself, because TikTok bars businesses from using the general music library for any commercial use, organic posts included. Have the user confirm a sound's licence before posting with it.
+On TikTok, a business may post only sounds from the Commercial Music Library or tracks it has licensed itself, because TikTok bars businesses from using the general music library for any commercial use, organic posts included. The library filters tracks by the region a campaign runs in and by usable placement, so a track listed in one region or placement may be unavailable in another. Have the user confirm a sound's licence before posting with it.
 
 ```
 JOB
