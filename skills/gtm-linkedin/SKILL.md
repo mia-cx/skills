@@ -44,10 +44,10 @@ The customer, fix and time must be a real result from the copy sheet.
 
 Build the list one of two ways, and ask the user which:
 
-- **Sales Navigator (paid subscription).** Filter by job title, industry and company headcount, and message people outside the user's network with InMail credits, LinkedIn's paid channel for messaging strangers. Confirm the current price with the user before suggesting it.
+- **Sales Navigator (paid subscription).** Filter by job title, industry and company headcount, and message people outside the user's network with InMail credits, LinkedIn's paid channel for messaging strangers. Every plan gets 50 credits a month, banking up to 150, and extra credits can't be bought; a reply within 90 days refunds the credit. Confirm the current price and the user's credit balance before suggesting it.
 - **Free.** LinkedIn's people search, filtered by the job title from the ads, plus company and location. The user sends connection requests only where there is a real reason to connect, and the invitation itself carries no pitch, because LinkedIn's Professional Community Policies ban using invitations to send promotional messages to people you don't know. Free accounts can add a personal note to 5 requests a month. Once someone accepts, the user may send the DM.
 
-Propose a test: each DM to 50 people, and after a week, if one DM leads by a wide margin, 3 new versions of it, then the rest of the list. At a 10% reply rate, telling 10% from 15% apart takes about 576 sends per version (Evan Miller's sample-size rule), so close counts at 50 are a tie: report the pilot as inconclusive, then stop or plan a larger test. On the free route, the test runs at the pace people accept requests. LinkedIn caps invitations without publishing the number and restricts accounts that hit the cap, typically for a week, so the user sends at a human pace. A weekly rerun of steps 1–3 is fine.
+Propose a test: each DM to 50 people, and after a week, if one DM leads by a wide margin, 3 new versions of it, then the rest of the list. At a 10% reply rate, telling 10% from 15% apart takes about 576 sends per version (Evan Miller's sample-size rule), so close counts at 50 are a tie: report the pilot as inconclusive, then stop or plan a larger test. On Sales Navigator, the 150 sends need 150 credits, so fit the pilot to the user's balance: split it across months, or test fewer DMs. On the free route, the test runs at the pace people accept requests. LinkedIn caps invitations without publishing the number and restricts accounts that hit the cap, typically for a week, so the user sends at a human pace. A weekly rerun of steps 1–3 is fine.
 
 ## Find people
 
@@ -58,6 +58,7 @@ Scouts reach LinkedIn through web search with `site:linkedin.com`, because its A
 - [Evan Miller, *How Not To Run an A/B Test* (2010)](https://www.evanmiller.org/how-not-to-run-an-ab-test.html)
 - [LinkedIn: User Agreement](https://www.linkedin.com/legal/user-agreement)
 - [LinkedIn: Professional Community Policies](https://www.linkedin.com/legal/professional-community-policies)
+- [LinkedIn Help: InMail credits in Sales Navigator](https://www.linkedin.com/help/sales-navigator/answer/a101030)
 - [LinkedIn Help: Invitation limit reached](https://www.linkedin.com/help/linkedin/answer/a550555)
 - [LinkedIn Help: LinkedIn's Ad Library](https://www.linkedin.com/help/linkedin/answer/a1517918)
 - [LinkedIn Help: Finding the URL for shared content](https://www.linkedin.com/help/linkedin/answer/a1340792)
