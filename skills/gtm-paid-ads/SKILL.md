@@ -14,7 +14,7 @@ Paid ads only pay when the platform learns from correct data and the user can te
 
 Ad platforms optimise on the conversion events they receive: Meta uses only events matched to a person for attribution and delivery optimisation, so a duplicated or missing sale teaches the algorithm wrong data. Korzhov claims most accounts send duplicates or miss about a quarter of orders.
 
-Send the purchase event from both browser and server with the same event ID and the same event name, so Meta discards a duplicate that arrives within 48 hours of the first: Google Tag Manager, GA4, server-side tagging (such as Stape), and the Meta Conversions API. Check event match quality in Events Manager, which Meta scores out of 10 without publishing a target; Korzhov aims above 7, and sending more customer information parameters raises it. Done when Events Manager counts each test order once and event match quality is recorded.
+Send the purchase event from both browser and server with the same event ID and the same event name, so Meta discards a duplicate that arrives within 48 hours of the first: Google Tag Manager, GA4, server-side tagging (such as Stape), and the Meta Conversions API. Check event match quality in Events Manager, which Meta scores out of 10 without publishing a target; Korzhov aims above 7, and sending more customer information parameters raises it. Send only identifiers the site has the right, and where required the consent, to share, apply the same tracking choices on the server as in the browser, and hash email, phone and names as Meta's [customer information parameters](https://developers.facebook.com/documentation/ads-commerce/conversions-api/parameters/customer-information-parameters) require (Meta Business Tools Terms). Done when Events Manager counts each test order once and event match quality is recorded.
 
 ## 2. Match the page to the ad
 
@@ -64,7 +64,8 @@ The user sets spend caps on the ad platform itself before it runs (Meta's accoun
 - [Raluca Budiu, NN/g: Information Scent (2020)](https://www.nngroup.com/articles/information-scent/)
 - [Evan Miller, *How Not To Run an A/B Test* (2010)](https://www.evanmiller.org/how-not-to-run-an-ab-test.html)
 - [Meta for Developers: Deduplicate Pixel and server events](https://developers.facebook.com/docs/marketing-api/conversions-api/deduplicate-pixel-and-server-events/)
-- [Meta for Developers: Conversions API best practices](https://developers.facebook.com/docs/marketing-api/conversions-api/best-practices/)
+- [Meta for Developers: Conversions API best practices](https://developers.facebook.com/docs/marketing-api/conversions-api/best-practices/) and [customer information parameters](https://developers.facebook.com/documentation/ads-commerce/conversions-api/parameters/customer-information-parameters)
+- [Meta Business Tools Terms](https://www.facebook.com/legal/terms/businesstools)
 - [Meta for Developers: Understanding and optimizing your ad campaign (learning phase)](https://developers.meta.com/vr/resources/optimize-ad-campaign/)
 - [Meta Transparency Center: Ad Library tools](https://transparency.meta.com/researchtools/ad-library-tools/)
 - [Meta for Developers: Ad Library API (ads_archive)](https://developers.facebook.com/docs/graph-api/reference/ads_archive/) and [ArchivedAd fields](https://developers.facebook.com/docs/graph-api/reference/archived-ad/)
