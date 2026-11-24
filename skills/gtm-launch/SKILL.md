@@ -49,7 +49,7 @@ Build the quote list:
 
 1. Export the followers of each team member with an account, then add who no export shows: investors, advisors, customers, beta testers, and the scouts' accounts and leads.
 2. Rank everyone by reach into the buyer. Follower count alone qualifies nobody: read their posts and replies for who pays attention.
-3. For the top ~25, draft a personal message from the founder asking them to quote the launch, not repost it, because a quote is a new post to their followers, and X's ranker weights a quote five times a repost. Bad: "We're launching Tuesday, would love a retweet!" Good: "Here's what we've been working on. Would you quote this? Here's a great one from a similar launch."
+3. For the top ~25, draft a personal message from the founder asking them to quote the launch, not repost it, because a quote is a new post to their followers that carries their own take. Bad: "We're launching Tuesday, would love a retweet!" Good: "Here's what we've been working on. Would you quote this? Here's a great one from a similar launch."
 
 Pick a few creators who live the problem over many big ones, because engagement with sponsored posts does not rise with follower count: across 800+ Instagram campaigns it peaked at mid-sized accounts, whose followers feel a closer tie (Wies, Bleier and Edeling). Give each real access and a brief, and let them write their own take rather than repeat the product's copy; in the same study, posts in the creator's own style made small and large accounts more effective than mid-sized ones:
 
@@ -128,7 +128,6 @@ Google lists low-quality directory links, excessive link exchanges and automated
 - [Reddit Help: How do I keep spam out of my community?](https://support.reddithelp.com/hc/en-us/articles/28012014962580-How-do-I-keep-spam-out-of-my-community)
 - [Lobsters: About](https://lobste.rs/about)
 - [Google Search Central: Spam policies](https://developers.google.com/search/docs/essentials/spam-policies)
-- [xai-org/x-algorithm: `param.rs` action weights](https://github.com/xai-org/x-algorithm/blob/main/home-mixer/params/param.rs)
 - [xai-org/x-algorithm: `dedup_conversation_filter.rs`](https://github.com/xai-org/x-algorithm/blob/main/home-mixer/filters/dedup_conversation_filter.rs)
 - [@mattepstein: the "why do I care" filter, quotes over retweets](https://x.com/mattepstein/status/2117351855856779486)
 - [@0xfJuan: quote angles, creator briefs, the second wave](https://x.com/0xfJuan/status/2114746175026798821)
