@@ -24,13 +24,13 @@ People click on a guess of what the page holds and leave when it doesn't confirm
 
 Platforms credit themselves with more sales than they cause: across 15 randomised Facebook experiments, tracking-based estimates were off by a factor of three in half the studies, mostly too high (Gordon et al. 2019), and eBay's brand-keyword search ads showed no measurable short-term benefit (Blake, Nosko and Tadelis 2015). Korzhov puts the over-crediting at 2–5 times; the size varies by account.
 
-Propose a randomised holdout. Where Meta offers its person-level Conversion Lift test, prefer it, because Meta rates it statistically stronger than a geo test. Otherwise run a geo experiment (Vaver and Koehler, Google):
+Propose a holdout test. Where Meta offers its person-level Conversion Lift test, prefer it, because Meta rates it statistically stronger than a geo test. Otherwise run a geo test in Meta's open-source [GeoLift](https://facebookincubator.github.io/GeoLift/), which plans and reads the test with the same model:
 
-1. Split matched regions at random into ads-on and ads-off groups. Size the test with a power analysis, for example in Meta's open-source [GeoLift](https://facebookincubator.github.io/GeoLift/), which picks markets and duration, because ad effects are small next to weekly sales swings and small tests often can't read them (Lewis and Rao 2015). Korzhov's default is 5 regions off for 4 weeks.
-2. Compare each group's sales with its own pre-test weeks. What the ads added is how much more the ads-on group changed than the ads-off group.
-3. Compare that with the sales Meta attributed.
+1. Run its power analysis on past sales by region. It picks the markets that go without ads and the test length, because ad effects are small next to weekly sales swings and small tests often can't read them (Lewis and Rao 2015). Korzhov's default is 5 regions off for 4 weeks.
+2. Turn ads off in those markets only. GeoLift then measures lift against a synthetic control: a weighted mix of the other markets that tracked the ads-off markets before the test, standing in for what they would have sold with ads on. Report its percent lift, incremental sales and confidence range. In an ads-off test the lift comes out negative, and its size is what the ads added. Never subtract raw sales changes between groups, because a large and a small market growing at the same rate show a gap with no ad effect.
+3. Compare that with the sales Meta attributed in the same ads-off markets, for the same conversion event, over the same number of weeks just before the test, while ads still ran there.
 
-The holdout loses the sales ads would have brought, so the user picks a holdout small enough to afford it. For an ongoing per-channel estimate, propose marketing mix modelling with Google [Meridian](https://developers.google.com/meridian) or Meta [Robyn](https://facebookexperimental.github.io/Robyn/) (both free and open source), calibrated with the holdout result. Done when the user knows the ratio between attributed and measured sales, with the test's confidence range.
+The holdout loses the sales ads would have brought, so the user picks a holdout small enough to afford it. For an ongoing per-channel estimate, propose marketing mix modelling with Google [Meridian](https://developers.google.com/meridian) or Meta [Robyn](https://facebookexperimental.github.io/Robyn/) (both free and open source), calibrated with the holdout result. Done when the user knows the measured lift with its confidence range, and, when that range excludes zero, the ratio between attributed and measured sales. A range that includes zero gets no ratio.
 
 ## 4. Creative in volume
 
@@ -60,7 +60,6 @@ The user sets spend caps on the ad platform itself before it runs (Meta's accoun
 - [Gordon, Zettelmeyer, Bhargava and Chapsky, *A Comparison of Approaches to Advertising Measurement: Evidence from Big Field Experiments at Facebook* (Marketing Science, 2019)](https://www.kellogg.northwestern.edu/faculty/gordon_b/files/fb_comparison.pdf)
 - [Blake, Nosko and Tadelis, *Consumer Heterogeneity and Paid Search Effectiveness* (NBER, 2014; Econometrica, 2015)](https://www.nber.org/system/files/working_papers/w20171/w20171.pdf)
 - [Lewis and Rao, *The Unfavorable Economics of Measuring the Returns to Advertising* (QJE, 2015)](https://ideas.repec.org/a/oup/qjecon/v130y2015i4p1941-1973.html)
-- [Vaver and Koehler, *Measuring Ad Effectiveness Using Geo Experiments* (Google, 2011)](https://research.google/pubs/measuring-ad-effectiveness-using-geo-experiments/)
 - [Nielsen: When it comes to advertising effectiveness, what is key? (2017)](https://www.nielsen.com/insights/2017/when-it-comes-to-advertising-effectiveness-what-is-key/)
 - [Raluca Budiu, NN/g: Information Scent (2020)](https://www.nngroup.com/articles/information-scent/)
 - [Evan Miller, *How Not To Run an A/B Test* (2010)](https://www.evanmiller.org/how-not-to-run-an-ab-test.html)
@@ -70,7 +69,7 @@ The user sets spend caps on the ad platform itself before it runs (Meta's accoun
 - [Meta Transparency Center: Ad Library tools](https://transparency.meta.com/researchtools/ad-library-tools/)
 - [Meta for Developers: Ad Library API (ads_archive)](https://developers.facebook.com/docs/graph-api/reference/ads_archive/) and [ArchivedAd fields](https://developers.facebook.com/docs/graph-api/reference/archived-ad/)
 - [Meta: Automated Data Collection Terms](https://www.facebook.com/legal/automated_data_collection_terms)
-- [Meta Open Source: GeoLift](https://facebookincubator.github.io/GeoLift/) and [its walkthrough](https://facebookincubator.github.io/GeoLift/docs/GettingStarted/Walkthrough/)
+- [Meta Open Source: GeoLift](https://facebookincubator.github.io/GeoLift/), [its introduction](https://facebookincubator.github.io/GeoLift/docs/intro/) and [its walkthrough](https://facebookincubator.github.io/GeoLift/docs/GettingStarted/Walkthrough/)
 - [Google: Meridian](https://developers.google.com/meridian)
 - [Meta: Robyn](https://facebookexperimental.github.io/Robyn/)
 - [Google Ads Help: About overdelivery and your average daily budget](https://support.google.com/google-ads/answer/2375423?hl=en)
