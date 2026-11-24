@@ -163,4 +163,5 @@ Each list with the original wording untouched and the video link, then 5 video i
 - [Amos Tversky, Daniel Kahneman, *Belief in the law of small numbers* (1971)](https://doi.org/10.1037/h0031322)
 - [Anthropic: How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
 - [TikTok: About the Commercial Music Library](https://ads.tiktok.com/help/article/commercial-music-library?lang=en)
+- [TikTok: How to use the Commercial Music Library](https://ads.tiktok.com/help/article/how-to-use-the-commercial-music-library)
 - [jaffa (Virlo co-founder), *Grok Bot for social media* (2026)](https://x.com/dsqjaffa/status/2119160045263077664)
