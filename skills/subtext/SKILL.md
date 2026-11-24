@@ -1,35 +1,35 @@
 ---
 name: subtext
-description: 'Use when the user asks what users (or they themselves) really want, asks for patterns, themes, or duplicates across issues, or wants a backlog read between the lines.'
+description: 'Use when the user asks to find what users (or they themselves) really want from a repo''s issues, to map hidden links or patterns across open and closed issues and PRs, or to propose milestones and new issues from a backlog.'
 ---
 
 # Subtext
 
-People file solutions; the **need** sits underneath. Ten issues asking for an export button, a CSV option, and an API token are one need: get my data out. This skill reads every open and closed issue and pull request, links them by what they share, and names the needs behind them, so one change can answer many requests. The aim is the user's: reduce complexity, so the best answer dissolves several issues at once.
+People file solutions; the **need** sits underneath. Ten issues asking for an export button, a CSV option, and an API token are one need: get my data out. This skill reads every open and closed issue and pull request, links them by what they share, names the needs nobody wrote down, and proposes the milestones and issues that answer them. The aim is the user's: reduce complexity, so the best answer dissolves several issues at once.
 
-The work is read-only. Labels, comments, and new issues go out only when the user asks, because the tracker is public and posts notify people.
+The analysis is read-only. Milestones, issues, labels, and comments go out only after the user approves the proposal, because the tracker is public and posts notify people.
 
 ## 1. Pull the corpus
 
 Read the repo, or every repo the user names. Closed items count as much as open ones: a request closed as not planned that keeps coming back is the strongest signal there is.
 
 ```sh
-gh issue list --state all --limit 1000 --json number,title,state,stateReason,author,createdAt,closedAt,labels,body,comments,reactionGroups,parent,subIssues,blockedBy,blocking,closedByPullRequestsReferences > issues.json
-gh pr list --state all --limit 1000 --json number,title,state,author,createdAt,mergedAt,body,comments,closingIssuesReferences,files > prs.json
+<this skill's directory>/scripts/corpus.sh [owner/repo] [out-dir] > edges.txt
 ```
 
-Write both to your scratch directory and query them with `jq`. Also read `DIRECTION.md`, `CONTEXT.md`, and `.out-of-scope/` when they exist: they hold the stated vision, the domain terms, and past rejections. Done when the item counts match the tracker.
+It writes `issues.json` and `prs.json` to a fresh temp dir (named on stderr) for `jq` queries, and prints every explicit link. Done when its counts match the tracker.
+
+The tracker holds only what someone filed. Also read:
+
+- `DIRECTION.md`, `CONTEXT.md`, and `.out-of-scope/`: the stated vision, the domain terms, and past rejections.
+- Specs, wayfinder maps, ADRs, and the owner's notes, including gitignored ones: the owner's unfiled wants live there.
+- The branch where the work happens. When open PRs target a long-lived branch, read code and docs there and diff them against the default branch: what the branch drops is a finding.
 
 ## 2. Map the explicit links
 
-These are links someone already wrote down:
+`edges.txt` holds one link per line: `parent-of`, `blocked-by`, `closes`, `mentions`, `closed duplicate` or `closed not_planned`, `closed-by-hand` (completed with no closing PR), and `targets` (a PR into a non-default branch). Read the issues each `closed` line points to. Many `closed-by-hand` and `targets` lines together mean work lives off the default branch, where issues never auto-close and triage bots read the wrong code.
 
-- parent and sub-issues; blocked-by and blocking
-- PRs that close issues, and the files those PRs touch
-- `#n` references in bodies and comments
-- issues closed as duplicate or not planned, and what they point to
-
-Done when every link in the corpus is recorded as a pair with its kind.
+Done when every edge kind is counted and each odd one is read.
 
 ## 3. Find the implicit links
 
@@ -49,7 +49,7 @@ For each cluster, separate what was asked for from what is wanted:
 
 - **Asked for**: the solutions as filed.
 - **Need**: the job the person is trying to get done, in one sentence in their words, free of any solution.
-- **Smallest answer**: the one change that satisfies the most items in the cluster. Prefer removing a step or a concept over adding a feature.
+- **Smallest answer**: the one change that satisfies the most items in the cluster. Prefer removing a step or a concept over adding a feature. It is often a feature suggestion built on a piece that already exists; name that piece. For example, a join-request flow for a second person on a shared device dissolves when the person already signed in adds the newcomer: their consent is built in, so the request concept disappears.
 - **Next request**: what this cluster will ask for next if nothing changes.
 
 A need backed by two or more items from two or more people is a finding. A need backed by one item is a hypothesis; label it so. When the repo owner filed issues, report their needs apart from other users', so the user sees where their own wants and their users' wants agree and where they pull apart.
@@ -79,12 +79,23 @@ Rank by evidence: distinct people first, then items, then recency. Cap at five f
 **Next request:** <the predicted follow-up>
 ```
 
-The smallest answer is often a feature suggestion: the existing piece that already does most of the job. For example, a request for a join-request flow on a shared device is answered by showing the existing invite link as a QR code on the profile already signed in. Name the piece it reuses.
-
-Then propose the graph that the findings imply:
+Then propose the graph the findings imply:
 
 - **Milestones**: each with one overarching goal in a sentence, and its exit criterion.
-- **New issues**: title, the goal they serve, and the evidence they link.
-- **Edges**: parent and sub-issue, blocked-by, and which existing issues move under which milestone or close.
+- **New issues**: title, milestone, the goal they serve, and the evidence they link. Mark the ones only the user can do.
+- **Edges**: blocked-by, parent and sub-issue, and which existing issues and PRs move under which milestone or close.
 
-Close with the explicit links that look wrong: issues blocked by closed work, duplicates closed against still-open originals, PRs that closed an issue without meeting its need. Then offer one next step: file the proposed graph, or grill the top finding first.
+Close with the explicit links that look wrong: issues blocked by closed work, duplicates closed against still-open originals, PRs that closed an issue without meeting its need, issues whose title contradicts what shipped. Then offer one next step: file the graph, or grill the top finding first.
+
+## 7. File the approved graph
+
+Follow `gh-comment` for the attribution header on every issue body, use the repo's existing labels, and write bodies to files.
+
+```sh
+gh api repos/<owner>/<repo>/milestones -f title="<name>" -f description="<goal. Done when …>"
+gh issue create --title "<title>" --body-file <file> --milestone "<name>" --label "<labels>" [-a <login>] [--blocked-by <n>]
+gh issue edit <n> --milestone "<name>" --add-blocked-by <m>
+gh pr edit <n> --milestone "<name>"
+```
+
+Done when every proposed milestone, issue, and edge exists, and each filed issue is linked to the thread when the harness offers `link_issue`.
