@@ -54,20 +54,37 @@ For each cluster, separate what was asked for from what is wanted:
 
 A need backed by two or more items from two or more people is a finding. A need backed by one item is a hypothesis; label it so. When the repo owner filed issues, report their needs apart from other users', so the user sees where their own wants and their users' wants agree and where they pull apart.
 
-Check every need against `DIRECTION.md` and `.out-of-scope/`. A need the direction ignores, or one that matches a past rejection and still recurs, goes at the top of the report.
+Check every need against `DIRECTION.md` and `.out-of-scope/`. A need the direction ignores, or one that matches a past rejection and still recurs, ranks first.
 
-## 5. Report
+## 5. Keep only what the user can't already see
 
-Rank needs by evidence: distinct people first, then items, then recency. Cap the report at five; list the rest as one line each.
+The user knows their own roadmap. Drop a need from the report when any of these holds, because restating it costs their attention and tells them nothing:
+
+- It is in flight: an open PR, an epic, or a milestone already carries it.
+- It is settled or deliberately deferred in `DIRECTION.md`, a spec, or a decision thread.
+- It is product identity: the reason the product exists, its voice, its strategy. Identity shapes copy and direction, not tickets. Mention it in one line only when the code or docs drift from it.
+
+What stays is **non-obvious**: a link between areas nobody connected, a cost out of proportion to the need it serves, a decision that went missing from the docs, process friction with one root cause, an expensive subsystem whose user-facing payoff is unbuilt. Done when every remaining need would surprise a reader who knows the roadmap.
+
+## 6. Report
+
+Rank by evidence: distinct people first, then items, then recency. Cap at five findings.
 
 ```markdown
-### <Need, one sentence>
+### <Need or pattern, one sentence>
 
 **Evidence:** #12, #40 (closed, not planned), #77, PR #81 · 4 people, 6 items, latest 2026-11-02
-**Asked for:** <the filed solutions, comma-separated>
-**Smallest answer:** <one change, and which items it closes>
+**Why it's not obvious:** <the link or cost nobody wrote down>
+**Smallest answer:** <one change that reuses what exists, and which items it closes>
 **Next request:** <the predicted follow-up>
-**Direction:** <fits, ignored, or contradicts a past rejection, with the link>
 ```
 
-Close with the explicit links that look wrong: issues blocked by closed work, duplicates closed against still-open originals, PRs that closed an issue without meeting its need. Then offer one next step: grill the top need, turn it into a PRD with `create-prd`, or file it as an issue linking its evidence.
+The smallest answer is often a feature suggestion: the existing piece that already does most of the job. For example, a request for a join-request flow on a shared device is answered by showing the existing invite link as a QR code on the profile already signed in. Name the piece it reuses.
+
+Then propose the graph that the findings imply:
+
+- **Milestones**: each with one overarching goal in a sentence, and its exit criterion.
+- **New issues**: title, the goal they serve, and the evidence they link.
+- **Edges**: parent and sub-issue, blocked-by, and which existing issues move under which milestone or close.
+
+Close with the explicit links that look wrong: issues blocked by closed work, duplicates closed against still-open originals, PRs that closed an issue without meeting its need. Then offer one next step: file the proposed graph, or grill the top finding first.
