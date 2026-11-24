@@ -51,7 +51,7 @@ Rules:
 - Ask me first before you contact a client or edit another agent's instructions.
 ```
 
-The chief of staff reads private drafts built from text that came from outside, so fix where it sends in the connection, not the prompt: a Slack webhook or mail connector that reaches only the user's own channel or inbox, with no tool that picks a recipient. Without one, it saves the page where the user opens it ([lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data)).
+The chief of staff reads private drafts built from text that came from outside, so fix where it sends in the connection, not the prompt: a Slack webhook or mail connector that reaches only the user's own channel or inbox, with no tool that picks a recipient. A link in the page can still leak data when the app previews it, and Slack unfurls links in app and webhook messages by default, so the connector sends every message with `unfurl_links` and `unfurl_media` set to `false`. Without such a connector, it saves the page where the user opens it ([lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data)).
 
 ## A first worker: the auditor
 
@@ -117,6 +117,7 @@ Give every event, thread and task an ID with its related IDs, so the agent can f
 - [Jessica S. Ancker et al., *Effects of workload, work complexity, and repeated alerts on alert fatigue in a clinical decision support system* (2017)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5387195/)
 - [Temporal docs: Understanding Temporal](https://docs.temporal.io/evaluate/understanding-temporal)
 - [Temporal docs: Activities](https://docs.temporal.io/activities)
+- [Slack docs: Unfurling links in messages](https://docs.slack.dev/messaging/unfurling-links-in-messages/)
 - [DeepSeek Harness, *Exploring super-agent design* (2026)](https://x.com/DeepSeekHarness/status/2116857257245987236)
 - [DeepSeek: dsh-superagent research prototype](https://github.com/deepseek-ai/dsh-superagent-prototype)
 - [Kyle Hunt, *How to build a $1M company with Grok Bot* (2026)](https://x.com/huntkyle/status/2118086670918750341)
