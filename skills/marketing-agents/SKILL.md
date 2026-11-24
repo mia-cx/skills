@@ -13,7 +13,7 @@ Automate one job the user already does by hand, because known steps give the age
 
 Build in the stack the user already has: their agent tool, scheduler, data sources, and the chat or inbox where they read reports. Ask what they have before proposing anything new. Tools named in the branch skills are practitioners' examples; swap in what the user can reach.
 
-Use the simplest system that does the job (Anthropic, *Building effective agents*). Where the steps never vary, build fixed steps with at most one AI step, such as a script that pulls the numbers and asks a model for the summary. Use an agent only where a step needs judgement, rules too messy to maintain, or reading unstructured text like emails and reviews, because fixed steps cost less and fail more predictably (OpenAI).
+Use the simplest system that does the job (Anthropic, *Building effective agents*). Where the steps never vary, write them as fixed code and call a model only at the steps that need one, such as a script that pulls the numbers and asks a model for the summary; a job with no such step is a plain script. Anthropic chains several model calls in a fixed order when each call gets easier that way. Use an agent only where the model has to choose its own steps or tools, as with judgement calls, rules too messy to maintain, or reading unstructured text like emails and reviews, because fixed steps cost less and fail more predictably (OpenAI).
 
 ## Context before prompts
 
