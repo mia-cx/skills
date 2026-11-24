@@ -59,7 +59,7 @@ Write for shares and replies:
 
 ## Account reputation
 
-Who engages matters more than how many follow. X raises the reply weight for posts from accounts the viewer mutually follows (the bidirectional follow boost, 15 since July 2026), and SimClusters places the account by who engages with it.
+Who engages matters more than how many follow. For original posts from accounts the viewer mutually follows, X adds 15 to the base reply weight (the bidirectional follow boost, since July 2026); replies and reposts don't get it. SimClusters places the account by who engages with it.
 
 - Build the network by engaging genuinely with people in the niche, so mutual follows form there.
 - Keep the user out of engagement groups. X's authenticity policy bans coordinating to exchange likes, replies, reposts or follows, and X's code ignores engagement on posts opened outside the Home feed, as from a group chat.
