@@ -65,7 +65,7 @@ Pick a shape before writing: problem → insight → takeaway; a list (hook, num
 
 Close on one of three: the takeaway in 1–2 lines, a question, or a tease of what's next.
 
-Format for scanners on phones, because 79% of people scan before they read and concise, scannable text tested 124% more usable (Jakob Nielsen, NN/g), and about 60% of web page views worldwide now come from phones (StatCounter, October 2026):
+Format for scanners on phones, because 79% of Nielsen's test users scanned a new page rather than reading it word by word, and a rewrite of promotional copy that was concise, scannable and objective tested 124% more usable (Jakob Nielsen, NN/g), and about 60% of web page views worldwide now come from phones (StatCounter, October 2026):
 
 - Keep paragraphs to 1–3 lines; four lines look like an essay on a phone.
 - One thought per line. A sentence with two "and"s and a comma is probably two sentences.
