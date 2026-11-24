@@ -12,7 +12,7 @@ Get the product recommended and cited when buyers ask an AI assistant what to ch
 
 Google AI Overviews and AI Mode run on ordinary SEO and need no special schema or file. `llms.txt` is a proposal for giving agents a curated overview of a site, used mostly for documentation; no search engine or assistant says it affects citations. Add one when agents read the site's docs or API, or on request. Crawler access (which bots to allow, and what a CDN blocks) lives in [seo-technical](../seo-technical/SKILL.md#ai-crawlers).
 
-Citations need both the site and third parties. AI search leans towards earned, third-party sources more than Google does (Chen et al., 2025), and in one multilingual audit of 131,512 citations in answers about brands, 82.4% pointed outside the brand's own sites (Żatuchin, 2026).
+Citations need both the site and third parties. AI search leans towards earned, third-party sources more than Google does (Chen et al., 2025), and in one multilingual audit of 131,512 citations in answers about brands, 82.4% fell outside the domains its classifier marked brand-associated, a label the author says does not establish ownership (Żatuchin, 2026).
 
 ## 1. Build the question set
 
