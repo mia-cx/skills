@@ -98,6 +98,11 @@ Made with <actual model> using <actual harness>.
   a generic attribution. Name multiple contributors succinctly when needed.
 - Include validation only when the repo template requires it or the result is
   important context. State only checks actually run.
+- When the diff changes what a user sees, embed screenshots of each changed
+  screen at desktop and phone widths, with before and after when an existing
+  screen changed. Host them with the `upload-file` skill, as gh-comment's
+  "Images and video" section describes: a reviewer judges UI from pictures,
+  not from a description of it.
 - `Closes #N` is required: the issue from step 1. Reference only issues the
   merge completes; the paired `pr-merge` skill treats every direct issue
   reference, `Refs` included, as close intent. When the PR only advances a
