@@ -31,7 +31,7 @@ Choose by one test: would the buyer browse here when they need what the product 
 
 ## Posting
 
-- The user posts every Reddit post and comment from their own account; you draft. Reddit's Responsible Builder Policy requires AI agents to run as registered apps with an app label and bars mixing app and personal use on one account, and its spam policy names bots and generative AI tools that spread spam.
+- The user posts every Reddit post and comment from their own account; you draft. In a subreddit that bans AI-written posts, write no draft: give the user the thread, the rules and notes, and the user writes it. Reddit's Responsible Builder Policy requires AI agents to run as registered apps with an app label and bars mixing app and personal use on one account, and its spam policy names bots and generative AI tools that spread spam.
 - Write each post fresh for its subreddit, because Reddit counts identical or similar posts across communities as spam.
 - Post at most one link per subreddit per day, even where the rules allow more, and keep the user's history in each subreddit mostly non-promotional, per the 10% rule where the subreddit names none. Reddit asks accounts whose contributions are mostly links to their own business to be thoughtful about frequency.
 - Stop all posting on any removal, warning or rate limit.
