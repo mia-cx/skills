@@ -71,7 +71,7 @@ In communities, the user takes part before posting the link, then shares it as a
 
 ## 6. Launch day
 
-Keep the launch in one post so every quote points to the same place; X shows one post per conversation ([gtm-x](../gtm-x/SKILL.md)). Line up a thunderclap on X: founders, friends and partners post at one set time. On Product Hunt and Hacker News, ask people to try it and leave feedback, never to upvote, because both ban organised voting and Product Hunt removes launches that ask for or reward upvotes. Anchor the launch on the platform or ecosystem the product builds on, and use integrations as the onboarding story. Name owners before posting: one for product questions, one for business follow-ups.
+Keep the launch in one post so every quote points to the same place; X shows one post per conversation ([gtm-x](../gtm-x/SKILL.md)). Line up a thunderclap on X: founders, friends and partners post at one set time. On Product Hunt, ask people to try it and leave feedback, never to upvote, because Product Hunt removes launches that ask for or reward upvotes. On Hacker News, ask people only to try it, because HN forbids asking anyone to upvote or comment and penalises submissions that do. Anchor the launch on the platform or ecosystem the product builds on, and use integrations as the onboarding story. Name owners before posting: one for product questions, one for business follow-ups.
 
 Draft answers where each question was asked: under the post, its quotes, and creators' posts. Propose a DM only when someone said something it answers; check their profile first. A like alone is no reason.
 
@@ -124,6 +124,7 @@ Google lists low-quality directory links, excessive link exchanges and automated
 - [FTC: Disclosures 101 for Social Media Influencers](https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers)
 - [Product Hunt: How to promote your launch and what to avoid](http://help.producthunt.com/en/articles/17734384-5-how-to-promote-your-launch-and-what-to-avoid)
 - [Hacker News: Show HN guidelines](https://news.ycombinator.com/showhn.html)
+- [Hacker News: FAQ](https://news.ycombinator.com/newsfaq.html)
 - [Reddit Help: How do I keep spam out of my community?](https://support.reddithelp.com/hc/en-us/articles/28012014962580-How-do-I-keep-spam-out-of-my-community)
 - [Lobsters: About](https://lobste.rs/about)
 - [Google Search Central: Spam policies](https://developers.google.com/search/docs/essentials/spam-policies)
