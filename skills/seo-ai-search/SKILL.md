@@ -22,7 +22,7 @@ Done when each question records who gets recommended today, which pages are cite
 
 ## 2. Measure
 
-Run each prompt at least 3 times per engine, logged out, in ChatGPT, Claude, Perplexity, and Gemini, because answers vary from run to run: in SparkToro's test of 2,961 runs, ChatGPT and Google's AI gave the same brand list twice less than 1 time in 100, and the same order about 1 in 1,000. Report the share of runs that name the brand across the whole question set, never its position in an answer; SparkToro found that share meaningful only across dozens to hundreds of runs, which 15–30 questions run 3 times reach. Logged out keeps memory and personalisation out of the searches ChatGPT runs; record the locale too, since it uses approximate location. Track search and AI separately, because AI engines pick sources differently from Google, so a page can climb in Google and barely move in an assistant. Record provider, model, date, locale, exact prompt, brands named, and cited URLs, with named and cited in separate columns: being cited and being recommended are different numbers.
+Run each prompt at least 3 times per engine, logged out, in ChatGPT, Claude, Perplexity, and Gemini, because answers vary from run to run: in SparkToro's test of 2,961 runs, ChatGPT and Google's AI gave the same brand list twice less than 1 time in 100, and the same order about 1 in 1,000. Report the share of runs that name the brand, never its position in an answer, with run counts by engine and question. SparkToro ran each prompt 60–100 times per tool and leaves the minimum sample open, so 3 runs is a pilot: rerun a question before treating the brand's absence from it as a gap. Logged out keeps memory and personalisation out of the searches ChatGPT runs; record the locale too, since it uses approximate location. Track search and AI separately, because AI engines pick sources differently from Google, so a page can climb in Google and barely move in an assistant. Record provider, model, date, locale, exact prompt, brands named, and cited URLs, with named and cited in separate columns: being cited and being recommended are different numbers.
 
 - Open the "searching" step in ChatGPT or Claude to read the searches behind an answer; assistants rewrite a question into one or more searches (Google calls it query fan-out), and each is a page the site needs or a site to be on.
 - Bing Webmaster Tools' AI Performance report counts citations of each page in Copilot, Bing's AI summaries, and some partners, with a sample of grounding queries (the AI's own retrieval phrases, not what users typed), grouped into intents and topics with a citation share. It is free first-party citation data, without clicks. Setup is in [seo-technical](../seo-technical/SKILL.md#bing-webmaster-tools).
@@ -33,7 +33,7 @@ Ask by hand first; script the run once the list stops changing (one practitioner
 
 ## 3. Diagnose every lost question
 
-For each question that names competitors but not the user, find the cause before creating anything:
+For each question that still names competitors but not the user after a rerun, find the cause before creating anything:
 
 | Cause | Sign | Fix |
 | --- | --- | --- |
