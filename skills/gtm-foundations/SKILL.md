@@ -72,7 +72,7 @@ Add a three-month horizon. Pair every outcome goal the user can't force (a macro
 
 ## The funnel
 
-Marketing runs from first contact to payment; the stages adapt Dave McClure's AARRR metrics. Weight the plan by where the product leaks. Fix retention first while the retention curve keeps falling, because a curve that flattens is the best sign users get lasting value (Brian Balfour) and traffic poured into a leaking product drains away. Once it flattens at a level that pays for winning each user, put most effort into acquisition, because brands grow and shrink mainly through how many buyers they win (Riebe, Wright, Stern and Sharp 2014).
+Marketing runs from first contact to payment; the stages adapt Dave McClure's AARRR metrics. Weight the plan by where the product leaks. For a product people should keep using, fix retention first while the retention curve keeps falling, because a curve that flattens is the best sign users get lasting value (Brian Balfour, from a subscription product) and traffic poured into a leaking product drains away. A one-off purchase is meant to end, so a falling curve there is no leak: find the stage where most buyers drop out and start there. Once a repeat-use product's curve flattens at a level that pays for winning each user, put most effort into acquisition, because brands grow and shrink mainly through how many buyers they win (Riebe, Wright, Stern and Sharp 2014).
 
 | Stage | Done looks like | Reference |
 | --- | --- | --- |
