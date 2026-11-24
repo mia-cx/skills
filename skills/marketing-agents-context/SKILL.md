@@ -90,7 +90,7 @@ Save it as "[job] playbook" in [folder].
 
 Fix the file, not the draft. On every correction, propose one rule line, and add it to `rules.md` or the charter once the user agrees. Write down why the output missed, because that is how the user's taste compounds into the system.
 
-Prune the rules monthly: merge lines that say the same thing and delete ones the agent no longer breaks. A file that only grows gets worse, because models recall less as their context fills (Anthropic calls it context rot) and miss facts buried in the middle of long inputs (Liu et al., *Lost in the middle*).
+Prune the rules monthly: merge lines that say the same thing and delete ones that no longer apply, such as a rule for a client who left. Keep a rule the agent follows, because reading it on every run may be why it follows it. A file that only grows gets worse, because models recall less as their context fills (Anthropic calls it context rot) and miss facts buried in the middle of long inputs (Liu et al., *Lost in the middle*).
 
 To find the rules that matter most, run a revision diagnostic on the user's past feedback: the last ~500 revision comments from email, Slack or doc comments, or as many as exist.
 
