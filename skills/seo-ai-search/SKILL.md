@@ -26,6 +26,7 @@ Run each prompt at least 3 times per engine, logged out, in ChatGPT, Claude, Per
 
 - Open the "searching" step in ChatGPT or Claude to read the searches behind an answer; assistants rewrite a question into one or more searches (Google calls it query fan-out), and each is a page the site needs or a site to be on.
 - Bing Webmaster Tools' AI Performance report counts citations of each page in Copilot, Bing's AI summaries, and some partners, with a sample of grounding queries (the AI's own retrieval phrases, not what users typed), grouped into intents and topics with a citation share. It is free first-party citation data, without clicks. Setup is in [seo-technical](../seo-technical/SKILL.md#bing-webmaster-tools).
+- Search Console's Generative AI performance report counts impressions of the site's links in Google's AI Overviews and AI Mode, by page; it shows once the site has enough of them. Report it beside Bing's numbers, never summed with them: an impression is a link shown, a citation is a source the answer used.
 - Under about 100 AI visits a month, report counts, not percentages.
 - Propose a "How did you hear about us?" field at signup; one founder found the analytics referrer credited Google with 3.4 times more signups than customers did.
 
@@ -73,6 +74,7 @@ Make one change at a time, then rerun the same questions on a fixed cadence (wee
 - [Google Search Central: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
 - [OpenAI Help: Searching the web with ChatGPT](https://help.openai.com/en/articles/9237897-searching-the-web-with-chatgpt)
 - [Claude Help Center: Enable and use web search](https://support.claude.com/en/articles/10684626-enable-and-use-web-search)
+- [Search Console Help: Generative AI performance report](https://support.google.com/webmasters/answer/16984139)
 - [Bing Webmaster Blog: Introducing AI Performance in Bing Webmaster Tools (2026)](https://blogs.bing.com/webmaster/2026/2/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview/)
 - [Bing Search Blog: New AI visibility insights in Bing Webmaster Tools (2026)](https://blogs.bing.com/search/2026/6/New-AI-Visibility-Insights-in-Bing-Webmaster-Tools-Intents-Topics-Citation-Share-Compare/)
 - [Jeremy Howard: The /llms.txt file](https://llmstxt.org/)

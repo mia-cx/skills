@@ -62,7 +62,7 @@ Training crawlers and search crawlers are separate, and each robots.txt setting 
 
 ## Bing Webmaster Tools
 
-Bing's index feeds Copilot, and Bing reports AI citations, which Google does not: Search Console folds AI Overviews and AI Mode traffic into the Performance report's "Web" search type. The user sets it up: My Sites → Import from Google Search Console (verifies the site and brings its sitemaps), confirm the sitemap, and turn on IndexNow, which tells Bing and other participating engines (not Google) when a URL changes. Most CMSs ship IndexNow or a plugin; on Cloudflare it is Crawler Hints. The AI Performance report it unlocks belongs to [seo-ai-search](../seo-ai-search/SKILL.md#2-measure).
+Bing's index feeds Copilot, and Bing counts how often AI answers cite each page. Google counts impressions instead: Search Console's Generative AI performance report shows how often the site's links appeared in AI Overviews and AI Mode, by page, country, and device, and the same impressions stay in the Performance report's "Web" totals. The user sets it up: My Sites → Import from Google Search Console (verifies the site and brings its sitemaps), confirm the sitemap, and turn on IndexNow, which tells Bing and other participating engines (not Google) when a URL changes. Most CMSs ship IndexNow or a plugin; on Cloudflare it is Crawler Hints. The AI Performance report it unlocks belongs to [seo-ai-search](../seo-ai-search/SKILL.md#2-measure).
 
 ## Verify from Google's side
 
@@ -107,4 +107,5 @@ Field Core Web Vitals pass at the 75th percentile with LCP ≤ 2.5 s, INP ≤ 20
 - [Cloudflare: Bot Fight Mode](https://developers.cloudflare.com/bots/get-started/bot-fight-mode/)
 - [Cloudflare: Crawler Hints](https://developers.cloudflare.com/cache/advanced-configuration/crawler-hints/)
 - [IndexNow: FAQ](https://www.indexnow.org/faq)
+- [Search Console Help: Generative AI performance report](https://support.google.com/webmasters/answer/16984139)
 - [Bing Webmaster Blog: Introducing AI Performance in Bing Webmaster Tools (2026)](https://blogs.bing.com/webmaster/2026/2/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview/)
