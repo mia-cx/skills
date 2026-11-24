@@ -50,7 +50,7 @@ Production default weights per predicted action, 21 Nov 2026:
 | Dwell, photo expand | 0.05 | | |
 | Profile click, video quality view | 0 | | |
 
-Each weight multiplies one viewer's predicted probability of that action, not a count of actions, so a weight ratio is no exchange rate between likes and shares. X's code calls reading it that way "incorrect": negative weights are large because those actions are rare, and mass blocking or reporting mainly changes what viewers similar to the blockers see. A post people are likely to share or answer outranks one they'd only like; a post viewers are likely to mute sinks for them. Profile clicks weigh 0, so posts built to send people to a profile gain nothing from it. The like weight has moved from 0.5 in August (Ryan's reading) to 0.708 in November 2026; re-check `home-mixer/params/param.rs` before building a tactic on one exact number.
+Each weight multiplies one viewer's predicted probability of that action, not a count of actions, so a weight ratio is no exchange rate between likes and shares. X's code calls reading it that way "incorrect": negative weights are large because those actions are rare, and mass blocking or reporting mainly changes what viewers similar to the blockers see. At equal predicted probabilities, a share or reply adds more to a post's score than a like; a post viewers are likely to mute sinks for them. Profile clicks weigh 0, so posts built to send people to a profile gain nothing from it. The like weight has moved from 0.5 in August (Ryan's reading) to 0.708 in November 2026; re-check `home-mixer/params/param.rs` before building a tactic on one exact number.
 
 Write for shares and replies:
 
