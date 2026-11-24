@@ -53,7 +53,7 @@ Korzhov's reasoning: agents bidding with the same rules and platform data tie, s
 - Draft three new versions of the best ad.
 - Post every action with its reason to Slack, and keep a log.
 
-The user sets spend caps on the ad platform itself before it runs (Meta's account spending limit, Google Ads budgets), because rules inside an agent cannot stop a bug from spending past them. A Google Ads campaign can spend up to twice its daily budget on a given day, but no more than 30.4 times it in a month.
+The user sets spend caps on the ad platform itself before it runs (Meta's account spending limit, Google Ads budgets), because rules inside an agent cannot stop a bug from spending past them. An average daily budget is not a fixed cap: most Google Ads campaigns can be billed up to twice it on a given day and 30.4 times it in a month, Pay for Conversions campaigns have no daily limit, and a budget edit resets the month's limit. Read the campaign's actual limits before proposing a spend change.
 
 ## Sources
 
@@ -74,6 +74,7 @@ The user sets spend caps on the ad platform itself before it runs (Meta's accoun
 - [Google: Meridian](https://developers.google.com/meridian)
 - [Meta: Robyn](https://facebookexperimental.github.io/Robyn/)
 - [Google Ads Help: About overdelivery and your average daily budget](https://support.google.com/google-ads/answer/2375423?hl=en)
+- [Google Ads Help: About spending limits](https://support.google.com/google-ads/answer/10486637?hl=en) and [how budget changes affect them](https://support.google.com/google-ads/answer/10487143?hl=en)
 - [US Copyright Office: Circular 33, Works Not Protected by Copyright](https://www.copyright.gov/circs/circ33.pdf)
 - [eCFR: 16 CFR Part 465, Use of consumer reviews and testimonials](https://www.ecfr.gov/current/title-16/chapter-I/subchapter-D/part-465)
 - [eCFR: 16 CFR Part 255, Guides concerning endorsements and testimonials](https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255)
