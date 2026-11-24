@@ -39,6 +39,7 @@ current upstream versions. The global `.skill-lock.json` registry stays local.
 - **[say-more](skills/say-more/SKILL.md)** explain stuff only when asked.
 - **[momentum](skills/momentum/SKILL.md)** kill your executive dysfunction.
 - **[signal](skills/signal/SKILL.md)** cut the roadmap down to the 3–5 things that matter in the next 18 hours.
+- **[subtext](skills/subtext/SKILL.md)** read every issue, open and closed, and find what people actually want.
 
 Written for my ADHD brain.
 
