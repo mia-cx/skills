@@ -64,7 +64,7 @@ Draft text here.
 [Reply on Reddit](https://www.reddit.com/r/selfhosted/comments/…)
 ```
 
-Ask which leads the user posts and which the agents post, then follow [Posting rules](#posting-rules).
+Reddit and LinkedIn leads go to the user to post. For the rest, ask which ones the agents post, then follow [Posting rules](#posting-rules).
 
 ## Drafting rules
 
