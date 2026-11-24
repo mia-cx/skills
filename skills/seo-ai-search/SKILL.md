@@ -29,7 +29,7 @@ Run each prompt at least 3 times per engine, logged out, in ChatGPT, Claude, Per
 - Under about 100 AI visits a month, report counts, not percentages.
 - Propose a "How did you hear about us?" field at signup; one founder found the analytics referrer credited Google with 3.4 times more signups than customers did.
 
-Ask by hand first; script the run once the list stops changing (one practitioner asks 100 questions every Monday). Paid visibility trackers wait until the hand-run list proves useful. Read the pages that keep getting cited. In a controlled study, adding statistics, quotations, and cited sources to a page raised its visibility in generative answers by 30–40%, most for lower-ranked pages, while keyword stuffing did not help (Aggarwal et al., KDD 2024); this matches [seo-content](../seo-content/SKILL.md).
+Ask by hand first; script the run once the list stops changing (one practitioner asks 100 questions every Monday). Paid visibility trackers wait until the hand-run list proves useful. Read the pages that keep getting cited. On the GEO-bench benchmark, adding statistics, quotations, and cited sources to a page raised its position-adjusted share of the words in a simulated engine's answer by 30–40% relative, most for lower-ranked pages, while keyword stuffing did not help (Aggarwal et al., KDD 2024). The study measured no citation rate in live assistants, so treat these as edits to test; they match [seo-content](../seo-content/SKILL.md).
 
 ## 3. Diagnose every lost question
 
