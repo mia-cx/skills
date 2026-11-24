@@ -98,4 +98,4 @@ gh issue edit <n> --milestone "<name>" --add-blocked-by <m>
 gh pr edit <n> --milestone "<name>"
 ```
 
-Done when every proposed milestone, issue, and edge exists, and each filed issue is linked to the thread when the harness offers `link_issue`.
+Done when every proposed milestone, issue, and edge exists. Link filed issues to the thread only when this thread owns the project; otherwise the project's own thread picks them up.
