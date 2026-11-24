@@ -16,7 +16,7 @@ Twelve agents all reporting to the user is the same mistake as twelve direct rep
 
 Use the split only for independent jobs, such as an audit, a call summary and a month-end report. Anthropic's lead-agent-plus-subagents system beat a single agent by 90.2% on its internal research eval, at about 15 times the tokens of a chat, and Anthropic names jobs where agents need the same context or depend on each other as a poor fit. Parallel agents make implicit decisions that clash (Walden Yan, *Don't build multi-agents*), so keep one piece of work inside one agent.
 
-Build the split into the structure, because an agent told to delegate decides case by case whether work is "small" and often keeps it; Anthropic finds agents "not yet great at coordinating and delegating to other agents in real time". Give the coordinator no tools to do the work; DeepSeek's team runs theirs on a lighter model. Give workers isolated context, full tools and the strongest model, and no direct line to the user. In DeepSeek's synthetic test (5 runs per design, which they call indicative only), a single agent with a neutral prompt delegated in 0 of 5 runs and took a median 20.4 minutes per task; told to delegate first, it delegated in 4 of 5 and took 13.8 minutes median but up to 29.0; the structural split took 12.4 minutes median and at most 15.7, using 2–4 times the tokens.
+Build the split into the structure, because an agent told to delegate decides case by case whether work is "small" and often keeps it; Anthropic finds agents "not yet great at coordinating and delegating to other agents in real time". Give the coordinator no tools to do the work; DeepSeek's team runs theirs on a lighter model. Give workers isolated context, the strongest model, and no direct line to the user. DeepSeek gives its coding workers a full set of tools; give a marketing worker only the tools its job needs, because one that reads private data and untrusted text must not also have a way out ([marketing-agents-guardrails](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data)). In DeepSeek's synthetic test (5 runs per design, which they call indicative only), a single agent with a neutral prompt delegated in 0 of 5 runs and took a median 20.4 minutes per task; told to delegate first, it delegated in 4 of 5 and took 13.8 minutes median but up to 29.0; the structural split took 12.4 minutes median and at most 15.7, using 2–4 times the tokens.
 
 ## Chief-of-staff prompt
 
@@ -61,8 +61,11 @@ Read first: every past audit in [folder], my framework doc [link], and this clie
 When you run: when I message you "start audit for [client]".
 Done looks like: my report template, with every finding tied to one of the client's own numbers. Cover every area in my framework, then rank the fixes, so this client gets their own order and not my standard one.
 Tag each finding high, medium or low confidence, and list anything you couldn't check.
-Ask me first before you: share anything with the client, quote a price, or fill a gap with an assumption.
+Save the draft to [folder]. I share it with the client.
+Ask me first before you: quote a price, or fill a gap with an assumption.
 ```
+
+Connect no email, chat, upload or web tool to the auditor. It reads private client files and client-written intake, so any way to send data out completes the [lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data).
 
 One practitioner's framework covers 8 areas: strategy, delivery, client management, team, quality, recruiting, operations, financials.
 
