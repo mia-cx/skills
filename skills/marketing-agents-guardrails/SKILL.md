@@ -12,7 +12,8 @@ Limit what an agent can do and spend, and check its work before the user sees it
 
 ## Gate irreversible actions
 
-- Set sending, publishing, deleting, paying and price changes to ask-first in the tool's permission settings, because OWASP's rule for agents is to enforce authorisation in the systems they touch "rather than relying on an LLM to decide if an action is allowed". In Claude Code that is an `ask` or `deny` permission rule in `settings.json`; in Grok Bot, one practitioner reports it under Settings → Bot → "When Grok Bot wants to". Other tools call it per-action approval.
+- Set sending, publishing, deleting, paying and price changes to ask-first in the tool's permission settings, because OWASP's rule for agents is to enforce authorisation in the systems they touch "rather than relying on an LLM to decide if an action is allowed". In Claude Code an `ask` rule in `settings.json` prompts and a `deny` rule blocks; in Grok Bot, one practitioner reports it under Settings → Bot → "When Grok Bot wants to". Other tools call it per-action approval.
+- Test each gate in the setup the job runs in, because a rule is not a guaranteed prompt. In Claude Code, an unattended `-p` run has nobody to answer, so it denies an `ask` call and carries on. Sandbox auto-allow runs sandboxed commands past a whole-tool `Bash` ask rule, and a Bash rule matches the command as written, so the same program run another way (`sh -c`, a full path) slips past it. Before scheduling, try each gated action once and confirm it stops. If the setup can't stop it, leave that capability disconnected and have the user take the action.
 - Keep each gate narrow, so the agent still reads, sorts and drafts before it stops for the user. Each approval request shows the diff or the exact message first.
 - Enforce actions the agent must never take alone in code, not the prompt: a `deny` rule, or a Claude Code `PreToolUse` hook that returns a `deny` decision for the matching command or file edit. A prompt line is only a request.
 - Keep anything a client sees as a draft the user sends. A cautionary case: an AI-drafted proposal promised an 80:1 return on ad spend, and an agent that can send can send that.
@@ -113,6 +114,7 @@ The ladder catches agents that fail often, not rare failures: an agent that fail
 - [Fabrizio Dell'Acqua et al., *Navigating the jagged technological frontier* (2026)](https://doi.org/10.1287/orsc.2025.21838)
 - [Anthropic: Scaling Managed Agents, decoupling the brain from the hands](https://www.anthropic.com/research/managed-agents)
 - [Claude Code docs: Permissions](https://code.claude.com/docs/en/permissions)
+- [Claude Code docs: Permission modes](https://code.claude.com/docs/en/permission-modes)
 - [Claude Code docs: Hooks](https://code.claude.com/docs/en/hooks)
 - [Claude Code team: How the Claude Code team does code review](https://claude.dev/blog/solving-code-review-at-anthropic/)
 - [DeepSeek Harness, *Exploring super-agent design* (2026)](https://x.com/DeepSeekHarness/status/2116857257245987236)
