@@ -91,7 +91,7 @@ Agents post only the leads the user names, through a tool already signed in as t
 
 ## Cold email campaigns
 
-When the user runs an email campaign of their own, check the sending setup before rewriting anything, because nobody reads copy that lands in spam. Gmail and Yahoo require SPF or DKIM from every sender and a spam-complaint rate under 0.3% (Google recommends under 0.1%); above 5,000 messages a day, Gmail, Yahoo and Outlook also require SPF, DKIM and DMARC with an aligned From domain. Ignore open rates and switch open tracking off, because Apple Mail loads tracking pixels whether or not anyone opens the email.
+When the user runs an email campaign of their own, check the sending setup before rewriting anything, because nobody reads copy that lands in spam. Gmail and Yahoo require SPF or DKIM from every sender and a spam-complaint rate under 0.3% (Google recommends under 0.1%). Bulk senders also need SPF, DKIM and DMARC, with the From domain aligned to SPF or DKIM, and each provider decides who is bulk: Gmail uses the permanent threshold above, Outlook anyone sending over 5,000 a day to its consumer addresses, and Yahoo publishes no threshold, so set up all three for any campaign. Ignore open rates and switch open tracking off, because Apple Mail loads tracking pixels whether or not anyone opens the email.
 
 Then read the numbers, because each failure pattern points at one part. These are one practitioner's rules of thumb, without data behind them:
 
@@ -120,6 +120,7 @@ Pick partners by fit, not reach, because engagement with sponsored posts peaks a
 - [Google: Email sender guidelines FAQ](https://support.google.com/a/answer/14229414)
 - [ICO: Electronic mail marketing (PECR)](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guide-to-pecr/electronic-and-telephone-marketing/electronic-mail-marketing/)
 - [Yahoo: Sender best practices](https://senders.yahooinc.com/best-practices/)
+- [Yahoo: Sender FAQs](https://senders.yahooinc.com/faqs/)
 - [Microsoft: Outlook's new requirements for high-volume senders (2025)](https://techcommunity.microsoft.com/blog/microsoftdefenderforoffice365blog/strengthening-email-ecosystem-outlook%E2%80%99s-new-requirements-for-high%E2%80%90volume-senders/4399730)
 - [Apple: Mail Privacy Protection](https://www.apple.com/legal/privacy/data/en/mail-privacy-protection/)
 - [Reddit Help: How do I keep spam out of my community?](https://support.reddithelp.com/hc/en-us/articles/28012014962580-How-do-I-keep-spam-out-of-my-community)
