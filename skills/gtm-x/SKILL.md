@@ -31,7 +31,7 @@ Followed and unfollowed candidates are ranked together, but posts from accounts 
 
 - **One idea per post, one topic per account.** Mixed topics confuse which community a post belongs to. Name the one interest community the user wants to be placed in, and check drafts against it.
 - **One self-contained post per launch.** X keeps only the highest-scoring post per conversation, so a launch spread over five tweets reaches non-followers through one at most. Put everything a stranger needs in the main post; [gtm-launch](../gtm-launch/SKILL.md) covers what goes in it.
-- **48 hours per post.** A post makes or misses its reach in two days. Accounts under 50,000 followers get an experimental boost on posts under 2 hours old with fewer than 200 impressions, so the user should be around to reply in those first 2 hours. Follower count isn't scored, so big accounts get no guaranteed reach.
+- **48 hours per post.** A post makes or misses its reach in two days. For accounts with up to 50,000 followers, an original post (not a reply or repost) under 2 hours old with fewer than 200 Home impressions is eligible for an experimental cold-start lift, which X gives to at most one eligible post per feed request, so it is a chance at reach rather than a guaranteed boost. Follower count isn't scored, so big accounts get no guaranteed reach.
 
 ## What the score rewards
 
