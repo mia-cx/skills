@@ -66,7 +66,7 @@ Bing's index feeds Copilot, and Bing reports AI citations, which Google does not
 
 ## Verify from Google's side
 
-With Search Console access, run URL Inspection on the money pages first (home, pricing, main product page): stored index state, last crawl date, declared versus Google-selected canonical, and whether the rendered HTML shows the answer rather than an empty shell. Request indexing once per changed page; Google says repeat requests don't speed crawling, which takes a few days to a few weeks. Without access, hand the user that list of checks, plus submitting the sitemap under Sitemaps, which needs their account.
+Check the money pages first (home, pricing, main product page). The Search Console connector's URL inspection returns stored index state, last crawl date, and declared versus Google-selected canonical. Two steps need URL Inspection in the Search Console UI, so hand them to the user: whether the rendered HTML shows the answer rather than an empty shell, and Request indexing once per changed page, which only an owner or full user can do. Google says repeat requests don't speed crawling, which takes a few days to a few weeks. Without any access, hand the user the whole list, plus submitting the sitemap under Sitemaps, which needs their account.
 
 ## Page meaning
 

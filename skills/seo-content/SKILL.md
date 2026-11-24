@@ -64,7 +64,7 @@ A page at positions 10–30 already has a measured starting point: Google shows 
 - A query with impressions the page never answers: add the sentence, paragraph, or section that does.
 - A query at positions 10–30: give it its own H2 or paragraph.
 
-Work one page at a time, rewrite only the sections that change, and request indexing once in URL Inspection. Pull the queries again once URL Inspection shows a crawl after the edit (Google says crawling takes a few days to a few weeks). A lighter weekly variant (one practitioner's): last 28 days, queries at position 5–15, grouped by page; improve the 3 pages with most impressions, skipping pages Google hasn't recrawled since their last edit. Judge the programme at 3 months.
+Work one page at a time, rewrite only the sections that change, and have the user request indexing once in URL Inspection ([seo-technical](../seo-technical/SKILL.md#verify-from-googles-side)). Pull the queries again once URL Inspection shows a crawl after the edit (Google says crawling takes a few days to a few weeks). A lighter weekly variant (one practitioner's): last 28 days, queries at position 5–15, grouped by page; improve the 3 pages with most impressions, skipping pages Google hasn't recrawled since their last edit. Judge the programme at 3 months.
 
 Refresh stale prices, screenshots, steps, and limits; compare traffic loss with the same season last year. Merge pages only when they serve the same intent, with redirects and updated internal links.
 
@@ -78,7 +78,7 @@ A title change reports back once Google recrawls the page (a few days to a few w
 
 1. Search the query in a private window, since Google rewrites titles that are stuffed, boilerplate, half-empty, obsolete, or inaccurate. Note query words the results above use and this title lacks.
 2. Draft at least three candidates: query words first, a specific promise ("7 ways to get more leads"), a reason to click now, nothing the page fails to deliver. Use a year only when the page is current for that year: one SearchPilot split test found month and year in titles lifted organic sessions about 5% on a listings site, but Google rewrites obsolete titles and flags dates changed without real updates.
-3. Record date, clicks, and CTR, change one variable on one page, and request a recrawl.
+3. Record date, clicks, and CTR, change one variable on one page, and have the user request indexing in URL Inspection.
 4. Compare equal windows at a similar average position: 2 weeks for busy pages, a month for quiet ones. Judge on clicks, because a new title often adds long-tail impressions that lower CTR while clicks rise. For many similar pages, change the pattern on half and keep or revert, since only a comparison group rules out season and Google updates.
 
 To test angles first, propose three search ads, one angle each, at about $20 a day until each has about 1,000 impressions (one practitioner's numbers; Tim Ferriss picked *The 4-Hour Workweek* title from an AdWords test). The 30-character headline limit means it tests the angle, not the title. It needs the user's go and a total budget; skip quiet keywords.
