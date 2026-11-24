@@ -51,6 +51,8 @@ Rules:
 - Ask me first before you contact a client or edit another agent's instructions.
 ```
 
+The chief of staff reads private drafts built from text that came from outside, so fix where it sends in the connection, not the prompt: a Slack webhook or mail connector that reaches only the user's own channel or inbox, with no tool that picks a recipient. Without one, it saves the page where the user opens it ([lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data)).
+
 ## A first worker: the auditor
 
 If the user sells audits, proposals or diagnostics, the first draft is a good worker job. The agent ties every finding to the client's own numbers, and the user spends review time tracing those numbers to the client's file.
@@ -65,7 +67,7 @@ Save the draft to [folder]. I share it with the client.
 Ask me first before you: quote a price, or fill a gap with an assumption.
 ```
 
-Connect no email, chat, upload or web tool to the auditor. It reads private client files and client-written intake, so any way to send data out completes the [lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data).
+Connect no email, chat, upload or web tool to the auditor. It reads private client files and client-written intake, so any way to send data out completes the [lethal trifecta](../marketing-agents-guardrails/SKILL.md#treat-what-it-reads-as-data). Its draft carries both into the chief of staff, which is why that agent sends only to the user's fixed destination.
 
 One practitioner's framework covers 8 areas: strategy, delivery, client management, team, quality, recruiting, operations, financials.
 
