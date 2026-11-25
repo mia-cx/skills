@@ -29,7 +29,7 @@ It grants nothing listed under "Asking the user", and it does not bypass a harne
 
 1. **Build.** An issue goes through `address-issue`, which files the PR. For any other change, branch off the default branch if you are on it, make the smallest change that completes the goal, and file it with `pr-file`. Fix the case that happened, not every case that could.
 2. **Prove** every change, per "Proof". Add one line to the PR description saying how.
-3. **Review** with `review-relay`, or `review-council` when the user asked for a council.
+3. **Review.** When a bot reviews every push to this PR, such as Pullfrog, its reviews are the review: go straight to Babysit, which acts on them. A relay on top runs the same models a second time. Otherwise review with `review-relay`, or with `review-council` when the user asked for a council.
 4. **Babysit** with `babysit` until its Done holds. Prove each fix before pushing it.
 5. **Gate.** Check "The gate" against the live PR.
 6. **Finish.** Without "ship it", leave the PR open. With it, merge through `pr-merge`.
@@ -54,7 +54,7 @@ All true on the latest pushed commit:
 
 - Babysit's Done holds.
 - Proof covers every change in the diff, review fixes included.
-- The review ended on a clean lap or round, not on budget, with no dispute left for the user.
+- The review ended clean, with no dispute left for the user: the push-review bot's latest review of this commit raised nothing, or the relay or council ended on a clean lap or round, not on budget.
 - Without "ship it": auto-merge is off and the PR is in no merge queue. Disable both before the first push, and report that you did.
 
 ## Asking the user
