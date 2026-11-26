@@ -41,7 +41,7 @@ Open every lead yourself. Keep it only when the quote is at the URL, by that aut
 
 ## 3. Draft
 
-Write every draft yourself, in the user's first person, following [Drafting rules](#drafting-rules) and [Length limits](#length-limits). For Mia, write in her voice per [talk-like-mia](../talk-like-mia/SKILL.md). Attach the send link for the channel:
+Write every draft yourself, in the user's first person, following [Drafting rules](#drafting-rules) and [Length limits](#length-limits). For Mia, write in her voice per [talk-like-mia](../talk-like-mia/SKILL.md). Where the venue bans AI-written posts, write no draft: give the user notes instead (the venue's rules, what the person needs, and what the product does for it), and the user writes the reply. Attach the send link for the channel:
 
 | Channel | Send link |
 | --- | --- |
@@ -49,11 +49,11 @@ Write every draft yourself, in the user's first person, following [Drafting rule
 | X reply | `https://x.com/intent/tweet?in_reply_to=<post id>&text=<encoded draft>` |
 | Elsewhere | Permalink to the post to reply to |
 
-Done when every kept lead has a draft and a send link.
+Done when every kept lead has a draft (or notes) and a send link.
 
 ## 4. Hand back
 
-Append each lead to `.gtm/leads.md`: status `drafted`, date, venue, author, URL, quote, draft, send link. In chat, list the 3–5 best spaces with their self-promotion rules, then the leads in rank order:
+Append each lead to `.gtm/leads.md`: status `drafted`, date, venue, author, URL, quote, draft or notes, send link. In chat, list the 3–5 best spaces with their self-promotion rules, then the leads in rank order:
 
 ```markdown
 ### 1. r/selfhosted · u/quietfox · 3 days ago
@@ -64,7 +64,7 @@ Draft text here.
 [Reply on Reddit](https://www.reddit.com/r/selfhosted/comments/…)
 ```
 
-Ask which leads the user posts and which the agents post, then follow [Posting rules](#posting-rules).
+Ask which leads the user posts and which the agents post, then follow [Posting rules](#posting-rules). Reddit and LinkedIn leads always go to the user.
 
 ## Drafting rules
 
@@ -86,7 +86,7 @@ LinkedIn DMs follow [gtm-linkedin](../gtm-linkedin/SKILL.md#dms-from-competitors
 
 ## Posting rules
 
-Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else, including venues that ban AI-written posts and every LinkedIn message, stays with the user. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because consecutive link posts trip anti-spam auto-bans. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
+Agents post only the leads the user names, through a tool already signed in as the user: `gh` per [gh-comment](../gh-comment/SKILL.md), the Discord MCP, or a logged-in browser. Everything else, including every Reddit post and comment and every LinkedIn message, stays with the user, who gets the draft and the thread link. Venues that ban AI-written posts also stay with the user, who gets the notes and the thread link and writes the reply. Read each community's pinned rules first. Post at most one link per community per day, even where the rules allow more, because consecutive link posts trip anti-spam auto-bans. Confirm each post is live and record its URL as `posted`. Stop all posting on any removal, warning, or rate limit.
 
 ## Cold email campaigns
 
