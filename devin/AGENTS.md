@@ -36,6 +36,14 @@ Start Devin sessions in Fusion: Opus 5.5 leads, with SWE alongside it. GPT model
 
 Never touch production, live data, or anything I rely on day to day unless I explicitly tell you to. When a task is adjacent to any of these, name what you are about to do before touching it. Permission earlier in a thread is not permission forever.
 
+## Deploying to a root domain
+
+A Worker deployed to a root domain (`example.com`) also serves `www.example.com`, and the Worker itself redirects `www` to the root with a 301 that keeps the path and query. Never use a Cloudflare dashboard redirect rule for it.
+
+- Add both hostnames as custom domains in the wrangler config: `{ "pattern": "www.example.com", "custom_domain": true }` beside the root one.
+- Redirect at the top of the fetch entry, before any routing (SvelteKit: first in `handle` in `hooks.server.ts`).
+- A Worker with static assets serves matching files before the script runs, so set `assets.run_worker_first` to `true` or the redirect never fires for asset paths.
+
 ## GitHub
 
 Commit and push as you work, after each finished change. Don't wait for me to ask, and don't ask me to confirm. Git remembers everything.
