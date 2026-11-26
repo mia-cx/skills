@@ -98,6 +98,14 @@ Keep Chromium behind Mia's work: start it with `open -g -n -a Chromium --args ..
 - Unless specified otherwise per-project, I generally like using the following technology: Turborepo (with pnpm); Biome; SvelteKit; Tailwind.
 - When working on more complex web apps, I like to pull in: Cloudflare Workers Platform (Workers, D1, R2); Drizzle; Dexie; WorkOS (auth); nanostores (@nanostores/persistent), and Effect (including Effect Schema).
 
+## Deploying to a root domain
+
+A Worker deployed to a root domain (`example.com`) also serves `www.example.com`, and the Worker itself redirects `www` to the root with a 301 that keeps the path and query. Never use a Cloudflare dashboard redirect rule for it.
+
+- Add both hostnames as custom domains in the wrangler config: `{ "pattern": "www.example.com", "custom_domain": true }` beside the root one.
+- Redirect at the top of the fetch entry, before any routing (SvelteKit: first in `handle` in `hooks.server.ts`).
+- A Worker with static assets serves matching files before the script runs, so set `assets.run_worker_first` to `true` or the redirect never fires for asset paths.
+
 ## Read the intent, then act
 
 Default to doing the work. Answer instead when I ask for a plan, ask a question about the code, or think out loud about options. Everything else means change the code. A proposed diff in chat is a worse answer than the diff on disk.
