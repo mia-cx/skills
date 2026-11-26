@@ -1,0 +1,34 @@
+# Publishes the Devin plugin to the `devin-plugin` branch: this repo with
+# devin/AGENTS.md as its only always-on rule. Devin loads every root
+# AGENTS.md, AGENTS.local.md and CLAUDE.md of a plugin, and those files
+# are for local coding harnesses.
+name: devin-plugin
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: devin-plugin
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Build and push devin-plugin branch
+        run: |
+          git rm -q AGENTS.md AGENTS.local.md CLAUDE.md CURSOR.md
+          git mv devin/AGENTS.md AGENTS.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          tree=$(git write-tree)
+          commit=$(git commit-tree "$tree" -m "Devin plugin build of $GITHUB_SHA")
+          git push --force origin "$commit:refs/heads/devin-plugin"
