@@ -12,7 +12,7 @@ Run narrow research bots on schedules that share one folder, with a head bot tha
 
 ## Share one folder, not one chat
 
-The bots talk only through files: each reads a shared brief, does one job on a schedule, and writes its own file; the head bot reads them all. Put the folder at `.gtm/` in the product repo when the bots can reach it, so they share `copy.md`, `templates.md`, `voice.md` and `log.md` with gtm; otherwise use any folder every bot can read.
+The bots talk only through files: each reads a shared brief, does one job on a schedule, and writes its own file; the head bot reads them all. Anthropic's research agents work this way, because work stored in files and passed by reference doesn't get lost in a chain of summaries. Put the folder at `.gtm/` in the product repo when the bots can reach it, so they share `copy.md`, `templates.md`, `voice.md` and `log.md` with gtm; otherwise use any folder every bot can read.
 
 | File | Holds |
 | --- | --- |
@@ -25,7 +25,7 @@ Give every research bot these rules, and reuse them in any agent you build:
 - Read free data before paying for searches.
 - Stay silent on days with nothing new.
 - Mark "why it worked" as opinion, because the data only shows that it did.
-- Cite sample sizes, and call any pattern under 6 videos "early".
+- Cite sample sizes, and call any pattern under 6 videos "early". Six is the prompt author's convention, not a statistical test; it guards against trusting small samples, which people do far too readily (Tversky and Kahneman, *Belief in the law of small numbers*).
 
 ## Wire it up
 
@@ -66,7 +66,7 @@ Every number comes from [data source]. When the newest report hasn't landed, tel
 
 ## Outlier finder
 
-Finds videos that did far better than their creator's size, because that shows the format did the work, not the audience.
+Finds videos that did far better than their creator's size. That hints the format did some of the work, but luck and timing can't be ruled out, and studying only winners makes risky choices look like the cause of success, because everyone who tried the same move and flopped is out of view (Denrell, *Vicarious learning, undersampling of failure, and the myths of management*). So the finder also pulls similar videos that flopped; if they exist, the format didn't do the work alone.
 
 ```
 JOB
@@ -77,11 +77,13 @@ STEPS
 - Open the outliers from my saved search first; they're free to read.
 - Run a single search on [data source] for [topic]: TikTok and Instagram, past week, outliers only, [outlier score threshold], creators under [100,000] followers, [language]. One page.
 - Drop paid posts and anything already in outliers.md.
+- For each of the 5 you send, run one more search for the same hook or format with the same filters but without the outlier filter. One page. If [data source] can't return videos that did badly, say so; an empty result doesn't mean none flopped.
 
 SEND ME 5, HIGHEST SCORE FIRST
 - Link, creator, followers, views and score.
 - First line, hook type and format.
-- Your best guess at why it took off.
+- Your best guess at why it took off, marked as opinion.
+- Up to 3 videos in my niche with the same hook or format that flopped, and what differs, or a note that [data source] can't show them.
 - Whether my business could shoot it this week.
 
 Add them to outliers.md. On a day with nothing new, stay silent.
@@ -89,7 +91,7 @@ Add them to outliers.md. On a day with nothing new, stay silent.
 
 ## Niche map and competitor watch
 
-The niche map (monthly) shows who owns the topic and which formats nobody does well. Competitor watch (weekly) turns each rival change into a test idea, sorting ads oldest first because those are the ones rivals keep paying for.
+The niche map (monthly) shows who owns the topic and which formats nobody does well. Competitor watch (weekly) turns each rival change into a test idea. It sorts ads oldest first, because an ad a rival keeps running is a better signal than a new one; it is not proof the ad works, since some run because nobody switched them off.
 
 ```
 JOB
@@ -137,10 +139,10 @@ STEPS
 - Mark each one MAKE or SKIP, judged only on whether my buyer would care.
 
 SEND ME
-For each MAKE: an example link, its stage, and what we'd actually shoot. Flag any sound that may not be cleared for brands. Save it as trends.md.
+For each MAKE: an example link, its stage, and what we'd actually shoot. For each sound, say whether TikTok's Commercial Music Library lists it for [region] and for the placement we'd post it in. Save it as trends.md.
 ```
 
-Have the user check a sound's brand licence before posting with it.
+On TikTok, a business may post only sounds from the Commercial Music Library or tracks it has licensed itself, because TikTok bars businesses from using the general music library for any commercial use, organic posts included. The library filters tracks by the region a campaign runs in and by usable placement, so a track listed in one region or placement may be unavailable in another. Have the user confirm a sound's licence before posting with it.
 
 ```
 JOB
@@ -154,3 +156,12 @@ STEPS
 SEND ME
 Each list with the original wording untouched and the video link, then 5 video ideas that each answer a specific comment. Save it as comments.md.
 ```
+
+## Sources
+
+- [Jerker Denrell, *Vicarious learning, undersampling of failure, and the myths of management* (2003)](https://ora.ox.ac.uk/objects/uuid:a8102a34-f7a4-40de-91c0-139355f97358)
+- [Amos Tversky, Daniel Kahneman, *Belief in the law of small numbers* (1971)](https://doi.org/10.1037/h0031322)
+- [Anthropic: How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+- [TikTok: About the Commercial Music Library](https://ads.tiktok.com/help/article/commercial-music-library?lang=en)
+- [TikTok: How to use the Commercial Music Library](https://ads.tiktok.com/help/article/how-to-use-the-commercial-music-library)
+- [jaffa (Virlo co-founder), *Grok Bot for social media* (2026)](https://x.com/dsqjaffa/status/2119160045263077664)
